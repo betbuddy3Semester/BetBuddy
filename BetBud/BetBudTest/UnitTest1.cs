@@ -11,12 +11,13 @@ namespace BetBudTest
             //Arrange
             var one = 1;
             var two = 2;
+            var three = 3;
 
             //Act
-            var resul = one + two;
+            var resul = one + two + three;
 
             //Assure
-            Assert.AreEqual(resul, 3);
+            Assert.AreEqual(resul, 6);
         }
     }
 }
