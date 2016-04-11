@@ -10,5 +10,5 @@ script:
 notifications:
   email: false
 install:
-  - nuget restore BetBuddy/BetBud.sln
+  - nuget restore BetBud/BetBud.sln
   - nuget install NUnit.Runners -Version 3.2.0 -OutputDirectory testrunner
