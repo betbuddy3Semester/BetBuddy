@@ -1,12 +1,12 @@
 language: csharp
-solution: BetBuddy/BetBud.sln
+solution: BetBud/BetBud.sln
 branches:
   only:
     - master
     - dev
 script:
-  - xbuild /p:Configuration=Release BetBuddy/BetBud.sln /p:TargetFrameworkVersion="v4.5"
-  - mono ./testrunner/NUnit.ConsoleRunner.3.2.0/tools/nunit3-console.exe ./BetBud/BetBudTest/bin/Release/BetBuddyTest.dll
+  - xbuild /p:Configuration=Release BetBud/BetBud.sln /p:TargetFrameworkVersion="v4.5"
+  - mono ./testrunner/NUnit.ConsoleRunner.3.2.0/tools/nunit3-console.exe ./BetBud/BetBudTest/bin/Release/BetBudTest.dll
 notifications:
   email: false
 install:
