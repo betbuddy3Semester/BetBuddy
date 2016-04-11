@@ -1,0 +1,14 @@
+language: csharp
+solution: BetBud/BetBud.sln
+branches:
+  only:
+    - master
+    - dev
+script:
+  - xbuild /p:Configuration=Release BetBud/BetBud.sln /p:TargetFrameworkVersion="v4.5"
+  - mono ./testrunner/NUnit.ConsoleRunner.3.2.0/tools/nunit3-console.exe ./BetBud/BetBudTest/bin/Release/BetBuddyTest.dll
+notifications:
+  email: false
+install:
+  - nuget restore BetBuddy/BetBuddy.sln
+  - nuget install NUnit.Runners -Version 3.2.0 -OutputDirectory testrunner
