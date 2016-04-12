@@ -40,9 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IDelKamp.cs" />
-    <Compile Include="IKampe.cs" />
-    <Compile Include="IKupon.cs" />
+    <Compile Include="Interface Kupon\IDelKamp.cs" />
+    <Compile Include="Interface Kupon\IKampe.cs" />
+    <Compile Include="Interface Kupon\IKupon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -53,4 +53,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
- </Project>
+</Project>
