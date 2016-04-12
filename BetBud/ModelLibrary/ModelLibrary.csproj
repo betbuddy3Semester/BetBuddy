@@ -43,10 +43,14 @@
     <Compile Include="Interface Bruger\IBruger.cs" />
     <Compile Include="Interface Bruger\BrugerInterfaceTest.cs" />
     <Compile Include="Interface Kupon\IDelKamp.cs" />
-    <Compile Include="Interface Kupon\IKampe.cs" />
+    <Compile Include="Interface Kupon\IKamp.cs" />
     <Compile Include="Interface Kupon\IKupon.cs" />
+    <Compile Include="Kupon\DelKamp.cs" />
+    <Compile Include="Kupon\Kamp.cs" />
+    <Compile Include="Kupon\Kupon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

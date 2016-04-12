@@ -9,8 +9,8 @@ namespace ModelLibrary
         /**
         * Oprettelse af kupon
         */
-        void TilføjKamp(IKampe kamp, bool valgt1, bool valgtX, bool valgt2);
-        void FjernKamp(IKampe kamp);
+        void TilføjKamp(IKamp kamp, bool valgt1, bool valgtX, bool valgt2);
+        void FjernKamp(IKamp kamp);
         double OddsUdregning();
         double MuligGevist();
         bool BekræftKupon();

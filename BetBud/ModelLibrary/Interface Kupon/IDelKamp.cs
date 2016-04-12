@@ -8,7 +8,7 @@ namespace ModelLibrary
         bool ValgtX { get; set; }
         bool Valgt2 { get; set; }
         
-        IKampe Kampe { get; set; }
+        IKamp Kampe { get; set; }
 
         bool KampRigtig();
 

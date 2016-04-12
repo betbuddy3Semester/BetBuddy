@@ -4,7 +4,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace ModelLibrary
 {
-    public interface IKampe
+    public interface IKamp
     {
         string HoldVsHold { get; set; }
         double Odds1{ get; set; }
