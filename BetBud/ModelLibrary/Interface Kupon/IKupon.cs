@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ModelLibrary.Interface_Bruger;
+using System;
 using System.Collections.Generic;
 
 namespace ModelLibrary

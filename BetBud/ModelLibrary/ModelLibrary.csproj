@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interface Bruger\IBruger.cs" />
+    <Compile Include="Interface Bruger\BrugerInterfaceTest.cs" />
     <Compile Include="Interface Kupon\IDelKamp.cs" />
     <Compile Include="Interface Kupon\IKampe.cs" />
     <Compile Include="Interface Kupon\IKupon.cs" />
