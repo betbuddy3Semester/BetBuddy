@@ -7,6 +7,7 @@ branches:
 script:
   - xbuild /p:Configuration=Release BetBud/BetBud.sln /p:TargetFrameworkVersion="v4.5"
   - mono ./testrunner/NUnit.ConsoleRunner.3.2.0/tools/nunit3-console.exe ./BetBud/BetBudTest/bin/Release/BetBudTest.dll
+  - gacutil.exe -i Microsoft.VisualStudio.ServiceModel.Core.dll
 notifications:
   email: false
 install:
