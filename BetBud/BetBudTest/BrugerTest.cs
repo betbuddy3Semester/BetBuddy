@@ -1,17 +1,17 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
+using System;
 
 namespace BetBudTest
 {
-    [TestClass]
-    public class UnitTest2
+    [TestFixture]
+    public class BrugerTest
     {
-        [TestMethod]
-        public void opretBruger()
+        [Test]
+        public void opretNavnTest()
         {
             // Arrange
             Bruger b = new Bruger();
-            String navn = "Jens";
+            string navn = "Jens";
             // Act
             b.Navn = navn;
             //Assert
