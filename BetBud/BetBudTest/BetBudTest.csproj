@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Bruger.cs" />
     <Compile Include="Cat.cs" />
+    <Compile Include="KuponTest.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BrugerTest.cs" />
