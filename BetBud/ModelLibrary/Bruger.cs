@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace ModelLibary
+namespace BetBudTest
 {
     public class Bruger
     {
