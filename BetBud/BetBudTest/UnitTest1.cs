@@ -6,6 +6,20 @@ namespace BetBudTest
     public class UnitTest1
     {
         [Test]
+        public void CreateCat()
+        {
+            //Arrange
+            var Name = "Cat";
+            var cat = new Cat();
+
+            //Act
+            cat.catName = Name;
+
+            //Assert
+            Assert.AreEqual(cat.catName, "Cat");
+        }
+
+        [Test]
         public void TestMethod1()
         {
             //Arrange
