@@ -53,7 +53,6 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="Bruger.cs" />
     <Compile Include="Cat.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
