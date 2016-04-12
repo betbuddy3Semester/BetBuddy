@@ -8,12 +8,18 @@ namespace ModelLibrary.Interface_Bruger
 {
     public class BrugerInterfaceTest : IBruger
     {
-        public string Navn { get; set; }
+        public string Alias
+        {get; set;}
 
-        public BrugerInterfaceTest()
-        {
-            Navn = "Bente";
-        }
+        public string BrugerNavn
+        { get; set; }
+        
+        public string Email
+        { get; set; }
 
+        public string Navn
+        { get; set; }
     }
 }
+    
+
