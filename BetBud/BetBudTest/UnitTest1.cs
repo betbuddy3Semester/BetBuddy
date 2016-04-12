@@ -33,5 +33,16 @@ namespace BetBudTest
             //Assure
             Assert.AreEqual(resul, 6);
         }
+
+        [Test]
+        public void TestCatIsReal()
+        {
+            //Arrange
+            Cat cat = new Cat();
+            //Act
+            
+            //Assure
+            Assert.IsNotNull(cat);
+        }
     }
 }
