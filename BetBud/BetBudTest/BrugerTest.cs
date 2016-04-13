@@ -1,6 +1,7 @@
-﻿using NUnit.Framework;
+﻿using ModelLibrary;
+using ModelLibrary.Interface_Bruger;
+using NUnit.Framework;
 using System;
-
 
 namespace BetBudTest
 {
@@ -11,56 +12,42 @@ namespace BetBudTest
         public void opretNavnTest()
         {
             // Arrange
-            Bruger b = new Bruger();
-            string navn = "Jens";
+            BrugerInterfaceTest b = new BrugerInterfaceTest();
             // Act
-            b.Navn = navn;
-            //Assert
-            Assert.IsNotNull(b);
-            Assert.AreEqual("Jens", b.Navn);
+            b.Navn = "Bente";
+            // Assert
+            Assert.AreEqual("Bente", b.Navn);
         }
 
+        [Test]
+        public void opretAliasTest()
+        {
+            // Arrange
+            BrugerInterfaceTest b = new BrugerInterfaceTest();
+            // Act
+            b.Alias = "Bentemusen";
+            // Assert
+            Assert.AreEqual("Bentemusen", b.Alias);
+        }
         [Test]
         public void opretBrugerNavnTest()
         {
-
             // Arrange
-            Bruger b = new Bruger();
-            string BrugerNavn = "Jens lyn";
+            BrugerInterfaceTest b = new BrugerInterfaceTest();
             // Act
-            b.brugerNavn = BrugerNavn;
-            //Assert
-            Assert.AreEqual("Jens lyn", b.brugerNavn); 
-        
+            b.BrugerNavn = "Bentemuzzen";
+            // Assert
+            Assert.AreEqual("Bentemuzzen", b.BrugerNavn);
         }
-
         [Test]
         public void opretEmailTest()
         {
-            //Arrange
-            Bruger b = new Bruger();
-            String Email = "jenslyn@gmail.com";
-
-            //Act
-            b.email = Email;
-
-            //Assert
-            Assert.AreEqual("jenslyn@gmail.com", b.email);
-
-        }
-
-        [Test]
-        public void OpretAliasTest()
-        {
-            //Arrange
-            Bruger b = new Bruger();
-            string Alias = "JenziBoy";
-
-            //Act
-            b.alias = Alias;
-
-            //Assert
-            Assert.AreEqual("JenziBoy", b.alias);
+            // Arrange
+            BrugerInterfaceTest b = new BrugerInterfaceTest();
+            // Act
+            b.Email = "Bentemuzzen@pølsemail.nu";
+            // Assert
+            Assert.AreEqual("Bentemuzzen@pølsemail.nu", b.Email);
         }
     }
 }
