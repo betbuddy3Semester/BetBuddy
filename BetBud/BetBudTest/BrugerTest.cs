@@ -1,5 +1,5 @@
 ﻿using ModelLibrary;
-using ModelLibrary.Bruger;
+using ModelLibrary.Interface_Bruger;
 using NUnit.Framework;
 using System;
 
@@ -9,43 +9,26 @@ namespace BetBudTest
     public class BrugerTest
     {
         [Test]
-        public void opretNavnTest()
+        public void opretNavnTest(BrugerInterfaceTest testBruger)
         {
-            // Arrange
-            Bruger testBruger = new Bruger();
-            // Act
-            testBruger.Navn = "Bente";
             // Assert
             Assert.AreEqual("Bente", testBruger.Navn);
         }
-
         [Test]
-        public void opretAliasTest()
+        public void opretAliasTest(BrugerInterfaceTest testBruger)
         {
-            // Arrange
-            Bruger testBruger = new Bruger();
-            // Act
-            testBruger.Alias = "Bentemusen";
             // Assert
             Assert.AreEqual("Bentemusen", testBruger.Alias);
         }
         [Test]
-        public void opretBrugerNavnTest()
+        public void opretBrugerNavnTest(BrugerInterfaceTest testBruger)
         {
-            // Arrange
-            Bruger testBruger = new Bruger();
-            // Act
-            testBruger.BrugerNavn = "Bentemuzzen";
             // Assert
             Assert.AreEqual("Bentemuzzen", testBruger.BrugerNavn);
         }
         [Test]
-        public void opretEmailTest()
+        public void opretEmailTest(BrugerInterfaceTest testBruger)
         {
-            // Arrange
-            Bruger testBruger = new Bruger();
-            // Act
-            testBruger.Email = "Bentemuzzen@pølsemail.nu";
             // Assert
             Assert.AreEqual("Bentemuzzen@pølsemail.nu", testBruger.Email);
         }
