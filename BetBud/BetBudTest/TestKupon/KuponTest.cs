@@ -49,6 +49,7 @@ namespace BetBudTest.TestKupon
             kampe.Add(kamp2);
 
         }
+
         [Test]
 
         public void TilføjKampTest()
@@ -63,7 +64,85 @@ namespace BetBudTest.TestKupon
             IDelKamp dk = kupon.DelKampe.First();
             Assert.AreEqual(kampe.First(), dk.Kampe);
         }
+
+        [Test]
+        public void FjernKamp()
+        {
+            //Arrange
+            Kupon kupon = new Kupon();
+
+            //Act
+            kupon.TilføjKamp(kampe.First(), false, false, true);
+            kupon.FjernKamp(kampe.First());
+
+            //Assert
+            Assert.AreEqual(kupon.DelKampe.Count(), 0);
+        }
+
+        [Test]
+        public void OddsUdregning()
+        {
+            //Arrange
+            Kupon kupon = new Kupon();
+
+            //Act
+            kupon.TilføjKamp(kampe.ElementAt(0), false, true, false);
+            kupon.TilføjKamp(kampe.ElementAt(1), true, false, false);
+
+            //Assert
+            Assert.AreEqual(kupon.OddsUdregning(), 5.76);
+        }
+
+        [Test]
+        public void MuligGevist()
+        {
+            //Arrange
+            Kupon kupon = new Kupon();
+
+            //Act
+            kupon.TilføjKamp(kampe.ElementAt(0), false, true, false);
+            kupon.TilføjKamp(kampe.ElementAt(1), true, false, false);
+            kupon.Point = 1000;
+
+            //Assert
+            Assert.AreEqual(kupon.MuligGevist(), 5760);
+
+        }
+
+        // AFVENT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        [Test]
+        public void BekræftKupon()
+        {
+            //Arrange
+            Kupon kupon = new Kupon();
+
+            //Act
+            kupon.TilføjKamp(kampe.ElementAt(0), false, true, false);
+            kupon.TilføjKamp(kampe.ElementAt(1), true, false, false);
+            kupon.Point = 1000;
+
+            //Assert
+            //?????????????
+        }
+
+        [Test]
+        public void KontrolAfKupon()
+        {
+            //Arrange
+            //Act
+            //Assert
+        }
+
+        [Test]
+        public void Kontrolleret()
+        {
+            //Arrange
+            //Act
+            //Assert
+        }
+
     }
+}
 
 
 
