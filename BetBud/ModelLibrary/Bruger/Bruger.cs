@@ -1,15 +1,18 @@
-﻿using ModelLibrary.Interface_Bruger;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ModelLibrary.Bruger
 {
+    [DataContract]
     public class Bruger : IBruger 
     
       {
+
             public string Alias
             { get; set; }
 
@@ -21,6 +24,13 @@ namespace ModelLibrary.Bruger
 
             public string Navn
             { get; set; }
-        }
+
+
+        //Giver brugeren et ID
+        [Key]
+        [DatabaseGe ]
+            public int BrugerId 
+            { get; set; }
+      }
     }
 
