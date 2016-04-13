@@ -1,6 +1,7 @@
 ﻿using ModelLibrary.Bruger;
 using System;
 
+
 namespace WCFBetBuddy
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
