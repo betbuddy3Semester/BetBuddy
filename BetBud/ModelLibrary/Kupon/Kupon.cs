@@ -34,7 +34,17 @@ namespace ModelLibrary.Kupon
             throw new NotImplementedException();
         }
 
+        public List<DelKamp> SorteretKampe()
+        {
+            throw new NotImplementedException();
+        }
+
         public bool KontrolAfKupon()
+        {
+            throw new NotImplementedException();
+        }
+
+        List<IDelKamp> IKupon.SorteretKampe()
         {
             throw new NotImplementedException();
         }

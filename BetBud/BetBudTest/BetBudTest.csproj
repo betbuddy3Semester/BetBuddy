@@ -72,6 +72,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BrugerTest.cs" />
+    <Compile Include="TestKupon\KampTest.cs" />
     <Compile Include="TestKupon\KuponTest.cs" />
   </ItemGroup>
   <ItemGroup>
