@@ -49,7 +49,7 @@ namespace ModelLibrary.Kupon
             throw new NotImplementedException();
         }
 
-        public bool Kontrolleret { get; }
+        public Boolean Kontrolleret { get; set; }
         public double Point { get; set; }
         public List<IDelKamp> DelKampe { get; set; }
         public IBruger Bruger { get; set; }

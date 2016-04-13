@@ -21,7 +21,7 @@ namespace ModelLibrary
         * Kontrol/indløsning af kupon
         */
         bool KontrolAfKupon();
-        bool Kontrolleret { get; }
+        bool Kontrolleret { get; set; }
         double Point { get; set; }
         List<IDelKamp> DelKampe { get; set; }
         IBruger Bruger { get; set; }
