@@ -1,5 +1,7 @@
 ﻿using ModelLibrary.Bruger;
 using System;
+using System.Linq;
+using DALBetBud.Context;
 
 
 namespace WCFBetBuddy
@@ -39,6 +41,11 @@ namespace WCFBetBuddy
                 db.SaveChanges();
 
             }
+        }
+
+        public void opretBruger(Bruger bruger)
+        {
+            throw new NotImplementedException();
         }
 
         public void sletBruger(int id)

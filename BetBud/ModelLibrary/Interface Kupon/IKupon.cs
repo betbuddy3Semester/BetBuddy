@@ -14,6 +14,8 @@ namespace ModelLibrary
         double OddsUdregning();
         double MuligGevist();
         bool BekræftKupon();
+        List<IDelKamp> SorteretKampe(); 
+
         
         /**
         * Kontrol/indløsning af kupon

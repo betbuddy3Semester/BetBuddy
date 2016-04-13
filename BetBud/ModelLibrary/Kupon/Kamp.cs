@@ -8,6 +8,7 @@ namespace ModelLibrary.Kupon
 {
     public class Kamp : IKamp
     {
+        public int KampId { get; set; }
         public string HoldVsHold { get; set; }
         public double Odds1 { get; set; }
         public double OddsX { get; set; }

@@ -19,34 +19,9 @@ namespace BetBudTest.TestKupon
 
         public KuponTest()
         {
-            Kamp kamp1 = new Kamp()
-            {
-                HoldVsHold = "Liverpool - Man UTD",
-                Odds1 = 1.33,
-                OddsX = 3.2,
-                Odds2 = 18.0,
-                Vundet1 = false,
-                VundetX = false,
-                Vundet2 = false,
-                KampStart = new DateTime(),
-                Aflyst = false,
-            };
-
-            Kamp kamp2 = new Kamp()
-            {
-                HoldVsHold = "Chelsea - Norwich",
-                Odds1 = 1.8,
-                OddsX = 2.8,
-                Odds2 = 3.5,
-                Vundet1 = false,
-                VundetX = false,
-                Vundet2 = false,
-                KampStart = new DateTime(),
-                Aflyst = false,
-            };
-
-            kampe.Add(kamp1);
-            kampe.Add(kamp2);
+            KampTest testObject = new KampTest();
+            kampe.Add(testObject.kamp1);
+            kampe.Add(testObject.kamp2);
 
         }
 
@@ -141,6 +116,18 @@ namespace BetBudTest.TestKupon
             //Assert
         }
 
+        [Test]
+        public void SorteretKampe()
+        {
+            Kupon kupon = new Kupon();
+
+            //Act
+            kupon.TilføjKamp(kampe.ElementAt(1), true, false, false);
+            kupon.TilføjKamp(kampe.ElementAt(0), true, false, false);
+            //Assert
+            List<DelKamp> SortKampe = kupon.SorteretKampe();
+            Assert.AreEqual(SortKampe.ElementAt(0).Kampe, kampe.ElementAt(0));
+        }
     }
 }
 

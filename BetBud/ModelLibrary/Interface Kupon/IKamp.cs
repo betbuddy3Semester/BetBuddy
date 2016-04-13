@@ -6,6 +6,7 @@ namespace ModelLibrary
 {
     public interface IKamp
     {
+        int KampId { get; set; }
         string HoldVsHold { get; set; }
         double Odds1{ get; set; }
         double OddsX { get; set; }
@@ -18,9 +19,9 @@ namespace ModelLibrary
         DateTime KampStart { get; set; }
         bool Aflyst { get; set; }
 
-        void KampNr();
-        string KampResultat();
-        bool ErValgt();
+        
+        //string KampResultat();
+        
 
 
 
