@@ -8,17 +8,62 @@ namespace ModelLibrary.Interface_Bruger
 {
     public class BrugerInterfaceTest : IBruger
     {
+        public BrugerInterfaceTest()
+        {
+            Navn = "Bentemusen";
+            
+        }
         public string Alias
-        {get; set;}
+        {
+            get
+            {
+                return Navn = "Bentemusen";
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
 
         public string BrugerNavn
-        { get; set; }
-        
+        {
+            get
+            {
+                return BrugerNavn = "Bentemusen";
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public string Email
-        { get; set; }
+        {
+            get
+            {
+                return Email = "Bentemuzzen@pølsemail.nu";
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
 
         public string Navn
-        { get; set; }
+        {
+            get
+            {
+                return Navn = "Bente";
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }
     

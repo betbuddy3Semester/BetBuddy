@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ModelLibrary.Bruger
 {
-    class Bruger : IBruger 
+    public class Bruger : IBruger 
     
       {
             public string Alias

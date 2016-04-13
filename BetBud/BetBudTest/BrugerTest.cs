@@ -9,45 +9,28 @@ namespace BetBudTest
     public class BrugerTest
     {
         [Test]
-        public void opretNavnTest()
+        public void opretNavnTest(BrugerInterfaceTest testBruger)
         {
-            // Arrange
-            BrugerInterfaceTest b = new BrugerInterfaceTest();
-            // Act
-            b.Navn = "Bente";
             // Assert
-            Assert.AreEqual("Bente", b.Navn);
-        }
-
-        [Test]
-        public void opretAliasTest()
-        {
-            // Arrange
-            BrugerInterfaceTest b = new BrugerInterfaceTest();
-            // Act
-            b.Alias = "Bentemusen";
-            // Assert
-            Assert.AreEqual("Bentemusen", b.Alias);
+            Assert.AreEqual("Bente", testBruger.Navn);
         }
         [Test]
-        public void opretBrugerNavnTest()
+        public void opretAliasTest(BrugerInterfaceTest testBruger)
         {
-            // Arrange
-            BrugerInterfaceTest b = new BrugerInterfaceTest();
-            // Act
-            b.BrugerNavn = "Bentemuzzen";
             // Assert
-            Assert.AreEqual("Bentemuzzen", b.BrugerNavn);
+            Assert.AreEqual("Bentemusen", testBruger.Alias);
         }
         [Test]
-        public void opretEmailTest()
+        public void opretBrugerNavnTest(BrugerInterfaceTest testBruger)
         {
-            // Arrange
-            BrugerInterfaceTest b = new BrugerInterfaceTest();
-            // Act
-            b.Email = "Bentemuzzen@pølsemail.nu";
             // Assert
-            Assert.AreEqual("Bentemuzzen@pølsemail.nu", b.Email);
+            Assert.AreEqual("Bentemuzzen", testBruger.BrugerNavn);
+        }
+        [Test]
+        public void opretEmailTest(BrugerInterfaceTest testBruger)
+        {
+            // Assert
+            Assert.AreEqual("Bentemuzzen@pølsemail.nu", testBruger.Email);
         }
     }
 }
