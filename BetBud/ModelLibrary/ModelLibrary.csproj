@@ -45,8 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bruger\Bruger.cs" />
+    <Compile Include="Bruger\BrugerStub.cs" />
     <Compile Include="Interface Bruger\IBruger.cs" />
-    <Compile Include="Interface Bruger\BrugerInterfaceTest.cs" />
     <Compile Include="Interface Kupon\IDelKamp.cs" />
     <Compile Include="Interface Kupon\IKamp.cs" />
     <Compile Include="Interface Kupon\IKupon.cs" />

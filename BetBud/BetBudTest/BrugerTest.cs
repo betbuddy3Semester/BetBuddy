@@ -2,35 +2,65 @@
 using ModelLibrary.Interface_Bruger;
 using NUnit.Framework;
 using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ModelLibrary.Bruger;
+using Assert = NUnit.Framework.Assert;
 
 namespace BetBudTest
 {
     [TestFixture]
     public class BrugerTest
     {
+        #region BrugernavnTest
+        /// <summary>
+        /// Testing to see if the name is actually what we want.
+        /// </summary>
         [Test]
-        public void opretNavnTest(BrugerInterfaceTest testBruger)
+        public void TestGetBrugerNavn()
         {
-            // Assert
-            Assert.AreEqual("Bente", testBruger.Navn);
+            BrugerStub stub = new BrugerStub();
+            Assert.AreEqual("BrugerNavn", stub.BrugerNavn);
         }
+
+        /// <summary>
+        /// Testing to see if I can set the username
+        /// </summary>
         [Test]
-        public void opretAliasTest(BrugerInterfaceTest testBruger)
+        public void TestSetBrugerNavn()
         {
-            // Assert
-            Assert.AreEqual("Bentemusen", testBruger.Alias);
+            BrugerStub stub = new BrugerStub();
+            Assert.AreEqual("BrugerNavn", stub.BrugerNavn);
+
+            stub.BrugerNavn = "BrugerNavnTest";
+
+            Assert.AreEqual("BrugerNavnTest", stub.BrugerNavn);
         }
+        #endregion
+
+        #region NavnTest 
+        /// <summary>
+        /// Tests to see if we get the name out properly
+        /// </summary>
         [Test]
-        public void opretBrugerNavnTest(BrugerInterfaceTest testBruger)
+        public void TestGetNavn()
         {
-            // Assert
-            Assert.AreEqual("Bentemuzzen", testBruger.BrugerNavn);
+            BrugerStub stub = new BrugerStub();
+            Assert.AreEqual("Navn", stub.Navn);
         }
+
+        /// <summary>
+        /// Testing to see if we can set the name properly
+        /// </summary>
         [Test]
-        public void opretEmailTest(BrugerInterfaceTest testBruger)
+        public void TestSetNavn()
         {
-            // Assert
-            Assert.AreEqual("Bentemuzzen@pølsemail.nu", testBruger.Email);
+            BrugerStub stub = new BrugerStub();
+            Assert.AreEqual("Navn", stub.Navn);
+
+            stub.Navn = "NavnTest";
+
+            Assert.AreEqual("NavnTest", stub.Navn);
         }
+        #endregion   
     }
 }
