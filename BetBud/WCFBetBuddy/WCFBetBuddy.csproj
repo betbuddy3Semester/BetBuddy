@@ -63,6 +63,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DALBetBud\DALBetBud.csproj">
+      <Project>{d51922f1-6cf7-4080-8e0d-dcbc4234efac}</Project>
+      <Name>DALBetBud</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ModelLibrary\ModelLibrary.csproj">
       <Project>{d2d802f9-8d2f-4c6b-acb1-b7b697c87e1a}</Project>
       <Name>ModelLibrary</Name>
