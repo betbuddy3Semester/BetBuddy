@@ -1,5 +1,5 @@
 ﻿using ModelLibrary;
-using ModelLibrary.Interface_Bruger;
+using ModelLibrary.Bruger;
 using NUnit.Framework;
 using System;
 
@@ -12,42 +12,42 @@ namespace BetBudTest
         public void opretNavnTest()
         {
             // Arrange
-            BrugerInterfaceTest b = new BrugerInterfaceTest();
+            Bruger testBruger = new Bruger();
             // Act
-            b.Navn = "Bente";
+            testBruger.Navn = "Bente";
             // Assert
-            Assert.AreEqual("Bente", b.Navn);
+            Assert.AreEqual("Bente", testBruger.Navn);
         }
 
         [Test]
         public void opretAliasTest()
         {
             // Arrange
-            BrugerInterfaceTest b = new BrugerInterfaceTest();
+            Bruger testBruger = new Bruger();
             // Act
-            b.Alias = "Bentemusen";
+            testBruger.Alias = "Bentemusen";
             // Assert
-            Assert.AreEqual("Bentemusen", b.Alias);
+            Assert.AreEqual("Bentemusen", testBruger.Alias);
         }
         [Test]
         public void opretBrugerNavnTest()
         {
             // Arrange
-            BrugerInterfaceTest b = new BrugerInterfaceTest();
+            Bruger testBruger = new Bruger();
             // Act
-            b.BrugerNavn = "Bentemuzzen";
+            testBruger.BrugerNavn = "Bentemuzzen";
             // Assert
-            Assert.AreEqual("Bentemuzzen", b.BrugerNavn);
+            Assert.AreEqual("Bentemuzzen", testBruger.BrugerNavn);
         }
         [Test]
         public void opretEmailTest()
         {
             // Arrange
-            BrugerInterfaceTest b = new BrugerInterfaceTest();
+            Bruger testBruger = new Bruger();
             // Act
-            b.Email = "Bentemuzzen@pølsemail.nu";
+            testBruger.Email = "Bentemuzzen@pølsemail.nu";
             // Assert
-            Assert.AreEqual("Bentemuzzen@pølsemail.nu", b.Email);
+            Assert.AreEqual("Bentemuzzen@pølsemail.nu", testBruger.Email);
         }
     }
 }
