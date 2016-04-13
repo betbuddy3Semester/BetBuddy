@@ -15,7 +15,7 @@ namespace BetBudTest.TestKupon
     public class KuponTest
     {
 
-        private List<Kamp> _kampe = new List<Kamp>();
+        private List<Kamp> kampe = new List<Kamp>();
 
         public KuponTest()
         {
@@ -45,8 +45,8 @@ namespace BetBudTest.TestKupon
                 Aflyst = false,
             };
 
-            _kampe.Add(kamp1);
-            _kampe.Add(kamp2);
+            kampe.Add(kamp1);
+            kampe.Add(kamp2);
 
         }
 
@@ -58,11 +58,11 @@ namespace BetBudTest.TestKupon
             Kupon kupon = new Kupon();
 
             //Act
-            kupon.TilføjKamp(_kampe.First(), true, false, false);
+            kupon.TilføjKamp(kampe.First(), true, false, false);
 
             //Assert
             IDelKamp dk = kupon.DelKampe.First();
-            Assert.AreEqual(_kampe.First(), dk.Kampe);
+            Assert.AreEqual(kampe.First(), dk.Kampe);
         }
 
         [Test]
@@ -142,12 +142,6 @@ namespace BetBudTest.TestKupon
         }
 
     }
-}
-
-
-
-
-
 }
 
 

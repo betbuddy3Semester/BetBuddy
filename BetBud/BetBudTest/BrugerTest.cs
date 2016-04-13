@@ -61,6 +61,59 @@ namespace BetBudTest
 
             Assert.AreEqual("NavnTest", stub.Navn);
         }
-        #endregion   
+        #endregion
+
+        #region Alias
+
+        /// <summary>
+        /// Test to see if we can get the alias correctly
+        /// </summary>
+        [Test]
+        public void TestGetAlias()
+        {
+            IBruger stub = new BrugerStub();
+            Assert.AreEqual("Alias", stub.Alias);
+        }
+
+        /// <summary>
+        /// Tests to see if we can set the alias correctly
+        /// </summary>
+        [Test]
+        public void TestSetAlias()
+        {
+            IBruger stub = new BrugerStub();
+            Assert.AreEqual("Alias", stub.Alias);
+
+            stub.Alias = "TestAlias";
+
+            Assert.AreEqual("TestAlias", stub.Alias);
+        }
+
+        #endregion
+
+        #region Email
+        /// <summary>
+        /// Test to see if we can get the email correctly
+        /// </summary>
+        [Test]
+        public void TestGetEmail()
+        {
+            IBruger stub = new BrugerStub();
+            Assert.AreEqual("Email", stub.Email);
+        }
+        /// <summary>
+        /// Test to see if we can set the email correctly
+        /// </summary>
+        [Test]
+        public void TestSetEmail()
+        {
+            IBruger stub = new BrugerStub();
+            Assert.AreEqual("Email", stub.Email);
+
+            stub.Alias = "TestEmail";
+
+            Assert.AreEqual("Email", stub.Email);
+        }
+        #endregion
     }
 }
