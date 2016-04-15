@@ -7,51 +7,91 @@ using ModelLibrary.Interface_Bruger;
 
 namespace ModelLibrary.Kupon
 {
+
     public class Kupon : IKupon
     {
-        public void TilføjKamp(IKamp kamp, bool valgt1, bool valgtX, bool valgt2)
+        public IBruger Bruger { get; set; }
+        public Boolean Kontrolleret { get; set; }
+        public List<DelKamp> DelKampe { get; set; }
+        public double Point { get; set; }
+
+        public Kupon()
         {
-            throw new NotImplementedException();
+            DelKampe = new List<DelKamp>();
         }
 
-        public void FjernKamp(IKamp kamp)
+
+        // Metode til at tilføje kampe til kuponen. Laver en Delkamp, og kontrollere om variablerne er true ! Hvis ikke returnere den false.
+        public bool TilføjKamp(Kamp kamp, bool valgt1, bool valgtX, bool valgt2)
         {
-            throw new NotImplementedException();
+            if (kamp != null && ((valgt1 ? 1 : 0) + (valgtX ? 1 : 0) + (valgt2 ? 1 : 0) == 1))
+            {
+                DelKamp nyDelKamp = new DelKamp();
+
+                nyDelKamp.Kampe = kamp;
+                nyDelKamp.Valgt1 = valgt1;
+                nyDelKamp.ValgtX = valgtX;
+                nyDelKamp.Valgt2 = valgt2;
+                DelKampe.Add(nyDelKamp);
+                return true;
+            }
+            return false;
+
         }
 
+        // Metode til at fjerne kampe fra kuponen. Gennemgår listen udfra index og finder index nr. 
+        //og fjerner derefter kampen fra index placeringen.
+        public bool FjernKamp(Kamp kamp)
+        {
+            if (kamp != null)
+            {
+                for (int i = 0; i < DelKampe.Count; i++)
+                {
+
+                    if (DelKampe[i].Kampe.KampId.Equals(kamp.KampId))
+                    {
+                        DelKampe.RemoveAt(i);
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        // Metode til at udregne alle valgte kampe på kuponen, og give et samlet odds retur. oddsResultat er kampene lagt sammen 
+        // der så ganges med hinanden for at få det samlet odds.
         public double OddsUdregning()
         {
-            throw new NotImplementedException();
+            double oddsResultat = 1;
+            foreach (var HverDelKamp in DelKampe)
+            {
+                oddsResultat *= HverDelKamp.GetOdds();
+            }
+
+            oddsResultat = Math.Round(oddsResultat,2);
+            return oddsResultat;
         }
 
+        // Metoder der genbruger OddsUdregning og ganger den med det ønsket antal point som brugeren ønsker at 
+        //bruge på kuponen. Math.Round runder gevisten op således der kun er 2(Derfor: point,2) decimaler i den mulige gevinst.
         public double MuligGevist()
         {
-            throw new NotImplementedException();
+            return Math.Round(OddsUdregning()*Point,2);
         }
 
         public bool BekræftKupon()
         {
             throw new NotImplementedException();
         }
-
-        public List<DelKamp> SorteretKampe()
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public bool KontrolAfKupon()
         {
             throw new NotImplementedException();
         }
 
-        List<IDelKamp> IKupon.SorteretKampe()
-        {
-            throw new NotImplementedException();
-        }
+       
 
-        public Boolean Kontrolleret { get; set; }
-        public double Point { get; set; }
-        public List<IDelKamp> DelKampe { get; set; }
-        public IBruger Bruger { get; set; }
+
     }
 }

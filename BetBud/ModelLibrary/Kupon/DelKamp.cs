@@ -11,8 +11,8 @@ namespace ModelLibrary.Kupon
         public bool Valgt1 { get; set; }
         public bool ValgtX { get; set; }
         public bool Valgt2 { get; set; }
-        public IKamp Kampe { get; set; }
-
+        public Kamp Kampe { get; set; }
+        
         public bool KampRigtig()
         {
             if (Kampe.Vundet1 == Valgt1)
@@ -30,8 +30,7 @@ namespace ModelLibrary.Kupon
             }
 
             return false;
-
-
+            
         }
 
         public double GetOdds()
