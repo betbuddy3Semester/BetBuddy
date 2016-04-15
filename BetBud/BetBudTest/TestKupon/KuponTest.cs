@@ -36,7 +36,7 @@ namespace BetBudTest.TestKupon
             kupon.TilføjKamp(kampe.First(), true, false, false);
 
             //Assert
-            IDelKamp dk = kupon.DelKampe.First();
+            DelKamp dk = kupon.DelKampe.First();
             Assert.AreEqual(kampe.First(), dk.Kampe);
         }
 
@@ -80,7 +80,7 @@ namespace BetBudTest.TestKupon
             kupon.Point = 1000;
 
             //Assert
-            Assert.AreEqual(kupon.MuligGevist(), 5760);
+            Assert.AreEqual(5760, kupon.MuligGevist());
 
         }
 
@@ -116,18 +116,7 @@ namespace BetBudTest.TestKupon
             //Assert
         }
 
-        [Test]
-        public void SorteretKampe()
-        {
-            Kupon kupon = new Kupon();
-
-            //Act
-            kupon.TilføjKamp(kampe.ElementAt(1), true, false, false);
-            kupon.TilføjKamp(kampe.ElementAt(0), true, false, false);
-            //Assert
-            List<DelKamp> SortKampe = kupon.SorteretKampe();
-            Assert.AreEqual(SortKampe.ElementAt(0).Kampe, kampe.ElementAt(0));
-        }
+        
     }
 }
 
