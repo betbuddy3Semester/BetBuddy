@@ -12,7 +12,8 @@ namespace MVCBetBud.Controllers
         // GET: Bruger
         public ActionResult Index()
         {
-            return View();
+            
+            return View(BSR.getBrugere());
         }
 
         // GET: Bruger/Details/5
