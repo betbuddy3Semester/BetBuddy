@@ -12,14 +12,46 @@ namespace ModelLibrary.Kupon
         public bool ValgtX { get; set; }
         public bool Valgt2 { get; set; }
         public IKamp Kampe { get; set; }
+
         public bool KampRigtig()
         {
-            throw new NotImplementedException();
+            if (Kampe.Vundet1 == Valgt1)
+            {
+                return true;
+            }
+            else if (Kampe.VundetX == ValgtX)
+            {
+                return true;
+            }
+
+            else if (Kampe.Vundet2 == Valgt2)
+            {
+                return true;
+            }
+
+            return false;
+
+
         }
 
         public double GetOdds()
         {
-            throw new NotImplementedException();
+            if (Valgt1)
+            {
+                return Kampe.Odds1;
+            }
+
+            else if (ValgtX)
+            {
+                return Kampe.OddsX;
+            }
+
+            else
+            {
+                return Kampe.Odds2;
+            }
+            
+
         }
     }
 }

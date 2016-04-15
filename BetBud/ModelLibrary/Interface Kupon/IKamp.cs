@@ -16,9 +16,9 @@ namespace ModelLibrary
         bool VundetX { get; set; }
         bool Vundet2 { get; set; }
 
-        DateTime KampStart { get; set; }
+        
         bool Aflyst { get; set; }
-
+        DateTime KampStart { get; set; }
         
         //string KampResultat();
         
