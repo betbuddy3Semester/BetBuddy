@@ -63,10 +63,6 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CtrLayer\CtrLayer.csproj">
-      <Project>{511f0b77-84cf-4808-924d-16aee709402c}</Project>
-      <Name>CtrLayer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ModelLibrary\ModelLibrary.csproj">
       <Project>{d2d802f9-8d2f-4c6b-acb1-b7b697c87e1a}</Project>
       <Name>ModelLibrary</Name>
