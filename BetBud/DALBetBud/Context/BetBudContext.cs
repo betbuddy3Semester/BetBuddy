@@ -4,7 +4,7 @@ namespace DALBetBud.Context
 {
     public class BetBudContext : DbContext
     {
-        public BetBudContext() : base("name=BetBudContext")
+        public BetBudContext() : base("BetBudContext")
         {
             
         }
