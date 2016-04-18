@@ -18,7 +18,8 @@ namespace BetBudTest
         [Test]
         public void TestGetBrugerNavn()
         {
-            IBruger stub = new BrugerStub();
+            IBruger stub = new Bruger();
+            stub.BrugerNavn = "BrugerNavn";
             Assert.AreEqual("BrugerNavn", stub.BrugerNavn);
         }
 
