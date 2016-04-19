@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVCBetBud.BrugerServiceReference;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -25,6 +26,7 @@ namespace MVCBetBud.Controllers
         // GET: Bruger/Create
         public ActionResult Create()
         {
+            
             return View();
         }
 
@@ -35,7 +37,9 @@ namespace MVCBetBud.Controllers
             try
             {
                 // TODO: Add insert logic here
-
+                Bruger b = new Bruger();
+                b.BrugerNavn = collection.
+                BSR.opretBruger(b);
                 return RedirectToAction("Index");
             }
             catch

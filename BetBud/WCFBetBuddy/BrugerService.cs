@@ -4,14 +4,18 @@ using System.Linq;
 using DALBetBud.Context;
 using CtrLayer;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace WCFBetBuddy
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
+
+    [DataContract]
     public class BrugerService : IBrugerService
     {
+        [DataMember]
         BrugerController brugerCtrl = new BrugerController();
 
+        
         public Bruger getBruger(int id)
         {
             return brugerCtrl.getBruger(id);

@@ -12,6 +12,7 @@ namespace WCFBetBuddy
     {
         [OperationContract]
         void startServices();
-
+        [OperationContract]
+        BrugerService b();
     }
 }
