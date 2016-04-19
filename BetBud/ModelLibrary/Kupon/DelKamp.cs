@@ -1,16 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ModelLibrary.Kupon
 {
+    [DataContract]
     public class DelKamp : IDelKamp
     {
+        [DataMember]
         public bool Valgt1 { get; set; }
+        [DataMember]
         public bool ValgtX { get; set; }
+        [DataMember]
         public bool Valgt2 { get; set; }
+        [DataMember]
         public Kamp Kampe { get; set; }
         
         public bool KampRigtig()

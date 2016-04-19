@@ -53,6 +53,8 @@
   <ItemGroup>
     <Compile Include="BrugerController.cs" />
     <Compile Include="IBrugerController.cs" />
+    <Compile Include="IKuponController.cs" />
+    <Compile Include="KuponController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

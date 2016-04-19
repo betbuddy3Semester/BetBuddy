@@ -1,5 +1,7 @@
 using System.Data.Entity;
 using ModelLibrary.Bruger;
+using ModelLibrary.Kupon;
+
 namespace DALBetBud.Context
 {
     public class BetBudContext : DbContext
@@ -10,6 +12,7 @@ namespace DALBetBud.Context
         }
 
         public DbSet<Bruger> Brugere { get; set; }
+        public DbSet<Kupon> Kuponer { get; set; } 
 
 
     }
