@@ -55,6 +55,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IBrugerService.cs" />
+    <Compile Include="IKuponService.cs" />
+    <Compile Include="KuponService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BrugerService.cs" />
   </ItemGroup>

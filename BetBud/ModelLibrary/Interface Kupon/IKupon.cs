@@ -15,6 +15,7 @@ namespace ModelLibrary
         double OddsUdregning();
         double MuligGevist();
         bool BekræftKupon();
+
         
 
         

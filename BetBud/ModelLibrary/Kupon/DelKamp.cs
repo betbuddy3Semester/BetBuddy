@@ -11,6 +11,8 @@ namespace ModelLibrary.Kupon
     public class DelKamp : IDelKamp
     {
         [DataMember]
+        public int DelKampId { get; set; }
+        [DataMember]
         public bool Valgt1 { get; set; }
         [DataMember]
         public bool ValgtX { get; set; }
