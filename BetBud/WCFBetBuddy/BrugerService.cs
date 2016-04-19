@@ -10,31 +10,36 @@ namespace WCFBetBuddy
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     public class BrugerService : IBrugerService
     {
-        BrugerController BC = new BrugerController();
+        BrugerController brugerCtrl = new BrugerController();
 
         public Bruger getBruger(int id)
         {
-            return BC.getBruger(id);
+            return brugerCtrl.getBruger(id);
+        }
+
+        public Bruger getBrugerEfterBrugernavn(string bnavn)
+        {
+            return brugerCtrl.GetBrugerEfterBrugerNavn(bnavn);
         }
 
         public IEnumerable<Bruger> getBrugere()
         {
-            return BC.getBrugere();
+            return brugerCtrl.getBrugere();
         }
 
         public void opdaterBruger(Bruger bruger)
         {
-            BC.opdaterBruger(bruger);
+            brugerCtrl.opdaterBruger(bruger);
         }
 
         public void opretBruger(Bruger bruger)
         {
-            BC.opretBruger(bruger);
+            brugerCtrl.opretBruger(bruger);
         }
 
         public void sletBruger(int id)
         {
-            BC.sletBruger(id);
+            brugerCtrl.sletBruger(id);
         }
     }
 }

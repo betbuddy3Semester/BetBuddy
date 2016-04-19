@@ -69,6 +69,9 @@
     <Reference Include="nunitlite, Version=3.2.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -79,10 +82,34 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="BrugerServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="BrugerTest.cs" />
+    <Content Include="BrugerTest.cs" />
+    <Compile Include="Service References\BrugerServiceRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="TestKupon\KampTest.cs" />
     <Compile Include="TestKupon\KuponTest.cs" />
+    <None Include="Service References\BrugerServiceRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\BrugerServiceRef\configuration.svcinfo" />
+    <None Include="Service References\BrugerServiceRef\configuration91.svcinfo" />
+    <None Include="Service References\BrugerServiceRef\BrugerService.wsdl" />
+    <None Include="Service References\BrugerServiceRef\item.disco" />
+    <None Include="Properties\DataSources\ModelLibrary.Bruger.Bruger.datasource" />
+    <None Include="Service References\BrugerServiceRef\item.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BrugerServiceRef\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BrugerServiceRef\item2.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -93,6 +120,16 @@
       <Project>{d2d802f9-8d2f-4c6b-acb1-b7b697c87e1a}</Project>
       <Name>ModelLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WCFBetBuddy\WCFBetBuddy.csproj">
+      <Project>{c07858da-fe63-4f99-9394-de56639a1805}</Project>
+      <Name>WCFBetBuddy</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\BrugerServiceRef\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

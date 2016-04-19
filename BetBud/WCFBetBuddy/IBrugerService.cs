@@ -14,6 +14,8 @@ namespace WCFBetBuddy
         [OperationContract]
         Bruger getBruger(int id);
 
+        [OperationContract]
+        Bruger getBrugerEfterBrugernavn(string bnavn);
         //Returner alle brugere
         [OperationContract]
         IEnumerable<Bruger> getBrugere();

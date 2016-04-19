@@ -20,6 +20,16 @@ namespace CtrLayer
                 return db.Brugere.Find(id);
 
             }
+
+        }
+
+        public Bruger GetBrugerEfterBrugerNavn(String bnavn)
+        {
+            using (BetBudContext db = new BetBudContext())
+            {
+
+                return db.Brugere.First(b => b.BrugerNavn == bnavn);
+            }
         }
 
         public System.Collections.Generic.IEnumerable<Bruger> getBrugere()
