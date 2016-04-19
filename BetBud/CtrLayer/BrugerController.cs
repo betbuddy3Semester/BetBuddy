@@ -56,9 +56,18 @@ namespace CtrLayer
 
         public void opretBruger(Bruger bruger)
         {
+            //Email constraints 
             Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
-            Match match = regex.Match(bruger.Email);
-            if (match.Success)
+            Match matchEmail = regex.Match(bruger.Email);
+
+            //Number constraints
+            Regex regx = new Regex(@"^[a-zA-Z''-'\s]{1,40}$");
+            Match matchName = regx.Match(bruger.BrugerNavn);
+
+
+        
+            if (matchEmail.Success && matchName.Success)
+            
             {
                 using (BetBudContext db = new BetBudContext())
                 {
