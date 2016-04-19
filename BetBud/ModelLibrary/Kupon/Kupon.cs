@@ -1,19 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using ModelLibrary.Interface_Bruger;
 
 namespace ModelLibrary.Kupon
 {
-
+    [DataContract]
     public class Kupon : IKupon
     {
+        [DataMember]
         public IBruger Bruger { get; set; }
+        [DataMember]
         public Boolean Kontrolleret { get; set; }
+        [DataMember]
         public List<DelKamp> DelKampe { get; set; }
+        [DataMember]
         public double Point { get; set; }
+        [DataMember]
+        public double KuponId { get; set; }
 
         public Kupon()
         {
