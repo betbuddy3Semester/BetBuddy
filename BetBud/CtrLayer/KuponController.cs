@@ -14,9 +14,7 @@ namespace CtrLayer
         // instance var
         private static KuponController NyKuponController;
         public Kupon NyKupon;
-
-
-
+        
         private KuponController()
         {
 
@@ -38,7 +36,6 @@ namespace CtrLayer
         public void OpretKupon()
         {
             NyKupon = new Kupon();
-
         }
 
         // Metode til at fjerne kuponen.

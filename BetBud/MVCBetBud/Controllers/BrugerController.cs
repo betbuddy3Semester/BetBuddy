@@ -1,4 +1,4 @@
-﻿using MVCBetBud.BrugerServiceReference;
+﻿using MVCBetBud.ServiceReference;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +9,12 @@ namespace MVCBetBud.Controllers
 {
     public class BrugerController : Controller
     {
-        BrugerServiceReference.BrugerServiceClient BSR = new BrugerServiceReference.BrugerServiceClient();
+        ServiceReference.ServicesClient SR = new ServiceReference.ServicesClient();
         // GET: Bruger
         public ActionResult Index()
         {
             
-            return View(BSR.getBrugere());
+            return View(SR.getBrugere());
         }
 
         // GET: Bruger/Details/5
@@ -32,14 +32,11 @@ namespace MVCBetBud.Controllers
 
         // POST: Bruger/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Bruger b)
         {
             try
             {
-                // TODO: Add insert logic here
-                Bruger b = new Bruger();
-                b.BrugerNavn = collection.
-                BSR.opretBruger(b);
+                SR.opretBruger(b);
                 return RedirectToAction("Index");
             }
             catch

@@ -1,78 +1,94 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using CtrLayer;
 using ModelLibrary.Bruger;
 using ModelLibrary.Kupon;
 
 namespace WCFBetBuddy
 {
-    public class Services : IBrugerService, IKuponService
+    public class Services : IServices
     {
-        public bool BekræftKupon()
-        {
-            throw new NotImplementedException();
-        }
+        #region BrugerService
+        [DataMember]
+        BrugerController brugerCtrl = new BrugerController();
 
-        public Kamp FindKamp(int KampId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool FjernKamp(Kamp kamp)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Kamp> GetAlleKampe()
-        {
-            throw new NotImplementedException();
-        }
 
         public Bruger getBruger(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Bruger> getBrugere()
-        {
-            throw new NotImplementedException();
+            return brugerCtrl.getBruger(id);
         }
 
         public Bruger getBrugerEfterBrugernavn(string bnavn)
         {
-            throw new NotImplementedException();
+            return brugerCtrl.GetBrugerEfterBrugerNavn(bnavn);
         }
 
-        public double MuligGevist()
+        public IEnumerable<Bruger> getBrugere()
         {
-            throw new NotImplementedException();
-        }
-
-        public double OddsUdregning()
-        {
-            throw new NotImplementedException();
+            return brugerCtrl.getBrugere();
         }
 
         public void opdaterBruger(Bruger bruger)
         {
-            throw new NotImplementedException();
+            brugerCtrl.opdaterBruger(bruger);
         }
 
         public void opretBruger(Bruger bruger)
         {
-            throw new NotImplementedException();
+            brugerCtrl.opretBruger(bruger);
         }
 
         public void sletBruger(int id)
         {
-            throw new NotImplementedException();
+            brugerCtrl.sletBruger(id);
         }
+        #endregion
+
+        #region KuponService
+        KuponController NyKuponController = KuponController.GetKuponController();
 
         public bool TilføjKamp(Kamp kamp, bool valgt1, bool valgtX, bool valgt2)
         {
-            throw new NotImplementedException();
+            bool fundetData = NyKuponController.TilføjKamp(kamp, valgt1, valgtX, valgt2);
+            return fundetData;
         }
+
+        public bool FjernKamp(Kamp kamp)
+        {
+            bool dataFjernes = NyKuponController.FjernKamp(kamp);
+            return dataFjernes;
+        }
+
+        public double OddsUdregning()
+        {
+            return NyKuponController.OddsUdregning();
+        }
+
+        public double MuligGevist()
+        {
+            return NyKuponController.MuligGevist();
+        }
+
+        public bool BekræftKupon()
+        {
+            return NyKuponController.BekræftKupon();
+        }
+
+        public Kamp FindKamp(int KampId)
+        {
+            return NyKuponController.FindKamp(KampId);
+        }
+
+        public List<Kamp> GetAlleKampe()
+        {
+            return NyKuponController.GetAlleKampe();
+        }
+        #endregion
+
+
     }
 }
