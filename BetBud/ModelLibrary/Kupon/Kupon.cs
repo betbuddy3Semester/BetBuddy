@@ -5,14 +5,13 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using ModelLibrary.Interface_Bruger;
-
 namespace ModelLibrary.Kupon
 {
     [DataContract]
     public class Kupon : IKupon
     {
         [DataMember]
-        public IBruger Bruger { get; set; }
+        public Bruger.Bruger Bruger { get; set; }
         [DataMember]
         public Boolean Kontrolleret { get; set; }
         [DataMember]

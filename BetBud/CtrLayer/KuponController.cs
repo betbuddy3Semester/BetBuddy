@@ -117,11 +117,12 @@ namespace CtrLayer
 
         // Metode der henter alle kampe i Databasen
 
-        public List<Kamp> GetAlleKampe()
+        public IEnumerable<Kamp> GetAlleKampe()
         {
             using (BetBudContext db = new BetBudContext())
             {
                 return db.Kampe.ToList();
+
             }
         }
 

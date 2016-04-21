@@ -8,7 +8,8 @@ namespace DALBetBud.Context
     {
         public BetBudContext() : base("BetBudContext")
         {
-            
+            this.Configuration.LazyLoadingEnabled = false;
+            this.Configuration.ProxyCreationEnabled = false;
         }
 
         public DbSet<Bruger> Brugere { get; set; }

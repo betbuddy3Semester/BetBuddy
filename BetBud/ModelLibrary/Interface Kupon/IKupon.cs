@@ -1,5 +1,4 @@
-﻿using ModelLibrary.Interface_Bruger;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using ModelLibrary.Kupon;
 
@@ -26,7 +25,7 @@ namespace ModelLibrary
         bool Kontrolleret { get; set; }
         double Point { get; set; }
         List<DelKamp> DelKampe { get; set; }
-        IBruger Bruger { get; set; }
+        Bruger.Bruger Bruger { get; set; }
         
         
         

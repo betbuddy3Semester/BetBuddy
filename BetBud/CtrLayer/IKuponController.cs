@@ -15,7 +15,7 @@ namespace CtrLayer
         double OddsUdregning();
         double MuligGevist();
         bool BekræftKupon();
-        List<Kamp> GetAlleKampe();
+        IEnumerable<Kamp>GetAlleKampe();
         Kamp FindKamp(int KampId);
     }
 }

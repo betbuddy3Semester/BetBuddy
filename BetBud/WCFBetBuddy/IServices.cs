@@ -28,7 +28,7 @@ namespace WCFBetBuddy
         [OperationContract]
         Kamp FindKamp(int KampId);
         [OperationContract]
-        List<Kamp> GetAlleKampe();
+        IEnumerable<Kamp> GetAlleKampe();
         #endregion
 
         #region IBruger

@@ -83,7 +83,7 @@ namespace WCFBetBuddy
             return NyKuponController.FindKamp(KampId);
         }
 
-        public List<Kamp> GetAlleKampe()
+        public IEnumerable<Kamp> GetAlleKampe()
         {
             return NyKuponController.GetAlleKampe();
         }
