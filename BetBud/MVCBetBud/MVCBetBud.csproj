@@ -303,6 +303,8 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceReference\Services.wsdl" />
+    <Content Include="Views\Bruger\Delete.cshtml" />
+    <Content Include="Views\Bruger\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

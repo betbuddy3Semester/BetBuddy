@@ -48,17 +48,18 @@ namespace MVCBetBud.Controllers
         // GET: Bruger/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Bruger b = SR.getBruger(id);
+            return View(b);
         }
 
         // POST: Bruger/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Bruger b)
         {
             try
             {
                 // TODO: Add update logic here
-
+                SR.opdaterBruger(b);
                 return RedirectToAction("Index");
             }
             catch
@@ -70,17 +71,18 @@ namespace MVCBetBud.Controllers
         // GET: Bruger/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Bruger b = SR.getBruger(id);
+            return View(b);
         }
 
         // POST: Bruger/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(Bruger b)
         {
             try
             {
                 // TODO: Add delete logic here
-
+                SR.sletBruger(b.BrugerId);
                 return RedirectToAction("Index");
             }
             catch
