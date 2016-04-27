@@ -90,6 +90,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="TestChat\ChatHubTest.cs" />
+    <Compile Include="TestChat\ClientTest.cs" />
+    <Compile Include="TestChat\MessageTest.cs" />
+    <Compile Include="TestChat\AServerTest.cs" />
     <Compile Include="TestKupon\KampTest.cs" />
     <Compile Include="TestKupon\KuponTest.cs" />
     <None Include="Properties\DataSources\ModelLibrary.Kupon.Kamp.datasource" />
@@ -135,6 +139,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\ServiceReference1\" />
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
