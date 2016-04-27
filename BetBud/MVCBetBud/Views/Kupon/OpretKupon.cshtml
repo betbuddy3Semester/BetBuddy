@@ -1,17 +1,21 @@
-﻿@using MVCBetBud.ServiceReference
-@model IEnumerable<MVCBetBud.ServiceReference.Kamp>
+﻿@using System.Web.Mvc.Html
+@using MVCBetBud.ServiceReference
+@model MVCBetBud.Models.OpretKuponController
 
 @{
     ViewBag.Title = "OpretKupon";
 }
+<script>
+    
+</script>
 <div class="col-md-8">
 
     <h2>OpretKupon</h2>
-    <table class="table col-md-7">
+    <table class="table col-md-7" id="AlleKampeID">
         <tr>
 
             <th>
-                @Html.DisplayNameFor(model => model.HoldVsHold)
+                Hold Vs Hold
             </th>
 
             <th style="text-align: center;">
@@ -26,12 +30,12 @@
             </th>
 
             <th>
-                @Html.DisplayNameFor(model => model.KampStart)
+                KampStart
             </th>
             <th></th>
         </tr>
 
-        @foreach (Kamp item in Model)
+        @foreach (Kamp item in Model.AlleKampe)
         {
             <tr>
                 @using (Html.BeginForm())
@@ -42,13 +46,14 @@
                     </td>
 
                     <td style="text-align: center;">
-                        <input type="submit" name="Odds1" value="@Html.DisplayFor(modelItem => item.Odds1)" />
+                        <input type="submit" class="Odds1" value="@Html.DisplayFor(modelItem => item.Odds1)" />
+
                     </td>
                     <td style="text-align: center;">
-                        <input type="submit" name="OddsX" value="@Html.DisplayFor(modelItem => item.OddsX)" />
+                        <input type="submit" class="OddsX" value="@Html.DisplayFor(modelItem => item.OddsX)" />
                     </td>
                     <td style="text-align: center;">
-                        <input type="submit" name="Odds2" value="@Html.DisplayFor(modelItem => item.Odds2)" />
+                        <input type="submit" class="Odds2" value="@Html.DisplayFor(modelItem => item.Odds2)" />
                     </td>
 
                     <td>
@@ -64,13 +69,40 @@
     <h2>Din kupon</h2>
     <table class="table">
         <tr>
-            <th>@Html.DisplayNameFor(model => model.HoldVsHold)</th>
+            <th>Hold Vs Hold</th>
             <th>Valgt</th>
             <th>Odds</th>
+
         </tr>
-        <tr><td>Kurt vs Efb</td><td>x</td><td>10.0</td></tr>
-        <tr><td>Kurt vs Efb</td><td>x</td><td>10.0</td></tr>
-        <tr><td>Kurt vs Efb</td><td>x</td><td>10.0</td></tr>
+        @if (Model.kupon.DelKampe != null)
+        {
+
+
+            foreach (var delKamp in Model.kupon.DelKampe)
+            {
+
+                double odds = 0.0;
+                string valgt = "taber";
+
+                if (delKamp.Valgt1)
+                {
+                    odds = delKamp.Kampe.Odds1;
+                    valgt = "1";
+                }
+                else if (delKamp.ValgtX)
+                {
+                    odds = delKamp.Kampe.OddsX;
+                    valgt = "X";
+                }
+                else if (delKamp.Valgt2)
+                {
+                    odds = delKamp.Kampe.Odds2;
+                    valgt = "2";
+                }
+
+                <tr><td>@delKamp.Kampe.HoldVsHold</td><td>@valgt</td><td>@odds</td></tr>
+            }
+        }
     </table>
     @using (Html.BeginForm())
     {

@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using ModelLibrary.Interface_Bruger;
+
 namespace ModelLibrary.Kupon
 {
     [DataContract]
@@ -25,6 +26,7 @@ namespace ModelLibrary.Kupon
         {
             DelKampe = new List<DelKamp>();
         }
+        
 
 
         // Metode til at tilføje kampe til kuponen. Laver en Delkamp, og kontrollere om variablerne er true ! Hvis ikke returnere den false.
