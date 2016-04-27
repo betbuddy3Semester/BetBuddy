@@ -1,0 +1,91 @@
+﻿@using MVCBetBud.ServiceReference
+@model IEnumerable<MVCBetBud.ServiceReference.Kamp>
+
+@{
+    ViewBag.Title = "OpretKupon";
+}
+<div class="col-md-8">
+
+    <h2>OpretKupon</h2>
+    <table class="table col-md-7">
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.HoldVsHold)
+            </th>
+
+            <th style="text-align: center;">
+                1
+            </th>
+            <th style="text-align: center;">
+                X
+            </th>
+
+            <th style="text-align: center;">
+                2
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.KampStart)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (Kamp item in Model)
+        {
+            <tr>
+                @using (Html.BeginForm())
+                {
+                    <td>
+                        @Html.HiddenFor(modelItem => item.KampId)
+                        @Html.DisplayFor(modelItem => item.HoldVsHold)
+                    </td>
+
+                    <td style="text-align: center;">
+                        <input type="submit" name="Odds1" value="@Html.DisplayFor(modelItem => item.Odds1)" />
+                    </td>
+                    <td style="text-align: center;">
+                        <input type="submit" name="OddsX" value="@Html.DisplayFor(modelItem => item.OddsX)" />
+                    </td>
+                    <td style="text-align: center;">
+                        <input type="submit" name="Odds2" value="@Html.DisplayFor(modelItem => item.Odds2)" />
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.KampStart)
+                    </td>
+                }
+            </tr>
+        }
+
+    </table>
+</div>
+<div class="col-md-4">
+    <h2>Din kupon</h2>
+    <table class="table">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.HoldVsHold)</th>
+            <th>Valgt</th>
+            <th>Odds</th>
+        </tr>
+        <tr><td>Kurt vs Efb</td><td>x</td><td>10.0</td></tr>
+        <tr><td>Kurt vs Efb</td><td>x</td><td>10.0</td></tr>
+        <tr><td>Kurt vs Efb</td><td>x</td><td>10.0</td></tr>
+    </table>
+    @using (Html.BeginForm())
+    {
+        <div class="form-group">
+            <table class="table">
+                <tr>
+                    <th colspan="2">Vælg indsats</th>
+                </tr>
+                <tr><td>Indsats</td><td><input type="text" class="form-control" name="bettingPoint" /></td></tr>
+                <tr><td>Mulig gevinst</td><td>1000 point</td></tr>
+            </table>
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <input name="Bekraeft" type="submit" value="Bekræft" class="form-control btn btn-info" />
+            </div>
+        </div>
+    }
+</div>

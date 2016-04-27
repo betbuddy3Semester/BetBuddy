@@ -62,7 +62,7 @@ namespace CtrLayer
 
             //Number constraints
             Regex regx = new Regex(@"^[a-zA-Z''-'\s]{1,40}$");
-            Match matchName = regx.Match(bruger.BrugerNavn);
+            Match matchName = regx.Match(bruger.Navn);
 
 
         
