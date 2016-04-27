@@ -49,6 +49,10 @@
     <Compile Include="Bruger\Bruger.cs" />
     <Compile Include="Bruger\BrugerStub.cs" />
     <Compile Include="Interface Bruger\IBruger.cs" />
+    <Compile Include="Interface Chat\IChatHub.cs" />
+    <Compile Include="Interface Chat\IClient.cs" />
+    <Compile Include="Interface Chat\IMessage.cs" />
+    <Compile Include="Interface Chat\IServer.cs" />
     <Compile Include="Interface Kupon\IDelKamp.cs" />
     <Compile Include="Interface Kupon\IKamp.cs" />
     <Compile Include="Interface Kupon\IKupon.cs" />
@@ -64,6 +68,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Chat\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
