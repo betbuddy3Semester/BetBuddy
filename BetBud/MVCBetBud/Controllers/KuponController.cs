@@ -26,27 +26,44 @@ namespace MVCBetBud.Controllers
         }
 
         // GET: Kupon/Create
-        public ActionResult Create()
+        public ActionResult OpretKupon()
         {
-            return View();
+            Kamp[] ListeAfKampe = SR.GetAlleKampe();
+            return View(ListeAfKampe);
         }
 
         // POST: Kupon/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult OpretKupon(int KampId, string Odds1, string OddsX, string Odds2, string Bekraeft, string bettingPoint)
         {
             try
             {
-                // TODO: Add insert logic here
 
-                return RedirectToAction("Index");
+               if (!string.IsNullOrEmpty(Odds1))
+                {
+                    return RedirectToAction("Odds1");
+                }
+                else if (!string.IsNullOrEmpty(OddsX))
+                {
+                    return RedirectToAction("OddsX");
+                }
+                else if (!string.IsNullOrEmpty(Odds2))
+                {
+                    return RedirectToAction("Odds2");
+                }
+                else if (!string.IsNullOrEmpty(Bekraeft))
+                {
+                    return RedirectToAction("be");
+                }
+                return RedirectToAction("OpretKupon");
             }
             catch
             {
                 return View();
             }
         }
-
+        
+        
         // GET: Kupon/Edit/5
         public ActionResult Edit(int id)
         {
@@ -59,8 +76,6 @@ namespace MVCBetBud.Controllers
         {
             try
             {
-                // TODO: Add update logic here
-
                 return RedirectToAction("Index");
             }
             catch
