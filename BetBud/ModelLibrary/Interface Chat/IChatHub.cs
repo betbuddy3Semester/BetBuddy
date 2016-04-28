@@ -1,28 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ModelLibrary.Bruger;
+﻿using System.Collections.Generic;
+using ModelLibrary.Chat;
 
 namespace ModelLibrary.Interface_Chat
 {
     public interface IChatHub
     {
-        // Prop's
-        int ChatHubId { get; set; }
-        List<Server> ChatRoom { get; set; }
-        Client client { get; set; }
-        ServerController ServerCtr { get; set; }
+        #region Properties
 
-        // Methods
+        int ChatHubId { get; set; }
+        IList<AServer> ChatRoom { get; set; }
+        IClient Client { get; set; }
+        IChatHub ServerCtr { get; set; }
+
+        #endregion
+
+        #region Methods
+
         void OpretServer();
         void CloseServer();
         void DeleteServer();
         void FindServer();
         void InviteClientToServer();
-    
 
-
+        #endregion
     }
 }

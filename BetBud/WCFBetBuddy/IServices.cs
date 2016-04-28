@@ -29,6 +29,11 @@ namespace WCFBetBuddy
         Kamp FindKamp(int KampId);
         [OperationContract]
         IEnumerable<Kamp> GetAlleKampe();
+
+        [OperationContract]
+        Kupon GetKupon();
+        [OperationContract]
+        void SetKupon(Kupon kupon);
         #endregion
 
         #region IBruger

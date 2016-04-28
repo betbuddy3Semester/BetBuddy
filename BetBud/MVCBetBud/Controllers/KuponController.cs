@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MVCBetBud.Models;
 using MVCBetBud.ServiceReference;
 
 namespace MVCBetBud.Controllers
@@ -28,33 +29,28 @@ namespace MVCBetBud.Controllers
         // GET: Kupon/Create
         public ActionResult OpretKupon()
         {
+
+            Kupon kupon = new Kupon();
+
+            if (Session["kupon"] != null)
+            {
+                kupon = (Kupon)Session["kupon"];
+
+            }
             Kamp[] ListeAfKampe = SR.GetAlleKampe();
-            return View(ListeAfKampe);
+            OpretKuponController modelOpretKupon = new OpretKuponController();
+            modelOpretKupon.kupon = kupon;
+            modelOpretKupon.AlleKampe = ListeAfKampe;
+            return View(modelOpretKupon);
         }
 
         // POST: Kupon/Create
         [HttpPost]
-        public ActionResult OpretKupon(int KampId, string Odds1, string OddsX, string Odds2, string Bekraeft, string bettingPoint)
+        public ActionResult OpretKupon(int KampId, string Odds1, string OddsX, string Odds2)
         {
             try
             {
 
-               if (!string.IsNullOrEmpty(Odds1))
-                {
-                    return RedirectToAction("Odds1");
-                }
-                else if (!string.IsNullOrEmpty(OddsX))
-                {
-                    return RedirectToAction("OddsX");
-                }
-                else if (!string.IsNullOrEmpty(Odds2))
-                {
-                    return RedirectToAction("Odds2");
-                }
-                else if (!string.IsNullOrEmpty(Bekraeft))
-                {
-                    return RedirectToAction("be");
-                }
                 return RedirectToAction("OpretKupon");
             }
             catch
@@ -62,8 +58,33 @@ namespace MVCBetBud.Controllers
                 return View();
             }
         }
-        
-        
+        [HttpPost]
+        public ActionResult PostOdds1(int KampId, double Odds1)
+        {
+            try
+            {
+                Kupon kupon = (Kupon) Session["kupon"];
+                SR.SetKupon(kupon);
+
+                Kamp valgtKamp = SR.FindKamp(KampId);
+                SR.TilføjKamp(valgtKamp, true, false, false);
+                
+                Kamp[] ListeAfKampe = SR.GetAlleKampe();
+                OpretKuponController modelOpretKupon = new OpretKuponController();
+                modelOpretKupon.kupon = kupon;
+                modelOpretKupon.AlleKampe = ListeAfKampe;
+                return View("OpretKupon", modelOpretKupon);
+
+            }
+            catch (Exception)
+            {
+                Kamp[] ListeAfKampe = SR.GetAlleKampe();
+                OpretKuponController modelOpretKupon = new OpretKuponController();
+                modelOpretKupon.kupon = (Kupon)Session["kupon"];
+                modelOpretKupon.AlleKampe = ListeAfKampe;
+                return View("OpretKupon", modelOpretKupon);
+            }
+        }
         // GET: Kupon/Edit/5
         public ActionResult Edit(int id)
         {

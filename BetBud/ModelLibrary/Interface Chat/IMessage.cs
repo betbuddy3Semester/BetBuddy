@@ -4,12 +4,18 @@ namespace ModelLibrary.Interface_Chat
 {
     public interface IMessage
     {
-        // Prop's
-        string Message { get; set; }
-        int UserID();
+        #region Properties
+
+        string UserMessage { get; set; }
+        int UserId { get; set; }
         DateTime Date { get; set; }
 
-        // Methods
+        #endregion
+
+        #region Methods
+
         string PushMessage();
+
+        #endregion
     }
 }

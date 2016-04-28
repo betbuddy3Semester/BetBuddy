@@ -6,36 +6,37 @@ using System.Text;
 using System.Threading.Tasks;
 using ModelLibrary.Kupon;
 using DALBetBud.Context;
+using System.Runtime.Serialization;
 
 namespace CtrLayer
 {
+
     public class KuponController : IKuponController
     {
         // instance var
-        private static KuponController NyKuponController;
         public Kupon NyKupon;
         
-        private KuponController()
+        public KuponController()
         {
-
+            
         }
-
-        // Oprettelse af KuponController (Singleton pattern for at oprette en instance af KuponControlleren)
-
-        public static KuponController GetKuponController()
-        {
-            if (NyKuponController == null)
-            {
-                NyKuponController = new KuponController();
-            }
-            return NyKuponController;
-        }
+        
 
         // Metode til at oprette kuponen. 
 
         public void OpretKupon()
         {
             NyKupon = new Kupon();
+        }
+
+        public Kupon GetKupon()
+        {
+            return NyKupon;
+        }
+
+        public void SetKupon(Kupon kupon)
+        {
+            this.NyKupon = kupon;
         }
 
         // Metode til at fjerne kuponen.

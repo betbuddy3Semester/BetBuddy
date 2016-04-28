@@ -12,6 +12,8 @@ namespace WCFBetBuddy
 {
     public class Services : IServices
     {
+        DelKamp tempDelKamp = new DelKamp();
+        Kupon tempKupon = new Kupon();
         #region BrugerService
         [DataMember]
         BrugerController brugerCtrl = new BrugerController();
@@ -55,7 +57,7 @@ namespace WCFBetBuddy
         #endregion
 
         #region KuponService
-        KuponController NyKuponController = KuponController.GetKuponController();
+        KuponController NyKuponController = new KuponController();
 
         public bool TilføjKamp(Kamp kamp, bool valgt1, bool valgtX, bool valgt2)
         {
@@ -92,6 +94,16 @@ namespace WCFBetBuddy
         public IEnumerable<Kamp> GetAlleKampe()
         {
             return NyKuponController.GetAlleKampe();
+        }
+
+        public Kupon GetKupon()
+        {
+            return NyKuponController.GetKupon();
+        }
+
+        public void SetKupon(Kupon kupon)
+        {
+            NyKuponController.SetKupon(kupon);
         }
         #endregion
 

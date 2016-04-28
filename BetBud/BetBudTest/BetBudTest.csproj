@@ -66,7 +66,6 @@
       <HintPath>..\packages\NUnitTestAdapter.WithFramework.2.0.0\lib\NUnit.VisualStudio.TestAdapter.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="nunitlite, Version=3.2.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Runtime.Serialization" />
@@ -90,6 +89,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="TestChat\ChatHubTest.cs" />
+    <Compile Include="TestChat\ClientTest.cs" />
+    <Compile Include="TestChat\MessageTest.cs" />
+    <Compile Include="TestChat\AServerTest.cs" />
     <Compile Include="TestKupon\KampTest.cs" />
     <Compile Include="TestKupon\KuponTest.cs" />
     <None Include="Properties\DataSources\ModelLibrary.Kupon.Kamp.datasource" />
@@ -135,6 +138,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\ServiceReference1\" />
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
