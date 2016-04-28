@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+
 
 namespace MVCBetBud.Controllers
 {
@@ -13,17 +15,40 @@ namespace MVCBetBud.Controllers
         // GET: Bruger
         public ActionResult Index()
         {
-            
-            return View(SR.getBrugere());
+            //var session = HttpContext.Current.Session;
+            //if (Request.IsAuthenticated)
+            if(Session["brugerSession"] != null)
+            {
+                // Bruger b = SR.getBrugerEfterBrugernavn(User.Identity.Name);
+                Bruger b = SR.getBruger((int)Session["brugerSession"]);
+                return View(b);
+            }
+
+            return RedirectToAction("index", "Home");
         }
         // GET: login side
         public ActionResult LoginInd()
         {
             if(Session["brugerSession"] != null)
             {
-                return View("index");
+                return View("Index");
             }
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult LoginInd(string brugerNavn, string kodeord)
+        {
+            Bruger b = SR.logInd(brugerNavn, kodeord);
+            if (b != null)
+            {
+                //FormsAuthentication.SetAuthCookie(b.BrugerNavn, true);
+                Session["brugerSession"] = b.BrugerId;
+
+            }
+            return RedirectToAction("index");
+
+
         }
         // GET: Bruger/Details/5
         public ActionResult Details(int id)
@@ -99,18 +124,5 @@ namespace MVCBetBud.Controllers
             }
         }
 
-        [HttpPost]
-        public ActionResult logIn(string brugerNavn, string kodeord)
-
-        {
-            Bruger b = SR.logInd(brugerNavn, kodeord);
-             if (b != null)
-            {
-                Session["brugerSession"] = b.BrugerId;
-            }
-            return View("index");
-          
-            
-        }
     }
 }

@@ -51,7 +51,8 @@ namespace WCFBetBuddy
 
         public Bruger logInd(string bNavn, string pWord)
         {
-           return brugerCtrl.logIndBruger(bNavn, pWord);
+           Bruger b = brugerCtrl.logIndBruger(bNavn, pWord);
+            return b;
         }
 
         #endregion
