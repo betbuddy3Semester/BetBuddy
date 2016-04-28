@@ -48,15 +48,7 @@
   <ItemGroup>
     <Compile Include="Bruger\Bruger.cs" />
     <Compile Include="Bruger\BrugerStub.cs" />
-    <Compile Include="Chat\Message.cs" />
-    <Compile Include="Chat\ChatHub.cs" />
-    <Compile Include="Chat\Client.cs" />
-    <Compile Include="Chat\AServer.cs" />
     <Compile Include="Interface Bruger\IBruger.cs" />
-    <Compile Include="Interface Chat\IChatHub.cs" />
-    <Compile Include="Interface Chat\IClient.cs" />
-    <Compile Include="Interface Chat\IMessage.cs" />
-    <Compile Include="Interface Chat\IAServer.cs" />
     <Compile Include="Interface Kupon\IDelKamp.cs" />
     <Compile Include="Interface Kupon\IKamp.cs" />
     <Compile Include="Interface Kupon\IKupon.cs" />

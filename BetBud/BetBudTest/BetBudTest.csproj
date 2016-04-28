@@ -66,7 +66,6 @@
       <HintPath>..\packages\NUnitTestAdapter.WithFramework.2.0.0\lib\NUnit.VisualStudio.TestAdapter.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="nunitlite, Version=3.2.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Runtime.Serialization" />

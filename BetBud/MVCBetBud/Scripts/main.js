@@ -5,10 +5,20 @@
     theForm.attr("action", "/KuponController/Odds1");
     //theForm.submit();
 });*/
-$("#AlleKampeID form").submit(function(e) {
-    e.preventDefault();
-    console.log("fisk");
-    $(this).attr("action", "/KuponController/Odds1");
+$("#AlleKampeID form").submit(function() {
+    
+    var buttomClass = $("form input[type=submit][clicked=true]");
+    console.log(buttomClass);
+    buttomClass = buttomClass.context.activeElement.name;
+    console.log(buttomClass);
+    if (buttomClass == "Odds1") {
+        $(this).attr("action", "/KuponController/PostOdds1");
+    }else if (buttomClass == "OddsX") {
+        $(this).attr("action", "/KuponController/PostOddsX");
+    } else {
+        $(this).attr("action", "/KuponController/PostOdds2");
+    }
+    
 });
 /*
 $(".Odds1").click(function () {

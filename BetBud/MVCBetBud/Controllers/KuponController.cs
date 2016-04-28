@@ -29,12 +29,12 @@ namespace MVCBetBud.Controllers
         // GET: Kupon/Create
         public ActionResult OpretKupon()
         {
-            
+
             Kupon kupon = new Kupon();
-            
+
             if (Session["kupon"] != null)
             {
-                kupon = (Kupon) Session["kupon"];
+                kupon = (Kupon)Session["kupon"];
 
             }
             Kamp[] ListeAfKampe = SR.GetAlleKampe();
@@ -51,15 +51,40 @@ namespace MVCBetBud.Controllers
             try
             {
 
-               return RedirectToAction("OpretKupon");
+                return RedirectToAction("OpretKupon");
             }
             catch
             {
                 return View();
             }
         }
-        
-        
+        [HttpPost]
+        public ActionResult PostOdds1(int KampId, double Odds1)
+        {
+            try
+            {
+                Kupon kupon = (Kupon) Session["kupon"];
+                SR.SetKupon(kupon);
+
+                Kamp valgtKamp = SR.FindKamp(KampId);
+                SR.TilføjKamp(valgtKamp, true, false, false);
+                
+                Kamp[] ListeAfKampe = SR.GetAlleKampe();
+                OpretKuponController modelOpretKupon = new OpretKuponController();
+                modelOpretKupon.kupon = kupon;
+                modelOpretKupon.AlleKampe = ListeAfKampe;
+                return View("OpretKupon", modelOpretKupon);
+
+            }
+            catch (Exception)
+            {
+                Kamp[] ListeAfKampe = SR.GetAlleKampe();
+                OpretKuponController modelOpretKupon = new OpretKuponController();
+                modelOpretKupon.kupon = (Kupon)Session["kupon"];
+                modelOpretKupon.AlleKampe = ListeAfKampe;
+                return View("OpretKupon", modelOpretKupon);
+            }
+        }
         // GET: Kupon/Edit/5
         public ActionResult Edit(int id)
         {
