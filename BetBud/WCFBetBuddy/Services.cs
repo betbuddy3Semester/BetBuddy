@@ -46,6 +46,12 @@ namespace WCFBetBuddy
         {
             brugerCtrl.sletBruger(id);
         }
+
+        public Bruger logInd(string bNavn, string pWord)
+        {
+           return brugerCtrl.logIndBruger(bNavn, pWord);
+        }
+
         #endregion
 
         #region KuponService

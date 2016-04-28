@@ -308,6 +308,7 @@
     <Content Include="Views\Bruger\Delete.cshtml" />
     <Content Include="Views\Bruger\Edit.cshtml" />
     <Content Include="Views\Kupon\OpretKupon.cshtml" />
+    <Content Include="Views\Bruger\LoginInd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

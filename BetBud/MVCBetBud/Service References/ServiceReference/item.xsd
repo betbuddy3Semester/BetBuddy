@@ -171,4 +171,19 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="logInd">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="bNavn" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="pWord" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="logIndResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/ModelLibrary.Bruger" minOccurs="0" name="logIndResult" nillable="true" type="q10:Bruger" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

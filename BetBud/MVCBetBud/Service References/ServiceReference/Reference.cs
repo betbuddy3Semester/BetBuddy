@@ -226,6 +226,9 @@ namespace MVCBetBud.ServiceReference {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NavnField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PasswordField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -297,6 +300,19 @@ namespace MVCBetBud.ServiceReference {
                 if ((object.ReferenceEquals(this.NavnField, value) != true)) {
                     this.NavnField = value;
                     this.RaisePropertyChanged("Navn");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Password {
+            get {
+                return this.PasswordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
+                    this.PasswordField = value;
+                    this.RaisePropertyChanged("Password");
                 }
             }
         }
@@ -392,6 +408,12 @@ namespace MVCBetBud.ServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/sletBruger", ReplyAction="http://tempuri.org/IServices/sletBrugerResponse")]
         System.Threading.Tasks.Task sletBrugerAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/logInd", ReplyAction="http://tempuri.org/IServices/logIndResponse")]
+        MVCBetBud.ServiceReference.Bruger logInd(string bNavn, string pWord);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/logInd", ReplyAction="http://tempuri.org/IServices/logIndResponse")]
+        System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Bruger> logIndAsync(string bNavn, string pWord);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -523,6 +545,14 @@ namespace MVCBetBud.ServiceReference {
         
         public System.Threading.Tasks.Task sletBrugerAsync(int id) {
             return base.Channel.sletBrugerAsync(id);
+        }
+        
+        public MVCBetBud.ServiceReference.Bruger logInd(string bNavn, string pWord) {
+            return base.Channel.logInd(bNavn, pWord);
+        }
+        
+        public System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Bruger> logIndAsync(string bNavn, string pWord) {
+            return base.Channel.logIndAsync(bNavn, pWord);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace WCFBetBuddy
     {
         #region Ikupon
 
-        
+
         [OperationContract]
         bool TilføjKamp(Kamp kamp, bool valgt1, bool valgtX, bool valgt2);
         [OperationContract]
@@ -50,6 +50,12 @@ namespace WCFBetBuddy
 
         [OperationContract]
         void sletBruger(int id);
+
+        [OperationContract]
+        Bruger logInd(string bNavn, string pWord);
+  
+
+
         #endregion
 
     }

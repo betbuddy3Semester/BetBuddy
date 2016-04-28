@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime;
 using System.Text.RegularExpressions;
+using System.Web.SessionState;
 
 namespace CtrLayer
 {
@@ -95,6 +96,20 @@ namespace CtrLayer
                 db.SaveChanges();
             }
         }
+
+        public Bruger logIndBruger(string bNavn, string pWord)
+        {
+
+            using (BetBudContext db = new BetBudContext())
+
+            {
+                Bruger bruger = db.Brugere.Where(x => x.BrugerNavn.Equals(bNavn) && x.Password.Equals(pWord)).FirstOrDefault();
+                
+                return bruger;
+            }
+
+        }
+
     }
 
 }

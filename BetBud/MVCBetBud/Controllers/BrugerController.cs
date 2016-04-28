@@ -16,7 +16,15 @@ namespace MVCBetBud.Controllers
             
             return View(SR.getBrugere());
         }
-
+        // GET: login side
+        public ActionResult LoginInd()
+        {
+            if(Session["brugerSession"] != null)
+            {
+                return View("index");
+            }
+            return View();
+        }
         // GET: Bruger/Details/5
         public ActionResult Details(int id)
         {
@@ -89,6 +97,20 @@ namespace MVCBetBud.Controllers
             {
                 return View();
             }
+        }
+
+        [HttpPost]
+        public ActionResult logIn(string brugerNavn, string kodeord)
+
+        {
+            Bruger b = SR.logInd(brugerNavn, kodeord);
+             if (b != null)
+            {
+                Session["brugerSession"] = b.BrugerId;
+            }
+            return View("index");
+          
+            
         }
     }
 }

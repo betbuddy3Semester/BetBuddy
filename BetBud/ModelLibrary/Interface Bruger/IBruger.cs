@@ -12,6 +12,7 @@ namespace ModelLibrary.Interface_Bruger
         string BrugerNavn { get; set; }
         string Email { get; set; }
         string Alias { get; set; }
+        string Password { get; set; }
         }
     }
 
