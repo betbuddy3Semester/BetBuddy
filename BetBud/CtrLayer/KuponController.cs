@@ -49,13 +49,13 @@ namespace CtrLayer
         // Metode til at tilføje en kamp til kuponen. Kalder metoden TilføjKamp i modellaget. Kontrollere at kuponen er
         // oprettet.
 
-        public bool TilføjKamp(Kamp kamp, bool valgt1, bool valgtX, bool valgt2)
+        public Kupon TilføjKamp(Kamp kamp, bool valgt1, bool valgtX, bool valgt2, Kupon kupon)
         {
-            if (NyKupon != null)
+            if (kupon != null)
             {
-                return NyKupon.TilføjKamp(kamp, valgt1, valgtX, valgt2);
+                kupon.TilføjKamp(kamp, valgt1, valgtX, valgt2);
             }
-            return false;
+            return kupon;
         }
 
         // Metode til at fjerne en kamp fra sin kupon. Først kontrollere metoden om der er en kupon, og fjerner derefter 

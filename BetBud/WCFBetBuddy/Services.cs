@@ -60,9 +60,9 @@ namespace WCFBetBuddy
         #region KuponService
         KuponController NyKuponController = new KuponController();
 
-        public bool TilføjKamp(Kamp kamp, bool valgt1, bool valgtX, bool valgt2)
+        public Kupon TilføjKamp(Kupon kupon, Kamp kamp, bool valgt1, bool valgtX, bool valgt2)
         {
-            bool fundetData = NyKuponController.TilføjKamp(kamp, valgt1, valgtX, valgt2);
+            Kupon fundetData = NyKuponController.TilføjKamp(kamp, valgt1, valgtX, valgt2, kupon);
             return fundetData;
         }
 
@@ -106,6 +106,8 @@ namespace WCFBetBuddy
         {
             NyKuponController.SetKupon(kupon);
         }
+
+        
         #endregion
 
 

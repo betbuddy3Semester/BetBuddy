@@ -12,11 +12,11 @@ $("#AlleKampeID form").submit(function() {
     buttomClass = buttomClass.context.activeElement.name;
     console.log(buttomClass);
     if (buttomClass == "Odds1") {
-        $(this).attr("action", "/KuponController/PostOdds1");
+        $(this).attr("action", "/Kupon/PostOdds1");
     }else if (buttomClass == "OddsX") {
-        $(this).attr("action", "/KuponController/PostOddsX");
+        $(this).attr("action", "/Kupon/PostOddsX");
     } else {
-        $(this).attr("action", "/KuponController/PostOdds2");
+        $(this).attr("action", "/Kupon/PostOdds2");
     }
     
 });

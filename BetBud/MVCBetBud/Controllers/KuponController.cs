@@ -34,8 +34,12 @@ namespace MVCBetBud.Controllers
 
             if (Session["kupon"] != null)
             {
-                kupon = (Kupon)Session["kupon"];
+                kupon = (Kupon) Session["kupon"];
 
+            }
+            else
+            {
+                Session["kupon"] = kupon;
             }
             Kamp[] ListeAfKampe = SR.GetAlleKampe();
             OpretKuponController modelOpretKupon = new OpretKuponController();
@@ -59,31 +63,18 @@ namespace MVCBetBud.Controllers
             }
         }
         [HttpPost]
-        public ActionResult PostOdds1(int KampId, double Odds1)
+        public ActionResult PostOdds1()
         {
-            try
-            {
-                Kupon kupon = (Kupon) Session["kupon"];
-                SR.SetKupon(kupon);
+            int kampId = Convert.ToInt32( Request.Form["item.KampId"]);
+            Kupon kupon = (Kupon) Session["kupon"];
+          
+            Kamp valgtKamp = SR.FindKamp(kampId);
+            SR.TilføjKamp(kupon, valgtKamp, true, false, false);
+            Session["kupon"] = SR.GetKupon();
 
-                Kamp valgtKamp = SR.FindKamp(KampId);
-                SR.TilføjKamp(valgtKamp, true, false, false);
-                
-                Kamp[] ListeAfKampe = SR.GetAlleKampe();
-                OpretKuponController modelOpretKupon = new OpretKuponController();
-                modelOpretKupon.kupon = kupon;
-                modelOpretKupon.AlleKampe = ListeAfKampe;
-                return View("OpretKupon", modelOpretKupon);
-
-            }
-            catch (Exception)
-            {
-                Kamp[] ListeAfKampe = SR.GetAlleKampe();
-                OpretKuponController modelOpretKupon = new OpretKuponController();
-                modelOpretKupon.kupon = (Kupon)Session["kupon"];
-                modelOpretKupon.AlleKampe = ListeAfKampe;
-                return View("OpretKupon", modelOpretKupon);
-            }
+            
+            
+            return RedirectToAction("OpretKupon");
         }
         // GET: Kupon/Edit/5
         public ActionResult Edit(int id)

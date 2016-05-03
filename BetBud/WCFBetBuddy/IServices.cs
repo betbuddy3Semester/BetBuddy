@@ -16,7 +16,7 @@ namespace WCFBetBuddy
 
 
         [OperationContract]
-        bool TilføjKamp(Kamp kamp, bool valgt1, bool valgtX, bool valgt2);
+        Kupon TilføjKamp(Kupon kupon, Kamp kamp, bool valgt1, bool valgtX, bool valgt2);
         [OperationContract]
         bool FjernKamp(Kamp kamp);
         [OperationContract]

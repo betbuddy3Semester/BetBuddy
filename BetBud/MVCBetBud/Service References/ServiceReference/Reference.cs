@@ -15,195 +15,6 @@ namespace MVCBetBud.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Kamp", Namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon")]
-    [System.SerializableAttribute()]
-    public partial class Kamp : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool AflystField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string HoldVsHoldField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int KampIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime KampStartField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double Odds1Field;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double Odds2Field;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double OddsXField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool Vundet1Field;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool Vundet2Field;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool VundetXField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Aflyst {
-            get {
-                return this.AflystField;
-            }
-            set {
-                if ((this.AflystField.Equals(value) != true)) {
-                    this.AflystField = value;
-                    this.RaisePropertyChanged("Aflyst");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string HoldVsHold {
-            get {
-                return this.HoldVsHoldField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.HoldVsHoldField, value) != true)) {
-                    this.HoldVsHoldField = value;
-                    this.RaisePropertyChanged("HoldVsHold");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int KampId {
-            get {
-                return this.KampIdField;
-            }
-            set {
-                if ((this.KampIdField.Equals(value) != true)) {
-                    this.KampIdField = value;
-                    this.RaisePropertyChanged("KampId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime KampStart {
-            get {
-                return this.KampStartField;
-            }
-            set {
-                if ((this.KampStartField.Equals(value) != true)) {
-                    this.KampStartField = value;
-                    this.RaisePropertyChanged("KampStart");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public double Odds1 {
-            get {
-                return this.Odds1Field;
-            }
-            set {
-                if ((this.Odds1Field.Equals(value) != true)) {
-                    this.Odds1Field = value;
-                    this.RaisePropertyChanged("Odds1");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public double Odds2 {
-            get {
-                return this.Odds2Field;
-            }
-            set {
-                if ((this.Odds2Field.Equals(value) != true)) {
-                    this.Odds2Field = value;
-                    this.RaisePropertyChanged("Odds2");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public double OddsX {
-            get {
-                return this.OddsXField;
-            }
-            set {
-                if ((this.OddsXField.Equals(value) != true)) {
-                    this.OddsXField = value;
-                    this.RaisePropertyChanged("OddsX");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Vundet1 {
-            get {
-                return this.Vundet1Field;
-            }
-            set {
-                if ((this.Vundet1Field.Equals(value) != true)) {
-                    this.Vundet1Field = value;
-                    this.RaisePropertyChanged("Vundet1");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Vundet2 {
-            get {
-                return this.Vundet2Field;
-            }
-            set {
-                if ((this.Vundet2Field.Equals(value) != true)) {
-                    this.Vundet2Field = value;
-                    this.RaisePropertyChanged("Vundet2");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool VundetX {
-            get {
-                return this.VundetXField;
-            }
-            set {
-                if ((this.VundetXField.Equals(value) != true)) {
-                    this.VundetXField = value;
-                    this.RaisePropertyChanged("VundetX");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Kupon", Namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon")]
     [System.SerializableAttribute()]
     public partial class Kupon : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -545,15 +356,204 @@ namespace MVCBetBud.ServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Kamp", Namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon")]
+    [System.SerializableAttribute()]
+    public partial class Kamp : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool AflystField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string HoldVsHoldField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int KampIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime KampStartField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double Odds1Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double Odds2Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double OddsXField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool Vundet1Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool Vundet2Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool VundetXField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Aflyst {
+            get {
+                return this.AflystField;
+            }
+            set {
+                if ((this.AflystField.Equals(value) != true)) {
+                    this.AflystField = value;
+                    this.RaisePropertyChanged("Aflyst");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string HoldVsHold {
+            get {
+                return this.HoldVsHoldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HoldVsHoldField, value) != true)) {
+                    this.HoldVsHoldField = value;
+                    this.RaisePropertyChanged("HoldVsHold");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int KampId {
+            get {
+                return this.KampIdField;
+            }
+            set {
+                if ((this.KampIdField.Equals(value) != true)) {
+                    this.KampIdField = value;
+                    this.RaisePropertyChanged("KampId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime KampStart {
+            get {
+                return this.KampStartField;
+            }
+            set {
+                if ((this.KampStartField.Equals(value) != true)) {
+                    this.KampStartField = value;
+                    this.RaisePropertyChanged("KampStart");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Odds1 {
+            get {
+                return this.Odds1Field;
+            }
+            set {
+                if ((this.Odds1Field.Equals(value) != true)) {
+                    this.Odds1Field = value;
+                    this.RaisePropertyChanged("Odds1");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Odds2 {
+            get {
+                return this.Odds2Field;
+            }
+            set {
+                if ((this.Odds2Field.Equals(value) != true)) {
+                    this.Odds2Field = value;
+                    this.RaisePropertyChanged("Odds2");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double OddsX {
+            get {
+                return this.OddsXField;
+            }
+            set {
+                if ((this.OddsXField.Equals(value) != true)) {
+                    this.OddsXField = value;
+                    this.RaisePropertyChanged("OddsX");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Vundet1 {
+            get {
+                return this.Vundet1Field;
+            }
+            set {
+                if ((this.Vundet1Field.Equals(value) != true)) {
+                    this.Vundet1Field = value;
+                    this.RaisePropertyChanged("Vundet1");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Vundet2 {
+            get {
+                return this.Vundet2Field;
+            }
+            set {
+                if ((this.Vundet2Field.Equals(value) != true)) {
+                    this.Vundet2Field = value;
+                    this.RaisePropertyChanged("Vundet2");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool VundetX {
+            get {
+                return this.VundetXField;
+            }
+            set {
+                if ((this.VundetXField.Equals(value) != true)) {
+                    this.VundetXField = value;
+                    this.RaisePropertyChanged("VundetX");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference.IServices")]
     public interface IServices {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/TilføjKamp", ReplyAction="http://tempuri.org/IServices/TilføjKampResponse")]
-        bool TilføjKamp(MVCBetBud.ServiceReference.Kamp kamp, bool valgt1, bool valgtX, bool valgt2);
+        MVCBetBud.ServiceReference.Kupon TilføjKamp(MVCBetBud.ServiceReference.Kupon kupon, MVCBetBud.ServiceReference.Kamp kamp, bool valgt1, bool valgtX, bool valgt2);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/TilføjKamp", ReplyAction="http://tempuri.org/IServices/TilføjKampResponse")]
-        System.Threading.Tasks.Task<bool> TilføjKampAsync(MVCBetBud.ServiceReference.Kamp kamp, bool valgt1, bool valgtX, bool valgt2);
+        System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Kupon> TilføjKampAsync(MVCBetBud.ServiceReference.Kupon kupon, MVCBetBud.ServiceReference.Kamp kamp, bool valgt1, bool valgtX, bool valgt2);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/FjernKamp", ReplyAction="http://tempuri.org/IServices/FjernKampResponse")]
         bool FjernKamp(MVCBetBud.ServiceReference.Kamp kamp);
@@ -673,12 +673,12 @@ namespace MVCBetBud.ServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public bool TilføjKamp(MVCBetBud.ServiceReference.Kamp kamp, bool valgt1, bool valgtX, bool valgt2) {
-            return base.Channel.TilføjKamp(kamp, valgt1, valgtX, valgt2);
+        public MVCBetBud.ServiceReference.Kupon TilføjKamp(MVCBetBud.ServiceReference.Kupon kupon, MVCBetBud.ServiceReference.Kamp kamp, bool valgt1, bool valgtX, bool valgt2) {
+            return base.Channel.TilføjKamp(kupon, kamp, valgt1, valgtX, valgt2);
         }
         
-        public System.Threading.Tasks.Task<bool> TilføjKampAsync(MVCBetBud.ServiceReference.Kamp kamp, bool valgt1, bool valgtX, bool valgt2) {
-            return base.Channel.TilføjKampAsync(kamp, valgt1, valgtX, valgt2);
+        public System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Kupon> TilføjKampAsync(MVCBetBud.ServiceReference.Kupon kupon, MVCBetBud.ServiceReference.Kamp kamp, bool valgt1, bool valgtX, bool valgt2) {
+            return base.Channel.TilføjKampAsync(kupon, kamp, valgt1, valgtX, valgt2);
         }
         
         public bool FjernKamp(MVCBetBud.ServiceReference.Kamp kamp) {

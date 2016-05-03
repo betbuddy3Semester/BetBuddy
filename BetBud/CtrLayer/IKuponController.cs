@@ -10,7 +10,7 @@ namespace CtrLayer
     public interface IKuponController
     {
         void OpretKupon();
-        bool TilføjKamp(Kamp kamp, bool valgt1, bool valgtX, bool valgt2);
+        Kupon TilføjKamp(Kamp kamp, bool valgt1, bool valgtX, bool valgt2, Kupon kupon);
         bool FjernKamp(Kamp kamp);
         double OddsUdregning();
         double MuligGevist();
