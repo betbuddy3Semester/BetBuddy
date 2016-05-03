@@ -15,3 +15,20 @@ $("#AlleKampeID form").submit(function() {
     }
     
 });
+var samletOdds = 1;
+$(".OddsBox").each(function () {
+    var fixtTal = $(this).text().replace(",", ".");
+    samletOdds *= fixtTal;
+});
+samletOdds = Math.round(samletOdds * 100) / 100;
+if (samletOdds != 1) {
+    $("#oddsResult").text(samletOdds);
+} else {
+    $(".OddsBoxStart").hide();
+}
+var bettingPoint = $("input[name=bettingPoint]");
+bettingPoint.keyup(function() {
+    var point = bettingPoint.val() * samletOdds;
+    point = Math.round(point * 100) / 100;
+    $("#gevinst").text(point);
+});

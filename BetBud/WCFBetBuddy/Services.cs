@@ -82,9 +82,9 @@ namespace WCFBetBuddy
             return NyKuponController.MuligGevist();
         }
 
-        public bool BekræftKupon()
+        public bool BekræftKupon(Kupon kupon)
         {
-            return NyKuponController.BekræftKupon();
+            return NyKuponController.BekræftKupon(kupon);
         }
 
         public Kamp FindKamp(int KampId)

@@ -50,11 +50,18 @@ namespace MVCBetBud.Controllers
 
         // POST: Kupon/Create
         [HttpPost]
-        public ActionResult OpretKupon(int KampId, string Odds1, string OddsX, string Odds2)
+        public ActionResult OpretKupon(FormCollection collection)
         {
             try
             {
-
+                double bettingPoint = Convert.ToDouble(Request.Form["bettingPoint"]);
+                Kupon kupon = (Kupon)Session["kupon"];
+                kupon.Point = bettingPoint;
+                if (SR.BekræftKupon(kupon))
+                {
+                    return RedirectToAction("index");
+                }
+                
                 return RedirectToAction("OpretKupon");
             }
             catch
@@ -62,6 +69,7 @@ namespace MVCBetBud.Controllers
                 return View();
             }
         }
+
         [HttpPost]
         public ActionResult PostOdds1()
         {

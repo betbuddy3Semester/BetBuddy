@@ -574,10 +574,10 @@ namespace MVCBetBud.ServiceReference {
         System.Threading.Tasks.Task<double> MuligGevistAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/BekræftKupon", ReplyAction="http://tempuri.org/IServices/BekræftKuponResponse")]
-        bool BekræftKupon();
+        bool BekræftKupon(MVCBetBud.ServiceReference.Kupon kupon);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/BekræftKupon", ReplyAction="http://tempuri.org/IServices/BekræftKuponResponse")]
-        System.Threading.Tasks.Task<bool> BekræftKuponAsync();
+        System.Threading.Tasks.Task<bool> BekræftKuponAsync(MVCBetBud.ServiceReference.Kupon kupon);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/FindKamp", ReplyAction="http://tempuri.org/IServices/FindKampResponse")]
         MVCBetBud.ServiceReference.Kamp FindKamp(int KampId);
@@ -699,12 +699,12 @@ namespace MVCBetBud.ServiceReference {
             return base.Channel.MuligGevistAsync();
         }
         
-        public bool BekræftKupon() {
-            return base.Channel.BekræftKupon();
+        public bool BekræftKupon(MVCBetBud.ServiceReference.Kupon kupon) {
+            return base.Channel.BekræftKupon(kupon);
         }
         
-        public System.Threading.Tasks.Task<bool> BekræftKuponAsync() {
-            return base.Channel.BekræftKuponAsync();
+        public System.Threading.Tasks.Task<bool> BekræftKuponAsync(MVCBetBud.ServiceReference.Kupon kupon) {
+            return base.Channel.BekræftKuponAsync(kupon);
         }
         
         public MVCBetBud.ServiceReference.Kamp FindKamp(int KampId) {

@@ -96,13 +96,13 @@ namespace CtrLayer
         }
 
 
-        public bool BekræftKupon()
+        public bool BekræftKupon(Kupon kupon)
         {
             using (BetBudContext db = new BetBudContext())
             {
                 try
                 {
-                    db.Kuponer.Add(NyKupon);
+                    db.Kuponer.Add(kupon);
                     db.SaveChanges();
                     return true;
 

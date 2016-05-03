@@ -24,7 +24,7 @@ namespace WCFBetBuddy
         [OperationContract]
         double MuligGevist();
         [OperationContract]
-        bool BekræftKupon();
+        bool BekræftKupon(Kupon kupon);
         [OperationContract]
         Kamp FindKamp(int KampId);
         [OperationContract]
