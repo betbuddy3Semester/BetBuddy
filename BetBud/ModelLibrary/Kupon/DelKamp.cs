@@ -4,6 +4,8 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Data;
 
 namespace ModelLibrary.Kupon
 {
@@ -18,6 +20,8 @@ namespace ModelLibrary.Kupon
         public bool ValgtX { get; set; }
         [DataMember]
         public bool Valgt2 { get; set; }
+        [DataMember]
+        public int KampId { get; set; }
         [DataMember]
         public Kamp Kampe { get; set; }
         

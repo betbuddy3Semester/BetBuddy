@@ -29,23 +29,27 @@ namespace MVCBetBud.Controllers
         // GET: Kupon/Create
         public ActionResult OpretKupon()
         {
-
-            Kupon kupon = SR.NyKupon();
-
-            if (Session["kupon"] != null)
+            if (Session["brugerSession"] != null)
             {
-                kupon = (Kupon) Session["kupon"];
+                Kupon kupon = SR.NyKupon();
+                Bruger bruger = SR.getBruger((int) Session["brugerSession"]);
+                kupon.Bruger = bruger;
+                if (Session["kupon"] != null)
+                {
+                    kupon = (Kupon)Session["kupon"];
 
+                }
+                else
+                {
+                    Session["kupon"] = kupon;
+                }
+                Kamp[] ListeAfKampe = SR.GetAlleKampe();
+                OpretKuponController modelOpretKupon = new OpretKuponController();
+                modelOpretKupon.kupon = kupon;
+                modelOpretKupon.AlleKampe = ListeAfKampe;
+                return View(modelOpretKupon);
             }
-            else
-            {
-                Session["kupon"] = kupon;
-            }
-            Kamp[] ListeAfKampe = SR.GetAlleKampe();
-            OpretKuponController modelOpretKupon = new OpretKuponController();
-            modelOpretKupon.kupon = kupon;
-            modelOpretKupon.AlleKampe = ListeAfKampe;
-            return View(modelOpretKupon);
+            return RedirectToAction("index", "home");
         }
 
         // POST: Kupon/Create
@@ -61,7 +65,7 @@ namespace MVCBetBud.Controllers
                 {
                     return RedirectToAction("index");
                 }
-                
+
                 return RedirectToAction("OpretKupon");
             }
             catch
@@ -73,15 +77,15 @@ namespace MVCBetBud.Controllers
         [HttpPost]
         public ActionResult PostOdds1()
         {
-            int kampId = Convert.ToInt32( Request.Form["item.KampId"]);
-            Kupon kupon = (Kupon) Session["kupon"];
-          
+            int kampId = Convert.ToInt32(Request.Form["item.KampId"]);
+            Kupon kupon = (Kupon)Session["kupon"];
+
             Kamp valgtKamp = SR.FindKamp(kampId);
             Kupon valgtKupon = SR.TilføjKamp(kupon, valgtKamp, true, false, false);
             Session["kupon"] = valgtKupon;
 
-            
-            
+
+
             return RedirectToAction("OpretKupon");
         }
 
