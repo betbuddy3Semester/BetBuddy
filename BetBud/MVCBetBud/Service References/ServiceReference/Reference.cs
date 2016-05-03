@@ -15,6 +15,349 @@ namespace MVCBetBud.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Kupon", Namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon")]
+    [System.SerializableAttribute()]
+    public partial class Kupon : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private MVCBetBud.ServiceReference.Bruger BrugerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool KontrolleretField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double KuponIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double PointField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private MVCBetBud.ServiceReference.DelKamp[] delKampeField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public MVCBetBud.ServiceReference.Bruger Bruger {
+            get {
+                return this.BrugerField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BrugerField, value) != true)) {
+                    this.BrugerField = value;
+                    this.RaisePropertyChanged("Bruger");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Kontrolleret {
+            get {
+                return this.KontrolleretField;
+            }
+            set {
+                if ((this.KontrolleretField.Equals(value) != true)) {
+                    this.KontrolleretField = value;
+                    this.RaisePropertyChanged("Kontrolleret");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double KuponId {
+            get {
+                return this.KuponIdField;
+            }
+            set {
+                if ((this.KuponIdField.Equals(value) != true)) {
+                    this.KuponIdField = value;
+                    this.RaisePropertyChanged("KuponId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Point {
+            get {
+                return this.PointField;
+            }
+            set {
+                if ((this.PointField.Equals(value) != true)) {
+                    this.PointField = value;
+                    this.RaisePropertyChanged("Point");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public MVCBetBud.ServiceReference.DelKamp[] delKampe {
+            get {
+                return this.delKampeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.delKampeField, value) != true)) {
+                    this.delKampeField = value;
+                    this.RaisePropertyChanged("delKampe");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Bruger", Namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Bruger")]
+    [System.SerializableAttribute()]
+    public partial class Bruger : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AliasField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int BrugerIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string BrugerNavnField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EmailField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NavnField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PasswordField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Alias {
+            get {
+                return this.AliasField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AliasField, value) != true)) {
+                    this.AliasField = value;
+                    this.RaisePropertyChanged("Alias");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int BrugerId {
+            get {
+                return this.BrugerIdField;
+            }
+            set {
+                if ((this.BrugerIdField.Equals(value) != true)) {
+                    this.BrugerIdField = value;
+                    this.RaisePropertyChanged("BrugerId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string BrugerNavn {
+            get {
+                return this.BrugerNavnField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BrugerNavnField, value) != true)) {
+                    this.BrugerNavnField = value;
+                    this.RaisePropertyChanged("BrugerNavn");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Email {
+            get {
+                return this.EmailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
+                    this.EmailField = value;
+                    this.RaisePropertyChanged("Email");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Navn {
+            get {
+                return this.NavnField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NavnField, value) != true)) {
+                    this.NavnField = value;
+                    this.RaisePropertyChanged("Navn");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Password {
+            get {
+                return this.PasswordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
+                    this.PasswordField = value;
+                    this.RaisePropertyChanged("Password");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DelKamp", Namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon")]
+    [System.SerializableAttribute()]
+    public partial class DelKamp : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int DelKampIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private MVCBetBud.ServiceReference.Kamp KampeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool Valgt1Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool Valgt2Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool ValgtXField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int DelKampId {
+            get {
+                return this.DelKampIdField;
+            }
+            set {
+                if ((this.DelKampIdField.Equals(value) != true)) {
+                    this.DelKampIdField = value;
+                    this.RaisePropertyChanged("DelKampId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public MVCBetBud.ServiceReference.Kamp Kampe {
+            get {
+                return this.KampeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.KampeField, value) != true)) {
+                    this.KampeField = value;
+                    this.RaisePropertyChanged("Kampe");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Valgt1 {
+            get {
+                return this.Valgt1Field;
+            }
+            set {
+                if ((this.Valgt1Field.Equals(value) != true)) {
+                    this.Valgt1Field = value;
+                    this.RaisePropertyChanged("Valgt1");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Valgt2 {
+            get {
+                return this.Valgt2Field;
+            }
+            set {
+                if ((this.Valgt2Field.Equals(value) != true)) {
+                    this.Valgt2Field = value;
+                    this.RaisePropertyChanged("Valgt2");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool ValgtX {
+            get {
+                return this.ValgtXField;
+            }
+            set {
+                if ((this.ValgtXField.Equals(value) != true)) {
+                    this.ValgtXField = value;
+                    this.RaisePropertyChanged("ValgtX");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Kamp", Namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon")]
     [System.SerializableAttribute()]
     public partial class Kamp : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -202,342 +545,15 @@ namespace MVCBetBud.ServiceReference {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Kupon", Namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon")]
-    [System.SerializableAttribute()]
-    public partial class Kupon : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private MVCBetBud.ServiceReference.Bruger BrugerField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private MVCBetBud.ServiceReference.DelKamp[] DelKampeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool KontrolleretField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double KuponIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double PointField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public MVCBetBud.ServiceReference.Bruger Bruger {
-            get {
-                return this.BrugerField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.BrugerField, value) != true)) {
-                    this.BrugerField = value;
-                    this.RaisePropertyChanged("Bruger");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public MVCBetBud.ServiceReference.DelKamp[] DelKampe {
-            get {
-                return this.DelKampeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DelKampeField, value) != true)) {
-                    this.DelKampeField = value;
-                    this.RaisePropertyChanged("DelKampe");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Kontrolleret {
-            get {
-                return this.KontrolleretField;
-            }
-            set {
-                if ((this.KontrolleretField.Equals(value) != true)) {
-                    this.KontrolleretField = value;
-                    this.RaisePropertyChanged("Kontrolleret");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public double KuponId {
-            get {
-                return this.KuponIdField;
-            }
-            set {
-                if ((this.KuponIdField.Equals(value) != true)) {
-                    this.KuponIdField = value;
-                    this.RaisePropertyChanged("KuponId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public double Point {
-            get {
-                return this.PointField;
-            }
-            set {
-                if ((this.PointField.Equals(value) != true)) {
-                    this.PointField = value;
-                    this.RaisePropertyChanged("Point");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Bruger", Namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Bruger")]
-    [System.SerializableAttribute()]
-    public partial class Bruger : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string AliasField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int BrugerIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string BrugerNavnField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string EmailField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NavnField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Alias {
-            get {
-                return this.AliasField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AliasField, value) != true)) {
-                    this.AliasField = value;
-                    this.RaisePropertyChanged("Alias");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int BrugerId {
-            get {
-                return this.BrugerIdField;
-            }
-            set {
-                if ((this.BrugerIdField.Equals(value) != true)) {
-                    this.BrugerIdField = value;
-                    this.RaisePropertyChanged("BrugerId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string BrugerNavn {
-            get {
-                return this.BrugerNavnField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.BrugerNavnField, value) != true)) {
-                    this.BrugerNavnField = value;
-                    this.RaisePropertyChanged("BrugerNavn");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Email {
-            get {
-                return this.EmailField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
-                    this.EmailField = value;
-                    this.RaisePropertyChanged("Email");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Navn {
-            get {
-                return this.NavnField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NavnField, value) != true)) {
-                    this.NavnField = value;
-                    this.RaisePropertyChanged("Navn");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DelKamp", Namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon")]
-    [System.SerializableAttribute()]
-    public partial class DelKamp : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int DelKampIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private MVCBetBud.ServiceReference.Kamp KampeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool Valgt1Field;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool Valgt2Field;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool ValgtXField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int DelKampId {
-            get {
-                return this.DelKampIdField;
-            }
-            set {
-                if ((this.DelKampIdField.Equals(value) != true)) {
-                    this.DelKampIdField = value;
-                    this.RaisePropertyChanged("DelKampId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public MVCBetBud.ServiceReference.Kamp Kampe {
-            get {
-                return this.KampeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.KampeField, value) != true)) {
-                    this.KampeField = value;
-                    this.RaisePropertyChanged("Kampe");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Valgt1 {
-            get {
-                return this.Valgt1Field;
-            }
-            set {
-                if ((this.Valgt1Field.Equals(value) != true)) {
-                    this.Valgt1Field = value;
-                    this.RaisePropertyChanged("Valgt1");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Valgt2 {
-            get {
-                return this.Valgt2Field;
-            }
-            set {
-                if ((this.Valgt2Field.Equals(value) != true)) {
-                    this.Valgt2Field = value;
-                    this.RaisePropertyChanged("Valgt2");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool ValgtX {
-            get {
-                return this.ValgtXField;
-            }
-            set {
-                if ((this.ValgtXField.Equals(value) != true)) {
-                    this.ValgtXField = value;
-                    this.RaisePropertyChanged("ValgtX");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference.IServices")]
     public interface IServices {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/TilføjKamp", ReplyAction="http://tempuri.org/IServices/TilføjKampResponse")]
-        bool TilføjKamp(MVCBetBud.ServiceReference.Kamp kamp, bool valgt1, bool valgtX, bool valgt2);
+        MVCBetBud.ServiceReference.Kupon TilføjKamp(MVCBetBud.ServiceReference.Kupon kupon, MVCBetBud.ServiceReference.Kamp kamp, bool valgt1, bool valgtX, bool valgt2);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/TilføjKamp", ReplyAction="http://tempuri.org/IServices/TilføjKampResponse")]
-        System.Threading.Tasks.Task<bool> TilføjKampAsync(MVCBetBud.ServiceReference.Kamp kamp, bool valgt1, bool valgtX, bool valgt2);
+        System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Kupon> TilføjKampAsync(MVCBetBud.ServiceReference.Kupon kupon, MVCBetBud.ServiceReference.Kamp kamp, bool valgt1, bool valgtX, bool valgt2);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/FjernKamp", ReplyAction="http://tempuri.org/IServices/FjernKampResponse")]
         bool FjernKamp(MVCBetBud.ServiceReference.Kamp kamp);
@@ -558,10 +574,10 @@ namespace MVCBetBud.ServiceReference {
         System.Threading.Tasks.Task<double> MuligGevistAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/BekræftKupon", ReplyAction="http://tempuri.org/IServices/BekræftKuponResponse")]
-        bool BekræftKupon();
+        bool BekræftKupon(MVCBetBud.ServiceReference.Kupon kupon);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/BekræftKupon", ReplyAction="http://tempuri.org/IServices/BekræftKuponResponse")]
-        System.Threading.Tasks.Task<bool> BekræftKuponAsync();
+        System.Threading.Tasks.Task<bool> BekræftKuponAsync(MVCBetBud.ServiceReference.Kupon kupon);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/FindKamp", ReplyAction="http://tempuri.org/IServices/FindKampResponse")]
         MVCBetBud.ServiceReference.Kamp FindKamp(int KampId);
@@ -575,17 +591,11 @@ namespace MVCBetBud.ServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/GetAlleKampe", ReplyAction="http://tempuri.org/IServices/GetAlleKampeResponse")]
         System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Kamp[]> GetAlleKampeAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/GetKupon", ReplyAction="http://tempuri.org/IServices/GetKuponResponse")]
-        MVCBetBud.ServiceReference.Kupon GetKupon();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/NyKupon", ReplyAction="http://tempuri.org/IServices/NyKuponResponse")]
+        MVCBetBud.ServiceReference.Kupon NyKupon();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/GetKupon", ReplyAction="http://tempuri.org/IServices/GetKuponResponse")]
-        System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Kupon> GetKuponAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/SetKupon", ReplyAction="http://tempuri.org/IServices/SetKuponResponse")]
-        void SetKupon(MVCBetBud.ServiceReference.Kupon kupon);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/SetKupon", ReplyAction="http://tempuri.org/IServices/SetKuponResponse")]
-        System.Threading.Tasks.Task SetKuponAsync(MVCBetBud.ServiceReference.Kupon kupon);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/NyKupon", ReplyAction="http://tempuri.org/IServices/NyKuponResponse")]
+        System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Kupon> NyKuponAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/getBruger", ReplyAction="http://tempuri.org/IServices/getBrugerResponse")]
         MVCBetBud.ServiceReference.Bruger getBruger(int id);
@@ -622,6 +632,12 @@ namespace MVCBetBud.ServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/sletBruger", ReplyAction="http://tempuri.org/IServices/sletBrugerResponse")]
         System.Threading.Tasks.Task sletBrugerAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/logInd", ReplyAction="http://tempuri.org/IServices/logIndResponse")]
+        MVCBetBud.ServiceReference.Bruger logInd(string bNavn, string pWord);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/logInd", ReplyAction="http://tempuri.org/IServices/logIndResponse")]
+        System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Bruger> logIndAsync(string bNavn, string pWord);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -651,12 +667,12 @@ namespace MVCBetBud.ServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public bool TilføjKamp(MVCBetBud.ServiceReference.Kamp kamp, bool valgt1, bool valgtX, bool valgt2) {
-            return base.Channel.TilføjKamp(kamp, valgt1, valgtX, valgt2);
+        public MVCBetBud.ServiceReference.Kupon TilføjKamp(MVCBetBud.ServiceReference.Kupon kupon, MVCBetBud.ServiceReference.Kamp kamp, bool valgt1, bool valgtX, bool valgt2) {
+            return base.Channel.TilføjKamp(kupon, kamp, valgt1, valgtX, valgt2);
         }
         
-        public System.Threading.Tasks.Task<bool> TilføjKampAsync(MVCBetBud.ServiceReference.Kamp kamp, bool valgt1, bool valgtX, bool valgt2) {
-            return base.Channel.TilføjKampAsync(kamp, valgt1, valgtX, valgt2);
+        public System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Kupon> TilføjKampAsync(MVCBetBud.ServiceReference.Kupon kupon, MVCBetBud.ServiceReference.Kamp kamp, bool valgt1, bool valgtX, bool valgt2) {
+            return base.Channel.TilføjKampAsync(kupon, kamp, valgt1, valgtX, valgt2);
         }
         
         public bool FjernKamp(MVCBetBud.ServiceReference.Kamp kamp) {
@@ -683,12 +699,12 @@ namespace MVCBetBud.ServiceReference {
             return base.Channel.MuligGevistAsync();
         }
         
-        public bool BekræftKupon() {
-            return base.Channel.BekræftKupon();
+        public bool BekræftKupon(MVCBetBud.ServiceReference.Kupon kupon) {
+            return base.Channel.BekræftKupon(kupon);
         }
         
-        public System.Threading.Tasks.Task<bool> BekræftKuponAsync() {
-            return base.Channel.BekræftKuponAsync();
+        public System.Threading.Tasks.Task<bool> BekræftKuponAsync(MVCBetBud.ServiceReference.Kupon kupon) {
+            return base.Channel.BekræftKuponAsync(kupon);
         }
         
         public MVCBetBud.ServiceReference.Kamp FindKamp(int KampId) {
@@ -707,20 +723,12 @@ namespace MVCBetBud.ServiceReference {
             return base.Channel.GetAlleKampeAsync();
         }
         
-        public MVCBetBud.ServiceReference.Kupon GetKupon() {
-            return base.Channel.GetKupon();
+        public MVCBetBud.ServiceReference.Kupon NyKupon() {
+            return base.Channel.NyKupon();
         }
         
-        public System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Kupon> GetKuponAsync() {
-            return base.Channel.GetKuponAsync();
-        }
-        
-        public void SetKupon(MVCBetBud.ServiceReference.Kupon kupon) {
-            base.Channel.SetKupon(kupon);
-        }
-        
-        public System.Threading.Tasks.Task SetKuponAsync(MVCBetBud.ServiceReference.Kupon kupon) {
-            return base.Channel.SetKuponAsync(kupon);
+        public System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Kupon> NyKuponAsync() {
+            return base.Channel.NyKuponAsync();
         }
         
         public MVCBetBud.ServiceReference.Bruger getBruger(int id) {
@@ -769,6 +777,14 @@ namespace MVCBetBud.ServiceReference {
         
         public System.Threading.Tasks.Task sletBrugerAsync(int id) {
             return base.Channel.sletBrugerAsync(id);
+        }
+        
+        public MVCBetBud.ServiceReference.Bruger logInd(string bNavn, string pWord) {
+            return base.Channel.logInd(bNavn, pWord);
+        }
+        
+        public System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Bruger> logIndAsync(string bNavn, string pWord) {
+            return base.Channel.logIndAsync(bNavn, pWord);
         }
     }
 }

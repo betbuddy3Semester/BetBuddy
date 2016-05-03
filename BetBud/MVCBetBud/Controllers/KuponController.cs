@@ -29,13 +29,17 @@ namespace MVCBetBud.Controllers
         // GET: Kupon/Create
         public ActionResult OpretKupon()
         {
-            
-            Kupon kupon = new Kupon();
-            
+
+            Kupon kupon = SR.NyKupon();
+
             if (Session["kupon"] != null)
             {
                 kupon = (Kupon) Session["kupon"];
 
+            }
+            else
+            {
+                Session["kupon"] = kupon;
             }
             Kamp[] ListeAfKampe = SR.GetAlleKampe();
             OpretKuponController modelOpretKupon = new OpretKuponController();
@@ -46,20 +50,71 @@ namespace MVCBetBud.Controllers
 
         // POST: Kupon/Create
         [HttpPost]
-        public ActionResult OpretKupon(int KampId, string Odds1, string OddsX, string Odds2)
+        public ActionResult OpretKupon(FormCollection collection)
         {
             try
             {
-
-               return RedirectToAction("OpretKupon");
+                double bettingPoint = Convert.ToDouble(Request.Form["bettingPoint"]);
+                Kupon kupon = (Kupon)Session["kupon"];
+                kupon.Point = bettingPoint;
+                if (SR.BekræftKupon(kupon))
+                {
+                    return RedirectToAction("index");
+                }
+                
+                return RedirectToAction("OpretKupon");
             }
             catch
             {
                 return View();
             }
         }
-        
-        
+
+        [HttpPost]
+        public ActionResult PostOdds1()
+        {
+            int kampId = Convert.ToInt32( Request.Form["item.KampId"]);
+            Kupon kupon = (Kupon) Session["kupon"];
+          
+            Kamp valgtKamp = SR.FindKamp(kampId);
+            Kupon valgtKupon = SR.TilføjKamp(kupon, valgtKamp, true, false, false);
+            Session["kupon"] = valgtKupon;
+
+            
+            
+            return RedirectToAction("OpretKupon");
+        }
+
+        [HttpPost]
+        public ActionResult PostOddsX()
+        {
+            int kampId = Convert.ToInt32(Request.Form["item.KampId"]);
+            Kupon kupon = (Kupon)Session["kupon"];
+
+            Kamp valgtKamp = SR.FindKamp(kampId);
+            Kupon valgtKupon = SR.TilføjKamp(kupon, valgtKamp, false, true, false);
+            Session["kupon"] = valgtKupon;
+
+
+
+            return RedirectToAction("OpretKupon");
+        }
+
+        [HttpPost]
+        public ActionResult PostOdds2()
+        {
+            int kampId = Convert.ToInt32(Request.Form["item.KampId"]);
+            Kupon kupon = (Kupon)Session["kupon"];
+
+            Kamp valgtKamp = SR.FindKamp(kampId);
+            Kupon valgtKupon = SR.TilføjKamp(kupon, valgtKamp, false, false, true);
+            Session["kupon"] = valgtKupon;
+
+
+
+            return RedirectToAction("OpretKupon");
+        }
+
         // GET: Kupon/Edit/5
         public ActionResult Edit(int id)
         {

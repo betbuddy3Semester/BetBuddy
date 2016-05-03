@@ -43,6 +43,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity.Design" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,9 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BrugerController.cs" />
-    <Compile Include="ChatController.cs" />
     <Compile Include="IBrugerController.cs" />
-    <Compile Include="IChatController.cs" />
     <Compile Include="IKuponController.cs" />
     <Compile Include="KuponController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

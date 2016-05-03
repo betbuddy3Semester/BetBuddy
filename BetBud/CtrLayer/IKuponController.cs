@@ -9,12 +9,12 @@ namespace CtrLayer
 {
     public interface IKuponController
     {
-        void OpretKupon();
-        bool TilføjKamp(Kamp kamp, bool valgt1, bool valgtX, bool valgt2);
+        Kupon OpretKupon();
+        Kupon TilføjKamp(Kamp kamp, bool valgt1, bool valgtX, bool valgt2, Kupon kupon);
         bool FjernKamp(Kamp kamp);
         double OddsUdregning();
         double MuligGevist();
-        bool BekræftKupon();
+        bool BekræftKupon(Kupon kupon);
         IEnumerable<Kamp>GetAlleKampe();
         Kamp FindKamp(int KampId);
     }

@@ -46,14 +46,14 @@
                     </td>
 
                     <td style="text-align: center;">
-                        <input type="submit" class="Odds1" value="@Html.DisplayFor(modelItem => item.Odds1)" />
+                        <input type="submit" name="Odds1" value="@Html.DisplayFor(modelItem => item.Odds1)" />
 
                     </td>
                     <td style="text-align: center;">
-                        <input type="submit" class="OddsX" value="@Html.DisplayFor(modelItem => item.OddsX)" />
+                        <input type="submit" name="OddsX" value="@Html.DisplayFor(modelItem => item.OddsX)" />
                     </td>
                     <td style="text-align: center;">
-                        <input type="submit" class="Odds2" value="@Html.DisplayFor(modelItem => item.Odds2)" />
+                        <input type="submit" name="Odds2" value="@Html.DisplayFor(modelItem => item.Odds2)" />
                     </td>
 
                     <td>
@@ -74,11 +74,11 @@
             <th>Odds</th>
 
         </tr>
-        @if (Model.kupon.DelKampe != null)
+        @if (Model.kupon.delKampe != null)
         {
 
 
-            foreach (var delKamp in Model.kupon.DelKampe)
+            foreach (var delKamp in Model.kupon.delKampe)
             {
 
                 double odds = 0.0;
@@ -100,8 +100,9 @@
                     valgt = "2";
                 }
 
-                <tr><td>@delKamp.Kampe.HoldVsHold</td><td>@valgt</td><td>@odds</td></tr>
+                <tr><td>@delKamp.Kampe.HoldVsHold</td><td>@valgt</td><td class="OddsBox">@odds</td></tr>
             }
+            <tr class="OddsBoxStart"><td><b>Samlet odds</b></td><td></td><td><b id="oddsResult">0</b></td></tr>
         }
     </table>
     @using (Html.BeginForm())
@@ -112,7 +113,7 @@
                     <th colspan="2">Vælg indsats</th>
                 </tr>
                 <tr><td>Indsats</td><td><input type="text" class="form-control" name="bettingPoint" /></td></tr>
-                <tr><td>Mulig gevinst</td><td>1000 point</td></tr>
+                <tr><td>Mulig gevinst</td><td id="gevinst"><span class="OddsBoxStart">0</span> point</td></tr>
             </table>
             <div class="col-md-6"></div>
             <div class="col-md-6">

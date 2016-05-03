@@ -14,9 +14,9 @@ namespace WCFBetBuddy
     {
         #region Ikupon
 
-        
+
         [OperationContract]
-        bool TilføjKamp(Kamp kamp, bool valgt1, bool valgtX, bool valgt2);
+        Kupon TilføjKamp(Kupon kupon, Kamp kamp, bool valgt1, bool valgtX, bool valgt2);
         [OperationContract]
         bool FjernKamp(Kamp kamp);
         [OperationContract]
@@ -24,16 +24,14 @@ namespace WCFBetBuddy
         [OperationContract]
         double MuligGevist();
         [OperationContract]
-        bool BekræftKupon();
+        bool BekræftKupon(Kupon kupon);
         [OperationContract]
         Kamp FindKamp(int KampId);
         [OperationContract]
         IEnumerable<Kamp> GetAlleKampe();
 
         [OperationContract]
-        Kupon GetKupon();
-        [OperationContract]
-        void SetKupon(Kupon kupon);
+        Kupon NyKupon();
         #endregion
 
         #region IBruger
@@ -55,6 +53,12 @@ namespace WCFBetBuddy
 
         [OperationContract]
         void sletBruger(int id);
+
+        [OperationContract]
+        Bruger logInd(string bNavn, string pWord);
+  
+
+
         #endregion
 
     }

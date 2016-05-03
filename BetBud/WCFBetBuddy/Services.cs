@@ -48,14 +48,21 @@ namespace WCFBetBuddy
         {
             brugerCtrl.sletBruger(id);
         }
+
+        public Bruger logInd(string bNavn, string pWord)
+        {
+           Bruger b = brugerCtrl.logIndBruger(bNavn, pWord);
+            return b;
+        }
+
         #endregion
 
         #region KuponService
         KuponController NyKuponController = new KuponController();
 
-        public bool TilføjKamp(Kamp kamp, bool valgt1, bool valgtX, bool valgt2)
+        public Kupon TilføjKamp(Kupon kupon, Kamp kamp, bool valgt1, bool valgtX, bool valgt2)
         {
-            bool fundetData = NyKuponController.TilføjKamp(kamp, valgt1, valgtX, valgt2);
+            Kupon fundetData = NyKuponController.TilføjKamp(kamp, valgt1, valgtX, valgt2, kupon);
             return fundetData;
         }
 
@@ -75,9 +82,9 @@ namespace WCFBetBuddy
             return NyKuponController.MuligGevist();
         }
 
-        public bool BekræftKupon()
+        public bool BekræftKupon(Kupon kupon)
         {
-            return NyKuponController.BekræftKupon();
+            return NyKuponController.BekræftKupon(kupon);
         }
 
         public Kamp FindKamp(int KampId)
@@ -90,15 +97,12 @@ namespace WCFBetBuddy
             return NyKuponController.GetAlleKampe();
         }
 
-        public Kupon GetKupon()
+        public Kupon NyKupon()
         {
-            return NyKuponController.GetKupon();
+            return NyKuponController.OpretKupon();
         }
 
-        public void SetKupon(Kupon kupon)
-        {
-            NyKuponController.SetKupon(kupon);
-        }
+        
         #endregion
 
 

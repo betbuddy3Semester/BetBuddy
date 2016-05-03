@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime;
 using System.Text.RegularExpressions;
+using System.Web.SessionState;
 
 namespace CtrLayer
 {
@@ -63,6 +64,7 @@ namespace CtrLayer
             //Number constraints
             Regex regx = new Regex(@"^[a-zA-Z''-'\s]{1,40}$");
             Match matchName = regx.Match(bruger.Navn);
+            bruger.Password = Encode(bruger.Password);
 
 
         
@@ -94,6 +96,29 @@ namespace CtrLayer
                 db.Entry(bruger).State = System.Data.Entity.EntityState.Deleted;
                 db.SaveChanges();
             }
+        }
+
+        public Bruger logIndBruger(string bNavn, string pWord)
+        {
+
+            using (BetBudContext db = new BetBudContext())
+
+            {
+                string passHash = Encode(pWord);
+                Bruger bruger = db.Brugere.Where(x => x.BrugerNavn.Equals(bNavn) && x.Password.Equals(passHash)).First();
+                
+                return bruger;
+            }
+
+        }
+
+
+        public string Encode(string value)
+        {
+            var hash = System.Security.Cryptography.SHA1.Create();
+            var encoder = new System.Text.ASCIIEncoding();
+            var combined = encoder.GetBytes(value ?? "");
+            return BitConverter.ToString(hash.ComputeHash(combined)).ToLower().Replace("-", "");
         }
     }
 

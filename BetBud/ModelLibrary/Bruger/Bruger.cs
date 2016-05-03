@@ -21,5 +21,7 @@ namespace ModelLibrary.Bruger
         public string Email { get; set; }
         [DataMember]
         public string Navn { get; set; }
+        [DataMember]
+        public string Password { get; set; }
     }
 }
