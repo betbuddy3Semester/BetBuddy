@@ -97,14 +97,9 @@ namespace WCFBetBuddy
             return NyKuponController.GetAlleKampe();
         }
 
-        public Kupon GetKupon()
+        public Kupon NyKupon()
         {
-            return NyKuponController.GetKupon();
-        }
-
-        public void SetKupon(Kupon kupon)
-        {
-            NyKuponController.SetKupon(kupon);
+            return NyKuponController.OpretKupon();
         }
 
         

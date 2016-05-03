@@ -16,7 +16,7 @@ namespace ModelLibrary.Kupon
         [DataMember]
         public Boolean Kontrolleret { get; set; }
         [DataMember]
-        public List<DelKamp> DelKampe { get; set; }
+        public List<DelKamp> delKampe { get; set; }
         [DataMember]
         public double Point { get; set; }
         [DataMember]
@@ -24,7 +24,7 @@ namespace ModelLibrary.Kupon
 
         public Kupon()
         {
-            DelKampe = new List<DelKamp>();
+            delKampe = new List<DelKamp>();
         }
         
 
@@ -40,7 +40,9 @@ namespace ModelLibrary.Kupon
                 nyDelKamp.Valgt1 = valgt1;
                 nyDelKamp.ValgtX = valgtX;
                 nyDelKamp.Valgt2 = valgt2;
-                DelKampe.Add(nyDelKamp);
+                delKampe.Add(nyDelKamp);
+                
+                
                 return true;
             }
             return false;
@@ -53,12 +55,12 @@ namespace ModelLibrary.Kupon
         {
             if (kamp != null)
             {
-                for (int i = 0; i < DelKampe.Count; i++)
+                for (int i = 0; i < delKampe.Count; i++)
                 {
 
-                    if (DelKampe[i].Kampe.KampId.Equals(kamp.KampId))
+                    if (delKampe[i].Kampe.KampId.Equals(kamp.KampId))
                     {
-                        DelKampe.RemoveAt(i);
+                        delKampe.RemoveAt(i);
                         return true;
                     }
                 }
@@ -72,7 +74,7 @@ namespace ModelLibrary.Kupon
         public double OddsUdregning()
         {
             double oddsResultat = 1;
-            foreach (var HverDelKamp in DelKampe)
+            foreach (var HverDelKamp in delKampe)
             {
                 oddsResultat *= HverDelKamp.GetOdds();
             }

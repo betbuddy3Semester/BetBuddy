@@ -74,11 +74,11 @@
             <th>Odds</th>
 
         </tr>
-        @if (Model.kupon.DelKampe != null)
+        @if (Model.kupon.delKampe != null)
         {
 
 
-            foreach (var delKamp in Model.kupon.DelKampe)
+            foreach (var delKamp in Model.kupon.delKampe)
             {
 
                 double odds = 0.0;
@@ -102,6 +102,7 @@
 
                 <tr><td>@delKamp.Kampe.HoldVsHold</td><td>@valgt</td><td>@odds</td></tr>
             }
+            <tr><td><b>Samlet odds</b></td><td></td><td><b>100</b></td></tr>
         }
     </table>
     @using (Html.BeginForm())

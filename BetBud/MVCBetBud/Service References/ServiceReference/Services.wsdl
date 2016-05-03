@@ -50,17 +50,11 @@
   <wsdl:message name="IServices_GetAlleKampe_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAlleKampeResponse" />
   </wsdl:message>
-  <wsdl:message name="IServices_GetKupon_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetKupon" />
+  <wsdl:message name="IServices_NyKupon_InputMessage">
+    <wsdl:part name="parameters" element="tns:NyKupon" />
   </wsdl:message>
-  <wsdl:message name="IServices_GetKupon_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetKuponResponse" />
-  </wsdl:message>
-  <wsdl:message name="IServices_SetKupon_InputMessage">
-    <wsdl:part name="parameters" element="tns:SetKupon" />
-  </wsdl:message>
-  <wsdl:message name="IServices_SetKupon_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SetKuponResponse" />
+  <wsdl:message name="IServices_NyKupon_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NyKuponResponse" />
   </wsdl:message>
   <wsdl:message name="IServices_getBruger_InputMessage">
     <wsdl:part name="parameters" element="tns:getBruger" />
@@ -133,13 +127,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IServices/GetAlleKampe" message="tns:IServices_GetAlleKampe_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServices/GetAlleKampeResponse" message="tns:IServices_GetAlleKampe_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetKupon">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServices/GetKupon" message="tns:IServices_GetKupon_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServices/GetKuponResponse" message="tns:IServices_GetKupon_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="SetKupon">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServices/SetKupon" message="tns:IServices_SetKupon_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServices/SetKuponResponse" message="tns:IServices_SetKupon_OutputMessage" />
+    <wsdl:operation name="NyKupon">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServices/NyKupon" message="tns:IServices_NyKupon_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServices/NyKuponResponse" message="tns:IServices_NyKupon_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="getBruger">
       <wsdl:input wsaw:Action="http://tempuri.org/IServices/getBruger" message="tns:IServices_getBruger_InputMessage" />
@@ -235,17 +225,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetKupon">
-      <soap:operation soapAction="http://tempuri.org/IServices/GetKupon" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="SetKupon">
-      <soap:operation soapAction="http://tempuri.org/IServices/SetKupon" style="document" />
+    <wsdl:operation name="NyKupon">
+      <soap:operation soapAction="http://tempuri.org/IServices/NyKupon" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

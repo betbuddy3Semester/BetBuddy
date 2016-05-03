@@ -30,7 +30,7 @@ namespace MVCBetBud.Controllers
         public ActionResult OpretKupon()
         {
 
-            Kupon kupon = new Kupon();
+            Kupon kupon = SR.NyKupon();
 
             if (Session["kupon"] != null)
             {
@@ -69,13 +69,44 @@ namespace MVCBetBud.Controllers
             Kupon kupon = (Kupon) Session["kupon"];
           
             Kamp valgtKamp = SR.FindKamp(kampId);
-            SR.TilføjKamp(kupon, valgtKamp, true, false, false);
-            Session["kupon"] = SR.GetKupon();
+            Kupon valgtKupon = SR.TilføjKamp(kupon, valgtKamp, true, false, false);
+            Session["kupon"] = valgtKupon;
 
             
             
             return RedirectToAction("OpretKupon");
         }
+
+        [HttpPost]
+        public ActionResult PostOddsX()
+        {
+            int kampId = Convert.ToInt32(Request.Form["item.KampId"]);
+            Kupon kupon = (Kupon)Session["kupon"];
+
+            Kamp valgtKamp = SR.FindKamp(kampId);
+            Kupon valgtKupon = SR.TilføjKamp(kupon, valgtKamp, false, true, false);
+            Session["kupon"] = valgtKupon;
+
+
+
+            return RedirectToAction("OpretKupon");
+        }
+
+        [HttpPost]
+        public ActionResult PostOdds2()
+        {
+            int kampId = Convert.ToInt32(Request.Form["item.KampId"]);
+            Kupon kupon = (Kupon)Session["kupon"];
+
+            Kamp valgtKamp = SR.FindKamp(kampId);
+            Kupon valgtKupon = SR.TilføjKamp(kupon, valgtKamp, false, false, true);
+            Session["kupon"] = valgtKupon;
+
+
+
+            return RedirectToAction("OpretKupon");
+        }
+
         // GET: Kupon/Edit/5
         public ActionResult Edit(int id)
         {

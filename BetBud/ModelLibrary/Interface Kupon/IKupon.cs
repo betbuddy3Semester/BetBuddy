@@ -24,7 +24,7 @@ namespace ModelLibrary
         bool KontrolAfKupon();
         bool Kontrolleret { get; set; }
         double Point { get; set; }
-        List<DelKamp> DelKampe { get; set; }
+        List<DelKamp> delKampe { get; set; }
         Bruger.Bruger Bruger { get; set; }
         
         

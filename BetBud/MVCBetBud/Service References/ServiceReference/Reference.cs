@@ -26,9 +26,6 @@ namespace MVCBetBud.ServiceReference {
         private MVCBetBud.ServiceReference.Bruger BrugerField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private MVCBetBud.ServiceReference.DelKamp[] DelKampeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool KontrolleretField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -36,6 +33,9 @@ namespace MVCBetBud.ServiceReference {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private double PointField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private MVCBetBud.ServiceReference.DelKamp[] delKampeField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -56,19 +56,6 @@ namespace MVCBetBud.ServiceReference {
                 if ((object.ReferenceEquals(this.BrugerField, value) != true)) {
                     this.BrugerField = value;
                     this.RaisePropertyChanged("Bruger");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public MVCBetBud.ServiceReference.DelKamp[] DelKampe {
-            get {
-                return this.DelKampeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DelKampeField, value) != true)) {
-                    this.DelKampeField = value;
-                    this.RaisePropertyChanged("DelKampe");
                 }
             }
         }
@@ -108,6 +95,19 @@ namespace MVCBetBud.ServiceReference {
                 if ((this.PointField.Equals(value) != true)) {
                     this.PointField = value;
                     this.RaisePropertyChanged("Point");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public MVCBetBud.ServiceReference.DelKamp[] delKampe {
+            get {
+                return this.delKampeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.delKampeField, value) != true)) {
+                    this.delKampeField = value;
+                    this.RaisePropertyChanged("delKampe");
                 }
             }
         }
@@ -591,17 +591,11 @@ namespace MVCBetBud.ServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/GetAlleKampe", ReplyAction="http://tempuri.org/IServices/GetAlleKampeResponse")]
         System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Kamp[]> GetAlleKampeAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/GetKupon", ReplyAction="http://tempuri.org/IServices/GetKuponResponse")]
-        MVCBetBud.ServiceReference.Kupon GetKupon();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/NyKupon", ReplyAction="http://tempuri.org/IServices/NyKuponResponse")]
+        MVCBetBud.ServiceReference.Kupon NyKupon();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/GetKupon", ReplyAction="http://tempuri.org/IServices/GetKuponResponse")]
-        System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Kupon> GetKuponAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/SetKupon", ReplyAction="http://tempuri.org/IServices/SetKuponResponse")]
-        void SetKupon(MVCBetBud.ServiceReference.Kupon kupon);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/SetKupon", ReplyAction="http://tempuri.org/IServices/SetKuponResponse")]
-        System.Threading.Tasks.Task SetKuponAsync(MVCBetBud.ServiceReference.Kupon kupon);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/NyKupon", ReplyAction="http://tempuri.org/IServices/NyKuponResponse")]
+        System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Kupon> NyKuponAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/getBruger", ReplyAction="http://tempuri.org/IServices/getBrugerResponse")]
         MVCBetBud.ServiceReference.Bruger getBruger(int id);
@@ -729,20 +723,12 @@ namespace MVCBetBud.ServiceReference {
             return base.Channel.GetAlleKampeAsync();
         }
         
-        public MVCBetBud.ServiceReference.Kupon GetKupon() {
-            return base.Channel.GetKupon();
+        public MVCBetBud.ServiceReference.Kupon NyKupon() {
+            return base.Channel.NyKupon();
         }
         
-        public System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Kupon> GetKuponAsync() {
-            return base.Channel.GetKuponAsync();
-        }
-        
-        public void SetKupon(MVCBetBud.ServiceReference.Kupon kupon) {
-            base.Channel.SetKupon(kupon);
-        }
-        
-        public System.Threading.Tasks.Task SetKuponAsync(MVCBetBud.ServiceReference.Kupon kupon) {
-            return base.Channel.SetKuponAsync(kupon);
+        public System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Kupon> NyKuponAsync() {
+            return base.Channel.NyKuponAsync();
         }
         
         public MVCBetBud.ServiceReference.Bruger getBruger(int id) {

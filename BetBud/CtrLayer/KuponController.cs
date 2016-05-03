@@ -24,9 +24,10 @@ namespace CtrLayer
 
         // Metode til at oprette kuponen. 
 
-        public void OpretKupon()
+        public Kupon OpretKupon()
         {
             NyKupon = new Kupon();
+            return NyKupon;
         }
 
         public Kupon GetKupon()

@@ -36,7 +36,7 @@ namespace BetBudTest.TestKupon
             kupon.TilføjKamp(kampe.First(), true, false, false);
 
             //Assert
-            DelKamp dk = kupon.DelKampe.First();
+            DelKamp dk = kupon.delKampe.First();
             Assert.AreEqual(kampe.First(), dk.Kampe);
         }
 
@@ -51,7 +51,7 @@ namespace BetBudTest.TestKupon
             kupon.FjernKamp(kampe.First());
 
             //Assert
-            Assert.AreEqual(kupon.DelKampe.Count(), 0);
+            Assert.AreEqual(kupon.delKampe.Count(), 0);
         }
 
         [Test]
