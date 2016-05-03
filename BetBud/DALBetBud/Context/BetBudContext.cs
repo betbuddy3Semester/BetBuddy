@@ -16,9 +16,6 @@ namespace DALBetBud.Context
         public DbSet<Bruger> Brugere { get; set; }
         public DbSet<Kupon> Kuponer { get; set; } 
         public DbSet<Kamp> Kampe { get; set; }
-        public DbSet<Message> Beskeder { get; set; }
-
-
     }
 
 }

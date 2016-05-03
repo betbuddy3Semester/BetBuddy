@@ -88,55 +88,55 @@
   </wsdl:message>
   <wsdl:portType name="IServices">
     <wsdl:operation name="TilføjKamp">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServices/TilføjKamp" message="tns:IServices_TilføjKamp_InputUserMessage" />
+      <wsdl:stringMessageInput wsaw:Action="http://tempuri.org/IServices/TilføjKamp" message="tns:IServices_TilføjKamp_InputUserMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServices/TilføjKampResponse" message="tns:IServices_TilføjKamp_OutputUserMessage" />
     </wsdl:operation>
     <wsdl:operation name="FjernKamp">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServices/FjernKamp" message="tns:IServices_FjernKamp_InputUserMessage" />
+      <wsdl:stringMessageInput wsaw:Action="http://tempuri.org/IServices/FjernKamp" message="tns:IServices_FjernKamp_InputUserMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServices/FjernKampResponse" message="tns:IServices_FjernKamp_OutputUserMessage" />
     </wsdl:operation>
     <wsdl:operation name="OddsUdregning">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServices/OddsUdregning" message="tns:IServices_OddsUdregning_InputUserMessage" />
+      <wsdl:stringMessageInput wsaw:Action="http://tempuri.org/IServices/OddsUdregning" message="tns:IServices_OddsUdregning_InputUserMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServices/OddsUdregningResponse" message="tns:IServices_OddsUdregning_OutputUserMessage" />
     </wsdl:operation>
     <wsdl:operation name="MuligGevist">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServices/MuligGevist" message="tns:IServices_MuligGevist_InputUserMessage" />
+      <wsdl:stringMessageInput wsaw:Action="http://tempuri.org/IServices/MuligGevist" message="tns:IServices_MuligGevist_InputUserMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServices/MuligGevistResponse" message="tns:IServices_MuligGevist_OutputUserMessage" />
     </wsdl:operation>
     <wsdl:operation name="BekræftKupon">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServices/BekræftKupon" message="tns:IServices_BekræftKupon_InputUserMessage" />
+      <wsdl:stringMessageInput wsaw:Action="http://tempuri.org/IServices/BekræftKupon" message="tns:IServices_BekræftKupon_InputUserMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServices/BekræftKuponResponse" message="tns:IServices_BekræftKupon_OutputUserMessage" />
     </wsdl:operation>
     <wsdl:operation name="FindKamp">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServices/FindKamp" message="tns:IServices_FindKamp_InputUserMessage" />
+      <wsdl:stringMessageInput wsaw:Action="http://tempuri.org/IServices/FindKamp" message="tns:IServices_FindKamp_InputUserMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServices/FindKampResponse" message="tns:IServices_FindKamp_OutputUserMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetAlleKampe">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServices/GetAlleKampe" message="tns:IServices_GetAlleKampe_InputUserMessage" />
+      <wsdl:stringMessageInput wsaw:Action="http://tempuri.org/IServices/GetAlleKampe" message="tns:IServices_GetAlleKampe_InputUserMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServices/GetAlleKampeResponse" message="tns:IServices_GetAlleKampe_OutputUserMessage" />
     </wsdl:operation>
     <wsdl:operation name="getBruger">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServices/getBruger" message="tns:IServices_getBruger_InputUserMessage" />
+      <wsdl:stringMessageInput wsaw:Action="http://tempuri.org/IServices/getBruger" message="tns:IServices_getBruger_InputUserMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServices/getBrugerResponse" message="tns:IServices_getBruger_OutputUserMessage" />
     </wsdl:operation>
     <wsdl:operation name="getBrugerEfterBrugernavn">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServices/getBrugerEfterBrugernavn" message="tns:IServices_getBrugerEfterBrugernavn_InputUserMessage" />
+      <wsdl:stringMessageInput wsaw:Action="http://tempuri.org/IServices/getBrugerEfterBrugernavn" message="tns:IServices_getBrugerEfterBrugernavn_InputUserMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServices/getBrugerEfterBrugernavnResponse" message="tns:IServices_getBrugerEfterBrugernavn_OutputUserMessage" />
     </wsdl:operation>
     <wsdl:operation name="getBrugere">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServices/getBrugere" message="tns:IServices_getBrugere_InputUserMessage" />
+      <wsdl:stringMessageInput wsaw:Action="http://tempuri.org/IServices/getBrugere" message="tns:IServices_getBrugere_InputUserMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServices/getBrugereResponse" message="tns:IServices_getBrugere_OutputUserMessage" />
     </wsdl:operation>
     <wsdl:operation name="opretBruger">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServices/opretBruger" message="tns:IServices_opretBruger_InputUserMessage" />
+      <wsdl:stringMessageInput wsaw:Action="http://tempuri.org/IServices/opretBruger" message="tns:IServices_opretBruger_InputUserMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServices/opretBrugerResponse" message="tns:IServices_opretBruger_OutputUserMessage" />
     </wsdl:operation>
     <wsdl:operation name="opdaterBruger">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServices/opdaterBruger" message="tns:IServices_opdaterBruger_InputUserMessage" />
+      <wsdl:stringMessageInput wsaw:Action="http://tempuri.org/IServices/opdaterBruger" message="tns:IServices_opdaterBruger_InputUserMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServices/opdaterBrugerResponse" message="tns:IServices_opdaterBruger_OutputUserMessage" />
     </wsdl:operation>
     <wsdl:operation name="sletBruger">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServices/sletBruger" message="tns:IServices_sletBruger_InputUserMessage" />
+      <wsdl:stringMessageInput wsaw:Action="http://tempuri.org/IServices/sletBruger" message="tns:IServices_sletBruger_InputUserMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServices/sletBrugerResponse" message="tns:IServices_sletBruger_OutputUserMessage" />
     </wsdl:operation>
   </wsdl:portType>
@@ -144,117 +144,117 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="TilføjKamp">
       <soap:operation soapAction="http://tempuri.org/IServices/TilføjKamp" style="document" />
-      <wsdl:input>
+      <wsdl:stringMessageInput>
         <soap:body use="literal" />
-      </wsdl:input>
+      </wsdl:stringMessageInput>
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="FjernKamp">
       <soap:operation soapAction="http://tempuri.org/IServices/FjernKamp" style="document" />
-      <wsdl:input>
+      <wsdl:stringMessageInput>
         <soap:body use="literal" />
-      </wsdl:input>
+      </wsdl:stringMessageInput>
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="OddsUdregning">
       <soap:operation soapAction="http://tempuri.org/IServices/OddsUdregning" style="document" />
-      <wsdl:input>
+      <wsdl:stringMessageInput>
         <soap:body use="literal" />
-      </wsdl:input>
+      </wsdl:stringMessageInput>
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="MuligGevist">
       <soap:operation soapAction="http://tempuri.org/IServices/MuligGevist" style="document" />
-      <wsdl:input>
+      <wsdl:stringMessageInput>
         <soap:body use="literal" />
-      </wsdl:input>
+      </wsdl:stringMessageInput>
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="BekræftKupon">
       <soap:operation soapAction="http://tempuri.org/IServices/BekræftKupon" style="document" />
-      <wsdl:input>
+      <wsdl:stringMessageInput>
         <soap:body use="literal" />
-      </wsdl:input>
+      </wsdl:stringMessageInput>
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="FindKamp">
       <soap:operation soapAction="http://tempuri.org/IServices/FindKamp" style="document" />
-      <wsdl:input>
+      <wsdl:stringMessageInput>
         <soap:body use="literal" />
-      </wsdl:input>
+      </wsdl:stringMessageInput>
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetAlleKampe">
       <soap:operation soapAction="http://tempuri.org/IServices/GetAlleKampe" style="document" />
-      <wsdl:input>
+      <wsdl:stringMessageInput>
         <soap:body use="literal" />
-      </wsdl:input>
+      </wsdl:stringMessageInput>
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getBruger">
       <soap:operation soapAction="http://tempuri.org/IServices/getBruger" style="document" />
-      <wsdl:input>
+      <wsdl:stringMessageInput>
         <soap:body use="literal" />
-      </wsdl:input>
+      </wsdl:stringMessageInput>
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getBrugerEfterBrugernavn">
       <soap:operation soapAction="http://tempuri.org/IServices/getBrugerEfterBrugernavn" style="document" />
-      <wsdl:input>
+      <wsdl:stringMessageInput>
         <soap:body use="literal" />
-      </wsdl:input>
+      </wsdl:stringMessageInput>
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getBrugere">
       <soap:operation soapAction="http://tempuri.org/IServices/getBrugere" style="document" />
-      <wsdl:input>
+      <wsdl:stringMessageInput>
         <soap:body use="literal" />
-      </wsdl:input>
+      </wsdl:stringMessageInput>
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="opretBruger">
       <soap:operation soapAction="http://tempuri.org/IServices/opretBruger" style="document" />
-      <wsdl:input>
+      <wsdl:stringMessageInput>
         <soap:body use="literal" />
-      </wsdl:input>
+      </wsdl:stringMessageInput>
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="opdaterBruger">
       <soap:operation soapAction="http://tempuri.org/IServices/opdaterBruger" style="document" />
-      <wsdl:input>
+      <wsdl:stringMessageInput>
         <soap:body use="literal" />
-      </wsdl:input>
+      </wsdl:stringMessageInput>
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="sletBruger">
       <soap:operation soapAction="http://tempuri.org/IServices/sletBruger" style="document" />
-      <wsdl:input>
+      <wsdl:stringMessageInput>
         <soap:body use="literal" />
-      </wsdl:input>
+      </wsdl:stringMessageInput>
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using ModelLibrary.Chat;
 
-namespace ModelLibrary.Interface_Chat
+namespace ModelLibrary.Chat.Interface_Chat
 {
     public interface IChatHub
     {

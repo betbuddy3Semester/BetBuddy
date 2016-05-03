@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ModelLibrary.Interface_Chat;
+using ModelLibrary.Chat.Interface_Chat;
 
 namespace ModelLibrary.Chat
 {

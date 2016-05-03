@@ -1,6 +1,6 @@
 ﻿using System.Net.Sockets;
 
-namespace ModelLibrary.Interface_Chat
+namespace ModelLibrary.Chat.Interface_Chat
 {
     public interface IClient
     {
@@ -14,9 +14,9 @@ namespace ModelLibrary.Interface_Chat
         #region Methods
 
         void ConnectToServer();
-        void DisconnectedFromServer();
-        void SendString();
-        void SendObjectSerialized();
+        void DisconnectFromServer();
+        void SendResponse(string messageStringInput);
+        void ReceiveResponse();
 
         #endregion
     }
