@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ModelLibrary.Bruger;
 using ModelLibrary.Kupon;
 
 namespace CtrLayer
@@ -17,5 +18,6 @@ namespace CtrLayer
         bool BekræftKupon(Kupon kupon);
         IEnumerable<Kamp>GetAlleKampe();
         Kamp FindKamp(int KampId);
+        IEnumerable<Kupon> GetAlleKuponer(Bruger bruger);
     }
 }

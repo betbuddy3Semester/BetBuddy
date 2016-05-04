@@ -26,10 +26,13 @@ namespace MVCBetBud.ServiceReference {
         private MVCBetBud.ServiceReference.Bruger BrugerField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int BrugerIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool KontrolleretField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double KuponIdField;
+        private int KuponIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private double PointField;
@@ -61,6 +64,19 @@ namespace MVCBetBud.ServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int BrugerId {
+            get {
+                return this.BrugerIdField;
+            }
+            set {
+                if ((this.BrugerIdField.Equals(value) != true)) {
+                    this.BrugerIdField = value;
+                    this.RaisePropertyChanged("BrugerId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public bool Kontrolleret {
             get {
                 return this.KontrolleretField;
@@ -74,7 +90,7 @@ namespace MVCBetBud.ServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public double KuponId {
+        public int KuponId {
             get {
                 return this.KuponIdField;
             }
@@ -260,6 +276,9 @@ namespace MVCBetBud.ServiceReference {
         private int DelKampIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int KampIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private MVCBetBud.ServiceReference.Kamp KampeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -290,6 +309,19 @@ namespace MVCBetBud.ServiceReference {
                 if ((this.DelKampIdField.Equals(value) != true)) {
                     this.DelKampIdField = value;
                     this.RaisePropertyChanged("DelKampId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int KampId {
+            get {
+                return this.KampIdField;
+            }
+            set {
+                if ((this.KampIdField.Equals(value) != true)) {
+                    this.KampIdField = value;
+                    this.RaisePropertyChanged("KampId");
                 }
             }
         }
@@ -591,6 +623,12 @@ namespace MVCBetBud.ServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/GetAlleKampe", ReplyAction="http://tempuri.org/IServices/GetAlleKampeResponse")]
         System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Kamp[]> GetAlleKampeAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/GetAlleKuponer", ReplyAction="http://tempuri.org/IServices/GetAlleKuponerResponse")]
+        MVCBetBud.ServiceReference.Kupon[] GetAlleKuponer(MVCBetBud.ServiceReference.Bruger bruger);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/GetAlleKuponer", ReplyAction="http://tempuri.org/IServices/GetAlleKuponerResponse")]
+        System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Kupon[]> GetAlleKuponerAsync(MVCBetBud.ServiceReference.Bruger bruger);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/NyKupon", ReplyAction="http://tempuri.org/IServices/NyKuponResponse")]
         MVCBetBud.ServiceReference.Kupon NyKupon();
         
@@ -721,6 +759,14 @@ namespace MVCBetBud.ServiceReference {
         
         public System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Kamp[]> GetAlleKampeAsync() {
             return base.Channel.GetAlleKampeAsync();
+        }
+        
+        public MVCBetBud.ServiceReference.Kupon[] GetAlleKuponer(MVCBetBud.ServiceReference.Bruger bruger) {
+            return base.Channel.GetAlleKuponer(bruger);
+        }
+        
+        public System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Kupon[]> GetAlleKuponerAsync(MVCBetBud.ServiceReference.Bruger bruger) {
+            return base.Channel.GetAlleKuponerAsync(bruger);
         }
         
         public MVCBetBud.ServiceReference.Kupon NyKupon() {

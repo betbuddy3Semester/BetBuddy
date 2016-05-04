@@ -29,6 +29,8 @@ namespace WCFBetBuddy
         Kamp FindKamp(int KampId);
         [OperationContract]
         IEnumerable<Kamp> GetAlleKampe();
+        [OperationContract]
+        IEnumerable<Kupon> GetAlleKuponer(Bruger bruger);
 
         [OperationContract]
         Kupon NyKupon();

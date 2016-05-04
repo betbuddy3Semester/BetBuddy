@@ -21,9 +21,9 @@ namespace ModelLibrary.Kupon
         [DataMember]
         public bool Valgt2 { get; set; }
         [DataMember]
-        public int KampId { get; set; }
-        [DataMember]
         public Kamp Kampe { get; set; }
+        [DataMember]
+        public int KampId { get; set; }
         
         public bool KampRigtig()
         {

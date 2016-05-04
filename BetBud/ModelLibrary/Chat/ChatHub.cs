@@ -54,6 +54,11 @@ namespace ModelLibrary.Chat
             throw new NotImplementedException();
         }
 
+        public void SearchForServer(string NameOfServer)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
     }

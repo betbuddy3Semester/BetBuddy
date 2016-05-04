@@ -14,10 +14,19 @@ namespace MVCBetBud.Controllers
         ServiceReference.ServicesClient SR = new ServiceReference.ServicesClient();
 
         // GET: Kupon
-        public ActionResult Index()
+        public ActionResult Kuponer()
         {
-            Kamp[] alleKampe = SR.GetAlleKampe();
-            return View(alleKampe);
+            if (Session["brugerSession"] != null)
+            {
+
+
+                Bruger bruger = SR.getBruger((int)Session["brugerSession"]);
+
+                Kupon[] alleKuponer = SR.GetAlleKuponer(bruger);
+
+                return View(alleKuponer);
+            }
+            return RedirectToAction("index", "home");
         }
 
         // GET: Kupon/Details/5
@@ -32,8 +41,9 @@ namespace MVCBetBud.Controllers
             if (Session["brugerSession"] != null)
             {
                 Kupon kupon = SR.NyKupon();
-                Bruger bruger = SR.getBruger((int) Session["brugerSession"]);
+                Bruger bruger = SR.getBruger((int)Session["brugerSession"]);
                 kupon.Bruger = bruger;
+                kupon.BrugerId = bruger.BrugerId;
                 if (Session["kupon"] != null)
                 {
                     kupon = (Kupon)Session["kupon"];
@@ -54,11 +64,11 @@ namespace MVCBetBud.Controllers
 
         // POST: Kupon/Create
         [HttpPost]
-        public ActionResult OpretKupon(FormCollection collection)
+        public ActionResult OpretKupon(double bettingPoint)
         {
             try
             {
-                double bettingPoint = Convert.ToDouble(Request.Form["bettingPoint"]);
+                //double bettingPoint = Convert.ToDouble(Request.Form["bettingPoint"]);
                 Kupon kupon = (Kupon)Session["kupon"];
                 kupon.Point = bettingPoint;
                 if (SR.BekræftKupon(kupon))
