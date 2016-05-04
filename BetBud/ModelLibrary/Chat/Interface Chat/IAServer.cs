@@ -16,6 +16,8 @@ namespace ModelLibrary.Chat.Interface_Chat
         string ServerName { get; set; }
         Socket ServerSocket { get; set; }
         List<Socket> ClientSocket { get; set; }
+        IEnumerable<string> MessageList { get; set; }
+        string ReceiveCallBackString { get; set; }
         IPEndPoint ServerEndPoint { get; set; }
         StringBuilder Sb { get; set; }
         byte[] Buffer { get; set; }

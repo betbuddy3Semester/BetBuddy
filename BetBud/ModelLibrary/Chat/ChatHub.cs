@@ -15,9 +15,8 @@ namespace ModelLibrary.Chat
         /// 
         /// </summary>
         public int ChatHubId { get; set; }
-        public IList<AServer> ChatRoom { get; set; }
-        public IClient Client { get; set; }
-        public IChatHub ServerCtr { get; set; }
+        public IList<IAServer> ChatRoom { get; set; }
+        public IList<IClient> ClientList { get; set; }
 
         #endregion
 
@@ -50,15 +49,7 @@ namespace ModelLibrary.Chat
         /// <summary>
         /// 
         /// </summary>
-        public void FindServer()
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public void InviteClientToServer()
+        public void JoinServer()
         {
             throw new NotImplementedException();
         }

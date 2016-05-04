@@ -7,9 +7,8 @@ namespace ModelLibrary.Chat.Interface_Chat
         #region Properties
 
         int ChatHubId { get; set; }
-        IList<AServer> ChatRoom { get; set; }
-        IClient Client { get; set; }
-        IChatHub ServerCtr { get; set; }
+        IList<IAServer> ChatRoom { get; set; }
+        IList<IClient> ClientList { get; set; }
 
         #endregion
 
@@ -18,8 +17,8 @@ namespace ModelLibrary.Chat.Interface_Chat
         void OpretServer();
         void CloseServer();
         void DeleteServer();
-        void FindServer();
-        void InviteClientToServer();
+        void JoinServer();
+        void SearchForServer(string NameOfServer);
 
         #endregion
     }
