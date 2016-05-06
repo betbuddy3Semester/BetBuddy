@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 using ModelLibrary.Kupon;
 using DALBetBud.Context;
 using System.Runtime.Serialization;
+using ModelLibrary.Bruger;
 
 namespace CtrLayer
 {
@@ -52,7 +54,15 @@ namespace CtrLayer
 
         public Kupon TilføjKamp(Kamp kamp, bool valgt1, bool valgtX, bool valgt2, Kupon kupon)
         {
-            if (kupon != null)
+            Boolean fundet = false;
+            foreach (var delKamp in kupon.delKampe)
+            {
+                if (delKamp.Kampe.KampId == kamp.KampId)
+                {
+                    fundet = true;
+                }
+            }
+            if (kupon != null && fundet == false)
             {
                 kupon.TilføjKamp(kamp, valgt1, valgtX, valgt2);
             }
@@ -100,21 +110,17 @@ namespace CtrLayer
         {
             using (BetBudContext db = new BetBudContext())
             {
-                try
+                foreach (var kamp in kupon.delKampe)
                 {
-                    db.Kuponer.Add(kupon);
+
+                    db.Entry(kamp.Kampe).State = EntityState.Unchanged;
+                }
+                db.Entry(kupon.Bruger).State = EntityState.Unchanged;
+                db.Kuponer.Add(kupon);
                     db.SaveChanges();
                     return true;
 
-                }
-                catch (Exception)
-                {
-
-                    return false;
-                }
-
-            }
-
+             }
         }
 
         // Metode der henter alle kampe i Databasen
@@ -136,6 +142,14 @@ namespace CtrLayer
             {
                 Kamp kamp = db.Kampe.Find(KampId);
                 return kamp;
+            }
+        }
+
+        public IEnumerable<Kupon> GetAlleKuponer(Bruger bruger)
+        {
+            using (BetBudContext db = new BetBudContext())
+            {
+                return db.Kuponer.Where(allebrugerkuponger => allebrugerkuponger.BrugerId == bruger.BrugerId).ToList();
             }
         }
     }

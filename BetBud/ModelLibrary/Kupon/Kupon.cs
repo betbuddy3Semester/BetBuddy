@@ -5,6 +5,8 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using ModelLibrary.Interface_Bruger;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ModelLibrary.Kupon
 {
@@ -14,13 +16,16 @@ namespace ModelLibrary.Kupon
         [DataMember]
         public Bruger.Bruger Bruger { get; set; }
         [DataMember]
+        public int BrugerId { get; set; }  
+        [DataMember]
         public Boolean Kontrolleret { get; set; }
         [DataMember]
         public List<DelKamp> delKampe { get; set; }
         [DataMember]
         public double Point { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [DataMember]
-        public double KuponId { get; set; }
+        public int KuponId { get; set; }
 
         public Kupon()
         {
@@ -37,6 +42,7 @@ namespace ModelLibrary.Kupon
                 DelKamp nyDelKamp = new DelKamp();
 
                 nyDelKamp.Kampe = kamp;
+                nyDelKamp.KampId = kamp.KampId;
                 nyDelKamp.Valgt1 = valgt1;
                 nyDelKamp.ValgtX = valgtX;
                 nyDelKamp.Valgt2 = valgt2;

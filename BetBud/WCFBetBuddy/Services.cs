@@ -98,6 +98,11 @@ namespace WCFBetBuddy
             return NyKuponController.GetAlleKampe();
         }
 
+        public IEnumerable<Kupon> GetAlleKuponer(Bruger bruger)
+        {
+            return NyKuponController.GetAlleKuponer(bruger);
+        }
+
         public Kupon NyKupon()
         {
             return NyKuponController.OpretKupon();
