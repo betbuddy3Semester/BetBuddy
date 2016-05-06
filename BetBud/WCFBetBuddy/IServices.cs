@@ -5,6 +5,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using ModelLibrary.Bruger;
+using ModelLibrary.Chat;
 using ModelLibrary.Kupon;
 
 namespace WCFBetBuddy
@@ -56,8 +57,30 @@ namespace WCFBetBuddy
 
         [OperationContract]
         Bruger logInd(string bNavn, string pWord);
-  
 
+
+
+        #endregion
+
+        #region IChatHub
+
+        [OperationContract]
+        void OpretServer(string serverName, int serverPort, int bufferSize);
+
+        [OperationContract]
+        void DeleteServer(int serverId);
+
+        [OperationContract]
+        void UpdateServer(int serverId, string serverName, int serverPort, int bufferSize);
+
+        [OperationContract]
+        List<AServer> FindServers(string serverName);
+
+        [OperationContract]
+        AServer FindSpecificAServer(int serverId);
+
+        [OperationContract]
+        Client JoinServer(int port);
 
         #endregion
 

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CtrLayer;
 using ModelLibrary.Bruger;
+using ModelLibrary.Chat;
 using ModelLibrary.Kupon;
 
 namespace WCFBetBuddy
@@ -102,9 +103,78 @@ namespace WCFBetBuddy
             return NyKuponController.OpretKupon();
         }
 
-        
+
         #endregion
 
+        #region ChatService
+        //Detaljeret forklaring i control laget og model laget
+
+        [DataMember] // Todo - Få forklaring af hvorfor dette skal være en datamember
+        ChatHub _chatHub = new ChatHub();
+
+        /// <summary>
+        /// Denne metode opretter en server
+        /// </summary>
+        /// <param name="serverName">Serverens navn</param>
+        /// <param name="serverPort">Serverens port</param>
+        /// <param name="bufferSize">Bufferens størrelse</param>
+        public void OpretServer(string serverName, int serverPort, int bufferSize)
+        {
+            _chatHub.OpretServer(serverName, serverPort, bufferSize);
+        }
+
+        /// <summary>
+        /// Denne metode sletter en server
+        /// </summary>
+        /// <param name="serverId">Serverens id</param>
+        public void DeleteServer(int serverId)
+        {
+            _chatHub.DeleteServer(serverId);
+        }
+
+        /// <summary>
+        /// Denne metode opdaterer en servers information
+        /// </summary>
+        /// <param name="serverId">Serverens id, bruges i dette tilfælde til at finde serveren</param>
+        /// <param name="serverName">Serverens navn</param>
+        /// <param name="serverPort">Serverens port</param>
+        /// <param name="bufferSize">Serverens buffer størrelse</param>
+        public void UpdateServer(int serverId, string serverName, int serverPort, int bufferSize)
+        {
+            _chatHub.UpdateServer(serverId, serverName, serverPort, bufferSize);
+        }
+
+        /// <summary>
+        /// Denne metode returnerer en liste af servere
+        /// </summary>
+        /// <param name="serverName">Serverens navn</param>
+        /// <returns></returns>
+        public List<AServer> FindServers(string serverName)
+        {
+            return _chatHub.FindServers(serverName);
+        }
+
+        /// <summary>
+        /// Denne metode returnerer en specifik server
+        /// </summary>
+        /// <param name="serverId">Serverens id</param>
+        /// <returns></returns>
+        public AServer FindSpecificAServer(int serverId)
+        {
+            return _chatHub.FindSpecificAServer(serverId);
+        }
+
+        /// <summary>
+        /// Denne metode joiner en server på en specifik port
+        /// </summary>
+        /// <param name="port">Porten som client socketen skal tilslutte</param>
+        /// <returns></returns>
+        public Client JoinServer(int port)
+        {
+            return _chatHub.JoinServer(port);
+        }
+
+        #endregion
 
     }
 }

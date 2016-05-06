@@ -4,25 +4,48 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Runtime.Serialization;
 using System.Text;
 using ModelLibrary.Chat.Interface_Chat;
 
 namespace ModelLibrary.Chat
 {
+    [DataContract]
     public class AServer : IAServer
     {
         #region Properties
 
+        [DataMember]
         public int ServerId { get; set; }
+
+        [DataMember]
         public int ServerPort { get; set; }
+
+        [DataMember]
         public int BufferSize { get; set; }
+
+        [DataMember]
         public string ReceiveCallBackString { get; set; }
+
+        [DataMember]
         public string ServerName { get; set; }
+
+        [DataMember]
         public IEnumerable<string> MessageList { get; set; }
+
+        [DataMember]
         public Socket ServerSocket { get; set; }
+
+        [DataMember]
         public List<Socket> ClientSocket { get; set; }
+
+        [DataMember]
         public IPEndPoint ServerEndPoint { get; set; }
+
+        [DataMember]
         public StringBuilder Sb { get; set; }
+
+        [DataMember]
         public byte[] Buffer { get; set; }
 
         #endregion
@@ -114,7 +137,7 @@ namespace ModelLibrary.Chat
         public void ReceiveCallBack(IAsyncResult asyncCallback)
         {
             // Her oprettes en lokal socket til brug i metoden. Det er asynkrone sockets der bliver oprettet pr. client som connecter til den overordnede serverchat socket.
-            var current = (Socket)asyncCallback.AsyncState;
+            var current = (Socket) asyncCallback.AsyncState;
             int received;
 
             // I denne snippet forsøges det at tildele received et integer output fra current socketens endreceive metode.
@@ -122,7 +145,7 @@ namespace ModelLibrary.Chat
             {
                 received = current.EndReceive(asyncCallback);
             }
-            // Der kastes en socketexception hvis der er noget galt med resultatet, hvis received ikke modtager den forventede integer.
+                // Der kastes en socketexception hvis der er noget galt med resultatet, hvis received ikke modtager den forventede integer.
             catch (SocketException x)
             {
                 Debug.WriteLine("Client has been forced to disconnect.");
@@ -143,9 +166,10 @@ namespace ModelLibrary.Chat
             MessageList.ToList().Add(ReceiveCallBackString);
 
             #region Responses
+
             // for at lukke clientens aktualle socket forbindelse til chatserveren, skal clienten blot skrive "exit" i chatten, her defineres dette.
             // I if statementen tjekker vi om den besked clienten har sendt til serveren er "exit", der tages højde for upper/lowercase, så chatten lukkes ligemeget hvordan man skriver "exit".
-            
+
             if (ReceiveCallBackString.ToLower() == "exit")
             {
                 // Hvis den ovenstående if returnere true, vælger vi den aktuelle client socket og starter med at lukke forbindelsen
@@ -159,6 +183,7 @@ namespace ModelLibrary.Chat
             }
 
             #endregion
+
             // Den lokale socket begynder at lytte efter beskeder igen.
             current.BeginReceive(Buffer, 0, BufferSize, SocketFlags.None, ReceiveCallBack, current);
         }

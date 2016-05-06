@@ -91,7 +91,6 @@
     </Compile>
     <Compile Include="TestChat\ChatHubTest.cs" />
     <Compile Include="TestChat\ClientTest.cs" />
-    <Compile Include="TestChat\MessageTest.cs" />
     <Compile Include="TestChat\AServerTest.cs" />
     <Compile Include="TestKupon\KampTest.cs" />
     <Compile Include="TestKupon\KuponTest.cs" />

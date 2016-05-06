@@ -2,20 +2,24 @@
 using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
+using System.Runtime.Serialization;
 using System.Text;
 using ModelLibrary.Chat.Interface_Chat;
 
 namespace ModelLibrary.Chat
 {
+    [DataContract]
     public class Client : IClient
     {
         #region Properties
 
-        /// <summary>
-        /// </summary>
+        [DataMember]
         public Socket ClientSocket { get; set; }
 
+        [DataMember]
         public int ClientPort { get; set; }
+
+        [DataMember]
         public string ReceivedMessage { get; set; }
 
         #endregion
