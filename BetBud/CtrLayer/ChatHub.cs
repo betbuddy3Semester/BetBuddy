@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using DALBetBud.Context;
@@ -121,6 +122,11 @@ namespace CtrLayer
                 // Denne metode returnere en specifik server, ud fra et givent server id
                 return db.ChatServers.Single(x => x.ServerId == serverId);
             }
+        }
+
+        public Client JoinServer(int port)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

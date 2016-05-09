@@ -63,7 +63,7 @@ namespace WCFBetBuddy
 
 
         #endregion
-
+        /*
         #region IChatHub
 
         [OperationContract]
@@ -83,9 +83,9 @@ namespace WCFBetBuddy
 
         [OperationContract]
         Client JoinServer(int port);
-
+        
         #endregion
-
+    */
     }
 
 

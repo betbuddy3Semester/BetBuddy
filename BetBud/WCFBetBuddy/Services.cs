@@ -113,8 +113,8 @@ namespace WCFBetBuddy
 
         #region ChatService
         //Detaljeret forklaring i control laget og model laget
-
-        [DataMember] // Todo - Få forklaring af hvorfor dette skal være en datamember
+        /*
+        [DataMember] Todo - Få forklaring af hvorfor dette skal være en datamember
         ChatHub _chatHub = new ChatHub();
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace WCFBetBuddy
         public Client JoinServer(int port)
         {
             return _chatHub.JoinServer(port);
-        }
+        }*/
 
         #endregion
 
