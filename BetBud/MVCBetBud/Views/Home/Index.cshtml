@@ -1,4 +1,6 @@
-﻿@{
+﻿@using MVCBetBud.ServiceReference
+@model IEnumerable<Kamp>
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -19,7 +21,10 @@
     <div class="col-md-4">
         <h2>Dagens kampe</h2>
         <ol>
-            <li> Arsenal vs. Liverpool </li>
+            @for (var i = 0; i < 3; i++) { 
+            <li> @Model[i].HoldVsHold </li>
+            }
+            
             <li> Man City vs. Westham </li>
             <li> Inter vs. FC Barcelona </li>
         </ol>

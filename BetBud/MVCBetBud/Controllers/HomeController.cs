@@ -1,12 +1,17 @@
-﻿using System.Web.Mvc;
+﻿using MVCBetBud.ServiceReference;
+using System.Web.Mvc;
 
 namespace MVCBetBud.Controllers
 {
     public class HomeController : Controller
     {
+
+        ServiceReference.ServicesClient SR = new ServiceReference.ServicesClient();
         public ActionResult Index()
         {
-            return View();
+            Kamp[] k = SR.GetAlleKampe();
+        
+            return View(k);
         }
 
         public ActionResult About()
