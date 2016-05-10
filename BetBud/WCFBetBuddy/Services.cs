@@ -15,9 +15,10 @@ namespace WCFBetBuddy
     {
         DelKamp tempDelKamp = new DelKamp();
         Kupon tempKupon = new Kupon();
+
         #region BrugerService
-        [DataMember]
-        BrugerController brugerCtrl = new BrugerController();
+
+        [DataMember] BrugerController brugerCtrl = new BrugerController();
 
 
         public Bruger getBruger(int id)
@@ -52,13 +53,14 @@ namespace WCFBetBuddy
 
         public Bruger logInd(string bNavn, string pWord)
         {
-           Bruger b = brugerCtrl.logIndBruger(bNavn, pWord);
+            Bruger b = brugerCtrl.logIndBruger(bNavn, pWord);
             return b;
         }
 
         #endregion
 
         #region KuponService
+
         KuponController NyKuponController = new KuponController();
 
         public Kupon TilføjKamp(Kupon kupon, Kamp kamp, bool valgt1, bool valgtX, bool valgt2)
@@ -108,10 +110,10 @@ namespace WCFBetBuddy
             return NyKuponController.OpretKupon();
         }
 
-
         #endregion
 
         #region ChatService
+
         //Detaljeret forklaring i control laget og model laget
 
         [DataMember] // Todo - Få forklaring af hvorfor dette skal være en datamember
@@ -180,6 +182,5 @@ namespace WCFBetBuddy
         }
 
         #endregion
-
     }
 }
