@@ -165,6 +165,9 @@ namespace MVCBetBud.ServiceReference {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PasswordField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double PointField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -249,6 +252,19 @@ namespace MVCBetBud.ServiceReference {
                 if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
                     this.PasswordField = value;
                     this.RaisePropertyChanged("Password");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Point {
+            get {
+                return this.PointField;
+            }
+            set {
+                if ((this.PointField.Equals(value) != true)) {
+                    this.PointField = value;
+                    this.RaisePropertyChanged("Point");
                 }
             }
         }

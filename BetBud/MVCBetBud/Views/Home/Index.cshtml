@@ -1,5 +1,5 @@
 ﻿@using MVCBetBud.ServiceReference
-@model OpretForsideController
+@model MVCBetBud.Models.OpretForsideController
 @{
     ViewBag.Title = "Home Page";
 }
@@ -39,7 +39,7 @@
 
             @foreach (var bruger in Model.brugere.ToList().GetRange(0, 3))
             {
-                <li>@bruger.navn -- @bruger.point </li>
+                <li>@bruger.Navn -- @bruger.Point </li>
             }
         </ol>   
         <p>
