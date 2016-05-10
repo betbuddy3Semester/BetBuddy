@@ -11,14 +11,14 @@
     <h4>Bruger</h4>
     <hr />
     <dl class="dl-horizontal">
+    
         <dt>
-            @Html.DisplayNameFor(model => model.Alias)
+            @Html.DisplayNameFor(model => model.Navn)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Alias)
+            @Html.DisplayFor(model => model.Navn)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.BrugerNavn)
         </dt>
@@ -35,13 +35,7 @@
             @Html.DisplayFor(model => model.Email)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Navn)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Navn)
-        </dd>
+      
 
         <dt>
             @Html.DisplayNameFor(model => model.Password)
@@ -50,7 +44,13 @@
         <dd>
             @Html.DisplayFor(model => model.Password)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Alias)
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.Alias)
+        </dd>
     </dl>
 </div>
 <p>
