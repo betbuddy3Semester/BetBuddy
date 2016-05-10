@@ -27,7 +27,7 @@ namespace MVCBetBud.Controllers
             return RedirectToAction("index", "Home");
         }
         // GET: login side
-        public ActionResult LoginInd()
+        public ActionResult Login()
         {
             if(Session["brugerSession"] != null)
             {
@@ -37,7 +37,7 @@ namespace MVCBetBud.Controllers
         }
 
         [HttpPost]
-        public ActionResult LoginInd(string brugerNavn, string kodeord)
+        public ActionResult Login(string brugerNavn, string kodeord)
         {
             Bruger b = SR.logInd(brugerNavn, kodeord);
             if (b != null)
@@ -50,10 +50,27 @@ namespace MVCBetBud.Controllers
 
 
         }
+        // GET: logout af bruger
+        public ActionResult Logout()
+        {
+            if (Session["brugerSession"] != null)
+            {
+                Session["brugerSession"] = null;
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("login");
+        }
         // GET: Bruger/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            if (Session["brugerSession"] != null)
+            {
+                // Bruger b = SR.getBrugerEfterBrugernavn(User.Identity.Name);
+                Bruger b = SR.getBruger((int)Session["brugerSession"]);
+                return View(b);
+            }
+
+            return RedirectToAction("index", "Home");
         }
 
         // GET: Bruger/Create
