@@ -18,7 +18,7 @@ namespace WCFBetBuddy
 
         #region BrugerService
 
-        [DataMember] BrugerController brugerCtrl = new BrugerController();
+        BrugerController brugerCtrl = new BrugerController();
 
 
         public Bruger getBruger(int id)
@@ -116,7 +116,7 @@ namespace WCFBetBuddy
 
         //Detaljeret forklaring i control laget og model laget
 
-        [DataMember] // Todo - Få forklaring af hvorfor dette skal være en datamember
+        // Todo - Få forklaring af hvorfor dette skal være en datamember
         ChatHub _chatHub = new ChatHub();
 
         /// <summary>
@@ -129,7 +129,7 @@ namespace WCFBetBuddy
         {
             _chatHub.OpretServer(serverName, serverPort, bufferSize);
         }
-
+        
         /// <summary>
         /// Denne metode sletter en server
         /// </summary>
@@ -138,7 +138,7 @@ namespace WCFBetBuddy
         {
             _chatHub.DeleteServer(serverId);
         }
-
+        
         /// <summary>
         /// Denne metode opdaterer en servers information
         /// </summary>
@@ -150,7 +150,7 @@ namespace WCFBetBuddy
         {
             _chatHub.UpdateServer(serverId, serverName, serverPort, bufferSize);
         }
-
+        /*
         /// <summary>
         /// Denne metode returnerer en liste af servere
         /// </summary>
@@ -160,7 +160,7 @@ namespace WCFBetBuddy
         {
             return _chatHub.FindServers(serverName);
         }
-
+        
         /// <summary>
         /// Denne metode returnerer en specifik server
         /// </summary>
@@ -170,7 +170,7 @@ namespace WCFBetBuddy
         {
             return _chatHub.FindSpecificAServer(serverId);
         }
-
+        
         /// <summary>
         /// Denne metode joiner en server på en specifik port
         /// </summary>
@@ -180,7 +180,7 @@ namespace WCFBetBuddy
         {
             return _chatHub.JoinServer(port, client);
         }
-
+        */
         #endregion
     }
 }
