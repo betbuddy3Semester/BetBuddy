@@ -13,6 +13,7 @@ namespace ModelLibrary.Interface_Bruger
         string Email { get; set; }
         string Alias { get; set; }
         string Password { get; set; }
+        double Point { get; set; }
         }
     }
 

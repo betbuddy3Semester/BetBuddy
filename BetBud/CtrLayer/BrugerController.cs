@@ -40,12 +40,10 @@ namespace CtrLayer
         public void opretBruger(Bruger bruger)
         {
             //Email constraints 
-            var regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
-            var matchEmail = regex.Match(bruger.Email);
+            var matchEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").Match(bruger.Email);
 
             //Number constraints
-            var regx = new Regex(@"^[a-zA-Z''-'\s]{1,40}$");
-            var matchName = regx.Match(bruger.Navn);
+            var matchName = new Regex(@"^[a-åA-Å' '-'\s]{1,40}$").Match(bruger.Navn);
             bruger.Password = Encode(bruger.Password);
 
 
@@ -91,7 +89,6 @@ namespace CtrLayer
             }
         }
 
-
         public string Encode(string value)
         {
             var hash = SHA1.Create();
@@ -99,5 +96,39 @@ namespace CtrLayer
             var combined = encoder.GetBytes(value ?? "");
             return BitConverter.ToString(hash.ComputeHash(combined)).ToLower().Replace("-", "");
         }
+
+        public void AddPoints(double amount, string navn, Bruger b)
+        {
+
+            using (var db = new BetBudContext())
+            {
+                b = GetBrugerEfterBrugerNavn(navn);
+
+                b.Point += amount;
+
+                db.Entry(b).State = EntityState.Modified;
+                db.SaveChanges();
+
+            }
+        }
+
+            public void SubtractPoints(double amount, string navn, Bruger b)
+        {
+
+            using (var db = new BetBudContext())
+            {
+                b = GetBrugerEfterBrugerNavn(navn);
+
+                b.Point -= amount;
+
+                db.Entry(b).State = EntityState.Modified;
+                db.SaveChanges();
+
+            }
+
+
+        }
+
+        
     }
 }

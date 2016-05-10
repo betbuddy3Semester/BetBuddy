@@ -57,6 +57,16 @@ namespace WCFBetBuddy
             return b;
         }
 
+        public void AddPoints(double Amount, Bruger b, string navn)
+        {
+            brugerCtrl.AddPoints(Amount, navn, b);
+        }
+
+        public void SubtractPoints(double Amount, Bruger b, string navn)
+        {
+            brugerCtrl.SubtractPoints(Amount, navn, b);
+        }
+
         #endregion
 
         #region KuponService
