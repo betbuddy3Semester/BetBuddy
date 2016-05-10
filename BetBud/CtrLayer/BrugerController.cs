@@ -85,7 +85,7 @@ namespace CtrLayer
 
             {
                 var passHash = Encode(pWord);
-                var bruger = db.Brugere.Where(x => x.BrugerNavn.Equals(bNavn) && x.Password.Equals(passHash)).First();
+                var bruger = db.Brugere.Where(x => x.BrugerNavn.Equals(bNavn) && x.Password.Equals(passHash)).FirstOrDefault();
 
                 return bruger;
             }
