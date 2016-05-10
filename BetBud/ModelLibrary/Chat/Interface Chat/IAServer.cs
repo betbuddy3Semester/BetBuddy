@@ -10,7 +10,7 @@ namespace ModelLibrary.Chat.Interface_Chat
     {
         #region Properties
 
-        int ServerId { get; set; }
+        int AServerId { get; set; }
         int ServerPort { get; set; }
         int BufferSize { get; set; }
         string ServerName { get; set; }

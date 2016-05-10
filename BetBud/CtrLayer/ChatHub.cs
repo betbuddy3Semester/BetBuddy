@@ -59,7 +59,7 @@ namespace CtrLayer
                 //Der oprettes en server instans og iden sættes fra parameter listen
                 var aServ = new AServer
                 {
-                    ServerId = serverId
+                    AServerId = serverId
                 };
 
                 //Der laves en statement hvor objektet bliver sat til at blive slettet
@@ -120,7 +120,7 @@ namespace CtrLayer
             using (var db = new BetBudContext())
             {
                 // Denne metode returnere en specifik server, ud fra et givent server id
-                return db.ChatServers.Single(x => x.ServerId == serverId);
+                return db.ChatServers.Single(x => x.AServerId == serverId);
             }
         }
 

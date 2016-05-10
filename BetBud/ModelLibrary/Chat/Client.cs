@@ -31,6 +31,9 @@ namespace ModelLibrary.Chat
         /// </summary>
         public void ConnectToServer()
         {
+            //Instansiering af clientens socket
+            ClientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+
             // initialisering af int til at tælle mængden af forbindelsesforsøg
             var connectionAttempts = 0;
 

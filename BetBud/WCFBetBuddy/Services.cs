@@ -15,8 +15,9 @@ namespace WCFBetBuddy
     {
         DelKamp tempDelKamp = new DelKamp();
         Kupon tempKupon = new Kupon();
+
         #region BrugerService
-        [DataMember]
+
         BrugerController brugerCtrl = new BrugerController();
 
 
@@ -52,13 +53,14 @@ namespace WCFBetBuddy
 
         public Bruger logInd(string bNavn, string pWord)
         {
-           Bruger b = brugerCtrl.logIndBruger(bNavn, pWord);
+            Bruger b = brugerCtrl.logIndBruger(bNavn, pWord);
             return b;
         }
 
         #endregion
 
         #region KuponService
+
         KuponController NyKuponController = new KuponController();
 
         public Kupon TilføjKamp(Kupon kupon, Kamp kamp, bool valgt1, bool valgtX, bool valgt2)
@@ -108,13 +110,13 @@ namespace WCFBetBuddy
             return NyKuponController.OpretKupon();
         }
 
-
         #endregion
 
         #region ChatService
+
         //Detaljeret forklaring i control laget og model laget
 
-        [DataMember] // Todo - Få forklaring af hvorfor dette skal være en datamember
+        // Todo - Få forklaring af hvorfor dette skal være en datamember
         ChatHub _chatHub = new ChatHub();
 
         /// <summary>
@@ -127,7 +129,7 @@ namespace WCFBetBuddy
         {
             _chatHub.OpretServer(serverName, serverPort, bufferSize);
         }
-
+        
         /// <summary>
         /// Denne metode sletter en server
         /// </summary>
@@ -136,7 +138,7 @@ namespace WCFBetBuddy
         {
             _chatHub.DeleteServer(serverId);
         }
-
+        
         /// <summary>
         /// Denne metode opdaterer en servers information
         /// </summary>
@@ -148,7 +150,7 @@ namespace WCFBetBuddy
         {
             _chatHub.UpdateServer(serverId, serverName, serverPort, bufferSize);
         }
-
+        /*
         /// <summary>
         /// Denne metode returnerer en liste af servere
         /// </summary>
@@ -158,7 +160,7 @@ namespace WCFBetBuddy
         {
             return _chatHub.FindServers(serverName);
         }
-
+        
         /// <summary>
         /// Denne metode returnerer en specifik server
         /// </summary>
@@ -168,7 +170,7 @@ namespace WCFBetBuddy
         {
             return _chatHub.FindSpecificAServer(serverId);
         }
-
+        
         /// <summary>
         /// Denne metode joiner en server på en specifik port
         /// </summary>
@@ -178,8 +180,7 @@ namespace WCFBetBuddy
         {
             return _chatHub.JoinServer(port, client);
         }
-
+        */
         #endregion
-
     }
 }

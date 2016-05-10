@@ -15,16 +15,17 @@ namespace CtrLayer
 
     public class KuponController : IKuponController
     {
-        // instance var
+        // instance variable af kupon 
         public Kupon NyKupon;
-        
+
+        // Konstruktør for KuponController
         public KuponController()
         {
-            
-        }
-        
 
-        // Metode til at oprette kuponen. 
+        }
+
+
+        // Metode til at oprette kuponen og returnere en ny kupon til KuponControlleren 
 
         public Kupon OpretKupon()
         {
@@ -32,25 +33,28 @@ namespace CtrLayer
             return NyKupon;
         }
 
+        //Metode til at hente kuponen
         public Kupon GetKupon()
         {
             return NyKupon;
         }
 
+        // Metode til at Set kuponen, this.NyKupon da det er den pågældende kupon i metoden der er tale om.
         public void SetKupon(Kupon kupon)
         {
             this.NyKupon = kupon;
         }
 
-        // Metode til at fjerne kuponen.
+        // Metode til at fjerne kuponen. 
 
         public void FjernKupon()
         {
             NyKupon = null;
         }
 
-        // Metode til at tilføje en kamp til kuponen. Kalder metoden TilføjKamp i modellaget. Kontrollere at kuponen er
-        // oprettet.
+        // Metode til at tilføje en kamp til kuponen. Kalder metoden TilføjKamp i modellaget.  Kontrollere at kuponen er
+        // oprettet. Search igennem delKampe og tilføjer den valgte kamp der er i delKamp, hvis kampId passer overens med hinanden. Returnere 
+        // variablen fundet. Hvis den valgte kamp ikke er  i listen delKampe, returneres kupon uden kampen.
 
         public Kupon TilføjKamp(Kamp kamp, bool valgt1, bool valgtX, bool valgt2, Kupon kupon)
         {
@@ -82,7 +86,7 @@ namespace CtrLayer
         }
 
         // Metode til at lave oddsudregningen fra modellaget. Kontrollere om kuponen findes og laver derefter
-        // udregningen på de valgte kampe og returnere det samlet odds
+        // udregningen på de valgte kampe og returnere det samlede odds. Hvis ikke kuponen er oprettet returnes 0,0. 
 
         public double OddsUdregning()
         {
@@ -94,7 +98,8 @@ namespace CtrLayer
         }
 
         // Metode til at udregne den mulige gevist som brugeren kan vinde. MuligGevist kalder metoden fra modellaget
-        // som udregner gevisten. 
+        // som udregner gevisten. Kontrollere om kuponen er oprettet, og returnere denne med den mulige gevinst. Hvis ikke kuponen er oprettet
+        // returneres 0,0.
 
         public double MuligGevist()
         {
@@ -105,7 +110,10 @@ namespace CtrLayer
             return 0.0;
         }
 
-
+        // Metode til at bekræfte kuponen. Der oprettes en ny forbindelse til databasen via BetBudContext klassen. 
+        // For hver kamp der er i listen delKampe, sendes ind i variablen kamp. dbEntry sender kampens state ned til databasen men ændre ikke denne
+        // da den allerede er i databasen. 
+        // Samme sker med kupon.bruger. Kuponen bliver tilføjet og gemt. 
         public bool BekræftKupon(Kupon kupon)
         {
             using (BetBudContext db = new BetBudContext())
@@ -117,14 +125,13 @@ namespace CtrLayer
                 }
                 db.Entry(kupon.Bruger).State = EntityState.Unchanged;
                 db.Kuponer.Add(kupon);
-                    db.SaveChanges();
-                    return true;
+                db.SaveChanges();
+                return true;
 
-             }
+            }
         }
 
-        // Metode der henter alle kampe i Databasen
-
+        // Metode der henter alle kampe i Databasen. Der oprettes en ny forbindelse til databasen som returnere Kampe på en liste. 
         public IEnumerable<Kamp> GetAlleKampe()
         {
             using (BetBudContext db = new BetBudContext())
@@ -134,7 +141,8 @@ namespace CtrLayer
             }
         }
 
-        // Metode til at finde en kamp udfra kampId. 
+        // Metode der bruges til at finde en kamp udfra kampId i databasen. Der opretter en ny forbindelse til databasen via BetBudContext,  
+        // den kamp der stemmer overens med kampId ´et sendes bliver gemt i lokal variablen kamp som efterfølgende bliver returneret.
 
         public Kamp FindKamp(int KampId)
         {
@@ -145,6 +153,8 @@ namespace CtrLayer
             }
         }
 
+        // Metode til at hente alle brugerens allerede eksisterende kuponer. Der oprettes en ny forbindelse til databasen via BetBudContext.
+        // Databasen returnere alle brugerens kuponer hvis brugerId stemmer overens med brugerId og tilføjer disse til en liste.
         public IEnumerable<Kupon> GetAlleKuponer(Bruger bruger)
         {
             using (BetBudContext db = new BetBudContext())
