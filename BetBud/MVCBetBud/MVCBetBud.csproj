@@ -314,11 +314,13 @@
     <None Include="Service References\ServiceReference\Services.wsdl" />
     <Content Include="Views\Bruger\Delete.cshtml" />
     <Content Include="Views\Bruger\Edit.cshtml" />
-    <Content Include="Views\Bruger\Details.cshtml" />
     <Content Include="Views\Kupon\OpretKupon.cshtml" />
-    <Content Include="Views\Bruger\LoginInd.cshtml" />
+    <Content Include="Views\Bruger\Login.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Views\Bruger\Index.cshtml" />
     <Content Include="Views\Kupon\Kuponer.cshtml" />
+    <Content Include="Views\Bruger\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

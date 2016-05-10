@@ -13,7 +13,8 @@ namespace MVCBetBud.Controllers
 
         ServiceReference.ServicesClient SR = new ServiceReference.ServicesClient();
 
-        // GET: Kupon
+        // GET: Kupon - Metode som der bruger session til at kontrollere om brugeren er på session. Hvis brugerens session eksisterer hentes 
+        // brugeren ved et brugerId, og henter derefter alle brugerens kuponer som sendes til viewet. 
         public ActionResult Kuponer()
         {
             if (Session["brugerSession"] != null)
@@ -35,7 +36,10 @@ namespace MVCBetBud.Controllers
             return View();
         }
 
-        // GET: Kupon/Create
+        // GET: Metoden OpretKupon - Kontrollere om session eksisterer, hvis den gør hentes den igangværnede kupon og en liste af alle kampe. 
+        // Hvis ikke brugeren ikke er på session, oprettes en ny kupon og listen af alle kampe
+        // Brugeren hentes via dennes brugerId som bliver læst fra session. 
+        //  
         public ActionResult OpretKupon()
         {
             if (Session["brugerSession"] != null)
@@ -68,7 +72,6 @@ namespace MVCBetBud.Controllers
         {
             try
             {
-                //double bettingPoint = Convert.ToDouble(Request.Form["bettingPoint"]);
                 Kupon kupon = (Kupon)Session["kupon"];
                 kupon.Point = bettingPoint;
                 if (SR.BekræftKupon(kupon))
