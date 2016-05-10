@@ -14,7 +14,7 @@ namespace ModelLibrary.Chat
         #region Properties
 
         [DataMember]
-        public Socket ClientSocket { get; set; }
+        private static readonly Socket ClientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
         [DataMember]
         public int ClientPort { get; set; }
@@ -31,14 +31,11 @@ namespace ModelLibrary.Chat
         /// </summary>
         public void ConnectToServer()
         {
-            //Instansiering af clientens socket
-            ClientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-
             // initialisering af int til at tælle mængden af forbindelsesforsøg
             var connectionAttempts = 0;
 
             // Loop der foreskriver, at hvis clientens socket ikke er connected, så køres den underliggende try
-            while (!ClientSocket.Connected)
+            while (!ClientSocket.Connected && connectionAttempts < 10)
             {
                 try
                 {

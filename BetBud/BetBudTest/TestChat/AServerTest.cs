@@ -19,7 +19,6 @@ namespace BetBudTest.TestChat
             aserv.StartServer();
             client.ClientPort = 100;
             client.ConnectToServer();
-            
 
             // Assert
             Assert.IsNotNull(aserv.ServerSocket);

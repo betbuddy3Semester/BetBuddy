@@ -6,7 +6,6 @@ namespace ModelLibrary.Chat.Interface_Chat
     {
         #region Properties
 
-        Socket ClientSocket { get; set; }
         int ClientPort { get; set; }
 
         #endregion
