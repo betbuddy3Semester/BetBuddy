@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
@@ -15,37 +17,37 @@ namespace ModelLibrary.Chat
     {
         #region Properties
 
-        [DataMember]
-        public int ServerId { get; set; }
-
-        [DataMember]
-        public int ServerPort { get; set; }
+        [DataMember, Key]
+        public int AServerId { get; set; }
 
         [DataMember]
         public int BufferSize { get; set; }
 
         [DataMember]
+        public int ServerPort { get; set; }
+
+        [DataMember, NotMapped]
         public string ReceiveCallBackString { get; set; }
 
         [DataMember]
         public string ServerName { get; set; }
 
-        [DataMember]
+        [DataMember, NotMapped]
         public IEnumerable<string> MessageList { get; set; }
 
-        [DataMember]
+        [DataMember, NotMapped]
         public Socket ServerSocket { get; set; }
 
-        [DataMember]
+        [DataMember, NotMapped]
         public List<Socket> ClientSocket { get; set; }
 
-        [DataMember]
+        [DataMember, NotMapped]
         public IPEndPoint ServerEndPoint { get; set; }
 
-        [DataMember]
+        [DataMember, NotMapped]
         public StringBuilder Sb { get; set; }
 
-        [DataMember]
+        [DataMember, NotMapped]
         public byte[] Buffer { get; set; }
 
         #endregion
@@ -64,11 +66,11 @@ namespace ModelLibrary.Chat
             //Opretter en instans af socket som har adressefamilien af internetwork og sockettypen af stream og protocoltypen af tcp som sikrer sig at alle pakkerne når frem.
             ServerSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
-            //Opretter en instans af et ipendpoint som er en klasse der specificerer hvad ipaddressen og porten skal være
-            ServerEndPoint = new IPEndPoint(IPAddress.Any, ServerPort = 100);
+            //Opretter listen af client sockets
+            ClientSocket = new List<Socket>();
 
-            //Serverens socket binder sig til et IpEndPoint (Hvor dataen skal hen)
-            ServerSocket.Bind(ServerEndPoint);
+            //Serverens socket binder sig til et IpEndPoint (Hvor dataen skal hen) & opretter en instans af et ipendpoint som er en klasse der specificerer hvad ipaddressen og porten skal være
+            ServerSocket.Bind(new IPEndPoint(IPAddress.Any, ServerPort));
 
             //Serverens socket sættes til at have en bestemt mængde af forbindelser på en gang
             ServerSocket.Listen(100);
@@ -83,18 +85,24 @@ namespace ModelLibrary.Chat
         /// </summary>
         public void StopServer()
         {
-            //Her oprettes et foreach loop som iterer hen over socketens client liste
-            foreach (var variable in ClientSocket)
+            if (ClientSocket.Count > 0)
             {
-                //Her bruges hver element i listen, det første kald stopper vi forbindelsen ud og indgående i socketen, men den eksisterer stadigvæk.
-                variable.Shutdown(SocketShutdown.Both);
-                //I dette kald lukkes client socketen helt således at den ikke eksisterer længere
-                variable.Close();
+
+                //Her oprettes et foreach loop som iterer hen over socketens client liste
+                foreach (var variable in ClientSocket)
+                {
+                    //Her bruges hver element i listen, det første kald stopper vi forbindelsen ud og indgående i socketen, men den eksisterer stadigvæk.
+                    variable.Shutdown(SocketShutdown.Both);
+                    //I dette kald lukkes client socketen helt således at den ikke eksisterer længere
+                    variable.Close();
+                }
             }
             //Her lukkes serverens forbindelser ned både ingående og udgående.
-            ServerSocket.Shutdown(SocketShutdown.Both);
+            //ServerSocket.Shutdown(SocketShutdown.Both);
             //I dette kald lukkes serverens socket således at den ikke længere eksisterer.
             ServerSocket.Close();
+            //I dette kald sættes server socket propertien til null.
+            ServerSocket = null;
         }
 
         /// <summary>

@@ -13,13 +13,19 @@ namespace BetBudTest.TestChat
         {
             // Arrange
             var aserv = new AServer();
+            var client = new Client();
 
             // Act
             aserv.StartServer();
+            client.ClientPort = 100;
+            client.ConnectToServer();
+            
 
             // Assert
             Assert.IsNotNull(aserv.ServerSocket);
             Assert.IsNotNull(aserv.ServerEndPoint);
+            Assert.IsNotNull(aserv.ClientSocket);
+            Assert.IsNotEmpty(aserv.ClientSocket);
         }
 
         [Test]
@@ -38,7 +44,7 @@ namespace BetBudTest.TestChat
             aserv.StopServer();
 
             //Assert
-            Assert.IsNotNull(aserv.ServerSocket);
+            Assert.IsNull(aserv.ServerSocket);
             //Assert.IsEmpty(aserv.ClientSocket);
         }
     }

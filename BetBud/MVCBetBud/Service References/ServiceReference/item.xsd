@@ -215,4 +215,45 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="OpretServer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="serverName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="serverPort" type="xs:int" />
+        <xs:element minOccurs="0" name="bufferSize" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OpretServerResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteServer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="serverId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteServerResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateServer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="serverId" type="xs:int" />
+        <xs:element minOccurs="0" name="serverName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="serverPort" type="xs:int" />
+        <xs:element minOccurs="0" name="bufferSize" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateServerResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
 </xs:schema>
