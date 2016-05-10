@@ -1,4 +1,5 @@
-﻿using MVCBetBud.ServiceReference;
+﻿using MVCBetBud.Models;
+using MVCBetBud.ServiceReference;
 using System.Web.Mvc;
 
 namespace MVCBetBud.Controllers
@@ -10,8 +11,11 @@ namespace MVCBetBud.Controllers
         public ActionResult Index()
         {
             Kamp[] k = SR.GetAlleKampe();
-        
-            return View(k);
+            Bruger[] b = SR.getBrugere();
+            OpretForsideController ofc = new OpretForsideController();
+            ofc.AlleKampe = k;
+            ofc.brugere = b;
+            return View(ofc);
         }
 
         public ActionResult About()

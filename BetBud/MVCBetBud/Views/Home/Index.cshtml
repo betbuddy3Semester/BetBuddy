@@ -1,5 +1,5 @@
 ﻿@using MVCBetBud.ServiceReference
-@model IEnumerable<Kamp>
+@model OpretForsideController
 @{
     ViewBag.Title = "Home Page";
 }
@@ -24,7 +24,7 @@
         <h2>Dagens kampe</h2>
         <ol>
 
-            @foreach (var kamp in Model.ToList().GetRange(0, 3))
+            @foreach (var kamp in Model.AlleKampe.ToList().GetRange(0, 3))
             {
                 <li>@kamp.HoldVsHold </li>
             }
@@ -35,23 +35,13 @@
     </div>
     <div class="col-md-4">
         <h2>Highscore</h2>
-        <table style="width: 100%">
-            <tr>
-                <td>1.</td>
-                <td>Ulla Therkelsen</td>
-                <td>210.540</td>
-            </tr>
-            <tr>
-                <td>2.</td>
-                <td>Simon Uggelse</td>
-                <td>195.320</td>
-            </tr>
-            <tr>
-                <td>3.</td>
-                <td>Sakhos Mor</td>
-                <td>150.000</td>
-            </tr>
-        </table>
+        <ol>
+
+            @foreach (var bruger in Model.brugere.ToList().GetRange(0, 3))
+            {
+                <li>@bruger.navn -- @bruger.point </li>
+            }
+        </ol>   
         <p>
             <a class="btn btn-default" href="/Bruger/Highscore">Se highscore &raquo;</a>
         </p>
