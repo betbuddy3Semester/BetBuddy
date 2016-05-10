@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using DALBetBud.Context;
 using ModelLibrary.Bruger;
+using System.Collections;
 
 namespace CtrLayer
 {
@@ -129,6 +130,34 @@ namespace CtrLayer
 
         }
 
+        /*public Bruger getHighscores()
+
+        {
+
+            using (var db = new BetBudContext())
+            {
+                var result = db.Brugere.GroupBy(x => x.Navn).Select(g => g.OrderByDescending(x => x.Point).First());
+                return result;
+            }
+            
+        }
+        */
+
+        /*public List<Bruger> getHighscores()
+        {
+            using (var db = new BetBudContext())
+            {
+                List<Bruger> TopBruger = new List<Bruger>();
+                Bruger topB = GetBrugerEfterBrugerNavn(db.Brugere.Select(p => p.Point).Max));
+                TopBruger.Add(topB);
+                return TopBruger;
+                
+            }
+
+        }*/
         
+
+
+
     }
 }
