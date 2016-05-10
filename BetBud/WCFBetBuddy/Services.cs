@@ -174,9 +174,9 @@ namespace WCFBetBuddy
         /// </summary>
         /// <param name="port">Porten som client socketen skal tilslutte</param>
         /// <returns></returns>
-        public Client JoinServer(int port)
+        public Client JoinServer(int port, Client client)
         {
-            return _chatHub.JoinServer(port);
+            return _chatHub.JoinServer(port, client);
         }
 
         #endregion

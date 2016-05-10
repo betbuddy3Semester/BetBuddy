@@ -20,7 +20,7 @@ namespace CtrLayer
         void DeleteServer(int serverId);
         List<AServer> FindServers(string serverName);
         AServer FindSpecificAServer(int serverId);
-        Client JoinServer(int port);
+        Client JoinServer(int port, Client client);
         void OpretServer(string serverName, int serverPort, int bufferSize);
         void UpdateServer(int id, string serverName, int serverPort, int bufferSize);
 

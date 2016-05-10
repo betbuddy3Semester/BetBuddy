@@ -1,15 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Net.Sockets;
+using ModelLibrary.Chat;
+using NUnit.Framework;
 
 namespace BetBudTest.TestChat
 {
+    [TestFixture]
     public class AServerTest
     {
-        #region AserverTests
+        [Test]
+        public void StartServerTest()
 
-        #endregion
+        {
+            // Arrange
+            var aserv = new AServer();
+
+            // Act
+            aserv.StartServer();
+
+            // Assert
+            Assert.IsNotNull(aserv.ServerSocket);
+            Assert.IsNotNull(aserv.ServerEndPoint);
+        }
+
+        [Test]
+        public void StopServerTest()
+        {
+            //Arrrange 
+            var aserv = new AServer();
+
+            // Act
+            aserv.StartServer();
+
+            //Arrange
+            Assert.IsNotNull(aserv.ServerSocket);
+
+            // Act
+            aserv.StopServer();
+
+            //Assert
+            Assert.IsNotNull(aserv.ServerSocket);
+            //Assert.IsEmpty(aserv.ClientSocket);
+        }
     }
 }

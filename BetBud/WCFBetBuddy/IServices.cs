@@ -82,7 +82,7 @@ namespace WCFBetBuddy
         AServer FindSpecificAServer(int serverId);
 
         [OperationContract]
-        Client JoinServer(int port);
+        Client JoinServer(int port, Client client);
 
         #endregion
 
