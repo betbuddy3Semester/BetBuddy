@@ -23,5 +23,7 @@ namespace ModelLibrary.Bruger
         public string Navn { get; set; }
         [DataMember]
         public string Password { get; set; }
+        [DataMember]
+        public double Point { get; set; }
     }
 }
