@@ -7,7 +7,7 @@
 <div class="jumbotron">
     <h1>BetBuddy</h1>
     <p class="lead">BetBuddy er et social betting site.</p>
-   
+
 </div>
 
 <div class="row">
@@ -16,23 +16,26 @@
         <p>
             Start filmen herunder for at blive guidet igennem vores hjemmeside
         </p>
-        <p><a class="btn btn-default" href="http://hvadsigerjakob.dk/">Tryk her &raquo;</a></p>
+        <p>
+            <a class="btn btn-default" href="http://hvadsigerjakob.dk/">Tryk her &raquo;</a>
+        </p>
     </div>
     <div class="col-md-4">
         <h2>Dagens kampe</h2>
         <ol>
-            @for (var i = 0; i < 3; i++) { 
-            <li> @Model[i].HoldVsHold </li>
+
+            @foreach (var kamp in Model.ToList().GetRange(0, 3))
+            {
+                <li>@kamp.HoldVsHold </li>
             }
-            
-            <li> Man City vs. Westham </li>
-            <li> Inter vs. FC Barcelona </li>
         </ol>
-        <p><a class="btn btn-default" href="/Kupon/OpretKupon"> Spil her &raquo;</a></p>
+        <p>
+            <a class="btn btn-default" href="/Kupon/OpretKupon"> Spil her &raquo;</a>
+        </p>
     </div>
     <div class="col-md-4">
         <h2>Highscore</h2>
-        <table style="width:100%">
+        <table style="width: 100%">
             <tr>
                 <td>1.</td>
                 <td>Ulla Therkelsen</td>
@@ -49,6 +52,8 @@
                 <td>150.000</td>
             </tr>
         </table>
-        <p><a class="btn btn-default" href="/Bruger/Highscore">Se highscore &raquo;</a></p>
+        <p>
+            <a class="btn btn-default" href="/Bruger/Highscore">Se highscore &raquo;</a>
+        </p>
     </div>
 </div>
