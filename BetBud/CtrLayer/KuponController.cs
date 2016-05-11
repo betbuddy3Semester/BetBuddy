@@ -55,6 +55,7 @@ namespace CtrLayer
         // Metode til at tilføje en kamp til kuponen. Kalder metoden TilføjKamp i modellaget.  Kontrollere at kuponen er
         // oprettet. Search igennem delKampe og tilføjer den valgte kamp der er i delKamp, hvis kampId passer overens med hinanden. Returnere 
         // variablen fundet. Hvis den valgte kamp ikke er  i listen delKampe, returneres kupon uden kampen.
+        // Det vil sige at hvis kampen allerede er på kuponen, så skal den ikke tilføjes.
 
         public Kupon TilføjKamp(Kamp kamp, bool valgt1, bool valgtX, bool valgt2, Kupon kupon)
         {
@@ -111,8 +112,8 @@ namespace CtrLayer
         }
 
         // Metode til at bekræfte kuponen. Der oprettes en ny forbindelse til databasen via BetBudContext klassen. 
-        // For hver kamp der er i listen delKampe, sendes ind i variablen kamp. dbEntry sender kampens state ned til databasen men ændre ikke denne
-        // da den allerede er i databasen. 
+        // For hver kamp der er i listen delKampe, sendes ind i variablen kamp. 
+        // Unchanged betyder at objektet kamp ikke bliver ændret i Databasen, 
         // Samme sker med kupon.bruger. Kuponen bliver tilføjet og gemt. 
         public bool BekræftKupon(Kupon kupon)
         {

@@ -34,7 +34,9 @@ namespace ModelLibrary.Kupon
         
 
 
-        // Metode til at tilføje kampe til kuponen. Laver en Delkamp, og kontrollere om variablerne er true ! Hvis ikke returnere den false.
+        // Metode til at tilføje kampe til kuponen. 
+        // Tilføj kamp hvis kampen og valgt er lig med 1 - hvis valgt = 2 så bliver kampen ikke tilføjet da det vil sige at brugeren
+        // har forsøgt at tilføje den samme kamp to gange. 
         public bool TilføjKamp(Kamp kamp, bool valgt1, bool valgtX, bool valgt2)
         {
             if (kamp != null && ((valgt1 ? 1 : 0) + (valgtX ? 1 : 0) + (valgt2 ? 1 : 0) == 1))
