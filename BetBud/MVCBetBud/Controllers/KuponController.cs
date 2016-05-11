@@ -10,7 +10,7 @@ namespace MVCBetBud.Controllers
 {
     public class KuponController : Controller
     {
-
+        // Instans variabel der opretter en ny Service kaldet SR. Det er SR der håndtere kaldende og pakker/udpakker objekterne.  
         ServiceReference.ServicesClient SR = new ServiceReference.ServicesClient();
 
         // GET: Kupon - Metode som der bruger session til at kontrollere om brugeren er på session. Hvis brugerens session eksisterer hentes 
@@ -36,8 +36,9 @@ namespace MVCBetBud.Controllers
             return View();
         }
 
-        // GET: Metoden OpretKupon - Kontrollere om session eksisterer, hvis den gør hentes den igangværnede kupon og en liste af alle kampe. 
-        // Hvis ikke brugeren ikke er på session, oprettes en ny kupon og listen af alle kampe
+        // GET: Metoden OpretKupon - Kontrollere om session eksisterer, hvis den gør hentes den igangværnede kupon og en liste af alle kampe udfra 
+        // brugerens brugerId. 
+        // Hvis ikke brugeren ikke er på session, oprettes en ny kupon og listen af alle kampe som sættes på brugerens brugerId
         // Brugeren hentes via dennes brugerId som bliver læst fra session. 
         //  
         public ActionResult OpretKupon()
@@ -66,7 +67,9 @@ namespace MVCBetBud.Controllers
             return RedirectToAction("index", "home");
         }
 
-        // POST: Kupon/Create
+        // POST: Kupon/Create - POST metoden for opretKupon, viser hvad der sker efter brugeren har tilføjet kampe til sin kupon. 
+        // Først kontrollere den om det er den rigtige kupon der er i dennes session - og det indtastet " bettingpoint" bliver sat på kuponen.
+        // Hvis kuponen bliver bekræftet, sendes den til retur til brugeren.
         [HttpPost]
         public ActionResult OpretKupon(double bettingPoint)
         {
@@ -87,6 +90,10 @@ namespace MVCBetBud.Controllers
             }
         }
 
+        // PostOdds1 - Metode til at tilføje odds 1 på kuponen. 
+        // Kontrollere at det er den rigtige kupon på session. 
+        // Finder den valgte kamp udfra kampId - og tilføjer kampen til variablen valgtKupon
+        // Variablen valgtKupon gemmes i sessionen kupon, som vises i viewet. 
         [HttpPost]
         public ActionResult PostOdds1()
         {
@@ -102,6 +109,11 @@ namespace MVCBetBud.Controllers
             return RedirectToAction("OpretKupon");
         }
 
+
+        // PostOddsX - Metode til at tilføje odds X på kuponen. 
+        // Kontrollere at det er den rigtige kupon på session. 
+        // Finder den valgte kamp udfra kampId - og tilføjer kampen til variablen valgtKupon
+        // Variablen valgtKupon gemmes i sessionen kupon, som vises i viewet.
         [HttpPost]
         public ActionResult PostOddsX()
         {
@@ -116,7 +128,11 @@ namespace MVCBetBud.Controllers
 
             return RedirectToAction("OpretKupon");
         }
-
+        
+        // PostOdds2 - Metode til at tilføje odds 2 på kuponen. 
+        // Kontrollere at det er den rigtige kupon på session. 
+        // Finder den valgte kamp udfra kampId - og tilføjer kampen til variablen valgtKupon
+        // Variablen valgtKupon gemmes i sessionen kupon, som vises i viewet.
         [HttpPost]
         public ActionResult PostOdds2()
         {
