@@ -153,18 +153,21 @@ namespace CtrLayer
 
         }
 
-        /*public Bruger getHighscores()
+        public IEnumerable<Bruger> getHighscores()
 
         {
 
             using (var db = new BetBudContext())
             {
-                var result = db.Brugere.GroupBy(x => x.Navn).Select(g => g.OrderByDescending(x => x.Point).First());
-                return result;
+                
+                //var result = db.Brugere.GroupBy(x => x.Navn).Select(g => g.OrderByDescending(x => x.Point));
+                var result = db.Brugere.OrderByDescending(x => x.Point);
+                return result.ToList();
+                //return result;
             }
-            
+           
         }
-        */
+        
 
         /*public List<Bruger> getHighscores()
         {
