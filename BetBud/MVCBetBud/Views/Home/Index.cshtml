@@ -36,8 +36,8 @@
     <div class="col-md-4">
         <h2>Highscore</h2>
         <ol>
-
-            @foreach (var bruger in Model.brugere.ToList().GetRange(0, 3))
+            
+            @foreach (var bruger in Model.brugere.ToList().GetRange(0, 0))
             {
                 <li>@bruger.Navn -- @bruger.Point </li>
             }
