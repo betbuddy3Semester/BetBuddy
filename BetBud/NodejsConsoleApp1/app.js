@@ -10,9 +10,13 @@ socket.on('request', function (request) {
 	
 	connection.on('message', function (message) {
 		console.log(message.utf8Data);
-		if (message.utf8Data.split(" ")[0] == "/setUserName") {
+		if (message.utf8Data.split(" ")[0] == "/setUserName" && name == "error") {
 			name = message.utf8Data.split(" ")[1];
-			clients.push({ "name": name, "connection": connection });
+            clients.push({ "name": name, "connection": connection });
+            var json = JSON.stringify({ type: 'message', data: { "msg": name +" just joined!!", "user": "server"} });
+            for (var i = 0; i < clients.length; i++) {
+                clients[i].connection.sendUTF(json);
+            }
 		} else if (name == "error") {
 			var json = JSON.stringify({ type: 'message', data: { "msg": "you have to login to chat", "user": "server" } });
 			connection.sendUTF(json);
@@ -28,7 +32,7 @@ socket.on('request', function (request) {
 		console.log("clients:" + clients.length + " name: " + name);
 		var conPos = getUserIndex(name);
 		if (conPos >= 0) {
-			clients.splice(name, 1);
+			clients.splice(conPos, 1);
 			var json = JSON.stringify({ type: 'message', data: { "msg": name + " just left!", "user": "server" } });
 			for (var i = 0; i < clients.length; i++) {
 				clients[i].connection.sendUTF(json);
