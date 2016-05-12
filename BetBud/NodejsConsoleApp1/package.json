@@ -1,0 +1,9 @@
+{
+  "name": "BedbudyChat",
+  "version": "0.1.0",
+  "description": "BedbudyChat",
+  "main": "app.js",
+  "dependencies": {
+    "websocket": "^1.0.22"
+  }
+}
