@@ -73,6 +73,10 @@ namespace MVCBetBud.Controllers
         [HttpPost]
         public ActionResult OpretKupon(double bettingPoint)
         {
+            if (bettingPoint <=0.0)
+            {
+                return RedirectToAction("OpretKupon");
+            }
             try
             {
                 Kupon kupon = (Kupon)Session["kupon"];
@@ -188,6 +192,28 @@ namespace MVCBetBud.Controllers
             {
                 return View();
             }
+        }
+
+        [HttpPost]
+        public ActionResult FjernKamp()
+        {
+            int KampId = Convert.ToInt32(Request.Form["FjernKamp"]);
+            Kupon kupon = (Kupon)Session["kupon"];
+
+            Kamp valgtKamp = SR.FindKamp(KampId);
+            Kupon valgtKupon = SR.FjernKamp(valgtKamp,kupon);
+            Session["kupon"] = valgtKupon;
+
+            return RedirectToAction("OpretKupon");
+        }
+
+        public ActionResult RydKupon()
+        {
+            if (Session["kupon"] != null )
+            {
+                Session["kupon"] = null;
+            }
+            return RedirectToAction("OpretKupon");
         }
     }
 }

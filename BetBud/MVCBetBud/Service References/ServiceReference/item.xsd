@@ -24,13 +24,14 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon" minOccurs="0" name="kamp" nillable="true" type="q4:Kamp" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon" minOccurs="0" name="kupon" nillable="true" type="q5:Kupon" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="FjernKampResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="FjernKampResult" type="xs:boolean" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon" minOccurs="0" name="FjernKampResult" nillable="true" type="q6:Kupon" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -61,7 +62,7 @@
   <xs:element name="BekræftKupon">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon" minOccurs="0" name="kupon" nillable="true" type="q5:Kupon" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon" minOccurs="0" name="kupon" nillable="true" type="q7:Kupon" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -82,7 +83,7 @@
   <xs:element name="FindKampResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon" minOccurs="0" name="FindKampResult" nillable="true" type="q6:Kamp" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon" minOccurs="0" name="FindKampResult" nillable="true" type="q8:Kamp" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -94,21 +95,21 @@
   <xs:element name="GetAlleKampeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon" minOccurs="0" name="GetAlleKampeResult" nillable="true" type="q7:ArrayOfKamp" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon" minOccurs="0" name="GetAlleKampeResult" nillable="true" type="q9:ArrayOfKamp" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetAlleKuponer">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/ModelLibrary.Bruger" minOccurs="0" name="bruger" nillable="true" type="q8:Bruger" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/ModelLibrary.Bruger" minOccurs="0" name="bruger" nillable="true" type="q10:Bruger" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetAlleKuponerResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon" minOccurs="0" name="GetAlleKuponerResult" nillable="true" type="q9:ArrayOfKupon" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon" minOccurs="0" name="GetAlleKuponerResult" nillable="true" type="q11:ArrayOfKupon" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -120,7 +121,7 @@
   <xs:element name="NyKuponResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon" minOccurs="0" name="NyKuponResult" nillable="true" type="q10:Kupon" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon" minOccurs="0" name="NyKuponResult" nillable="true" type="q12:Kupon" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -134,7 +135,7 @@
   <xs:element name="getBrugerResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/ModelLibrary.Bruger" minOccurs="0" name="getBrugerResult" nillable="true" type="q11:Bruger" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/ModelLibrary.Bruger" minOccurs="0" name="getBrugerResult" nillable="true" type="q13:Bruger" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -148,7 +149,7 @@
   <xs:element name="getBrugerEfterBrugernavnResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/ModelLibrary.Bruger" minOccurs="0" name="getBrugerEfterBrugernavnResult" nillable="true" type="q12:Bruger" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/ModelLibrary.Bruger" minOccurs="0" name="getBrugerEfterBrugernavnResult" nillable="true" type="q14:Bruger" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -160,14 +161,14 @@
   <xs:element name="getBrugereResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/ModelLibrary.Bruger" minOccurs="0" name="getBrugereResult" nillable="true" type="q13:ArrayOfBruger" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/ModelLibrary.Bruger" minOccurs="0" name="getBrugereResult" nillable="true" type="q15:ArrayOfBruger" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="opretBruger">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/ModelLibrary.Bruger" minOccurs="0" name="bruger" nillable="true" type="q14:Bruger" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/ModelLibrary.Bruger" minOccurs="0" name="bruger" nillable="true" type="q16:Bruger" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -179,7 +180,7 @@
   <xs:element name="opdaterBruger">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/ModelLibrary.Bruger" minOccurs="0" name="bruger" nillable="true" type="q15:Bruger" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/ModelLibrary.Bruger" minOccurs="0" name="bruger" nillable="true" type="q17:Bruger" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -211,7 +212,7 @@
   <xs:element name="logIndResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/ModelLibrary.Bruger" minOccurs="0" name="logIndResult" nillable="true" type="q16:Bruger" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/ModelLibrary.Bruger" minOccurs="0" name="logIndResult" nillable="true" type="q18:Bruger" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

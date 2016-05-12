@@ -6,7 +6,7 @@
     ViewBag.Title = "OpretKupon";
 }
 <script>
-    
+
 </script>
 <div class="col-md-8">
 
@@ -15,7 +15,7 @@
         <tr>
 
             <th>
-                Hold Vs Hold
+                Kampe
             </th>
 
             <th style="text-align: center;">
@@ -42,7 +42,7 @@
                 {
                     <td>
                         @Html.HiddenFor(modelItem => item.KampId)
-                        
+
                         @Html.DisplayFor(modelItem => item.HoldVsHold)
                     </td>
 
@@ -70,9 +70,10 @@
     <h2>Din kupon</h2>
     <table class="table">
         <tr>
-            <th>Hold Vs Hold</th>
+            <th>Kampe</th>
             <th>Valgt</th>
             <th>Odds</th>
+            <th>Fjern Kamp</th>
 
         </tr>
         @if (Model.kupon.delKampe != null)
@@ -101,9 +102,23 @@
                     valgt = "2";
                 }
 
-                <tr><td>@delKamp.Kampe.HoldVsHold</td><td>@valgt</td><td class="OddsBox">@odds</td></tr>
+
+
+                <tr>
+                    <td>@delKamp.Kampe.HoldVsHold</td>
+                    <td>@valgt</td>
+                    <td class="OddsBox">@odds</td>
+                    <td>
+                        @using (Html.BeginForm("FjernKamp", "Kupon"))
+                        {
+                            <input name="FjernKamp" value="@delKamp.Kampe.KampId" type="hidden">
+                            <input type="submit" value="X" />
+                        }
+                    </td>
+                </tr>
+
             }
-            <tr class="OddsBoxStart"><td><b>Samlet odds</b></td><td></td><td><b id="oddsResult">0</b></td></tr>
+            <tr class="OddsBoxStart"><td><b>Samlet odds</b></td><td colspan="2"></td><td><b id="oddsResult">0</b></td></tr>
         }
     </table>
     @using (Html.BeginForm())
@@ -116,7 +131,9 @@
                 <tr><td>Indsats</td><td><input type="text" class="form-control" name="bettingPoint" /></td></tr>
                 <tr><td>Mulig gevinst</td><td id="gevinst"><span class="OddsBoxStart">0</span> point</td></tr>
             </table>
-            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <a href="/Kupon/RydKupon" class="form-control btn btn-danger">Ryd kupon</a>
+            </div>
             <div class="col-md-6">
                 <input name="Bekraeft" type="submit" value="Bekræft" class="form-control btn btn-info" />
             </div>

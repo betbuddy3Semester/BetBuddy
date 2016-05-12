@@ -79,9 +79,9 @@ namespace WCFBetBuddy
             return fundetData;
         }
 
-        public bool FjernKamp(Kamp kamp)
+        public Kupon FjernKamp(Kamp kamp, Kupon kupon)
         {
-            bool dataFjernes = NyKuponController.FjernKamp(kamp);
+            Kupon dataFjernes = NyKuponController.FjernKamp(kamp, kupon);
             return dataFjernes;
         }
 

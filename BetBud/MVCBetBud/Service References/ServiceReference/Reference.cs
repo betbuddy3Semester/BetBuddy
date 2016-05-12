@@ -604,10 +604,10 @@ namespace MVCBetBud.ServiceReference {
         System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Kupon> TilføjKampAsync(MVCBetBud.ServiceReference.Kupon kupon, MVCBetBud.ServiceReference.Kamp kamp, bool valgt1, bool valgtX, bool valgt2);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/FjernKamp", ReplyAction="http://tempuri.org/IServices/FjernKampResponse")]
-        bool FjernKamp(MVCBetBud.ServiceReference.Kamp kamp);
+        MVCBetBud.ServiceReference.Kupon FjernKamp(MVCBetBud.ServiceReference.Kamp kamp, MVCBetBud.ServiceReference.Kupon kupon);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/FjernKamp", ReplyAction="http://tempuri.org/IServices/FjernKampResponse")]
-        System.Threading.Tasks.Task<bool> FjernKampAsync(MVCBetBud.ServiceReference.Kamp kamp);
+        System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Kupon> FjernKampAsync(MVCBetBud.ServiceReference.Kamp kamp, MVCBetBud.ServiceReference.Kupon kupon);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/OddsUdregning", ReplyAction="http://tempuri.org/IServices/OddsUdregningResponse")]
         double OddsUdregning();
@@ -747,12 +747,12 @@ namespace MVCBetBud.ServiceReference {
             return base.Channel.TilføjKampAsync(kupon, kamp, valgt1, valgtX, valgt2);
         }
         
-        public bool FjernKamp(MVCBetBud.ServiceReference.Kamp kamp) {
-            return base.Channel.FjernKamp(kamp);
+        public MVCBetBud.ServiceReference.Kupon FjernKamp(MVCBetBud.ServiceReference.Kamp kamp, MVCBetBud.ServiceReference.Kupon kupon) {
+            return base.Channel.FjernKamp(kamp, kupon);
         }
         
-        public System.Threading.Tasks.Task<bool> FjernKampAsync(MVCBetBud.ServiceReference.Kamp kamp) {
-            return base.Channel.FjernKampAsync(kamp);
+        public System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Kupon> FjernKampAsync(MVCBetBud.ServiceReference.Kamp kamp, MVCBetBud.ServiceReference.Kupon kupon) {
+            return base.Channel.FjernKampAsync(kamp, kupon);
         }
         
         public double OddsUdregning() {
