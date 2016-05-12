@@ -1,8 +1,9 @@
 ﻿
 @if (Session["brugerSession"] != null)
 {
-    
+    <script src="~/Scripts/chat.js"></script>
     <ul class="nav navbar-nav navbar-right">
+        <li><span onclick="startChat()">Open chat</span></li>
         <li>
             @Html.ActionLink("Profile", "Details", "Bruger")
         </li>
@@ -18,3 +19,4 @@ else
         <li>@Html.ActionLink("Login", "Login", "Bruger")</li>
     </ul>
 }
+

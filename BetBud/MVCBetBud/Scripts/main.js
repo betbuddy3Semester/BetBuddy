@@ -27,7 +27,7 @@ if (samletOdds != 1) {
     $(".OddsBoxStart").hide();
 }
 var bettingPoint = $("input[name=bettingPoint]");
-bettingPoint.keyup(function() {
+    bettingPoint.keyup(function() {
     var point = bettingPoint.val() * samletOdds;
     point = Math.round(point * 100) / 100;
     $("#gevinst").text(point);
