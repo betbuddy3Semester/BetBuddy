@@ -7,12 +7,34 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Bruger</h4>
+        @if (Session["BrugerErrorEmail"] != null)
+        {
+            <p>Fejlmeddelelse:  @Session["BrugerErrorEmail"];</p>
+           
+        }
+        @if (Session["BrugerErrorNavn"] != null)
+{
+    <p>Fejlmeddelelse:  @Session["BrugerErrorNavn"];</p>
+
+}
+        @if (Session["BrugerErrorBrugernavn"] != null)
+            
+        {
+            <p>Fejlmeddelelse:  @Session["BrugerErrorBrugernavn"];</p>
+           
+        }
+        @if (Session["BrugerErrorBruger"] != null)
+        {
+            <p>Fejlmeddelelse:  @Session["BrugerErrorBruger"];</p>
+
+        }
+
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -22,7 +44,7 @@
                 @Html.ValidationMessageFor(model => model.Navn, "", new { @class = "text-danger" })
             </div>
         </div>
-        
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.BrugerNavn, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -40,7 +62,7 @@
             </div>
         </div>
 
-       
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -64,7 +86,12 @@
         </div>
     </div>
 }
-
+@{
+    Session["BrugerErrorEmail"] = null;
+    Session["BrugerErrorNavn"] = null;
+    Session["BrugerErrorBrugernavn"] = null;
+    Session["BrugerErrorBruger"] = null;
+}
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>

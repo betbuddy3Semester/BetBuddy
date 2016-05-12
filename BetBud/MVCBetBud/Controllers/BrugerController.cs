@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -17,7 +18,7 @@ namespace MVCBetBud.Controllers
         {
             //var session = HttpContext.Current.Session;
             //if (Request.IsAuthenticated)
-            if(Session["brugerSession"] != null)
+            if (Session["brugerSession"] != null)
             {
                 // Bruger b = SR.getBrugerEfterBrugernavn(User.Identity.Name);
                 Bruger b = SR.getBruger((int)Session["brugerSession"]);
@@ -29,7 +30,7 @@ namespace MVCBetBud.Controllers
         // GET: login side
         public ActionResult Login()
         {
-            if(Session["brugerSession"] != null)
+            if (Session["brugerSession"] != null)
             {
                 return View("Index");
             }
@@ -76,7 +77,7 @@ namespace MVCBetBud.Controllers
         // GET: Bruger/Create
         public ActionResult Create()
         {
-            
+
             return View();
         }
 
@@ -84,15 +85,61 @@ namespace MVCBetBud.Controllers
         [HttpPost]
         public ActionResult Create(Bruger b)
         {
-            try
+            
+            
+
+            //Email constraints 
+            var matchEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").Match(b.Email);
+
+            //Number constraints
+            var matchName = new Regex(@"^[a-åA-Å' '-'\s]{1,40}$").Match(b.Navn);
+
+
+            //Brugernavn constraints 1-24 karaktere
+            //Skal starte med a-z
+            // må indeholde .,-_
+            //Må ikke ende på .,-_
+            var matchBruger = new Regex(@"^[a-zA-Z0-9\._\-]{0,23}$").Match(b.BrugerNavn);
+
+            Bruger bcheck = SR.getBrugerEfterBrugernavn(b.BrugerNavn);
+
+
+            if (matchEmail.Success && matchName.Success && matchBruger.Success && bcheck == null)
             {
-                SR.opretBruger(b);
-                return RedirectToAction("Index");
+
+                try
+                {
+                    SR.opretBruger(b);
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                    return View();
+                }
             }
-            catch
+            else
             {
-                return View();
+                if (!matchEmail.Success)
+                {
+                    Session["BrugerErrorEmail"] = "Der er fejl i din email.";
+
+                }
+                if (!matchName.Success)
+                {
+                    Session["BrugerErrorNavn"] = "Dit navn kan ikke indeholde tal";
+
+                }
+                if (!matchBruger.Success)
+                {
+                    Session["BrugerErrorBrugernavn"] = "Der er fejl i brugernavn";
+
+                }
+                if (bcheck != null)
+                {
+                    Session["BrugerErrorBruger"] = "Brugeren eksistere allerede";
+                }
             }
+            return View();
         }
 
         // GET: Bruger/Edit/5

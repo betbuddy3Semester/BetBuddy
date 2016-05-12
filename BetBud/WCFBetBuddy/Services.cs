@@ -67,6 +67,12 @@ namespace WCFBetBuddy
             brugerCtrl.SubtractPoints(Amount, navn, b);
         }
 
+        public IEnumerable<Bruger> getHighscores()
+        {
+           
+             return brugerCtrl.getHighscores();
+            
+        }
         #endregion
 
         #region KuponService

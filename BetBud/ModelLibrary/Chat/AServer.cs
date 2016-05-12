@@ -26,23 +26,17 @@ namespace ModelLibrary.Chat
         [DataMember]
         public int ServerPort { get; set; }
 
-        [DataMember, NotMapped]
-        public string ReceiveCallBackString { get; set; }
-
         [DataMember]
         public string ServerName { get; set; }
 
         [DataMember, NotMapped]
-        public IEnumerable<string> MessageList { get; set; }
+        public List<string> MessageList = new List<string>();
 
         [DataMember, NotMapped]
         public Socket ServerSocket { get; set; }
 
         [DataMember, NotMapped]
-        public List<Socket> ClientSocket { get; set; }
-
-        [DataMember, NotMapped]
-        public IPEndPoint ServerEndPoint { get; set; }
+        public List<Socket> ClientSocket = new List<Socket>();
 
         [DataMember, NotMapped]
         public StringBuilder Sb { get; set; }
@@ -63,11 +57,11 @@ namespace ModelLibrary.Chat
             //Skriv en besked til output i consolen for at se om serveren er ved at blive oprettet
             Debug.WriteLine("Setting up the server");
 
+            //Creating buffer
+            Buffer = new byte[BufferSize];
+
             //Opretter en instans af socket som har adressefamilien af internetwork og sockettypen af stream og protocoltypen af tcp som sikrer sig at alle pakkerne når frem.
             ServerSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-
-            //Opretter listen af client sockets
-            ClientSocket = new List<Socket>();
 
             //Serverens socket binder sig til et IpEndPoint (Hvor dataen skal hen) & opretter en instans af et ipendpoint som er en klasse der specificerer hvad ipaddressen og porten skal være
             ServerSocket.Bind(new IPEndPoint(IPAddress.Any, ServerPort));
@@ -77,6 +71,9 @@ namespace ModelLibrary.Chat
 
             //Serverens socket begynder af acceptere asynkrone tilbagekald
             ServerSocket.BeginAccept(AcceptCallback, null);
+
+            //Skriv en besked til output i consolen for at se om serveren er oprettet
+            Debug.WriteLine("Finished setting up the server");
         }
 
         /// <summary>
@@ -127,8 +124,11 @@ namespace ModelLibrary.Chat
                 return;
             }
 
-            //I dette kald bliver den nyoprettet client socket tilføjet til serverens clientsocket liste.
-            ClientSocket.Add(tempSocket);
+            lock (ClientSocket)
+            {
+                //I dette kald bliver den nyoprettet client socket tilføjet til serverens clientsocket liste.
+                ClientSocket.Add(tempSocket);
+            }
 
             //Her begynder den nyoprettet socket at modtage information fra clientens socket.
             tempSocket.BeginReceive(Buffer, 0, BufferSize, SocketFlags.None
@@ -145,7 +145,7 @@ namespace ModelLibrary.Chat
         public void ReceiveCallBack(IAsyncResult asyncCallback)
         {
             // Her oprettes en lokal socket til brug i metoden. Det er asynkrone sockets der bliver oprettet pr. client som connecter til den overordnede serverchat socket.
-            var current = (Socket) asyncCallback.AsyncState;
+            var current = (Socket)asyncCallback.AsyncState;
             int received;
 
             // I denne snippet forsøges det at tildele received et integer output fra current socketens endreceive metode.
@@ -169,9 +169,12 @@ namespace ModelLibrary.Chat
             // Nu kopieres serverens buffer ind i den nyoprettede buffer.
             Array.Copy(Buffer, receiveCallbackBuffer, received);
             // Her bliver bufferens array af bits konverteret til String format
-            ReceiveCallBackString = Encoding.ASCII.GetString(receiveCallbackBuffer);
+            var ReceiveCallBackString = Encoding.ASCII.GetString(receiveCallbackBuffer);
+
+            MessageList.Add(ReceiveCallBackString);
+            
+            Console.WriteLine(ReceiveCallBackString);
             //Her tilføjes den konverterede string til den overordnede liste af beskeder
-            MessageList.ToList().Add(ReceiveCallBackString);
 
             #region Responses
 
@@ -180,14 +183,16 @@ namespace ModelLibrary.Chat
 
             if (ReceiveCallBackString.ToLower() == "exit")
             {
+                // Til sidst laves en besked om, at socketen er blevet lukket - beskeden konverteres til et byteArray for at sende sende hurtigt imellem systemets forskellige lag og kodesprog.½
+                var byteMessageArrayToClient = Encoding.ASCII.GetBytes("Your connection has been closed");
+                current.Send(byteMessageArrayToClient);
+
                 // Hvis den ovenstående if returnere true, vælger vi den aktuelle client socket og starter med at lukke forbindelsen
                 current.Shutdown(SocketShutdown.Both);
                 // Derefter sletter vi client socketen
                 current.Close();
 
-                // Til sidst laves en besked om, at socketen er blevet lukket - beskeden konverteres til et byteArray for at sende sende hurtigt imellem systemets forskellige lag og kodesprog.½
-                var byteMessageArrayToClient = Encoding.ASCII.GetBytes("Your connection has been closed");
-                current.Send(byteMessageArrayToClient);
+                
             }
 
             #endregion

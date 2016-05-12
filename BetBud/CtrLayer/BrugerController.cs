@@ -45,14 +45,23 @@ namespace CtrLayer
 
             //Number constraints
             var matchName = new Regex(@"^[a-åA-Å' '-'\s]{1,40}$").Match(bruger.Navn);
-            bruger.Password = Encode(bruger.Password);
+            bruger.Password = GenerateSaltedHash(bruger.Password);
+
+            //Brugernavn constraints 1-24 karaktere
+            //Skal starte med a-z
+            // må indeholde .,-_
+            //Må ikke ende på .,-_
+            var matchBruger = new Regex(@"^[a-zA-Z]{1}[a-zA-Z0-9\._\-]{0,23}[^.-]$").Match(bruger.BrugerNavn);
+            //var matchBrugernavn = new Regex(@"(\.|\-|\._|\-_)$").Match(bruger.BrugerNavn);
+            Bruger b = GetBrugerEfterBrugerNavn(bruger.BrugerNavn);
 
 
-            if (matchEmail.Success && matchName.Success)
-
+            if (matchEmail.Success && matchName.Success && matchBruger.Success && b == null)
             {
+
                 using (var db = new BetBudContext())
                 {
+
                     db.Brugere.Add(bruger);
                     db.SaveChanges();
                 }
@@ -74,23 +83,37 @@ namespace CtrLayer
         {
             using (var db = new BetBudContext())
             {
-                return db.Brugere.First(b => b.BrugerNavn == bnavn);
+                return db.Brugere.FirstOrDefault(b => b.BrugerNavn == bnavn);
             }
         }
 
         public Bruger logIndBruger(string bNavn, string pWord)
         {
             using (var db = new BetBudContext())
-
             {
-                var passHash = Encode(pWord);
+                var passHash = GenerateSaltedHash(pWord);
                 var bruger = db.Brugere.Where(x => x.BrugerNavn.Equals(bNavn) && x.Password.Equals(passHash)).FirstOrDefault();
 
                 return bruger;
             }
         }
 
-        public string Encode(string value)
+        //hash password - salt password og hash igen
+        private string GenerateSaltedHash(String password)
+        {
+            byte[] hashPass = Encoding.UTF8.GetBytes(Encode(password));
+            byte[] endPass = new byte[hashPass.Length * 2];
+            for (var i = 0; i < hashPass.Length; i++)
+            {
+                endPass[i * 2] = hashPass[i];
+                endPass[(i * 2) + 1] = hashPass[hashPass.Length - 1 - i];
+            }
+            return Encode(Convert.ToBase64String(endPass));
+        }
+
+
+        //Opret en password hash
+        private string Encode(string value)
         {
             var hash = SHA1.Create();
             var encoder = new ASCIIEncoding();
@@ -113,7 +136,7 @@ namespace CtrLayer
             }
         }
 
-            public void SubtractPoints(double amount, string navn, Bruger b)
+        public void SubtractPoints(double amount, string navn, Bruger b)
         {
 
             using (var db = new BetBudContext())
@@ -130,18 +153,21 @@ namespace CtrLayer
 
         }
 
-        /*public Bruger getHighscores()
+        public IEnumerable<Bruger> getHighscores()
 
         {
 
             using (var db = new BetBudContext())
             {
-                var result = db.Brugere.GroupBy(x => x.Navn).Select(g => g.OrderByDescending(x => x.Point).First());
-                return result;
+                
+                //var result = db.Brugere.GroupBy(x => x.Navn).Select(g => g.OrderByDescending(x => x.Point));
+                var result = db.Brugere.OrderByDescending(x => x.Point);
+                return result.ToList();
+                //return result;
             }
-            
+           
         }
-        */
+        
 
         /*public List<Bruger> getHighscores()
         {
@@ -155,7 +181,7 @@ namespace CtrLayer
             }
 
         }*/
-        
+
 
 
 
