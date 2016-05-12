@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVCBetBud.ServiceReference;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +9,15 @@ namespace MVCBetBud.Controllers
 {
     public class ChatController : Controller
     {
+        ServiceReference.ServicesClient SR = new ServiceReference.ServicesClient();
         // GET: Chat
         public ActionResult Index()
         {
+            if(Session["brugerSession"] != null)
+            {
+                Bruger b = SR.getBruger((int)Session["brugerSession"]);
+                return View(b);
+            }
             return View();
         }
 
