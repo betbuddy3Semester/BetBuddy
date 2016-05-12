@@ -19,7 +19,7 @@ namespace WCFBetBuddy
         Kupon TilføjKamp(Kupon kupon, Kamp kamp, bool valgt1, bool valgtX, bool valgt2);
 
         [OperationContract]
-        bool FjernKamp(Kamp kamp);
+        Kupon FjernKamp(Kamp kamp, Kupon kupon);
 
         [OperationContract]
         double OddsUdregning();

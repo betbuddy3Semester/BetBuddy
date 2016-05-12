@@ -12,7 +12,7 @@ namespace CtrLayer
     {
         Kupon OpretKupon();
         Kupon TilføjKamp(Kamp kamp, bool valgt1, bool valgtX, bool valgt2, Kupon kupon);
-        bool FjernKamp(Kamp kamp);
+        Kupon FjernKamp(Kamp kamp, Kupon kupon);
         double OddsUdregning();
         double MuligGevist();
         bool BekræftKupon(Kupon kupon);

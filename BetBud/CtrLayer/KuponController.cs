@@ -74,16 +74,17 @@ namespace CtrLayer
             return kupon;
         }
 
+       
         // Metode til at fjerne en kamp fra sin kupon. Først kontrollere metoden om der er en kupon, og fjerner derefter 
         // den valgte kamp.
 
-        public bool FjernKamp(Kamp kamp)
+        public Kupon FjernKamp(Kamp kamp, Kupon kupon)
         {
-            if (NyKupon != null)
+            if (kupon != null)
             {
-                return NyKupon.FjernKamp(kamp);
+                kupon.FjernKamp(kamp);
             }
-            return false;
+            return kupon;
         }
 
         // Metode til at lave oddsudregningen fra modellaget. Kontrollere om kuponen findes og laver derefter
