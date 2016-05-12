@@ -11,7 +11,7 @@ namespace MVCBetBud.Controllers
         public ActionResult Index()
         {
             Kamp[] k = SR.GetAlleKampe();
-            Bruger[] b = SR.getBrugere();
+            Bruger[] b = SR.getHighscores();
             OpretForsideController ofc = new OpretForsideController();
             ofc.AlleKampe = k;
             ofc.brugere = b;

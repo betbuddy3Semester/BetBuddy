@@ -693,6 +693,12 @@ namespace MVCBetBud.ServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/logInd", ReplyAction="http://tempuri.org/IServices/logIndResponse")]
         System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Bruger> logIndAsync(string bNavn, string pWord);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/getHighscores", ReplyAction="http://tempuri.org/IServices/getHighscoresResponse")]
+        MVCBetBud.ServiceReference.Bruger[] getHighscores();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/getHighscores", ReplyAction="http://tempuri.org/IServices/getHighscoresResponse")]
+        System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Bruger[]> getHighscoresAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/OpretServer", ReplyAction="http://tempuri.org/IServices/OpretServerResponse")]
         void OpretServer(string serverName, int serverPort, int bufferSize);
         
@@ -865,6 +871,14 @@ namespace MVCBetBud.ServiceReference {
         
         public System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Bruger> logIndAsync(string bNavn, string pWord) {
             return base.Channel.logIndAsync(bNavn, pWord);
+        }
+        
+        public MVCBetBud.ServiceReference.Bruger[] getHighscores() {
+            return base.Channel.getHighscores();
+        }
+        
+        public System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Bruger[]> getHighscoresAsync() {
+            return base.Channel.getHighscoresAsync();
         }
         
         public void OpretServer(string serverName, int serverPort, int bufferSize) {

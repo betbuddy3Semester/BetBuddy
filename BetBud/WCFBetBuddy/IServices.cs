@@ -69,10 +69,12 @@ namespace WCFBetBuddy
         [OperationContract]
         Bruger logInd(string bNavn, string pWord);
 
+        [OperationContract]
+        IEnumerable<Bruger> getHighscores();
         #endregion
 
         #region IChatHub
-        
+
         [OperationContract]
         void OpretServer(string serverName, int serverPort, int bufferSize);
         
