@@ -37,7 +37,7 @@
         <h2>Highscore</h2>
         <ol>
             
-            @foreach (var bruger in Model.brugere.ToList().GetRange(0, 0))
+            @foreach (var bruger in Model.brugere.ToList().GetRange(0, 5))
             {
                 <li>@bruger.Navn -- @bruger.Point </li>
             }

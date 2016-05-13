@@ -30,5 +30,6 @@ namespace MVCBetBud.Controllers
 
             return View();
         }
+       
     }
 }
