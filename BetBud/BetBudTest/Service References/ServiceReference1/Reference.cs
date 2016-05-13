@@ -16,16 +16,16 @@ namespace BetBudTest.ServiceReference1 {
     public interface IServices {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/TilføjKamp", ReplyAction="http://tempuri.org/IServices/TilføjKampResponse")]
-        bool TilføjKamp(ModelLibrary.Kupon.Kamp kamp, bool valgt1, bool valgtX, bool valgt2);
+        ModelLibrary.Kupon.Kupon TilføjKamp(ModelLibrary.Kupon.Kupon kupon, ModelLibrary.Kupon.Kamp kamp, bool valgt1, bool valgtX, bool valgt2);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/TilføjKamp", ReplyAction="http://tempuri.org/IServices/TilføjKampResponse")]
-        System.Threading.Tasks.Task<bool> TilføjKampAsync(ModelLibrary.Kupon.Kamp kamp, bool valgt1, bool valgtX, bool valgt2);
+        System.Threading.Tasks.Task<ModelLibrary.Kupon.Kupon> TilføjKampAsync(ModelLibrary.Kupon.Kupon kupon, ModelLibrary.Kupon.Kamp kamp, bool valgt1, bool valgtX, bool valgt2);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/FjernKamp", ReplyAction="http://tempuri.org/IServices/FjernKampResponse")]
-        bool FjernKamp(ModelLibrary.Kupon.Kamp kamp);
+        ModelLibrary.Kupon.Kupon FjernKamp(ModelLibrary.Kupon.Kamp kamp, ModelLibrary.Kupon.Kupon kupon);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/FjernKamp", ReplyAction="http://tempuri.org/IServices/FjernKampResponse")]
-        System.Threading.Tasks.Task<bool> FjernKampAsync(ModelLibrary.Kupon.Kamp kamp);
+        System.Threading.Tasks.Task<ModelLibrary.Kupon.Kupon> FjernKampAsync(ModelLibrary.Kupon.Kamp kamp, ModelLibrary.Kupon.Kupon kupon);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/OddsUdregning", ReplyAction="http://tempuri.org/IServices/OddsUdregningResponse")]
         double OddsUdregning();
@@ -40,10 +40,10 @@ namespace BetBudTest.ServiceReference1 {
         System.Threading.Tasks.Task<double> MuligGevistAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/BekræftKupon", ReplyAction="http://tempuri.org/IServices/BekræftKuponResponse")]
-        bool BekræftKupon();
+        bool BekræftKupon(ModelLibrary.Kupon.Kupon kupon);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/BekræftKupon", ReplyAction="http://tempuri.org/IServices/BekræftKuponResponse")]
-        System.Threading.Tasks.Task<bool> BekræftKuponAsync();
+        System.Threading.Tasks.Task<bool> BekræftKuponAsync(ModelLibrary.Kupon.Kupon kupon);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/FindKamp", ReplyAction="http://tempuri.org/IServices/FindKampResponse")]
         ModelLibrary.Kupon.Kamp FindKamp(int KampId);
@@ -56,6 +56,18 @@ namespace BetBudTest.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/GetAlleKampe", ReplyAction="http://tempuri.org/IServices/GetAlleKampeResponse")]
         System.Threading.Tasks.Task<ModelLibrary.Kupon.Kamp[]> GetAlleKampeAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/GetAlleKuponer", ReplyAction="http://tempuri.org/IServices/GetAlleKuponerResponse")]
+        ModelLibrary.Kupon.Kupon[] GetAlleKuponer(ModelLibrary.Bruger.Bruger bruger);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/GetAlleKuponer", ReplyAction="http://tempuri.org/IServices/GetAlleKuponerResponse")]
+        System.Threading.Tasks.Task<ModelLibrary.Kupon.Kupon[]> GetAlleKuponerAsync(ModelLibrary.Bruger.Bruger bruger);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/NyKupon", ReplyAction="http://tempuri.org/IServices/NyKuponResponse")]
+        ModelLibrary.Kupon.Kupon NyKupon();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/NyKupon", ReplyAction="http://tempuri.org/IServices/NyKuponResponse")]
+        System.Threading.Tasks.Task<ModelLibrary.Kupon.Kupon> NyKuponAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/getBruger", ReplyAction="http://tempuri.org/IServices/getBrugerResponse")]
         ModelLibrary.Bruger.Bruger getBruger(int id);
@@ -92,6 +104,36 @@ namespace BetBudTest.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/sletBruger", ReplyAction="http://tempuri.org/IServices/sletBrugerResponse")]
         System.Threading.Tasks.Task sletBrugerAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/logInd", ReplyAction="http://tempuri.org/IServices/logIndResponse")]
+        ModelLibrary.Bruger.Bruger logInd(string bNavn, string pWord);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/logInd", ReplyAction="http://tempuri.org/IServices/logIndResponse")]
+        System.Threading.Tasks.Task<ModelLibrary.Bruger.Bruger> logIndAsync(string bNavn, string pWord);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/getHighscores", ReplyAction="http://tempuri.org/IServices/getHighscoresResponse")]
+        ModelLibrary.Bruger.Bruger[] getHighscores();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/getHighscores", ReplyAction="http://tempuri.org/IServices/getHighscoresResponse")]
+        System.Threading.Tasks.Task<ModelLibrary.Bruger.Bruger[]> getHighscoresAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/OpretServer", ReplyAction="http://tempuri.org/IServices/OpretServerResponse")]
+        void OpretServer(string serverName, int serverPort, int bufferSize);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/OpretServer", ReplyAction="http://tempuri.org/IServices/OpretServerResponse")]
+        System.Threading.Tasks.Task OpretServerAsync(string serverName, int serverPort, int bufferSize);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/DeleteServer", ReplyAction="http://tempuri.org/IServices/DeleteServerResponse")]
+        void DeleteServer(int serverId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/DeleteServer", ReplyAction="http://tempuri.org/IServices/DeleteServerResponse")]
+        System.Threading.Tasks.Task DeleteServerAsync(int serverId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/UpdateServer", ReplyAction="http://tempuri.org/IServices/UpdateServerResponse")]
+        void UpdateServer(int serverId, string serverName, int serverPort, int bufferSize);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/UpdateServer", ReplyAction="http://tempuri.org/IServices/UpdateServerResponse")]
+        System.Threading.Tasks.Task UpdateServerAsync(int serverId, string serverName, int serverPort, int bufferSize);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -121,20 +163,20 @@ namespace BetBudTest.ServiceReference1 {
                 base(binding, remoteAddress) {
         }
         
-        public bool TilføjKamp(ModelLibrary.Kupon.Kamp kamp, bool valgt1, bool valgtX, bool valgt2) {
-            return base.Channel.TilføjKamp(kamp, valgt1, valgtX, valgt2);
+        public ModelLibrary.Kupon.Kupon TilføjKamp(ModelLibrary.Kupon.Kupon kupon, ModelLibrary.Kupon.Kamp kamp, bool valgt1, bool valgtX, bool valgt2) {
+            return base.Channel.TilføjKamp(kupon, kamp, valgt1, valgtX, valgt2);
         }
         
-        public System.Threading.Tasks.Task<bool> TilføjKampAsync(ModelLibrary.Kupon.Kamp kamp, bool valgt1, bool valgtX, bool valgt2) {
-            return base.Channel.TilføjKampAsync(kamp, valgt1, valgtX, valgt2);
+        public System.Threading.Tasks.Task<ModelLibrary.Kupon.Kupon> TilføjKampAsync(ModelLibrary.Kupon.Kupon kupon, ModelLibrary.Kupon.Kamp kamp, bool valgt1, bool valgtX, bool valgt2) {
+            return base.Channel.TilføjKampAsync(kupon, kamp, valgt1, valgtX, valgt2);
         }
         
-        public bool FjernKamp(ModelLibrary.Kupon.Kamp kamp) {
-            return base.Channel.FjernKamp(kamp);
+        public ModelLibrary.Kupon.Kupon FjernKamp(ModelLibrary.Kupon.Kamp kamp, ModelLibrary.Kupon.Kupon kupon) {
+            return base.Channel.FjernKamp(kamp, kupon);
         }
         
-        public System.Threading.Tasks.Task<bool> FjernKampAsync(ModelLibrary.Kupon.Kamp kamp) {
-            return base.Channel.FjernKampAsync(kamp);
+        public System.Threading.Tasks.Task<ModelLibrary.Kupon.Kupon> FjernKampAsync(ModelLibrary.Kupon.Kamp kamp, ModelLibrary.Kupon.Kupon kupon) {
+            return base.Channel.FjernKampAsync(kamp, kupon);
         }
         
         public double OddsUdregning() {
@@ -153,12 +195,12 @@ namespace BetBudTest.ServiceReference1 {
             return base.Channel.MuligGevistAsync();
         }
         
-        public bool BekræftKupon() {
-            return base.Channel.BekræftKupon();
+        public bool BekræftKupon(ModelLibrary.Kupon.Kupon kupon) {
+            return base.Channel.BekræftKupon(kupon);
         }
         
-        public System.Threading.Tasks.Task<bool> BekræftKuponAsync() {
-            return base.Channel.BekræftKuponAsync();
+        public System.Threading.Tasks.Task<bool> BekræftKuponAsync(ModelLibrary.Kupon.Kupon kupon) {
+            return base.Channel.BekræftKuponAsync(kupon);
         }
         
         public ModelLibrary.Kupon.Kamp FindKamp(int KampId) {
@@ -175,6 +217,22 @@ namespace BetBudTest.ServiceReference1 {
         
         public System.Threading.Tasks.Task<ModelLibrary.Kupon.Kamp[]> GetAlleKampeAsync() {
             return base.Channel.GetAlleKampeAsync();
+        }
+        
+        public ModelLibrary.Kupon.Kupon[] GetAlleKuponer(ModelLibrary.Bruger.Bruger bruger) {
+            return base.Channel.GetAlleKuponer(bruger);
+        }
+        
+        public System.Threading.Tasks.Task<ModelLibrary.Kupon.Kupon[]> GetAlleKuponerAsync(ModelLibrary.Bruger.Bruger bruger) {
+            return base.Channel.GetAlleKuponerAsync(bruger);
+        }
+        
+        public ModelLibrary.Kupon.Kupon NyKupon() {
+            return base.Channel.NyKupon();
+        }
+        
+        public System.Threading.Tasks.Task<ModelLibrary.Kupon.Kupon> NyKuponAsync() {
+            return base.Channel.NyKuponAsync();
         }
         
         public ModelLibrary.Bruger.Bruger getBruger(int id) {
@@ -223,6 +281,46 @@ namespace BetBudTest.ServiceReference1 {
         
         public System.Threading.Tasks.Task sletBrugerAsync(int id) {
             return base.Channel.sletBrugerAsync(id);
+        }
+        
+        public ModelLibrary.Bruger.Bruger logInd(string bNavn, string pWord) {
+            return base.Channel.logInd(bNavn, pWord);
+        }
+        
+        public System.Threading.Tasks.Task<ModelLibrary.Bruger.Bruger> logIndAsync(string bNavn, string pWord) {
+            return base.Channel.logIndAsync(bNavn, pWord);
+        }
+        
+        public ModelLibrary.Bruger.Bruger[] getHighscores() {
+            return base.Channel.getHighscores();
+        }
+        
+        public System.Threading.Tasks.Task<ModelLibrary.Bruger.Bruger[]> getHighscoresAsync() {
+            return base.Channel.getHighscoresAsync();
+        }
+        
+        public void OpretServer(string serverName, int serverPort, int bufferSize) {
+            base.Channel.OpretServer(serverName, serverPort, bufferSize);
+        }
+        
+        public System.Threading.Tasks.Task OpretServerAsync(string serverName, int serverPort, int bufferSize) {
+            return base.Channel.OpretServerAsync(serverName, serverPort, bufferSize);
+        }
+        
+        public void DeleteServer(int serverId) {
+            base.Channel.DeleteServer(serverId);
+        }
+        
+        public System.Threading.Tasks.Task DeleteServerAsync(int serverId) {
+            return base.Channel.DeleteServerAsync(serverId);
+        }
+        
+        public void UpdateServer(int serverId, string serverName, int serverPort, int bufferSize) {
+            base.Channel.UpdateServer(serverId, serverName, serverPort, bufferSize);
+        }
+        
+        public System.Threading.Tasks.Task UpdateServerAsync(int serverId, string serverName, int serverPort, int bufferSize) {
+            return base.Channel.UpdateServerAsync(serverId, serverName, serverPort, bufferSize);
         }
     }
 }

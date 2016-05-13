@@ -25,13 +25,13 @@ namespace BetBudTest
 
 
             //Act 
-            bruger.BrugerNavn = "LuderLaila";
-            bruger.Email = "lailasmås@hehe.fu";
+            bruger.BrugerNavn = "Laila";
+            bruger.Email = "lailasmaabjerggaard@hehe.fu";
             BSR.opretBruger(bruger);
 
             //Assert
             Bruger b = BSR.getBrugerEfterBrugernavn(bruger.BrugerNavn);
-            Assert.AreEqual("LuderLaila", b.BrugerNavn);
+            Assert.AreEqual("Laila", b.BrugerNavn);
             BSR.sletBruger(b.BrugerId);
         }
 
