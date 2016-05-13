@@ -77,50 +77,61 @@ namespace WCFBetBuddy
 
         #region KuponService
 
+        //Oprettes en ny KuponController som hedderNyKuponController
         KuponController NyKuponController = new KuponController();
 
+        // Metode til at kalde TilføjKamp i controllerlaget og videresender parametrelisten og holder den returnerede kupon. 
+        //Og returnere den valgte kupon
         public Kupon TilføjKamp(Kupon kupon, Kamp kamp, bool valgt1, bool valgtX, bool valgt2)
         {
             Kupon fundetData = NyKuponController.TilføjKamp(kamp, valgt1, valgtX, valgt2, kupon);
             return fundetData;
         }
 
+        // Metode FjernKamp som sendes videre til controller laget, hvor kamp og kupon holdes i dataFjernet og returnere kun kupon
         public Kupon FjernKamp(Kamp kamp, Kupon kupon)
         {
             Kupon dataFjernes = NyKuponController.FjernKamp(kamp, kupon);
             return dataFjernes;
         }
 
+        // Kalder metoden i controller laget og retunere denne
         public double OddsUdregning()
         {
             return NyKuponController.OddsUdregning();
         }
 
+        // Kalder metoden i controller laget og retunere denne
         public double MuligGevist()
         {
             return NyKuponController.MuligGevist();
         }
 
+        // Kalder metoden i controller laget og retunere denne
         public bool BekræftKupon(Kupon kupon)
         {
             return NyKuponController.BekræftKupon(kupon);
         }
 
+        // Kalder metoden FindKamp i controller laget og retunere denne
         public Kamp FindKamp(int KampId)
         {
             return NyKuponController.FindKamp(KampId);
         }
 
+        // Kalder metoden GetAlleKampe i controller laget og retunere denne
         public IEnumerable<Kamp> GetAlleKampe()
         {
             return NyKuponController.GetAlleKampe();
         }
 
+        // Kalder metoden i controller laget og retunere denne
         public IEnumerable<Kupon> GetAlleKuponer(Bruger bruger)
         {
             return NyKuponController.GetAlleKuponer(bruger);
         }
 
+        // Kalder metoden i controller laget og retunere denne
         public Kupon NyKupon()
         {
             return NyKuponController.OpretKupon();

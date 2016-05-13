@@ -8,6 +8,7 @@ using ModelLibrary.Kupon;
 
 namespace CtrLayer
 {
+    // KuponController interface med dennes metoder
     public interface IKuponController
     {
         Kupon OpretKupon();

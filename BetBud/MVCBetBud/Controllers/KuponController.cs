@@ -194,6 +194,9 @@ namespace MVCBetBud.Controllers
             }
         }
 
+
+        // Post metode til at fjerne valgte kampe fra sin kupon.
+        // 
         [HttpPost]
         public ActionResult FjernKamp()
         {
@@ -207,6 +210,9 @@ namespace MVCBetBud.Controllers
             return RedirectToAction("OpretKupon");
         }
 
+        // Metode til at rydde hele sin kupon. 
+        // Hvis kuponen er på session sættes kupon til null, og derved fjernes alle de valgte kampe. 
+        // Man sendes til siden "opretKupon" 
         public ActionResult RydKupon()
         {
             if (Session["kupon"] != null )
