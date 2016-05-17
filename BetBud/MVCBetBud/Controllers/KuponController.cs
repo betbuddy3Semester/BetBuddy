@@ -221,5 +221,11 @@ namespace MVCBetBud.Controllers
             }
             return RedirectToAction("OpretKupon");
         }
+
+        public ActionResult ApiGetKampe()
+        {
+
+            return View();
+        }
     }
 }

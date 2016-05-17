@@ -103,11 +103,12 @@ namespace CtrLayer
         /// <returns>En liste af servere</returns>
         public List<AServer> FindServers(string serverName)
         {
-            using (var db = new BetBudContext())
+            /*using (var db = new BetBudContext())
             {
                 // Denne metode returnere en liste over alle servere hvis navn matcher inputtet
                 return db.ChatServers.ToList().FindAll(x => x.ServerName.Contains(serverName));
-            }
+            }*/
+            return null;
         }
 
         /// <summary>
@@ -117,11 +118,12 @@ namespace CtrLayer
         /// <returns></returns>
         public AServer FindSpecificAServer(int serverId)
         {
-            using (var db = new BetBudContext())
-            {
-                // Denne metode returnere en specifik server, ud fra et givent server id
-                return db.ChatServers.Single(x => x.AServerId == serverId);
-            }
+            //using (var db = new BetBudContext())
+            //{
+            //    // Denne metode returnere en specifik server, ud fra et givent server id
+            //    return db.ChatServers.Single(x => x.AServerId == serverId);
+            //}
+            return null;
         }
 
         public Client JoinServer(int port)

@@ -51,4 +51,7 @@ socket.on('request', function (request) {
 		};
 		return -1;
 	}
-}); 
+});
+
+/* api kald */
+var lastGetDate = 0;

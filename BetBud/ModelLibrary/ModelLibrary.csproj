@@ -60,6 +60,7 @@
     <Compile Include="Kupon\DelKamp.cs" />
     <Compile Include="Kupon\Kamp.cs" />
     <Compile Include="Kupon\Kupon.cs" />
+    <Compile Include="Kupon\Setting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
