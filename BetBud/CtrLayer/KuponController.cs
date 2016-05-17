@@ -10,6 +10,7 @@ using DALBetBud.Context;
 using System.Runtime.Serialization;
 using ModelLibrary.Bruger;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace CtrLayer
 {
@@ -165,14 +166,29 @@ namespace CtrLayer
                 return db.Kuponer.Include(x=>x.delKampe.Select(y=>y.Kampe)).Include(x=>x.Bruger).Where(allebrugerkuponger => allebrugerkuponger.BrugerId == bruger.BrugerId).ToList();
             }
         }
-        /*public void ApiGetKampe()
+        public void ApiGetKampe()
         {
-
-            XmlDocument weatherURL = new XmlDocument();
-            weatherURL.Load("http://api.wunderground.com/api/"
-    
-                your_key "/conditions/q/" + zip + ".xml");
-            foreach (XmlNode nodeselect in weatherURL.SelectNodes("response/current_observation")) ;
-        }*/
+            string lastApiDate = getLastApiCall().value;
+            var oddsUrl = XElement.Load("http://odds.mukuduk.dk/?created="+lastApiDate);
+            var kampe = oddsUrl.Elements("kamp").Select(p => new Kamp {
+                HoldVsHold = p.Element("text").Value,
+                Odds1 = Double.Parse( p.Element("odds1").Value),
+                OddsX = Double.Parse(p.Element("oddsx").Value),
+                Odds2 = Double.Parse(p.Element("odds2").Value),
+                KampStart = DateTime.Parse(p.Element("kampStart").Value),
+                Aflyst = Boolean.Parse(p.Element("aflyst").Value),
+                Vundet1 = Boolean.Parse(p.Element("vundet1").Value),
+                VundetX = Boolean.Parse(p.Element("vundetx").Value),
+                Vundet2 = Boolean.Parse(p.Element("vundet2").Value),
+                KampId = int.Parse(p.Element("KampId").Value)
+            }).ToArray();
+        }
+        private Setting getLastApiCall()
+        {
+            using (BetBudContext db = new BetBudContext())
+            {
+                return db.Settings.Where(x => x.name == "lastApiCall").First();
+            }
+        }
     }
 }
