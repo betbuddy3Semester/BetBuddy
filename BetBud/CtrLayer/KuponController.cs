@@ -9,6 +9,7 @@ using ModelLibrary.Kupon;
 using DALBetBud.Context;
 using System.Runtime.Serialization;
 using ModelLibrary.Bruger;
+using System.Xml;
 
 namespace CtrLayer
 {
@@ -74,7 +75,7 @@ namespace CtrLayer
             return kupon;
         }
 
-       
+
         // Metode til at fjerne en kamp fra sin kupon. Først kontrollere metoden om der er en kupon, og fjerner derefter 
         // den valgte kamp.
 
@@ -161,8 +162,17 @@ namespace CtrLayer
         {
             using (BetBudContext db = new BetBudContext())
             {
-                return db.Kuponer.Where(allebrugerkuponger => allebrugerkuponger.BrugerId == bruger.BrugerId).ToList();
+                return db.Kuponer.Include(x=>x.delKampe.Select(y=>y.Kampe)).Include(x=>x.Bruger).Where(allebrugerkuponger => allebrugerkuponger.BrugerId == bruger.BrugerId).ToList();
             }
         }
+        /*public void ApiGetKampe()
+        {
+
+            XmlDocument weatherURL = new XmlDocument();
+            weatherURL.Load("http://api.wunderground.com/api/"
+    
+                your_key "/conditions/q/" + zip + ".xml");
+            foreach (XmlNode nodeselect in weatherURL.SelectNodes("response/current_observation")) ;
+        }*/
     }
 }

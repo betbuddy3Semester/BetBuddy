@@ -10,8 +10,8 @@
 </script>
 <div class="col-md-8">
 
-    <h2>OpretKupon</h2>
-    <table class="table col-md-7" id="AlleKampeID">
+    <h2>Ugens kampe</h2>
+    <table class="table col-md-7" id="AlleKampeID" style="">
         <tr>
 
             <th>
@@ -46,7 +46,7 @@
                         @Html.DisplayFor(modelItem => item.HoldVsHold)
                     </td>
 
-                    <td style="text-align: center;">
+                    <td style="text-align: center; height: 20px; width: 30px;"> 
                         <input type="submit" name="Odds1" value="@Html.DisplayFor(modelItem => item.Odds1)" />
 
                     </td>
