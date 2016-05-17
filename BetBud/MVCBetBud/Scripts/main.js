@@ -31,4 +31,11 @@ var bettingPoint = $("input[name=bettingPoint]");
     var point = bettingPoint.val() * samletOdds;
     point = Math.round(point * 100) / 100;
     $("#gevinst").text(point);
-});
+    });
+
+var kupon = function() {
+    this.kamp = [];
+    this.addKamp = function(kamp) {
+        this.kamp.push(kamp);
+    }
+}
