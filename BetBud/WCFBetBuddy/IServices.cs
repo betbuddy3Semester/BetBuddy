@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 using ModelLibrary.Bruger;
-using ModelLibrary.Chat;
 using ModelLibrary.Kupon;
 
 namespace WCFBetBuddy
 {
     [ServiceContract]
-    interface IServices
+    internal interface IServices
     {
         #region Ikupon
 
@@ -42,6 +37,9 @@ namespace WCFBetBuddy
         [OperationContract]
         Kupon NyKupon();
 
+        [OperationContract]
+        void GetKampFromApi();
+
         #endregion
 
         #region IBruger
@@ -71,18 +69,20 @@ namespace WCFBetBuddy
 
         [OperationContract]
         IEnumerable<Bruger> getHighscores();
+
         #endregion
 
         #region IChatHub
 
         [OperationContract]
         void OpretServer(string serverName, int serverPort, int bufferSize);
-        
+
         [OperationContract]
         void DeleteServer(int serverId);
-        
+
         [OperationContract]
         void UpdateServer(int serverId, string serverName, int serverPort, int bufferSize);
+
         /*
         [OperationContract]
         List<AServer> FindServers(string serverName);
@@ -93,6 +93,7 @@ namespace WCFBetBuddy
         [OperationContract]
         Client JoinServer(int port, Client client);
         */
+
         #endregion
     }
 }

@@ -15,6 +15,7 @@
         }
 
         body {
+            margin-bottom: 41px;
             font: 13px Helvetica, Arial;
         }
 
@@ -64,30 +65,29 @@
 
     <script type="text/javascript">
 
-         var socket = new WebSocket('ws://localhost:1337');
-         socket.onopen = function () {
-             socket.send('/setUserName @Model.BrugerNavn');
-         };
+        var socket = new WebSocket('ws://localhost:1337');
+        socket.onopen = function () {
+            socket.send('/setUserName @Model.BrugerNavn');
+        };
 
-         socket.onmessage = function (message) {
+        socket.onmessage = function (message) {
             console.log("message:");
             console.log(message);
             var msg = JSON.parse(message.data);
             console.log("msg:");
             console.log(msg);
-            $('#messages').append($('<li>').text(msg.data.user+": "+msg.data.msg));
-         };
+            $('#messages').append($('<li>').text(msg.data.user + ": " + msg.data.msg));
+        };
 
-         socket.onerror = function (error) {
+        socket.onerror = function (error) {
             console.log('WebSocket error: ' + error);
-         };
+        };
 
-         $('form').submit(function(){
+        $('form').submit(function () {
             socket.send($('#m').val());
             $('#m').val('');
             return false;
-         });
+        });
     </script>
 </body>
 </html>
-

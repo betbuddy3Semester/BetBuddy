@@ -1,24 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using CtrLayer;
 using ModelLibrary.Bruger;
-using ModelLibrary.Chat;
 using ModelLibrary.Kupon;
 
 namespace WCFBetBuddy
 {
     public class Services : IServices
     {
-        DelKamp tempDelKamp = new DelKamp();
-        Kupon tempKupon = new Kupon();
+        private DelKamp tempDelKamp = new DelKamp();
+        private Kupon tempKupon = new Kupon();
 
         #region BrugerService
 
-        BrugerController brugerCtrl = new BrugerController();
+        private readonly BrugerController brugerCtrl = new BrugerController();
 
 
         public Bruger getBruger(int id)
@@ -53,7 +47,7 @@ namespace WCFBetBuddy
 
         public Bruger logInd(string bNavn, string pWord)
         {
-            Bruger b = brugerCtrl.logIndBruger(bNavn, pWord);
+            var b = brugerCtrl.logIndBruger(bNavn, pWord);
             return b;
         }
 
@@ -69,29 +63,28 @@ namespace WCFBetBuddy
 
         public IEnumerable<Bruger> getHighscores()
         {
-           
-             return brugerCtrl.getHighscores();
-            
+            return brugerCtrl.getHighscores();
         }
+
         #endregion
 
         #region KuponService
 
         //Oprettes en ny KuponController som hedderNyKuponController
-        KuponController NyKuponController = new KuponController();
+        private readonly KuponController NyKuponController = new KuponController();
 
         // Metode til at kalde TilføjKamp i controllerlaget og videresender parametrelisten og holder den returnerede kupon. 
         //Og returnere den valgte kupon
         public Kupon TilføjKamp(Kupon kupon, Kamp kamp, bool valgt1, bool valgtX, bool valgt2)
         {
-            Kupon fundetData = NyKuponController.TilføjKamp(kamp, valgt1, valgtX, valgt2, kupon);
+            var fundetData = NyKuponController.TilføjKamp(kamp, valgt1, valgtX, valgt2, kupon);
             return fundetData;
         }
 
         // Metode FjernKamp som sendes videre til controller laget, hvor kamp og kupon holdes i dataFjernet og returnere kun kupon
         public Kupon FjernKamp(Kamp kamp, Kupon kupon)
         {
-            Kupon dataFjernes = NyKuponController.FjernKamp(kamp, kupon);
+            var dataFjernes = NyKuponController.FjernKamp(kamp, kupon);
             return dataFjernes;
         }
 
@@ -137,6 +130,11 @@ namespace WCFBetBuddy
             return NyKuponController.OpretKupon();
         }
 
+        public void GetKampFromApi()
+        {
+            NyKuponController.ApiGetKampe();
+        }
+
         #endregion
 
         #region ChatService
@@ -144,10 +142,10 @@ namespace WCFBetBuddy
         //Detaljeret forklaring i control laget og model laget
 
         // Todo - Få forklaring af hvorfor dette skal være en datamember
-        ChatHub _chatHub = new ChatHub();
+        private readonly ChatHub _chatHub = new ChatHub();
 
         /// <summary>
-        /// Denne metode opretter en server
+        ///     Denne metode opretter en server
         /// </summary>
         /// <param name="serverName">Serverens navn</param>
         /// <param name="serverPort">Serverens port</param>
@@ -156,18 +154,18 @@ namespace WCFBetBuddy
         {
             _chatHub.OpretServer(serverName, serverPort, bufferSize);
         }
-        
+
         /// <summary>
-        /// Denne metode sletter en server
+        ///     Denne metode sletter en server
         /// </summary>
         /// <param name="serverId">Serverens id</param>
         public void DeleteServer(int serverId)
         {
             _chatHub.DeleteServer(serverId);
         }
-        
+
         /// <summary>
-        /// Denne metode opdaterer en servers information
+        ///     Denne metode opdaterer en servers information
         /// </summary>
         /// <param name="serverId">Serverens id, bruges i dette tilfælde til at finde serveren</param>
         /// <param name="serverName">Serverens navn</param>
@@ -177,6 +175,7 @@ namespace WCFBetBuddy
         {
             _chatHub.UpdateServer(serverId, serverName, serverPort, bufferSize);
         }
+
         /*
         /// <summary>
         /// Denne metode returnerer en liste af servere
@@ -208,6 +207,7 @@ namespace WCFBetBuddy
             return _chatHub.JoinServer(port, client);
         }
         */
+
         #endregion
     }
 }

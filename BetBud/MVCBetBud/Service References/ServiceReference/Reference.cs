@@ -29,6 +29,9 @@ namespace MVCBetBud.ServiceReference {
         private int BrugerIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime CreateDateTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool KontrolleretField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -72,6 +75,19 @@ namespace MVCBetBud.ServiceReference {
                 if ((this.BrugerIdField.Equals(value) != true)) {
                     this.BrugerIdField = value;
                     this.RaisePropertyChanged("BrugerId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime CreateDateTime {
+            get {
+                return this.CreateDateTimeField;
+            }
+            set {
+                if ((this.CreateDateTimeField.Equals(value) != true)) {
+                    this.CreateDateTimeField = value;
+                    this.RaisePropertyChanged("CreateDateTime");
                 }
             }
         }
@@ -651,6 +667,12 @@ namespace MVCBetBud.ServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/NyKupon", ReplyAction="http://tempuri.org/IServices/NyKuponResponse")]
         System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Kupon> NyKuponAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/GetKampFromApi", ReplyAction="http://tempuri.org/IServices/GetKampFromApiResponse")]
+        void GetKampFromApi();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/GetKampFromApi", ReplyAction="http://tempuri.org/IServices/GetKampFromApiResponse")]
+        System.Threading.Tasks.Task GetKampFromApiAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/getBruger", ReplyAction="http://tempuri.org/IServices/getBrugerResponse")]
         MVCBetBud.ServiceReference.Bruger getBruger(int id);
         
@@ -815,6 +837,14 @@ namespace MVCBetBud.ServiceReference {
         
         public System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Kupon> NyKuponAsync() {
             return base.Channel.NyKuponAsync();
+        }
+        
+        public void GetKampFromApi() {
+            base.Channel.GetKampFromApi();
+        }
+        
+        public System.Threading.Tasks.Task GetKampFromApiAsync() {
+            return base.Channel.GetKampFromApiAsync();
         }
         
         public MVCBetBud.ServiceReference.Bruger getBruger(int id) {

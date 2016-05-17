@@ -125,6 +125,16 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetKampFromApi">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetKampFromApiResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="getBruger">
     <xs:complexType>
       <xs:sequence>
@@ -224,7 +234,7 @@
   <xs:element name="getHighscoresResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/ModelLibrary.Bruger" minOccurs="0" name="getHighscoresResult" nillable="true" type="q17:ArrayOfBruger" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/ModelLibrary.Bruger" minOccurs="0" name="getHighscoresResult" nillable="true" type="q19:ArrayOfBruger" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
