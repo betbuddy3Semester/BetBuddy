@@ -168,7 +168,8 @@ namespace CtrLayer
         }
         public void ApiGetKampe()
         {
-            string lastApiDate = getLastApiCall().value;
+            Setting apiSetting = getLastApiCall();
+            string lastApiDate = apiSetting.value;
             var oddsUrl = XElement.Load("http://odds.mukuduk.dk/?created="+lastApiDate);
             var kampe = oddsUrl.Elements("kamp").Select(p => new Kamp {
                 HoldVsHold = p.Element("text").Value,
@@ -182,7 +183,12 @@ namespace CtrLayer
                 Vundet2 = Boolean.Parse(p.Element("vundet2").Value),
                 KampId = int.Parse(p.Element("KampId").Value)
             }).ToArray();
+            if(kampe.Count() > 0) 
+                storeNewKampe(kampe);
+
+            apiSetting.value = DateTime.Now+"";
         }
+
         private Setting getLastApiCall()
         {
             using (BetBudContext db = new BetBudContext())
@@ -190,5 +196,22 @@ namespace CtrLayer
                 return db.Settings.Where(x => x.name == "lastApiCall").First();
             }
         }
+        private void updateSetting(Setting setting)
+        {
+            using (BetBudContext db = new BetBudContext())
+            {
+                db.Entry(setting).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+        private void storeNewKampe(Kamp[] kamp)
+        {
+            using (BetBudContext db = new BetBudContext())
+            {
+                db.Kampe.AddRange(kamp);
+                db.SaveChanges();
+            }
+        }
+            
     }
 }
