@@ -14,7 +14,6 @@ using System.Xml.Linq;
 
 namespace CtrLayer
 {
-
     public class KuponController : IKuponController
     {
         // instance variable af kupon 
@@ -23,7 +22,6 @@ namespace CtrLayer
         // Konstruktør for KuponController
         public KuponController()
         {
-
         }
 
 
@@ -120,18 +118,17 @@ namespace CtrLayer
         // Samme sker med kupon.bruger. Kuponen bliver tilføjet og gemt. 
         public bool BekræftKupon(Kupon kupon)
         {
+            kupon.CreateDateTime = DateTime.Now;
             using (BetBudContext db = new BetBudContext())
             {
                 foreach (var kamp in kupon.delKampe)
                 {
-
                     db.Entry(kamp.Kampe).State = EntityState.Unchanged;
                 }
                 db.Entry(kupon.Bruger).State = EntityState.Unchanged;
                 db.Kuponer.Add(kupon);
                 db.SaveChanges();
                 return true;
-
             }
         }
 
@@ -141,7 +138,6 @@ namespace CtrLayer
             using (BetBudContext db = new BetBudContext())
             {
                 return db.Kampe.ToList();
-
             }
         }
 
@@ -163,16 +159,22 @@ namespace CtrLayer
         {
             using (BetBudContext db = new BetBudContext())
             {
-                return db.Kuponer.Include(x=>x.delKampe.Select(y=>y.Kampe)).Include(x=>x.Bruger).Where(allebrugerkuponger => allebrugerkuponger.BrugerId == bruger.BrugerId).ToList();
+                return
+                    db.Kuponer.Include(x => x.delKampe.Select(y => y.Kampe))
+                        .Include(x => x.Bruger)
+                        .Where(allebrugerkuponger => allebrugerkuponger.BrugerId == bruger.BrugerId)
+                        .ToList();
             }
         }
+
         public void ApiGetKampe()
         {
             string lastApiDate = getLastApiCall().value;
-            var oddsUrl = XElement.Load("http://odds.mukuduk.dk/?created="+lastApiDate);
-            var kampe = oddsUrl.Elements("kamp").Select(p => new Kamp {
+            var oddsUrl = XElement.Load("http://odds.mukuduk.dk/?created=" + lastApiDate);
+            var kampe = oddsUrl.Elements("kamp").Select(p => new Kamp
+            {
                 HoldVsHold = p.Element("text").Value,
-                Odds1 = Double.Parse( p.Element("odds1").Value),
+                Odds1 = Double.Parse(p.Element("odds1").Value),
                 OddsX = Double.Parse(p.Element("oddsx").Value),
                 Odds2 = Double.Parse(p.Element("odds2").Value),
                 KampStart = DateTime.Parse(p.Element("kampStart").Value),
@@ -183,6 +185,7 @@ namespace CtrLayer
                 KampId = int.Parse(p.Element("KampId").Value)
             }).ToArray();
         }
+
         private Setting getLastApiCall()
         {
             using (BetBudContext db = new BetBudContext())

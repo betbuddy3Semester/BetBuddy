@@ -15,23 +15,30 @@ namespace ModelLibrary.Kupon
     {
         [DataMember]
         public Bruger.Bruger Bruger { get; set; }
+
         [DataMember]
-        public int BrugerId { get; set; }  
+        public int BrugerId { get; set; }
+
         [DataMember]
         public Boolean Kontrolleret { get; set; }
+
         [DataMember]
         public List<DelKamp> delKampe { get; set; }
+
         [DataMember]
         public double Point { get; set; }
+
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [DataMember]
         public int KuponId { get; set; }
+
+        [DataMember]
+        public DateTime CreateDateTime { get; set; }
 
         public Kupon()
         {
             delKampe = new List<DelKamp>();
         }
-        
 
 
         // Metode til at tilføje kampe til kuponen. 
@@ -49,12 +56,11 @@ namespace ModelLibrary.Kupon
                 nyDelKamp.ValgtX = valgtX;
                 nyDelKamp.Valgt2 = valgt2;
                 delKampe.Add(nyDelKamp);
-                
-                
+
+
                 return true;
             }
             return false;
-
         }
 
         // Metode til at fjerne kampe fra kuponen. Gennemgår listen udfra index og finder index nr. 
@@ -65,7 +71,6 @@ namespace ModelLibrary.Kupon
             {
                 for (int i = 0; i < delKampe.Count; i++)
                 {
-
                     if (delKampe[i].Kampe.KampId.Equals(kamp.KampId))
                     {
                         delKampe.RemoveAt(i);
@@ -87,7 +92,7 @@ namespace ModelLibrary.Kupon
                 oddsResultat *= HverDelKamp.GetOdds();
             }
 
-            oddsResultat = Math.Round(oddsResultat,2);
+            oddsResultat = Math.Round(oddsResultat, 2);
             return oddsResultat;
         }
 
@@ -95,21 +100,17 @@ namespace ModelLibrary.Kupon
         //bruge på kuponen. Math.Round runder gevisten op således der kun er 2(Derfor: point,2) decimaler i den mulige gevinst.
         public double MuligGevist()
         {
-            return Math.Round(OddsUdregning()*Point,2);
+            return Math.Round(OddsUdregning()*Point, 2);
         }
 
         public bool BekræftKupon()
         {
             throw new NotImplementedException();
         }
-        
+
         public bool KontrolAfKupon()
         {
             throw new NotImplementedException();
         }
-
-       
-
-
     }
 }

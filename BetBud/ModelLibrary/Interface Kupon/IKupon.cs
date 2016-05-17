@@ -15,9 +15,7 @@ namespace ModelLibrary
         double MuligGevist();
         bool BekræftKupon();
 
-        
 
-        
         /**
         * Kontrol/indløsning af kupon
         */
@@ -26,11 +24,5 @@ namespace ModelLibrary
         double Point { get; set; }
         List<DelKamp> delKampe { get; set; }
         Bruger.Bruger Bruger { get; set; }
-        
-        
-        
-
-
-        
     }
 }
