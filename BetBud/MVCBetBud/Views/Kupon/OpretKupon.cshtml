@@ -7,7 +7,16 @@
 }
 <script>
 
+
 </script>
+@if (Session["error"] != null)
+{
+    <h3> du har ikke poing nok </h3>
+
+    {
+        Session["error"] = null;
+    }
+}
 <div class="col-md-8">
 
     <h2>Ugens kampe</h2>
@@ -46,7 +55,7 @@
                         @Html.DisplayFor(modelItem => item.HoldVsHold)
                     </td>
 
-                    <td style="text-align: center; height: 20px; width: 30px;"> 
+                    <td style="text-align: center; height: 20px; width: 30px;">
                         <input type="submit" name="Odds1" value="@Html.DisplayFor(modelItem => item.Odds1)" />
 
                     </td>
@@ -128,6 +137,7 @@
                 <tr>
                     <th colspan="2">Vælg indsats</th>
                 </tr>
+                <tr><td>til Rådighed</td><td id="dinePoing">@Model.kupon.Bruger.Point</td></tr>
                 <tr><td>Indsats</td><td><input type="text" class="form-control" name="bettingPoint" /></td></tr>
                 <tr><td>Mulig gevinst</td><td id="gevinst"><span class="OddsBoxStart">0</span> point</td></tr>
             </table>

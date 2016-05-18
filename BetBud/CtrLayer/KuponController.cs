@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Xml.Linq;
 using DALBetBud.Context;
@@ -96,12 +97,11 @@ namespace CtrLayer
             {
                 using (var db = new BetBudContext())
                 {
-
                     foreach (var kamp in kupon.delKampe)
                     {
                         db.Entry(kamp.Kampe).State = EntityState.Unchanged;
                     }
-                    db.Entry(kupon.Bruger).State = EntityState.Unchanged;
+                    db.Entry(kupon.Bruger).State = EntityState.Modified;
                     db.Kuponer.Add(kupon);
                     db.SaveChanges();
                     return true;
@@ -172,9 +172,9 @@ namespace CtrLayer
             var kampe = oddsUrl.Elements("kamp").Select(p => new Kamp
             {
                 HoldVsHold = p.Element("text").Value,
-                Odds1 = double.Parse(p.Element("odds1").Value),
-                OddsX = double.Parse(p.Element("oddsx").Value),
-                Odds2 = double.Parse(p.Element("odds2").Value),
+                Odds1 = Convert.ToDouble(p.Element("odds1").Value),
+                OddsX = Convert.ToDouble(p.Element("oddsx").Value),
+                Odds2 = Convert.ToDouble(p.Element("odds2").Value),
                 KampStart = DateTime.Parse(p.Element("kampStart").Value),
                 Aflyst = bool.Parse(p.Element("aflyst").Value),
                 Vundet1 = bool.Parse(p.Element("vundet1").Value),
@@ -187,6 +187,53 @@ namespace CtrLayer
 
             apiSetting.value = DateTime.Now + "";
             updateSetting(apiSetting);
+
+            UpdateKamp();
+            ModtagBelønning();
+        }
+
+        private void ModtagBelønning()
+        {
+            var readyKupons = new List<Kupon>();
+            using (var db = new BetBudContext())
+            {
+                readyKupons = db.Kuponer.Include(x => x.delKampe.Select(y => y.Kampe)).Where(x => x.Kontrolleret.Equals(false)).Include(c => c.Bruger).ToList();
+            }
+
+            foreach (var kupon in readyKupons)
+            {
+                Debug.WriteLine("kuponer");
+
+                var kuponklar = true;
+                foreach (var delkamp in kupon.delKampe)
+                {
+                    if (!delkamp.Kampe.VundetX && !delkamp.Kampe.Vundet1 && !delkamp.Kampe.Vundet2)
+                    {
+                        kuponklar = false;
+                    }
+                    Debug.WriteLine("kampe");
+                }
+
+                if (kuponklar)
+                {
+                    Debug.WriteLine("kupon klar");
+                    GivPoint(kupon);
+                }
+            }
+        }
+
+        private void GivPoint(Kupon kupon)
+        {
+            kupon.Bruger.Point += kupon.MuligGevist();
+            kupon.Kontrolleret = true;
+
+            using (var db = new BetBudContext())
+            {
+                Debug.WriteLine("gem");
+                db.Entry(kupon).State = EntityState.Modified;
+                db.Entry(kupon.Bruger).State = EntityState.Modified;
+                db.SaveChanges();
+            }
         }
 
         private Setting getLastApiCall()
@@ -212,6 +259,50 @@ namespace CtrLayer
             {
                 db.Kampe.AddRange(kamp);
                 db.SaveChanges();
+            }
+        }
+
+        private void UpdateKamp()
+        {
+            IEnumerable<Kamp> kampList = new List<Kamp>();
+
+
+            using (var db = new BetBudContext())
+            {
+                kampList =
+                    db.Kampe.Where(x => x.KampStart < DateTime.Now && !x.Vundet1 && !x.Vundet2 && !x.VundetX).ToList();
+            }
+
+            if (kampList.Any())
+            {
+                foreach (var kamp in kampList)
+                {
+                    Debug.WriteLine("do game update");
+                    var lastApiDate = "http://odds.mukuduk.dk/?kampId=" + kamp.KampId;
+                    var oddsUrl = XElement.Load(lastApiDate);
+                    var kampe = oddsUrl.Elements("kamp").Select(p => new Kamp
+                    {
+                        HoldVsHold = p.Element("text").Value,
+                        Odds1 = double.Parse(p.Element("odds1").Value),
+                        OddsX = double.Parse(p.Element("oddsx").Value),
+                        Odds2 = double.Parse(p.Element("odds2").Value),
+                        KampStart = DateTime.Parse(p.Element("kampStart").Value),
+                        Aflyst = bool.Parse(p.Element("aflyst").Value),
+                        Vundet1 = bool.Parse(p.Element("vundet1").Value),
+                        VundetX = bool.Parse(p.Element("vundetx").Value),
+                        Vundet2 = bool.Parse(p.Element("vundet2").Value),
+                        KampId = int.Parse(p.Element("KampId").Value)
+                    }).First();
+                    kamp.Vundet1 = kampe.Vundet1;
+                    kamp.VundetX = kampe.VundetX;
+                    kamp.Vundet2 = kampe.Vundet2;
+                    using (var db = new BetBudContext())
+                    {
+                        Debug.WriteLine("save Game");
+                        db.Entry(kamp).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                }
             }
         }
     }

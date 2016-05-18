@@ -74,10 +74,19 @@ namespace MVCBetBud.Controllers
             try
             {
                 var kupon = (Kupon) Session["kupon"];
-                kupon.Point = bettingPoint;
-                if (SR.BekræftKupon(kupon))
+                if (kupon.Bruger.Point >= bettingPoint)
                 {
-                    return RedirectToAction("index");
+                    kupon.Point = bettingPoint;
+                    kupon.Bruger.Point -= bettingPoint;
+                    if (SR.BekræftKupon(kupon))
+                    {
+                        Session["kupon"] = null;
+                        return RedirectToAction("index");
+                    }
+                }
+                else
+                {
+                    Session["error"] = "du her ikke poing nok";
                 }
 
                 return RedirectToAction("OpretKupon");

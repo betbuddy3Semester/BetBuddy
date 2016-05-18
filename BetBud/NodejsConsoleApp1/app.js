@@ -143,6 +143,7 @@ function apiKald() {
             console.log("api done!");
         } else {
             console.log("error!");
+          
         }
     });
 }
