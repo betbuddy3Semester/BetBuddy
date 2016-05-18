@@ -1,5 +1,4 @@
-﻿@using MVCBetBud.ServiceReference
-@model MVCBetBud.Models.OpretForsideController
+﻿@model MVCBetBud.Models.OpretForsideController
 @{
     ViewBag.Title = "Home Page";
 }
@@ -36,15 +35,14 @@
     <div class="col-md-4">
         <h2>Highscore</h2>
         <ol>
-            
-            @foreach (var bruger in Model.brugere.ToList().GetRange(0, 5))
+            @if (Model.brugere.ToList().Count > 4)
             {
-                <li>@bruger.Navn -- @bruger.Point </li>
+                 foreach (var bruger in Model.brugere.ToList().GetRange(0, 5))
+                 {
+                     <li>@bruger.Navn | @bruger.Point></li>
+                 }
             }
-
-
-            
-        </ol>   
+        </ol>
         <p>
             <a class="btn btn-default" href="/Bruger/Highscore">Se highscore &raquo;</a>
         </p>

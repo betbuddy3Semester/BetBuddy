@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Xml;
 using System.Xml.Linq;
 using DALBetBud.Context;
 using ModelLibrary.Bruger;
@@ -93,17 +92,22 @@ namespace CtrLayer
         public bool BekræftKupon(Kupon kupon)
         {
             kupon.CreateDateTime = DateTime.Now;
-            using (var db = new BetBudContext())
+            if (kupon.delKampe.Count > 0)
             {
-                foreach (var kamp in kupon.delKampe)
+                using (var db = new BetBudContext())
                 {
-                    db.Entry(kamp.Kampe).State = EntityState.Unchanged;
+
+                    foreach (var kamp in kupon.delKampe)
+                    {
+                        db.Entry(kamp.Kampe).State = EntityState.Unchanged;
+                    }
+                    db.Entry(kupon.Bruger).State = EntityState.Unchanged;
+                    db.Kuponer.Add(kupon);
+                    db.SaveChanges();
+                    return true;
                 }
-                db.Entry(kupon.Bruger).State = EntityState.Unchanged;
-                db.Kuponer.Add(kupon);
-                db.SaveChanges();
-                return true;
             }
+            return false;
         }
 
         // Metode der henter alle kampe i Databasen. Der oprettes en ny forbindelse til databasen som returnere Kampe på en liste. 
@@ -163,13 +167,8 @@ namespace CtrLayer
         public void ApiGetKampe()
         {
             var apiSetting = getLastApiCall();
-            var lastApiDate = "http://odds.mukuduk.dk/?timeStamp="+ apiSetting.value;
-
-            //var xdocu = new XmlDocument();
-
-            
-
-            var oddsUrl = XElement.Load( lastApiDate);
+            var lastApiDate = "http://odds.mukuduk.dk/?timeStamp=" + apiSetting.value;
+            var oddsUrl = XElement.Load(lastApiDate);
             var kampe = oddsUrl.Elements("kamp").Select(p => new Kamp
             {
                 HoldVsHold = p.Element("text").Value,
@@ -194,7 +193,7 @@ namespace CtrLayer
         {
             using (var db = new BetBudContext())
             {
-                return db.Settings.Where(x => x.name == "lastApiCall").First();
+                return db.Settings.First(x => x.name == "lastApiCall");
             }
         }
 
