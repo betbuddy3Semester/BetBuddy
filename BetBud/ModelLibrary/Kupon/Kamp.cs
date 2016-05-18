@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -11,7 +12,7 @@ namespace ModelLibrary.Kupon
     [DataContract]
     public class Kamp : IKamp
     {
-        [DataMember, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DataMember, Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int KampId { get; set; }
         [DataMember]
         public string HoldVsHold { get; set; }
