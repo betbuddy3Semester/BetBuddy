@@ -1,0 +1,32 @@
+﻿@model IEnumerable<MVCBetBud.ServiceReference.Bruger>
+
+@{
+    ViewBag.Title = "HighScore";
+}
+
+<h2>HighScore</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BrugerNavn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Point)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BrugerNavn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Point)
+            </td>
+        </tr>
+    }
+
+</table>

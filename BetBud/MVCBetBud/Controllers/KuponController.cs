@@ -12,7 +12,7 @@ namespace MVCBetBud.Controllers
 
         // GET: Kupon - Metode som der bruger session til at kontrollere om brugeren er på session. Hvis brugerens session eksisterer hentes 
         // brugeren ved et brugerId, og henter derefter alle brugerens kuponer som sendes til viewet. 
-        public ActionResult Kuponer()
+        public ActionResult Index()
         {
             if (Session["brugerSession"] != null)
             {

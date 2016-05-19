@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Xml.Linq;
 using DALBetBud.Context;
@@ -172,9 +173,9 @@ namespace CtrLayer
             var kampe = oddsUrl.Elements("kamp").Select(p => new Kamp
             {
                 HoldVsHold = p.Element("text").Value,
-                Odds1 = Convert.ToDouble(p.Element("odds1").Value),
-                OddsX = Convert.ToDouble(p.Element("oddsx").Value),
-                Odds2 = Convert.ToDouble(p.Element("odds2").Value),
+                Odds1 = double.Parse(p.Element("odds1").Value, CultureInfo.InvariantCulture),
+                OddsX = double.Parse(p.Element("oddsx").Value, CultureInfo.InvariantCulture),
+                Odds2 = double.Parse(p.Element("odds2").Value, CultureInfo.InvariantCulture),
                 KampStart = DateTime.Parse(p.Element("kampStart").Value),
                 Aflyst = bool.Parse(p.Element("aflyst").Value),
                 Vundet1 = bool.Parse(p.Element("vundet1").Value),
@@ -197,7 +198,11 @@ namespace CtrLayer
             var readyKupons = new List<Kupon>();
             using (var db = new BetBudContext())
             {
-                readyKupons = db.Kuponer.Include(x => x.delKampe.Select(y => y.Kampe)).Where(x => x.Kontrolleret.Equals(false)).Include(c => c.Bruger).ToList();
+                readyKupons =
+                    db.Kuponer.Include(x => x.delKampe.Select(y => y.Kampe))
+                        .Where(x => x.Kontrolleret.Equals(false))
+                        .Include(c => c.Bruger)
+                        .ToList();
             }
 
             foreach (var kupon in readyKupons)

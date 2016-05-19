@@ -23,10 +23,12 @@
         <h2>Dagens kampe</h2>
         <ol>
 
-            @foreach (var kamp in Model.AlleKampe.ToList().GetRange(0, 3))
+            @if (Model.AlleKampe.ToList().Count > 2)
+            {
+                foreach (var kamp in Model.AlleKampe.ToList().GetRange(0, 3))
             {
                 <li>@kamp.HoldVsHold </li>
-            }
+            }}
         </ol>
         <p>
             <a class="btn btn-default" href="/Kupon/OpretKupon"> Spil her &raquo;</a>

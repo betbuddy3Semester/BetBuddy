@@ -37,6 +37,12 @@ namespace MVCBetBud.Controllers
             return View();
         }
 
+        public ActionResult HighScore()
+        {
+            var Bruger = SR.getHighscores();
+            return View(Bruger);
+        }
+
         [HttpPost]
         public ActionResult Login(string brugerNavn, string kodeord)
         {
