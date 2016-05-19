@@ -14,7 +14,6 @@ namespace WCFBetBuddy
 
         private readonly BrugerController brugerCtrl = new BrugerController();
 
-
         public Bruger getBruger(int id)
         {
             return brugerCtrl.getBruger(id);
@@ -81,58 +80,65 @@ namespace WCFBetBuddy
             return fundetData;
         }
 
-        // Metode FjernKamp som sendes videre til controller laget, hvor kamp og kupon holdes i dataFjernet og returnere kun kupon
+        // Metode FjernKamp som sendes videre til controller laget, hvor kamp og kupon holdes i dataFjernet og returnere kun kupon.
         public Kupon FjernKamp(Kamp kamp, Kupon kupon)
         {
             var dataFjernes = NyKuponController.FjernKamp(kamp, kupon);
             return dataFjernes;
         }
 
-        // Kalder metoden i controller laget og retunere denne
+        // Kalder metoden i controller laget og retunere denne.
         public double OddsUdregning()
         {
             return NyKuponController.OddsUdregning();
         }
 
-        // Kalder metoden i controller laget og retunere denne
+        // Kalder metoden i controller laget og retunere denne.
         public double MuligGevist()
         {
             return NyKuponController.MuligGevist();
         }
 
-        // Kalder metoden i controller laget og retunere denne
+        // Kalder metoden i controller laget og retunere denne.
         public bool BekræftKupon(Kupon kupon)
         {
             return NyKuponController.BekræftKupon(kupon);
         }
 
-        // Kalder metoden FindKamp i controller laget og retunere denne
+        // Kalder metoden FindKamp i controller laget og retunere denne.
         public Kamp FindKamp(int KampId)
         {
             return NyKuponController.FindKamp(KampId);
         }
 
-        // Kalder metoden GetAlleKampe i controller laget og retunere denne
+        // Kalder metoden GetAlleKampe i controller laget og retunere denne.
         public IEnumerable<Kamp> GetAlleKampe()
         {
             return NyKuponController.GetAlleKampe();
         }
 
-        // Kalder metoden i controller laget og retunere denne
+        // Kalder metoden i controller laget og retunere denne.
         public IEnumerable<Kupon> GetAlleKuponer(Bruger bruger)
         {
             return NyKuponController.GetAlleKuponer(bruger);
         }
 
-        // Kalder metoden i controller laget og retunere denne
+        // Kalder metoden i controller laget og retunere denne.
         public Kupon NyKupon()
         {
             return NyKuponController.OpretKupon();
         }
 
+        //Kalder metoden i controller laget og returnerer intet.
         public void GetKampFromApi()
         {
             NyKuponController.ApiGetKampe();
+        }
+
+        //Kalder metoden i controller laget og returnerer en liste af kampe der ikke er spillet endnu.
+        public IEnumerable<Kamp> getIkkeSpilletKampe()
+        {
+            return NyKuponController.getIkkeSpilletKampe();
         }
 
         #endregion

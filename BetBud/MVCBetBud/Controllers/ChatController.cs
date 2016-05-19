@@ -1,21 +1,17 @@
-﻿using MVCBetBud.ServiceReference;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using MVCBetBud.ServiceReference;
 
 namespace MVCBetBud.Controllers
 {
     public class ChatController : Controller
     {
-        ServiceReference.ServicesClient SR = new ServiceReference.ServicesClient();
+        private readonly ServicesClient SR = new ServicesClient();
         // GET: Chat
         public ActionResult Index()
         {
-            if(Session["brugerSession"] != null)
+            if (Session["brugerSession"] != null)
             {
-                Bruger b = SR.getBruger((int)Session["brugerSession"]);
+                var b = SR.getBruger((int) Session["brugerSession"]);
                 return View(b);
             }
             return View();

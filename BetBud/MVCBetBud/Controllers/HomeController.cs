@@ -1,18 +1,18 @@
-﻿using MVCBetBud.Models;
+﻿using System.Web.Mvc;
+using MVCBetBud.Models;
 using MVCBetBud.ServiceReference;
-using System.Web.Mvc;
 
 namespace MVCBetBud.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ServicesClient SR = new ServicesClient();
 
-        ServiceReference.ServicesClient SR = new ServiceReference.ServicesClient();
         public ActionResult Index()
         {
-            Kamp[] k = SR.GetAlleKampe();
-            Bruger[] b = SR.getHighscores();
-            OpretForsideController ofc = new OpretForsideController();
+            var k = SR.GetAlleKampe();
+            var b = SR.getHighscores();
+            var ofc = new OpretForsideController();
             ofc.AlleKampe = k;
             ofc.brugere = b;
             return View(ofc);
@@ -30,6 +30,5 @@ namespace MVCBetBud.Controllers
 
             return View();
         }
-       
     }
 }

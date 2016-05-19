@@ -40,6 +40,9 @@ namespace WCFBetBuddy
         [OperationContract]
         void GetKampFromApi();
 
+        [OperationContract]
+        IEnumerable<Kamp> getIkkeSpilletKampe();
+
         #endregion
 
         #region IBruger

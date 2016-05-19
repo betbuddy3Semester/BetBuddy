@@ -310,5 +310,13 @@ namespace CtrLayer
                 }
             }
         }
+
+        public IEnumerable<Kamp> getIkkeSpilletKampe()
+        {
+            using (var db = new BetBudContext())
+            {
+                return db.Kampe.Where(x => x.KampStart > DateTime.Now).ToList();
+            }
+        }
     }
 }

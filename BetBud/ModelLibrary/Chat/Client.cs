@@ -17,8 +17,8 @@ namespace ModelLibrary.Chat
 
         public string ClientName { get; set; }
 
-        [DataMember]
-        private static readonly Socket ClientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        [DataMember] private static readonly Socket ClientSocket = new Socket(AddressFamily.InterNetwork,
+            SocketType.Stream, ProtocolType.Tcp);
 
         [DataMember]
         public int ClientPort { get; set; }
@@ -98,7 +98,7 @@ namespace ModelLibrary.Chat
         public void SendResponse(string messageStringInput)
         {
             // Først initialisere vi en variabel(buffer) og smider metodens input string(messageStringInput) ind i den, i konverteret form .
-            byte[] buffer = Encoding.ASCII.GetBytes(messageStringInput);
+            var buffer = Encoding.ASCII.GetBytes(messageStringInput);
             // Til sidst sender vi den konverterede String til ServerSocket'en for at blive konverteret tilbage til String format.
             ClientSocket.Send(buffer, 0, buffer.Length, SocketFlags.None);
         }

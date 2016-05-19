@@ -673,6 +673,12 @@ namespace MVCBetBud.ServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/GetKampFromApi", ReplyAction="http://tempuri.org/IServices/GetKampFromApiResponse")]
         System.Threading.Tasks.Task GetKampFromApiAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/getIkkeSpilletKampe", ReplyAction="http://tempuri.org/IServices/getIkkeSpilletKampeResponse")]
+        MVCBetBud.ServiceReference.Kamp[] getIkkeSpilletKampe();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/getIkkeSpilletKampe", ReplyAction="http://tempuri.org/IServices/getIkkeSpilletKampeResponse")]
+        System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Kamp[]> getIkkeSpilletKampeAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/getBruger", ReplyAction="http://tempuri.org/IServices/getBrugerResponse")]
         MVCBetBud.ServiceReference.Bruger getBruger(int id);
         
@@ -845,6 +851,14 @@ namespace MVCBetBud.ServiceReference {
         
         public System.Threading.Tasks.Task GetKampFromApiAsync() {
             return base.Channel.GetKampFromApiAsync();
+        }
+        
+        public MVCBetBud.ServiceReference.Kamp[] getIkkeSpilletKampe() {
+            return base.Channel.getIkkeSpilletKampe();
+        }
+        
+        public System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Kamp[]> getIkkeSpilletKampeAsync() {
+            return base.Channel.getIkkeSpilletKampeAsync();
         }
         
         public MVCBetBud.ServiceReference.Bruger getBruger(int id) {

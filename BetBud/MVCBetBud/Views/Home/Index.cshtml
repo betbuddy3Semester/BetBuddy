@@ -26,9 +26,10 @@
             @if (Model.AlleKampe.ToList().Count > 2)
             {
                 foreach (var kamp in Model.AlleKampe.ToList().GetRange(0, 3))
-            {
-                <li>@kamp.HoldVsHold </li>
-            }}
+                {
+                    <li>@kamp.HoldVsHold </li>
+                }
+            }
         </ol>
         <p>
             <a class="btn btn-default" href="/Kupon/OpretKupon"> Spil her &raquo;</a>
@@ -39,10 +40,10 @@
         <ol>
             @if (Model.brugere.ToList().Count > 4)
             {
-                 foreach (var bruger in Model.brugere.ToList().GetRange(0, 5))
-                 {
-                     <li>@bruger.Navn | @bruger.Point></li>
-                 }
+                foreach (var bruger in Model.brugere.ToList().GetRange(0, 5))
+                {
+                    <li>@bruger.Navn | @bruger.Point></li>
+                }
             }
         </ol>
         <p>

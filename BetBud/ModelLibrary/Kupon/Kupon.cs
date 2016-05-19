@@ -1,32 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-using ModelLibrary.Interface_Bruger;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
 
 namespace ModelLibrary.Kupon
 {
     [DataContract]
     public class Kupon : IKupon
     {
-        [DataMember]
-        public Bruger.Bruger Bruger { get; set; }
+        public Kupon()
+        {
+            delKampe = new List<DelKamp>();
+        }
 
         [DataMember]
         public int BrugerId { get; set; }
-
-        [DataMember]
-        public Boolean Kontrolleret { get; set; }
-
-        [DataMember]
-        public List<DelKamp> delKampe { get; set; }
-
-        [DataMember]
-        public double Point { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [DataMember]
@@ -35,10 +23,17 @@ namespace ModelLibrary.Kupon
         [DataMember]
         public DateTime CreateDateTime { get; set; }
 
-        public Kupon()
-        {
-            delKampe = new List<DelKamp>();
-        }
+        [DataMember]
+        public Bruger.Bruger Bruger { get; set; }
+
+        [DataMember]
+        public bool Kontrolleret { get; set; }
+
+        [DataMember]
+        public List<DelKamp> delKampe { get; set; }
+
+        [DataMember]
+        public double Point { get; set; }
 
 
         // Metode til at tilføje kampe til kuponen. 
@@ -48,7 +43,7 @@ namespace ModelLibrary.Kupon
         {
             if (kamp != null && ((valgt1 ? 1 : 0) + (valgtX ? 1 : 0) + (valgt2 ? 1 : 0) == 1))
             {
-                DelKamp nyDelKamp = new DelKamp();
+                var nyDelKamp = new DelKamp();
 
                 nyDelKamp.Kampe = kamp;
                 nyDelKamp.KampId = kamp.KampId;
@@ -69,7 +64,7 @@ namespace ModelLibrary.Kupon
         {
             if (kamp != null)
             {
-                for (int i = 0; i < delKampe.Count; i++)
+                for (var i = 0; i < delKampe.Count; i++)
                 {
                     if (delKampe[i].Kampe.KampId.Equals(kamp.KampId))
                     {

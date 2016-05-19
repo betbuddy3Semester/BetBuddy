@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using MVCBetBud.Models;
 using MVCBetBud.ServiceReference;
@@ -19,8 +20,28 @@ namespace MVCBetBud.Controllers
                 var bruger = SR.getBruger((int) Session["brugerSession"]);
 
                 var alleKuponer = SR.GetAlleKuponer(bruger);
+                var modelVundet = new List<VundetKupon>();
+                foreach (Kupon kupon in alleKuponer)
+                {
+                    bool vundet = true;
+                    foreach (var delkamp in kupon.delKampe)
+                    {
+                        if (delkamp.Kampe.Vundet1 != delkamp.Valgt1 || delkamp.Kampe.VundetX != delkamp.ValgtX ||
+                            delkamp.Kampe.Vundet2 != delkamp.Valgt2)
+                        {
+                            vundet = false;
+                        }
+                    }
+                    modelVundet.Add(new VundetKupon()
+                    {
+                        kupon = kupon,
+                        vundet = vundet
 
-                return View(alleKuponer);
+                    });
+                }
+
+
+                return View(modelVundet);
             }
             return RedirectToAction("index", "home");
         }
@@ -52,7 +73,7 @@ namespace MVCBetBud.Controllers
                 {
                     Session["kupon"] = kupon;
                 }
-                var ListeAfKampe = SR.GetAlleKampe();
+                var ListeAfKampe = SR.getIkkeSpilletKampe();
                 var modelOpretKupon = new OpretKuponController();
                 modelOpretKupon.kupon = kupon;
                 modelOpretKupon.AlleKampe = ListeAfKampe;
@@ -71,30 +92,37 @@ namespace MVCBetBud.Controllers
             {
                 return RedirectToAction("OpretKupon");
             }
-            try
-            {
-                var kupon = (Kupon) Session["kupon"];
-                if (kupon.Bruger.Point >= bettingPoint)
-                {
-                    kupon.Point = bettingPoint;
-                    kupon.Bruger.Point -= bettingPoint;
-                    if (SR.BekræftKupon(kupon))
-                    {
-                        Session["kupon"] = null;
-                        return RedirectToAction("index");
-                    }
-                }
-                else
-                {
-                    Session["error"] = "du her ikke poing nok";
-                }
 
-                return RedirectToAction("OpretKupon");
-            }
-            catch
+            var kupon = (Kupon) Session["kupon"];
+            var canDoKupon = true;
+            foreach (var delkamp in kupon.delKampe)
             {
-                return View();
+                if (delkamp.Kampe.KampStart < DateTime.Now)
+                {
+                    canDoKupon = false;
+                }
             }
+
+            if (kupon.Bruger.Point < bettingPoint)
+            {
+                Session["error"] = "Du har ikke nok point til at satse.";
+            }
+            else if (!canDoKupon)
+            {
+                Session["error"] = "Du har en eller flere kampe som er startet.";
+            }
+            else
+            {
+                kupon.Point = bettingPoint;
+                kupon.Bruger.Point -= bettingPoint;
+                if (SR.BekræftKupon(kupon))
+                {
+                    Session["kupon"] = null;
+                    return RedirectToAction("index");
+                }
+            }
+
+            return RedirectToAction("OpretKupon");
         }
 
         // PostOdds1 - Metode til at tilføje odds 1 på kuponen. 

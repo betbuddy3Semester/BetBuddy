@@ -1,63 +1,20 @@
-﻿using ModelLibrary.Bruger;
+﻿using BetBudTest.ServiceReference1;
+using ModelLibrary.Bruger;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BetBudTest
 {
     [TestFixture]
-    class BrugerServiceTest
+    internal class BrugerServiceTest
 
     {
-        ServiceReference1.ServicesClient BSR = new ServiceReference1.ServicesClient();
-
-        /// <summary>
-        ///  Testen er afhængig af, at servicen manuelt bliver startet, den kan ikke åbne servicen selv 
-        /// </summary>
-        [Test]
-        public void opretBrugerTest()
-        {
-            //Arrange
-            Bruger bruger = new Bruger();
-
-
-            //Act 
-            bruger.BrugerNavn = "Laila";
-            bruger.Email = "lailasmaabjerggaard@hehe.fu";
-            BSR.opretBruger(bruger);
-
-            //Assert
-            Bruger b = BSR.getBrugerEfterBrugernavn(bruger.BrugerNavn);
-            Assert.AreEqual("Laila", b.BrugerNavn);
-            BSR.sletBruger(b.BrugerId);
-        }
-
-        [Test]
-        public void sletBrugerTest()
-        {
-            //Arrange
-            Bruger bruger = new Bruger();
-
-
-            //Act 
-            bruger.BrugerNavn = "Hans Testies";
-            bruger.Email = "Testies@hehe.fu";
-            BSR.opretBruger(bruger);
-
-            //Assert
-            Bruger b = BSR.getBrugerEfterBrugernavn(bruger.BrugerNavn);
-            Assert.AreEqual("Hans Testies", b.BrugerNavn);
-            BSR.sletBruger(b.BrugerId);
-        }
+        private readonly ServicesClient BSR = new ServicesClient();
 
         [Test]
         public void opdaterBrugerTest()
         {
             //Arrange
-            Bruger bruger = new Bruger();
+            var bruger = new Bruger();
 
 
             //Act 
@@ -66,16 +23,55 @@ namespace BetBudTest
             BSR.opretBruger(bruger);
 
             //Assert
-            Bruger b = BSR.getBrugerEfterBrugernavn(bruger.BrugerNavn);
+            var b = BSR.getBrugerEfterBrugernavn(bruger.BrugerNavn);
             Assert.AreEqual("LuderLaila", b.BrugerNavn);
 
             b.BrugerNavn = "JULIE HAR IKKE BUKSER I HÅRET";
             b.Email = "BUKSiHÅR@hehe.fu";
             BSR.opdaterBruger(b);
 
-            Bruger b2 = BSR.getBrugerEfterBrugernavn("JULIE HAR IKKE BUKSER I HÅRET");
+            var b2 = BSR.getBrugerEfterBrugernavn("JULIE HAR IKKE BUKSER I HÅRET");
             Assert.AreEqual("JULIE HAR IKKE BUKSER I HÅRET", b2.BrugerNavn);
             Assert.AreEqual("BUKSiHÅR@hehe.fu", b2.Email);
+            BSR.sletBruger(b.BrugerId);
+        }
+
+        /// <summary>
+        ///     Testen er afhængig af, at servicen manuelt bliver startet, den kan ikke åbne servicen selv
+        /// </summary>
+        [Test]
+        public void opretBrugerTest()
+        {
+            //Arrange
+            var bruger = new Bruger();
+
+
+            //Act 
+            bruger.BrugerNavn = "Laila";
+            bruger.Email = "lailasmaabjerggaard@hehe.fu";
+            BSR.opretBruger(bruger);
+
+            //Assert
+            var b = BSR.getBrugerEfterBrugernavn(bruger.BrugerNavn);
+            Assert.AreEqual("Laila", b.BrugerNavn);
+            BSR.sletBruger(b.BrugerId);
+        }
+
+        [Test]
+        public void sletBrugerTest()
+        {
+            //Arrange
+            var bruger = new Bruger();
+
+
+            //Act 
+            bruger.BrugerNavn = "Hans Testies";
+            bruger.Email = "Testies@hehe.fu";
+            BSR.opretBruger(bruger);
+
+            //Assert
+            var b = BSR.getBrugerEfterBrugernavn(bruger.BrugerNavn);
+            Assert.AreEqual("Hans Testies", b.BrugerNavn);
             BSR.sletBruger(b.BrugerId);
         }
     }

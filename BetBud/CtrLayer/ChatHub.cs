@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
 using DALBetBud.Context;
 using ModelLibrary.Chat;
 using ModelLibrary.Chat.Interface_Chat;

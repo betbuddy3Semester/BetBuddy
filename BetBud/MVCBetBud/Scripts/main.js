@@ -36,7 +36,7 @@ bettingPoint.keyup(function() {
 
     var point = bettingPoint.val() * samletOdds;
     point = Math.round(point * 100) / 100;
-    $("#dinePoing").text(dinePoing - point);
+    $("#dinePoing").text(dinePoing - bettingPoint.val());
     $("#gevinst").text(point);
 });
 

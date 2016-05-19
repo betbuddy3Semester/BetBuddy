@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ModelLibrary.Interface_Bruger
+﻿namespace ModelLibrary.Interface_Bruger
 {
     public interface IBruger
     {
@@ -16,4 +10,3 @@ namespace ModelLibrary.Interface_Bruger
         double Point { get; set; }
     }
 }
-

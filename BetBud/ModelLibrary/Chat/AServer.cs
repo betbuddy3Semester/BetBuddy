@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Runtime.Serialization;
@@ -29,14 +28,12 @@ namespace ModelLibrary.Chat
         [DataMember]
         public string ServerName { get; set; }
 
-        [DataMember, NotMapped]
-        public List<string> MessageList = new List<string>();
+        [DataMember, NotMapped] public List<string> MessageList = new List<string>();
 
         [DataMember, NotMapped]
         public Socket ServerSocket { get; set; }
 
-        [DataMember, NotMapped]
-        public List<Socket> ClientSocket = new List<Socket>();
+        [DataMember, NotMapped] public List<Socket> ClientSocket = new List<Socket>();
 
         [DataMember, NotMapped]
         public StringBuilder Sb { get; set; }
@@ -84,7 +81,6 @@ namespace ModelLibrary.Chat
         {
             if (ClientSocket.Count > 0)
             {
-
                 //Her oprettes et foreach loop som iterer hen over socketens client liste
                 foreach (var variable in ClientSocket)
                 {
@@ -145,7 +141,7 @@ namespace ModelLibrary.Chat
         public void ReceiveCallBack(IAsyncResult asyncCallback)
         {
             // Her oprettes en lokal socket til brug i metoden. Det er asynkrone sockets der bliver oprettet pr. client som connecter til den overordnede serverchat socket.
-            var current = (Socket)asyncCallback.AsyncState;
+            var current = (Socket) asyncCallback.AsyncState;
             int received;
 
             // I denne snippet forsøges det at tildele received et integer output fra current socketens endreceive metode.
@@ -172,7 +168,7 @@ namespace ModelLibrary.Chat
             var ReceiveCallBackString = Encoding.ASCII.GetString(receiveCallbackBuffer);
 
             MessageList.Add(ReceiveCallBackString);
-            
+
             Console.WriteLine(ReceiveCallBackString);
             //Her tilføjes den konverterede string til den overordnede liste af beskeder
 
@@ -191,8 +187,6 @@ namespace ModelLibrary.Chat
                 current.Shutdown(SocketShutdown.Both);
                 // Derefter sletter vi client socketen
                 current.Close();
-
-                
             }
 
             #endregion
