@@ -94,9 +94,9 @@ namespace WCFBetBuddy
         }
 
         // Kalder metoden i controller laget og retunere denne.
-        public double MuligGevist()
+        public double MuligGevist(Kupon kupon)
         {
-            return NyKuponController.MuligGevist();
+            return NyKuponController.MuligGevinst(kupon);
         }
 
         // Kalder metoden i controller laget og retunere denne.

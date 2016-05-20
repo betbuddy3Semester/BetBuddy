@@ -74,15 +74,15 @@ namespace CtrLayer
             return 0.0;
         }
 
-        // Metode til at udregne den mulige gevist som brugeren kan vinde. MuligGevist kalder metoden fra modellaget
+        // Metode til at udregne den mulige gevist som brugeren kan vinde. MuligGevinst kalder metoden fra modellaget
         // som udregner gevisten. Kontrollere om kuponen er oprettet, og returnere denne med den mulige gevinst. Hvis ikke kuponen er oprettet
         // returneres 0,0.
 
-        public double MuligGevist()
+        public double MuligGevinst(Kupon kupon)
         {
-            if (NyKupon != null)
+            if (kupon != null)
             {
-                return NyKupon.MuligGevist();
+                return kupon.MuligGevist();
             }
             return 0.0;
         }

@@ -23,6 +23,7 @@ namespace MVCBetBud.Controllers
                 List<VundetKupon> modelVundet = new List<VundetKupon>();
                 foreach (Kupon kupon in alleKuponer)
                 {
+                    double muligGevinst = SR.MuligGevist(kupon);
                     bool vundet = true;
                     foreach (DelKamp delkamp in kupon.delKampe)
                     {
@@ -35,7 +36,8 @@ namespace MVCBetBud.Controllers
                     modelVundet.Add(new VundetKupon()
                     {
                         kupon = kupon,
-                        vundet = vundet
+                        vundet = vundet,
+                        muligGevinst = muligGevinst
 
                     });
                 }

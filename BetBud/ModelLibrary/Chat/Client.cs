@@ -17,8 +17,8 @@ namespace ModelLibrary.Chat
 
         public string ClientName { get; set; }
 
-        [DataMember] private static readonly Socket ClientSocket = new Socket(AddressFamily.InterNetwork,
-            SocketType.Stream, ProtocolType.Tcp);
+        [DataMember]
+        private static readonly Socket ClientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
         [DataMember]
         public int ClientPort { get; set; }

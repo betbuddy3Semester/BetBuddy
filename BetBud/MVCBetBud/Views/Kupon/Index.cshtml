@@ -13,12 +13,15 @@
 @foreach (VundetKupon modelVundet in Model)
 {
     string vundet = "kuponFailed";
-    if (modelVundet.vundet)
+    if (modelVundet.kupon.Kontrolleret == false)
+    {
+        vundet = "kuponNormal";
+    }
+    else if (modelVundet.vundet)
     {
         vundet = "kuponSucces";
     }
     <div class="col-md-4">
-        <h2>Din kupon</h2>
         <table class="table @vundet">
             <tr>
                 <th>Hold Vs Hold</th>
@@ -51,7 +54,14 @@
                     <td>@delKamp.Kampe.HoldVsHold</td><td>@valgt</td><td>@odds</td>
                 </tr>
             }
+            <tr class="sebs">
+                <td colspan="2">Satset point</td><td>@modelVundet.kupon.Point</td>
+            </tr>
 
+            <tr>
+                <td colspan="2">Mulig gevinst</td>
+                <td>@modelVundet.muligGevinst</td>
+            </tr>
         </table>
     </div>
 }

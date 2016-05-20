@@ -20,7 +20,7 @@ namespace WCFBetBuddy
         double OddsUdregning();
 
         [OperationContract]
-        double MuligGevist();
+        double MuligGevist(Kupon kupon);
 
         [OperationContract]
         bool BekræftKupon(Kupon kupon);

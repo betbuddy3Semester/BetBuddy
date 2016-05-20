@@ -14,23 +14,38 @@
    will truncate terms that are too long to fit in the left column 
 */
 
-.dl-horizontal dt { white-space: normal; }
+.dl-horizontal dt {
+    white-space: normal;
+}
 
 /* Set width on the form input elements since they're 100% wide by default */
 
 input,
 select,
-textarea { max-width: 280px; }
+textarea {
+    max-width: 280px;
+}
+
+.kuponNormal {
+    border: 1px solid #dddddd;
+}
 
 .kuponSucces {
     border: 1px solid green;
 }
-.kuponSucces {
-    border-top-color: green !important;
-}
+
+    .kuponSucces th {
+        border-top-color: green !important;
+    }
+
 .kuponFailed {
     border: 1px solid red;
 }
-.kuponFailed th {
-    border-top-color: red !important;
+
+    .kuponFailed th {
+        border-top-color: red !important;
+    }
+
+.sebs td {
+    border-top: 1px solid green !important;
 }

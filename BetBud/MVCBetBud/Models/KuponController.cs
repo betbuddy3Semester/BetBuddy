@@ -20,5 +20,6 @@ namespace MVCBetBud.Models
     {
         public Kupon kupon { get; set; }
         public bool vundet { get; set; }
+        public double muligGevinst { get; set; }
     }
 }

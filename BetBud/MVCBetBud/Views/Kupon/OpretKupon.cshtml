@@ -128,7 +128,7 @@
             </tr>
         }
     </table>
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("OpretKupon", "Kupon", FormMethod.Post, new { onsubmit ="return confirm('Do you really want to submit the form?');" }))
     {
         <div class="form-group">
             <table class="table">
@@ -142,7 +142,7 @@
                 <tr>
                     <td>Indsats</td>
                     <td>
-                        <input type="text" class="form-control" name="bettingPoint"/>
+                        <input type="text" class="form-control" name="bettingPoint" value="0.0" />
                     </td>
                 </tr>
                 <tr>

@@ -632,10 +632,10 @@ namespace MVCBetBud.ServiceReference {
         System.Threading.Tasks.Task<double> OddsUdregningAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/MuligGevist", ReplyAction="http://tempuri.org/IServices/MuligGevistResponse")]
-        double MuligGevist();
+        double MuligGevist(MVCBetBud.ServiceReference.Kupon kupon);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/MuligGevist", ReplyAction="http://tempuri.org/IServices/MuligGevistResponse")]
-        System.Threading.Tasks.Task<double> MuligGevistAsync();
+        System.Threading.Tasks.Task<double> MuligGevistAsync(MVCBetBud.ServiceReference.Kupon kupon);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/BekræftKupon", ReplyAction="http://tempuri.org/IServices/BekræftKuponResponse")]
         bool BekræftKupon(MVCBetBud.ServiceReference.Kupon kupon);
@@ -797,12 +797,12 @@ namespace MVCBetBud.ServiceReference {
             return base.Channel.OddsUdregningAsync();
         }
         
-        public double MuligGevist() {
-            return base.Channel.MuligGevist();
+        public double MuligGevist(MVCBetBud.ServiceReference.Kupon kupon) {
+            return base.Channel.MuligGevist(kupon);
         }
         
-        public System.Threading.Tasks.Task<double> MuligGevistAsync() {
-            return base.Channel.MuligGevistAsync();
+        public System.Threading.Tasks.Task<double> MuligGevistAsync(MVCBetBud.ServiceReference.Kupon kupon) {
+            return base.Channel.MuligGevistAsync(kupon);
         }
         
         public bool BekræftKupon(MVCBetBud.ServiceReference.Kupon kupon) {

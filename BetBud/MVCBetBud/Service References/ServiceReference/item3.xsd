@@ -1,14 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon" elementFormDefault="qualified"
-           targetNamespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon"
-           xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:8733/?xsd=xsd3"
-             namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Bruger" />
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8733/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Bruger" />
   <xs:complexType name="Kupon">
     <xs:sequence>
-      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ModelLibrary.Bruger" minOccurs="0" name="Bruger"
-                  nillable="true" type="q1:Bruger" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ModelLibrary.Bruger" minOccurs="0" name="Bruger" nillable="true" type="q1:Bruger" />
       <xs:element minOccurs="0" name="BrugerId" type="xs:int" />
       <xs:element minOccurs="0" name="CreateDateTime" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Kontrolleret" type="xs:boolean" />
