@@ -17,14 +17,14 @@ namespace MVCBetBud.Controllers
         {
             if (Session["brugerSession"] != null)
             {
-                var bruger = SR.getBruger((int) Session["brugerSession"]);
+                Bruger bruger = SR.getBruger((int) Session["brugerSession"]);
 
-                var alleKuponer = SR.GetAlleKuponer(bruger);
-                var modelVundet = new List<VundetKupon>();
+                Kupon[] alleKuponer = SR.GetAlleKuponer(bruger);
+                List<VundetKupon> modelVundet = new List<VundetKupon>();
                 foreach (Kupon kupon in alleKuponer)
                 {
                     bool vundet = true;
-                    foreach (var delkamp in kupon.delKampe)
+                    foreach (DelKamp delkamp in kupon.delKampe)
                     {
                         if (delkamp.Kampe.Vundet1 != delkamp.Valgt1 || delkamp.Kampe.VundetX != delkamp.ValgtX ||
                             delkamp.Kampe.Vundet2 != delkamp.Valgt2)
@@ -61,8 +61,8 @@ namespace MVCBetBud.Controllers
         {
             if (Session["brugerSession"] != null)
             {
-                var kupon = SR.NyKupon();
-                var bruger = SR.getBruger((int) Session["brugerSession"]);
+                Kupon kupon = SR.NyKupon();
+                Bruger bruger = SR.getBruger((int) Session["brugerSession"]);
                 kupon.Bruger = bruger;
                 kupon.BrugerId = bruger.BrugerId;
                 if (Session["kupon"] != null)
@@ -73,8 +73,8 @@ namespace MVCBetBud.Controllers
                 {
                     Session["kupon"] = kupon;
                 }
-                var ListeAfKampe = SR.getIkkeSpilletKampe();
-                var modelOpretKupon = new OpretKuponController();
+                Kamp[] ListeAfKampe = SR.getIkkeSpilletKampe();
+                OpretKuponController modelOpretKupon = new OpretKuponController();
                 modelOpretKupon.kupon = kupon;
                 modelOpretKupon.AlleKampe = ListeAfKampe;
                 return View(modelOpretKupon);
@@ -93,9 +93,9 @@ namespace MVCBetBud.Controllers
                 return RedirectToAction("OpretKupon");
             }
 
-            var kupon = (Kupon) Session["kupon"];
-            var canDoKupon = true;
-            foreach (var delkamp in kupon.delKampe)
+            Kupon kupon = (Kupon) Session["kupon"];
+            bool canDoKupon = true;
+            foreach (DelKamp delkamp in kupon.delKampe)
             {
                 if (delkamp.Kampe.KampStart < DateTime.Now)
                 {
@@ -132,11 +132,11 @@ namespace MVCBetBud.Controllers
         [HttpPost]
         public ActionResult PostOdds1()
         {
-            var kampId = Convert.ToInt32(Request.Form["item.KampId"]);
-            var kupon = (Kupon) Session["kupon"];
+            int kampId = Convert.ToInt32(Request.Form["item.KampId"]);
+            Kupon kupon = (Kupon) Session["kupon"];
 
-            var valgtKamp = SR.FindKamp(kampId);
-            var valgtKupon = SR.TilføjKamp(kupon, valgtKamp, true, false, false);
+            Kamp valgtKamp = SR.FindKamp(kampId);
+            Kupon valgtKupon = SR.TilføjKamp(kupon, valgtKamp, true, false, false);
             Session["kupon"] = valgtKupon;
 
 
@@ -151,11 +151,11 @@ namespace MVCBetBud.Controllers
         [HttpPost]
         public ActionResult PostOddsX()
         {
-            var kampId = Convert.ToInt32(Request.Form["item.KampId"]);
-            var kupon = (Kupon) Session["kupon"];
+            int kampId = Convert.ToInt32(Request.Form["item.KampId"]);
+            Kupon kupon = (Kupon) Session["kupon"];
 
-            var valgtKamp = SR.FindKamp(kampId);
-            var valgtKupon = SR.TilføjKamp(kupon, valgtKamp, false, true, false);
+            Kamp valgtKamp = SR.FindKamp(kampId);
+            Kupon valgtKupon = SR.TilføjKamp(kupon, valgtKamp, false, true, false);
             Session["kupon"] = valgtKupon;
 
 
@@ -169,11 +169,11 @@ namespace MVCBetBud.Controllers
         [HttpPost]
         public ActionResult PostOdds2()
         {
-            var kampId = Convert.ToInt32(Request.Form["item.KampId"]);
-            var kupon = (Kupon) Session["kupon"];
+            int kampId = Convert.ToInt32(Request.Form["item.KampId"]);
+            Kupon kupon = (Kupon) Session["kupon"];
 
-            var valgtKamp = SR.FindKamp(kampId);
-            var valgtKupon = SR.TilføjKamp(kupon, valgtKamp, false, false, true);
+            Kamp valgtKamp = SR.FindKamp(kampId);
+            Kupon valgtKupon = SR.TilføjKamp(kupon, valgtKamp, false, false, true);
             Session["kupon"] = valgtKupon;
 
 
@@ -228,11 +228,11 @@ namespace MVCBetBud.Controllers
         [HttpPost]
         public ActionResult FjernKamp()
         {
-            var KampId = Convert.ToInt32(Request.Form["FjernKamp"]);
-            var kupon = (Kupon) Session["kupon"];
+            int KampId = Convert.ToInt32(Request.Form["FjernKamp"]);
+            Kupon kupon = (Kupon) Session["kupon"];
 
-            var valgtKamp = SR.FindKamp(KampId);
-            var valgtKupon = SR.FjernKamp(valgtKamp, kupon);
+            Kamp valgtKamp = SR.FindKamp(KampId);
+            Kupon valgtKupon = SR.FjernKamp(valgtKamp, kupon);
             Session["kupon"] = valgtKupon;
 
             return RedirectToAction("OpretKupon");

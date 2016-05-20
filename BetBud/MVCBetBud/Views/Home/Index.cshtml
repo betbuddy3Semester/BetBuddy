@@ -1,4 +1,5 @@
-﻿@model MVCBetBud.Models.OpretForsideController
+﻿@using MVCBetBud.ServiceReference
+@model MVCBetBud.Models.OpretForsideController
 @{
     ViewBag.Title = "Home Page";
 }
@@ -25,7 +26,7 @@
 
             @if (Model.AlleKampe.ToList().Count > 2)
             {
-                foreach (var kamp in Model.AlleKampe.ToList().GetRange(0, 3))
+                foreach (Kamp kamp in Model.AlleKampe.ToList().GetRange(0, 3))
                 {
                     <li>@kamp.HoldVsHold </li>
                 }
@@ -40,7 +41,7 @@
         <ol>
             @if (Model.brugere.ToList().Count > 4)
             {
-                foreach (var bruger in Model.brugere.ToList().GetRange(0, 5))
+                foreach (Bruger bruger in Model.brugere.ToList().GetRange(0, 5))
                 {
                     <li>@bruger.Navn | @bruger.Point></li>
                 }

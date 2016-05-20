@@ -11,7 +11,7 @@ namespace MVCBetBud.Controllers
         {
             if (Session["brugerSession"] != null)
             {
-                var b = SR.getBruger((int) Session["brugerSession"]);
+                Bruger b = SR.getBruger((int) Session["brugerSession"]);
                 return View(b);
             }
             return View();

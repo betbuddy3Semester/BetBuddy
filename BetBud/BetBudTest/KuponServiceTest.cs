@@ -18,12 +18,12 @@ namespace BetBudTest
         {
             //Arrange
             double OddsAssertion = 1;
-            var id = 1;
-            var testKamp = BSR.FindKamp(id);
-            var kupon = new Kupon();
-            var et = true;
-            var x = false;
-            var to = false;
+            int id = 1;
+            Kamp testKamp = BSR.FindKamp(id);
+            Kupon kupon = new Kupon();
+            bool et = true;
+            bool x = false;
+            bool to = false;
 
             //Act
             kupon = BSR.TilføjKamp(kupon, testKamp, et, x, to);
@@ -42,19 +42,19 @@ namespace BetBudTest
 
             double gevinst = 2700;
 
-            var id = 1;
-            var testKamp1 = BSR.FindKamp(id);
-            var et = true;
-            var x = false;
-            var to = false;
+            int id = 1;
+            Kamp testKamp1 = BSR.FindKamp(id);
+            bool et = true;
+            bool x = false;
+            bool to = false;
 
-            var id2 = 2;
-            var testKamp2 = BSR.FindKamp(id2);
-            var eet = false;
-            var xx = false;
-            var too = true;
+            int id2 = 2;
+            Kamp testKamp2 = BSR.FindKamp(id2);
+            bool eet = false;
+            bool xx = false;
+            bool too = true;
 
-            var kupon = new Kupon();
+            Kupon kupon = new Kupon();
             kupon.Point = 100;
             //Act
             kupon = BSR.TilføjKamp(kupon, testKamp1, et, x, to);
@@ -70,12 +70,12 @@ namespace BetBudTest
         {
             //Arrange
             double OddsAssertion = 2;
-            var id = 1;
-            var testKamp = BSR.FindKamp(id);
-            var kupon = new Kupon();
-            var et = true;
-            var x = false;
-            var to = false;
+            int id = 1;
+            Kamp testKamp = BSR.FindKamp(id);
+            Kupon kupon = new Kupon();
+            bool et = true;
+            bool x = false;
+            bool to = false;
 
             //Act
             kupon = BSR.TilføjKamp(kupon, testKamp, et, x, to);

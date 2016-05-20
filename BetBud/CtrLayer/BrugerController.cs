@@ -14,7 +14,7 @@ namespace CtrLayer
     {
         public Bruger getBruger(int id)
         {
-            using (var db = new BetBudContext())
+            using (BetBudContext db = new BetBudContext())
             {
                 return db.Brugere.Find(id);
             }
@@ -22,7 +22,7 @@ namespace CtrLayer
 
         public IEnumerable<Bruger> getBrugere()
         {
-            using (var db = new BetBudContext())
+            using (BetBudContext db = new BetBudContext())
             {
                 return db.Brugere.ToList();
             }
@@ -30,7 +30,7 @@ namespace CtrLayer
 
         public void opdaterBruger(Bruger bruger)
         {
-            using (var db = new BetBudContext())
+            using (BetBudContext db = new BetBudContext())
             {
                 db.Entry(bruger).State = EntityState.Modified;
                 db.SaveChanges();
@@ -40,24 +40,24 @@ namespace CtrLayer
         public void opretBruger(Bruger bruger)
         {
             //Email constraints 
-            var matchEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").Match(bruger.Email);
+            Match matchEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").Match(bruger.Email);
 
             //Number constraints
-            var matchName = new Regex(@"^[a-åA-Å' '-'\s]{1,40}$").Match(bruger.Navn);
+            Match matchName = new Regex(@"^[a-åA-Å' '-'\s]{1,40}$").Match(bruger.Navn);
             bruger.Password = GenerateSaltedHash(bruger.Password);
 
             //Brugernavn constraints 1-24 karaktere
             //Skal starte med a-z
             // må indeholde .,-_
             //Må ikke ende på .,-_
-            var matchBruger = new Regex(@"^[a-zA-Z]{1}[a-zA-Z0-9\._\-]{0,23}[^.-]$").Match(bruger.BrugerNavn);
+            Match matchBruger = new Regex(@"^[a-zA-Z]{1}[a-zA-Z0-9\._\-]{0,23}[^.-]$").Match(bruger.BrugerNavn);
             //var matchBrugernavn = new Regex(@"(\.|\-|\._|\-_)$").Match(bruger.BrugerNavn);
-            var b = GetBrugerEfterBrugerNavn(bruger.BrugerNavn);
+            Bruger b = GetBrugerEfterBrugerNavn(bruger.BrugerNavn);
 
 
             if (matchEmail.Success && matchName.Success && matchBruger.Success && b == null)
             {
-                using (var db = new BetBudContext())
+                using (BetBudContext db = new BetBudContext())
                 {
                     db.Brugere.Add(bruger);
                     db.SaveChanges();
@@ -67,9 +67,9 @@ namespace CtrLayer
 
         public void sletBruger(int id)
         {
-            using (var db = new BetBudContext())
+            using (BetBudContext db = new BetBudContext())
             {
-                var bruger = new Bruger();
+                Bruger bruger = new Bruger();
                 bruger.BrugerId = id;
                 db.Entry(bruger).State = EntityState.Deleted;
                 db.SaveChanges();
@@ -78,7 +78,7 @@ namespace CtrLayer
 
         public Bruger GetBrugerEfterBrugerNavn(string bnavn)
         {
-            using (var db = new BetBudContext())
+            using (BetBudContext db = new BetBudContext())
             {
                 return db.Brugere.FirstOrDefault(b => b.BrugerNavn == bnavn);
             }
@@ -86,10 +86,10 @@ namespace CtrLayer
 
         public Bruger logIndBruger(string bNavn, string pWord)
         {
-            using (var db = new BetBudContext())
+            using (BetBudContext db = new BetBudContext())
             {
-                var passHash = GenerateSaltedHash(pWord);
-                var bruger =
+                string passHash = GenerateSaltedHash(pWord);
+                Bruger bruger =
                     db.Brugere.Where(x => x.BrugerNavn.Equals(bNavn) && x.Password.Equals(passHash)).FirstOrDefault();
 
                 return bruger;
@@ -99,9 +99,9 @@ namespace CtrLayer
         //hash password - salt password og hash igen
         private string GenerateSaltedHash(string password)
         {
-            var hashPass = Encoding.UTF8.GetBytes(Encode(password));
-            var endPass = new byte[hashPass.Length*2];
-            for (var i = 0; i < hashPass.Length; i++)
+            byte[] hashPass = Encoding.UTF8.GetBytes(Encode(password));
+            byte[] endPass = new byte[hashPass.Length*2];
+            for (int i = 0; i < hashPass.Length; i++)
             {
                 endPass[i*2] = hashPass[i];
                 endPass[i*2 + 1] = hashPass[hashPass.Length - 1 - i];
@@ -113,15 +113,15 @@ namespace CtrLayer
         //Opret en password hash
         private string Encode(string value)
         {
-            var hash = SHA1.Create();
-            var encoder = new ASCIIEncoding();
-            var combined = encoder.GetBytes(value ?? "");
+            SHA1 hash = SHA1.Create();
+            ASCIIEncoding encoder = new ASCIIEncoding();
+            byte[] combined = encoder.GetBytes(value ?? "");
             return BitConverter.ToString(hash.ComputeHash(combined)).ToLower().Replace("-", "");
         }
 
         public void AddPoints(double amount, string navn, Bruger b)
         {
-            using (var db = new BetBudContext())
+            using (BetBudContext db = new BetBudContext())
             {
                 b = GetBrugerEfterBrugerNavn(navn);
 
@@ -134,7 +134,7 @@ namespace CtrLayer
 
         public void SubtractPoints(double amount, string navn, Bruger b)
         {
-            using (var db = new BetBudContext())
+            using (BetBudContext db = new BetBudContext())
             {
                 b = GetBrugerEfterBrugerNavn(navn);
 
@@ -148,10 +148,10 @@ namespace CtrLayer
         public IEnumerable<Bruger> getHighscores()
 
         {
-            using (var db = new BetBudContext())
+            using (BetBudContext db = new BetBudContext())
             {
                 //var result = db.Brugere.GroupBy(x => x.Navn).Select(g => g.OrderByDescending(x => x.Point));
-                var result = db.Brugere.OrderByDescending(x => x.Point);
+                IOrderedQueryable<Bruger> result = db.Brugere.OrderByDescending(x => x.Point);
                 return result.ToList();
                 //return result;
             }

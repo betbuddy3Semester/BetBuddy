@@ -1,4 +1,5 @@
-﻿@model IEnumerable<MVCBetBud.ServiceReference.Bruger>
+﻿@using MVCBetBud.ServiceReference
+@model IEnumerable<MVCBetBud.ServiceReference.Bruger>
 
 @{
     ViewBag.Title = "HighScore";
@@ -17,7 +18,7 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
+    @foreach (Bruger item in Model)
     {
         <tr>
             <td>

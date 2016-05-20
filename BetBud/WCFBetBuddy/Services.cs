@@ -46,7 +46,7 @@ namespace WCFBetBuddy
 
         public Bruger logInd(string bNavn, string pWord)
         {
-            var b = brugerCtrl.logIndBruger(bNavn, pWord);
+            Bruger b = brugerCtrl.logIndBruger(bNavn, pWord);
             return b;
         }
 
@@ -76,14 +76,14 @@ namespace WCFBetBuddy
         //Og returnere den valgte kupon
         public Kupon TilføjKamp(Kupon kupon, Kamp kamp, bool valgt1, bool valgtX, bool valgt2)
         {
-            var fundetData = NyKuponController.TilføjKamp(kamp, valgt1, valgtX, valgt2, kupon);
+            Kupon fundetData = NyKuponController.TilføjKamp(kamp, valgt1, valgtX, valgt2, kupon);
             return fundetData;
         }
 
         // Metode FjernKamp som sendes videre til controller laget, hvor kamp og kupon holdes i dataFjernet og returnere kun kupon.
         public Kupon FjernKamp(Kamp kamp, Kupon kupon)
         {
-            var dataFjernes = NyKuponController.FjernKamp(kamp, kupon);
+            Kupon dataFjernes = NyKuponController.FjernKamp(kamp, kupon);
             return dataFjernes;
         }
 

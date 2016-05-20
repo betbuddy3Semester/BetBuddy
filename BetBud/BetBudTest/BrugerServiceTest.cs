@@ -14,7 +14,7 @@ namespace BetBudTest
         public void opdaterBrugerTest()
         {
             //Arrange
-            var bruger = new Bruger();
+            Bruger bruger = new Bruger();
 
 
             //Act 
@@ -23,14 +23,14 @@ namespace BetBudTest
             BSR.opretBruger(bruger);
 
             //Assert
-            var b = BSR.getBrugerEfterBrugernavn(bruger.BrugerNavn);
+            Bruger b = BSR.getBrugerEfterBrugernavn(bruger.BrugerNavn);
             Assert.AreEqual("LuderLaila", b.BrugerNavn);
 
             b.BrugerNavn = "JULIE HAR IKKE BUKSER I HÅRET";
             b.Email = "BUKSiHÅR@hehe.fu";
             BSR.opdaterBruger(b);
 
-            var b2 = BSR.getBrugerEfterBrugernavn("JULIE HAR IKKE BUKSER I HÅRET");
+            Bruger b2 = BSR.getBrugerEfterBrugernavn("JULIE HAR IKKE BUKSER I HÅRET");
             Assert.AreEqual("JULIE HAR IKKE BUKSER I HÅRET", b2.BrugerNavn);
             Assert.AreEqual("BUKSiHÅR@hehe.fu", b2.Email);
             BSR.sletBruger(b.BrugerId);
@@ -43,7 +43,7 @@ namespace BetBudTest
         public void opretBrugerTest()
         {
             //Arrange
-            var bruger = new Bruger();
+            Bruger bruger = new Bruger();
 
 
             //Act 
@@ -52,7 +52,7 @@ namespace BetBudTest
             BSR.opretBruger(bruger);
 
             //Assert
-            var b = BSR.getBrugerEfterBrugernavn(bruger.BrugerNavn);
+            Bruger b = BSR.getBrugerEfterBrugernavn(bruger.BrugerNavn);
             Assert.AreEqual("Laila", b.BrugerNavn);
             BSR.sletBruger(b.BrugerId);
         }
@@ -61,7 +61,7 @@ namespace BetBudTest
         public void sletBrugerTest()
         {
             //Arrange
-            var bruger = new Bruger();
+            Bruger bruger = new Bruger();
 
 
             //Act 
@@ -70,7 +70,7 @@ namespace BetBudTest
             BSR.opretBruger(bruger);
 
             //Assert
-            var b = BSR.getBrugerEfterBrugernavn(bruger.BrugerNavn);
+            Bruger b = BSR.getBrugerEfterBrugernavn(bruger.BrugerNavn);
             Assert.AreEqual("Hans Testies", b.BrugerNavn);
             BSR.sletBruger(b.BrugerId);
         }

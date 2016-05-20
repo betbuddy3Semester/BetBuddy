@@ -15,7 +15,7 @@ namespace MVCBetBud.Controllers
             if (Session["brugerSession"] != null)
             {
                 // Bruger b = SR.getBrugerEfterBrugernavn(User.Identity.Name);
-                var b = SR.getBruger((int) Session["brugerSession"]);
+                Bruger b = SR.getBruger((int) Session["brugerSession"]);
                 return View(b);
             }
 
@@ -34,14 +34,14 @@ namespace MVCBetBud.Controllers
 
         public ActionResult HighScore()
         {
-            var Bruger = SR.getHighscores();
+            Bruger[] Bruger = SR.getHighscores();
             return View(Bruger);
         }
 
         [HttpPost]
         public ActionResult Login(string brugerNavn, string kodeord)
         {
-            var b = SR.logInd(brugerNavn, kodeord);
+            Bruger b = SR.logInd(brugerNavn, kodeord);
             if (b != null)
             {
                 //FormsAuthentication.SetAuthCookie(b.BrugerNavn, true);
@@ -67,7 +67,7 @@ namespace MVCBetBud.Controllers
             if (Session["brugerSession"] != null)
             {
                 // Bruger b = SR.getBrugerEfterBrugernavn(User.Identity.Name);
-                var b = SR.getBruger((int) Session["brugerSession"]);
+                Bruger b = SR.getBruger((int) Session["brugerSession"]);
                 return View(b);
             }
 
@@ -85,19 +85,19 @@ namespace MVCBetBud.Controllers
         public ActionResult Create(Bruger b)
         {
             //Email constraints 
-            var matchEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").Match(b.Email);
+            Match matchEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").Match(b.Email);
 
             //Number constraints
-            var matchName = new Regex(@"^[a-åA-Å' '-'\s]{1,40}$").Match(b.Navn);
+            Match matchName = new Regex(@"^[a-åA-Å' '-'\s]{1,40}$").Match(b.Navn);
 
 
             //Brugernavn constraints 1-24 karaktere
             //Skal starte med a-z
             // må indeholde .,-_
             //Må ikke ende på .,-_
-            var matchBruger = new Regex(@"^[a-zA-Z0-9\._\-]{0,23}$").Match(b.BrugerNavn);
+            Match matchBruger = new Regex(@"^[a-zA-Z0-9\._\-]{0,23}$").Match(b.BrugerNavn);
 
-            var bcheck = SR.getBrugerEfterBrugernavn(b.BrugerNavn);
+            Bruger bcheck = SR.getBrugerEfterBrugernavn(b.BrugerNavn);
 
 
             if (matchEmail.Success && matchName.Success && matchBruger.Success && bcheck == null)
@@ -134,7 +134,7 @@ namespace MVCBetBud.Controllers
         // GET: Bruger/Edit/5
         public ActionResult Edit(int id)
         {
-            var b = SR.getBruger(id);
+            Bruger b = SR.getBruger(id);
             return View(b);
         }
 
@@ -157,7 +157,7 @@ namespace MVCBetBud.Controllers
         // GET: Bruger/Delete/5
         public ActionResult Delete(int id)
         {
-            var b = SR.getBruger(id);
+            Bruger b = SR.getBruger(id);
             return View(b);
         }
 

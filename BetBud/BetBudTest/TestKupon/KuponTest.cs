@@ -12,7 +12,7 @@ namespace BetBudTest.TestKupon
 
         public KuponTest()
         {
-            var testObject = new KampTest();
+            KampTest testObject = new KampTest();
             kampe.Add(testObject.kamp1);
             kampe.Add(testObject.kamp2);
         }
@@ -22,7 +22,7 @@ namespace BetBudTest.TestKupon
         public void BekræftKupon()
         {
             //Arrange
-            var kupon = new Kupon();
+            Kupon kupon = new Kupon();
 
             //Act
             kupon.TilføjKamp(kampe.ElementAt(0), false, true, false);
@@ -37,7 +37,7 @@ namespace BetBudTest.TestKupon
         public void FjernKamp()
         {
             //Arrange
-            var kupon = new Kupon();
+            Kupon kupon = new Kupon();
 
             //Act
             kupon.TilføjKamp(kampe.First(), false, false, true);
@@ -67,7 +67,7 @@ namespace BetBudTest.TestKupon
         public void MuligGevist()
         {
             //Arrange
-            var kupon = new Kupon();
+            Kupon kupon = new Kupon();
 
             //Act
             kupon.TilføjKamp(kampe.ElementAt(0), false, true, false);
@@ -82,7 +82,7 @@ namespace BetBudTest.TestKupon
         public void OddsUdregning()
         {
             //Arrange
-            var kupon = new Kupon();
+            Kupon kupon = new Kupon();
 
             //Act
             kupon.TilføjKamp(kampe.ElementAt(0), false, true, false);
@@ -96,13 +96,13 @@ namespace BetBudTest.TestKupon
         public void TilføjKampTest()
         {
             //Arrange
-            var kupon = new Kupon();
+            Kupon kupon = new Kupon();
 
             //Act
             kupon.TilføjKamp(kampe.First(), true, false, false);
 
             //Assert
-            var dk = kupon.delKampe.First();
+            DelKamp dk = kupon.delKampe.First();
             Assert.AreEqual(kampe.First(), dk.Kampe);
         }
     }

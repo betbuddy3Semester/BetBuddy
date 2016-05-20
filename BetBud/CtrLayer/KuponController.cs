@@ -34,8 +34,8 @@ namespace CtrLayer
 
         public Kupon TilføjKamp(Kamp kamp, bool valgt1, bool valgtX, bool valgt2, Kupon kupon)
         {
-            var fundet = false;
-            foreach (var delKamp in kupon.delKampe)
+            bool fundet = false;
+            foreach (DelKamp delKamp in kupon.delKampe)
             {
                 if (delKamp.Kampe.KampId == kamp.KampId)
                 {
@@ -96,9 +96,9 @@ namespace CtrLayer
             kupon.CreateDateTime = DateTime.Now;
             if (kupon.delKampe.Count > 0)
             {
-                using (var db = new BetBudContext())
+                using (BetBudContext db = new BetBudContext())
                 {
-                    foreach (var kamp in kupon.delKampe)
+                    foreach (DelKamp kamp in kupon.delKampe)
                     {
                         db.Entry(kamp.Kampe).State = EntityState.Unchanged;
                     }
@@ -114,7 +114,7 @@ namespace CtrLayer
         // Metode der henter alle kampe i Databasen. Der oprettes en ny forbindelse til databasen som returnere Kampe på en liste. 
         public IEnumerable<Kamp> GetAlleKampe()
         {
-            using (var db = new BetBudContext())
+            using (BetBudContext db = new BetBudContext())
             {
                 return db.Kampe.ToList();
             }
@@ -125,9 +125,9 @@ namespace CtrLayer
 
         public Kamp FindKamp(int KampId)
         {
-            using (var db = new BetBudContext())
+            using (BetBudContext db = new BetBudContext())
             {
-                var kamp = db.Kampe.Find(KampId);
+                Kamp kamp = db.Kampe.Find(KampId);
                 return kamp;
             }
         }
@@ -136,7 +136,7 @@ namespace CtrLayer
         // Databasen returnere alle brugerens kuponer hvis brugerId stemmer overens med brugerId og tilføjer disse til en liste.
         public IEnumerable<Kupon> GetAlleKuponer(Bruger bruger)
         {
-            using (var db = new BetBudContext())
+            using (BetBudContext db = new BetBudContext())
             {
                 return
                     db.Kuponer.Include(x => x.delKampe.Select(y => y.Kampe))
@@ -167,10 +167,10 @@ namespace CtrLayer
 
         public void ApiGetKampe()
         {
-            var apiSetting = getLastApiCall();
-            var lastApiDate = "http://odds.mukuduk.dk/?timeStamp=" + apiSetting.value;
-            var oddsUrl = XElement.Load(lastApiDate);
-            var kampe = oddsUrl.Elements("kamp").Select(p => new Kamp
+            Setting apiSetting = getLastApiCall();
+            string lastApiDate = "http://odds.mukuduk.dk/?timeStamp=" + apiSetting.value;
+            XElement oddsUrl = XElement.Load(lastApiDate);
+            Kamp[] kampe = oddsUrl.Elements("kamp").Select(p => new Kamp
             {
                 HoldVsHold = p.Element("text").Value,
                 Odds1 = double.Parse(p.Element("odds1").Value, CultureInfo.InvariantCulture),
@@ -195,8 +195,8 @@ namespace CtrLayer
 
         private void ModtagBelønning()
         {
-            var readyKupons = new List<Kupon>();
-            using (var db = new BetBudContext())
+            List<Kupon> readyKupons = new List<Kupon>();
+            using (BetBudContext db = new BetBudContext())
             {
                 readyKupons =
                     db.Kuponer.Include(x => x.delKampe.Select(y => y.Kampe))
@@ -205,12 +205,12 @@ namespace CtrLayer
                         .ToList();
             }
 
-            foreach (var kupon in readyKupons)
+            foreach (Kupon kupon in readyKupons)
             {
                 Debug.WriteLine("kuponer");
 
-                var kuponklar = true;
-                foreach (var delkamp in kupon.delKampe)
+                bool kuponklar = true;
+                foreach (DelKamp delkamp in kupon.delKampe)
                 {
                     if (!delkamp.Kampe.VundetX && !delkamp.Kampe.Vundet1 && !delkamp.Kampe.Vundet2)
                     {
@@ -232,7 +232,7 @@ namespace CtrLayer
             kupon.Bruger.Point += kupon.MuligGevist();
             kupon.Kontrolleret = true;
 
-            using (var db = new BetBudContext())
+            using (BetBudContext db = new BetBudContext())
             {
                 Debug.WriteLine("gem");
                 db.Entry(kupon).State = EntityState.Modified;
@@ -243,7 +243,7 @@ namespace CtrLayer
 
         private Setting getLastApiCall()
         {
-            using (var db = new BetBudContext())
+            using (BetBudContext db = new BetBudContext())
             {
                 return db.Settings.First(x => x.name == "lastApiCall");
             }
@@ -251,7 +251,7 @@ namespace CtrLayer
 
         private void updateSetting(Setting setting)
         {
-            using (var db = new BetBudContext())
+            using (BetBudContext db = new BetBudContext())
             {
                 db.Entry(setting).State = EntityState.Modified;
                 db.SaveChanges();
@@ -260,7 +260,7 @@ namespace CtrLayer
 
         private void storeNewKampe(Kamp[] kamp)
         {
-            using (var db = new BetBudContext())
+            using (BetBudContext db = new BetBudContext())
             {
                 db.Kampe.AddRange(kamp);
                 db.SaveChanges();
@@ -272,7 +272,7 @@ namespace CtrLayer
             IEnumerable<Kamp> kampList = new List<Kamp>();
 
 
-            using (var db = new BetBudContext())
+            using (BetBudContext db = new BetBudContext())
             {
                 kampList =
                     db.Kampe.Where(x => x.KampStart < DateTime.Now && !x.Vundet1 && !x.Vundet2 && !x.VundetX).ToList();
@@ -280,12 +280,12 @@ namespace CtrLayer
 
             if (kampList.Any())
             {
-                foreach (var kamp in kampList)
+                foreach (Kamp kamp in kampList)
                 {
                     Debug.WriteLine("do game update");
-                    var lastApiDate = "http://odds.mukuduk.dk/?kampId=" + kamp.KampId;
-                    var oddsUrl = XElement.Load(lastApiDate);
-                    var kampe = oddsUrl.Elements("kamp").Select(p => new Kamp
+                    string lastApiDate = "http://odds.mukuduk.dk/?kampId=" + kamp.KampId;
+                    XElement oddsUrl = XElement.Load(lastApiDate);
+                    Kamp kampe = oddsUrl.Elements("kamp").Select(p => new Kamp
                     {
                         HoldVsHold = p.Element("text").Value,
                         Odds1 = double.Parse(p.Element("odds1").Value),
@@ -301,7 +301,7 @@ namespace CtrLayer
                     kamp.Vundet1 = kampe.Vundet1;
                     kamp.VundetX = kampe.VundetX;
                     kamp.Vundet2 = kampe.Vundet2;
-                    using (var db = new BetBudContext())
+                    using (BetBudContext db = new BetBudContext())
                     {
                         Debug.WriteLine("save Game");
                         db.Entry(kamp).State = EntityState.Modified;
@@ -313,7 +313,7 @@ namespace CtrLayer
 
         public IEnumerable<Kamp> getIkkeSpilletKampe()
         {
-            using (var db = new BetBudContext())
+            using (BetBudContext db = new BetBudContext())
             {
                 return db.Kampe.Where(x => x.KampStart > DateTime.Now).ToList();
             }

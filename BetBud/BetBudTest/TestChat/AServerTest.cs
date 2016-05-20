@@ -93,7 +93,7 @@ namespace BetBudTest.TestChat
         public void StopServerTest()
         {
             //Arrrange 
-            var aserv = new AServer();
+            AServer aserv = new AServer();
 
             // Act
             aserv.StartServer();

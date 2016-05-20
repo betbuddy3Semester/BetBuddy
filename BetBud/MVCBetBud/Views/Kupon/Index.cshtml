@@ -1,4 +1,6 @@
-﻿@model IEnumerable<MVCBetBud.Models.VundetKupon>
+﻿@using MVCBetBud.Models
+@using MVCBetBud.ServiceReference
+@model IEnumerable<MVCBetBud.Models.VundetKupon>
 
 @{
     ViewBag.Title = "Kuponer";
@@ -8,9 +10,9 @@
 <p>
     <a href="@Url.Action("OpretKupon", "Kupon")" class="btn btn-success">Ny kupon!</a>
 </p>
-@foreach (var modelVundet in Model)
+@foreach (VundetKupon modelVundet in Model)
 {
-    var vundet = "kuponFailed";
+    string vundet = "kuponFailed";
     if (modelVundet.vundet)
     {
         vundet = "kuponSucces";
@@ -24,10 +26,10 @@
                 <th>Odds</th>
 
             </tr>
-            @foreach (var delKamp in modelVundet.kupon.delKampe)
+            @foreach (DelKamp delKamp in modelVundet.kupon.delKampe)
             {
-                var odds = 0.0;
-                var valgt = "taber";
+                double odds = 0.0;
+                string valgt = "taber";
 
                 if (delKamp.Valgt1)
                 {

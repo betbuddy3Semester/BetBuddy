@@ -36,7 +36,7 @@ namespace ModelLibrary.Chat
         public void ConnectToServer()
         {
             // initialisering af int til at tælle mængden af forbindelsesforsøg
-            var connectionAttempts = 0;
+            int connectionAttempts = 0;
 
             // Loop der foreskriver, at hvis clientens socket ikke er connected, så køres den underliggende try
             while (!ClientSocket.Connected && connectionAttempts < 3)
@@ -80,13 +80,13 @@ namespace ModelLibrary.Chat
         public void ReceiveResponse()
         {
             // Først initialiseres et byte array til at holde beskeden i konverteret form
-            var clientBuffer = new byte[2048];
+            byte[] clientBuffer = new byte[2048];
             // int received initialiseres og sættes til at være ligmed størrelsen på det ovenstående byte array
-            var received = ClientSocket.Receive(clientBuffer, SocketFlags.None);
+            int received = ClientSocket.Receive(clientBuffer, SocketFlags.None);
             // Hvis int received er lig med nul, stopper metoden her, da der så ikke er nogen data i arrayet
             if (received == 0) return;
             // Initialisering af et nyt byte array, til brug i den nedenstående Array.Copy metode, som kopiere data fra et byte[] til et andet.
-            var data = new byte[received];
+            byte[] data = new byte[received];
             Array.Copy(clientBuffer, data, received);
             // Til sidst konverteres dataen i det kopierede byte[] tilbage til String format
             ReceivedMessage = Encoding.ASCII.GetString(data);
@@ -98,7 +98,7 @@ namespace ModelLibrary.Chat
         public void SendResponse(string messageStringInput)
         {
             // Først initialisere vi en variabel(buffer) og smider metodens input string(messageStringInput) ind i den, i konverteret form .
-            var buffer = Encoding.ASCII.GetBytes(messageStringInput);
+            byte[] buffer = Encoding.ASCII.GetBytes(messageStringInput);
             // Til sidst sender vi den konverterede String til ServerSocket'en for at blive konverteret tilbage til String format.
             ClientSocket.Send(buffer, 0, buffer.Length, SocketFlags.None);
         }

@@ -1,4 +1,5 @@
-﻿@model MVCBetBud.Models.OpretKuponController
+﻿@using MVCBetBud.ServiceReference
+@model MVCBetBud.Models.OpretKuponController
 
 @{
     ViewBag.Title = "OpretKupon";
@@ -38,7 +39,7 @@
             <th></th>
         </tr>
 
-        @foreach (var item in Model.AlleKampe)
+        @foreach (Kamp item in Model.AlleKampe)
         {
             <tr>
                 @using (Html.BeginForm())
@@ -81,10 +82,10 @@
         </tr>
         @if (Model.kupon.delKampe != null)
         {
-            foreach (var delKamp in Model.kupon.delKampe)
+            foreach (DelKamp delKamp in Model.kupon.delKampe)
             {
-                var odds = 0.0;
-                var valgt = "taber";
+                double odds = 0.0;
+                string valgt = "taber";
 
                 if (delKamp.Valgt1)
                 {

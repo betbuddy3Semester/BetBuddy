@@ -43,7 +43,7 @@ namespace ModelLibrary.Kupon
         {
             if (kamp != null && ((valgt1 ? 1 : 0) + (valgtX ? 1 : 0) + (valgt2 ? 1 : 0) == 1))
             {
-                var nyDelKamp = new DelKamp();
+                DelKamp nyDelKamp = new DelKamp();
 
                 nyDelKamp.Kampe = kamp;
                 nyDelKamp.KampId = kamp.KampId;
@@ -64,7 +64,7 @@ namespace ModelLibrary.Kupon
         {
             if (kamp != null)
             {
-                for (var i = 0; i < delKampe.Count; i++)
+                for (int i = 0; i < delKampe.Count; i++)
                 {
                     if (delKampe[i].Kampe.KampId.Equals(kamp.KampId))
                     {
@@ -82,7 +82,7 @@ namespace ModelLibrary.Kupon
         public double OddsUdregning()
         {
             double oddsResultat = 1;
-            foreach (var HverDelKamp in delKampe)
+            foreach (DelKamp HverDelKamp in delKampe)
             {
                 oddsResultat *= HverDelKamp.GetOdds();
             }
