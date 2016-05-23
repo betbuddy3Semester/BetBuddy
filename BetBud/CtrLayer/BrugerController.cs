@@ -46,6 +46,7 @@ namespace CtrLayer
             Match matchName = new Regex(@"^[a-åA-Å' '-'\s]{1,40}$").Match(bruger.Navn);
             bruger.Password = GenerateSaltedHash(bruger.Password);
 
+            bruger.Point = 10000;
             //Brugernavn constraints 1-24 karaktere
             //Skal starte med a-z
             // må indeholde .,-_
@@ -59,6 +60,7 @@ namespace CtrLayer
             {
                 using (BetBudContext db = new BetBudContext())
                 {
+                    
                     db.Brugere.Add(bruger);
                     db.SaveChanges();
                 }

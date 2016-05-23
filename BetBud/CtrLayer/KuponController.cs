@@ -215,6 +215,7 @@ namespace CtrLayer
                     if (!delkamp.Kampe.VundetX && !delkamp.Kampe.Vundet1 && !delkamp.Kampe.Vundet2)
                     {
                         kuponklar = false;
+                        break;
                     }
                     Debug.WriteLine("kampe");
                 }

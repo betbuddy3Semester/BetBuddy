@@ -131,7 +131,8 @@ Socket.on("request",
 /*
  * Kupon api
  */
-var theLoop = setInterval(apiKald, 5000);
+var CHECK_INTERVAL = 5000;
+var theLoop = setInterval(apiKald, CHECK_INTERVAL);
 
 function apiKald() {
     console.log("start api kald!");
