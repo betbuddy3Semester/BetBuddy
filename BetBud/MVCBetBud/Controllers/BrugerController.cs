@@ -1,12 +1,18 @@
-﻿using System.Text.RegularExpressions;
+﻿using MVCBetBud.ServiceReference;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Web;
 using System.Web.Mvc;
-using MVCBetBud.ServiceReference;
+using System.Web.Security;
+
 
 namespace MVCBetBud.Controllers
 {
     public class BrugerController : Controller
     {
-        private readonly ServicesClient SR = new ServicesClient();
+        ServiceReference.ServicesClient SR = new ServiceReference.ServicesClient();
         // GET: Bruger
         public ActionResult Index()
         {
@@ -15,7 +21,7 @@ namespace MVCBetBud.Controllers
             if (Session["brugerSession"] != null)
             {
                 // Bruger b = SR.getBrugerEfterBrugernavn(User.Identity.Name);
-                Bruger b = SR.getBruger((int) Session["brugerSession"]);
+                Bruger b = SR.getBruger((int)Session["brugerSession"]);
                 return View(b);
             }
 
@@ -36,12 +42,6 @@ namespace MVCBetBud.Controllers
             return View();
         }
 
-        public ActionResult HighScore()
-        {
-            Bruger[] Bruger = SR.getHighscores();
-            return View(Bruger);
-        }
-
         [HttpPost]
         public ActionResult Login(string brugerNavn, string kodeord)
         {
@@ -50,10 +50,12 @@ namespace MVCBetBud.Controllers
             {
                 //FormsAuthentication.SetAuthCookie(b.BrugerNavn, true);
                 Session["brugerSession"] = b.BrugerId;
+
             }
             return RedirectToAction("index");
-        }
 
+
+        }
         // GET: logout af bruger
         public ActionResult Logout()
         {
@@ -64,14 +66,13 @@ namespace MVCBetBud.Controllers
             }
             return RedirectToAction("login");
         }
-
         // GET: Bruger/Details/5
         public ActionResult Details(int id)
         {
             if (Session["brugerSession"] != null)
             {
                 // Bruger b = SR.getBrugerEfterBrugernavn(User.Identity.Name);
-                Bruger b = SR.getBruger((int) Session["brugerSession"]);
+                Bruger b = SR.getBruger((int)Session["brugerSession"]);
                 return View(b);
             }
 
@@ -81,6 +82,7 @@ namespace MVCBetBud.Controllers
         // GET: Bruger/Create
         public ActionResult Create()
         {
+
             return View();
         }
 
@@ -88,24 +90,28 @@ namespace MVCBetBud.Controllers
         [HttpPost]
         public ActionResult Create(Bruger b)
         {
+            
+            
+
             //Email constraints 
-            Match matchEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").Match(b.Email);
+            var matchEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").Match(b.Email);
 
             //Number constraints
-            Match matchName = new Regex(@"^[a-åA-Å' '-'\s]{1,40}$").Match(b.Navn);
+            var matchName = new Regex(@"^[a-åA-Å' '-'\s]{1,40}$").Match(b.Navn);
 
 
             //Brugernavn constraints 1-24 karaktere
             //Skal starte med a-z
             // må indeholde .,-_
             //Må ikke ende på .,-_
-            Match matchBruger = new Regex(@"^[a-zA-Z0-9\._\-]{0,23}$").Match(b.BrugerNavn);
+            var matchBruger = new Regex(@"^[a-zA-Z0-9\._\-]{0,23}$").Match(b.BrugerNavn);
 
             Bruger bcheck = SR.getBrugerEfterBrugernavn(b.BrugerNavn);
 
 
             if (matchEmail.Success && matchName.Success && matchBruger.Success && bcheck == null)
             {
+
                 try
                 {
                     SR.opretBruger(b);
@@ -116,21 +122,27 @@ namespace MVCBetBud.Controllers
                     return View();
                 }
             }
+            else
+            {
             if (!matchEmail.Success)
             {
                 Session["BrugerErrorEmail"] = "Der er fejl i din email.";
+
             }
             if (!matchName.Success)
             {
                 Session["BrugerErrorNavn"] = "Dit navn kan ikke indeholde tal";
+
             }
             if (!matchBruger.Success)
             {
                 Session["BrugerErrorBrugernavn"] = "Der er fejl i brugernavn";
+
             }
             if (bcheck != null)
             {
                 Session["BrugerErrorBruger"] = "Brugeren eksistere allerede";
+            }
             }
             return View();
         }
@@ -180,5 +192,6 @@ namespace MVCBetBud.Controllers
                 return View();
             }
         }
+
     }
 }

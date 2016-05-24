@@ -1,4 +1,6 @@
-﻿namespace ModelLibrary.Chat.Interface_Chat
+﻿using System.Net.Sockets;
+
+namespace ModelLibrary.Chat.Interface_Chat
 {
     public interface IClient
     {

@@ -1,4 +1,7 @@
-﻿using System.Threading;
+﻿using System;
+using System.Diagnostics;
+using System.Net.Sockets;
+using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ModelLibrary.Chat;
 using NUnit.Framework;
@@ -50,13 +53,12 @@ namespace BetBudTest.TestChat
         }
 
         /// <summary>
-        ///     A test to see if the server starts correctly
+        /// A test to see if the server starts correctly
         /// </summary>
         [Test]
         public void StartServerTest()
         {
             TestInitialize();
-
             #region Act
 
             _aserv.StartServer();
@@ -87,13 +89,14 @@ namespace BetBudTest.TestChat
             _aserv.StopServer();
 
             #endregion
+
         }
 
         [Test]
         public void StopServerTest()
         {
             //Arrrange 
-            AServer aserv = new AServer();
+            var aserv = new AServer();
 
             // Act
             aserv.StartServer();

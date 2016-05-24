@@ -1,9 +1,7 @@
 ﻿using Microsoft.Owin;
-using MVCBetBud;
 using Owin;
 
-[assembly: OwinStartup(typeof(Startup))]
-
+[assembly: OwinStartupAttribute(typeof(MVCBetBud.Startup))]
 namespace MVCBetBud
 {
     public partial class Startup

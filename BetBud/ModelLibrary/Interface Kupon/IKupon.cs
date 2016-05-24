@@ -1,14 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ModelLibrary.Kupon;
 
 namespace ModelLibrary
 {
     public interface IKupon
     {
-        bool Kontrolleret { get; set; }
-        double Point { get; set; }
-        List<DelKamp> delKampe { get; set; }
-        Bruger.Bruger Bruger { get; set; }
         /**
         * Oprettelse af kupon
         */
@@ -18,10 +15,22 @@ namespace ModelLibrary
         double MuligGevist();
         bool BekræftKupon();
 
+        
 
+        
         /**
         * Kontrol/indløsning af kupon
         */
         bool KontrolAfKupon();
+        bool Kontrolleret { get; set; }
+        double Point { get; set; }
+        List<DelKamp> delKampe { get; set; }
+        Bruger.Bruger Bruger { get; set; }
+        
+        
+        
+
+
+        
     }
 }

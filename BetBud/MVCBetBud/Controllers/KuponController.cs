@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using MVCBetBud.Models;
 using MVCBetBud.ServiceReference;
@@ -9,41 +11,21 @@ namespace MVCBetBud.Controllers
     public class KuponController : Controller
     {
         // Instans variabel der opretter en ny Service kaldet SR. Det er SR der håndtere kaldende og pakker/udpakker objekterne.  
-        private readonly ServicesClient SR = new ServicesClient();
+        ServiceReference.ServicesClient SR = new ServiceReference.ServicesClient();
 
         // GET: Kupon - Metode som der bruger session til at kontrollere om brugeren er på session. Hvis brugerens session eksisterer hentes 
         // brugeren ved et brugerId, og henter derefter alle brugerens kuponer som sendes til viewet. 
-        public ActionResult Index()
+        public ActionResult Kuponer()
         {
             if (Session["brugerSession"] != null)
             {
-                Bruger bruger = SR.getBruger((int) Session["brugerSession"]);
+
+
+                Bruger bruger = SR.getBruger((int)Session["brugerSession"]);
 
                 Kupon[] alleKuponer = SR.GetAlleKuponer(bruger);
-                List<VundetKupon> modelVundet = new List<VundetKupon>();
-                foreach (Kupon kupon in alleKuponer)
-                {
-                    double muligGevinst = SR.MuligGevist(kupon);
-                    bool vundet = true;
-                    foreach (DelKamp delkamp in kupon.delKampe)
-                    {
-                        if (delkamp.Kampe.Vundet1 != delkamp.Valgt1 || delkamp.Kampe.VundetX != delkamp.ValgtX ||
-                            delkamp.Kampe.Vundet2 != delkamp.Valgt2)
-                        {
-                            vundet = false;
-                        }
-                    }
-                    modelVundet.Add(new VundetKupon()
-                    {
-                        kupon = kupon,
-                        vundet = vundet,
-                        muligGevinst = muligGevinst
 
-                    });
-                }
-
-
-                return View(modelVundet);
+                return View(alleKuponer);
             }
             return RedirectToAction("index", "home");
         }
@@ -64,18 +46,19 @@ namespace MVCBetBud.Controllers
             if (Session["brugerSession"] != null)
             {
                 Kupon kupon = SR.NyKupon();
-                Bruger bruger = SR.getBruger((int) Session["brugerSession"]);
+                Bruger bruger = SR.getBruger((int)Session["brugerSession"]);
                 kupon.Bruger = bruger;
                 kupon.BrugerId = bruger.BrugerId;
                 if (Session["kupon"] != null)
                 {
-                    kupon = (Kupon) Session["kupon"];
+                    kupon = (Kupon)Session["kupon"];
+
                 }
                 else
                 {
                     Session["kupon"] = kupon;
                 }
-                Kamp[] ListeAfKampe = SR.getIkkeSpilletKampe();
+                Kamp[] ListeAfKampe = SR.GetAlleKampe();
                 OpretKuponController modelOpretKupon = new OpretKuponController();
                 modelOpretKupon.kupon = kupon;
                 modelOpretKupon.AlleKampe = ListeAfKampe;
@@ -90,41 +73,25 @@ namespace MVCBetBud.Controllers
         [HttpPost]
         public ActionResult OpretKupon(double bettingPoint)
         {
-            if (bettingPoint <= 0.0)
+            if (bettingPoint <=0.0)
             {
                 return RedirectToAction("OpretKupon");
             }
-
-            Kupon kupon = (Kupon) Session["kupon"];
-            bool canDoKupon = true;
-            foreach (DelKamp delkamp in kupon.delKampe)
+            try
             {
-                if (delkamp.Kampe.KampStart < DateTime.Now)
-                {
-                    canDoKupon = false;
-                }
-            }
-
-            if (kupon.Bruger.Point < bettingPoint)
-            {
-                Session["error"] = "Du har ikke nok point til at satse.";
-            }
-            else if (!canDoKupon)
-            {
-                Session["error"] = "Du har en eller flere kampe som er startet.";
-            }
-            else
-            {
+                Kupon kupon = (Kupon)Session["kupon"];
                 kupon.Point = bettingPoint;
-                kupon.Bruger.Point -= bettingPoint;
                 if (SR.BekræftKupon(kupon))
                 {
-                    Session["kupon"] = null;
                     return RedirectToAction("index");
                 }
-            }
 
-            return RedirectToAction("OpretKupon");
+                return RedirectToAction("OpretKupon");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // PostOdds1 - Metode til at tilføje odds 1 på kuponen. 
@@ -135,11 +102,12 @@ namespace MVCBetBud.Controllers
         public ActionResult PostOdds1()
         {
             int kampId = Convert.ToInt32(Request.Form["item.KampId"]);
-            Kupon kupon = (Kupon) Session["kupon"];
+            Kupon kupon = (Kupon)Session["kupon"];
 
             Kamp valgtKamp = SR.FindKamp(kampId);
             Kupon valgtKupon = SR.TilføjKamp(kupon, valgtKamp, true, false, false);
             Session["kupon"] = valgtKupon;
+
 
 
             return RedirectToAction("OpretKupon");
@@ -154,16 +122,17 @@ namespace MVCBetBud.Controllers
         public ActionResult PostOddsX()
         {
             int kampId = Convert.ToInt32(Request.Form["item.KampId"]);
-            Kupon kupon = (Kupon) Session["kupon"];
+            Kupon kupon = (Kupon)Session["kupon"];
 
             Kamp valgtKamp = SR.FindKamp(kampId);
             Kupon valgtKupon = SR.TilføjKamp(kupon, valgtKamp, false, true, false);
             Session["kupon"] = valgtKupon;
 
 
+
             return RedirectToAction("OpretKupon");
         }
-
+        
         // PostOdds2 - Metode til at tilføje odds 2 på kuponen. 
         // Kontrollere at det er den rigtige kupon på session. 
         // Finder den valgte kamp udfra kampId - og tilføjer kampen til variablen valgtKupon
@@ -172,11 +141,12 @@ namespace MVCBetBud.Controllers
         public ActionResult PostOdds2()
         {
             int kampId = Convert.ToInt32(Request.Form["item.KampId"]);
-            Kupon kupon = (Kupon) Session["kupon"];
+            Kupon kupon = (Kupon)Session["kupon"];
 
             Kamp valgtKamp = SR.FindKamp(kampId);
             Kupon valgtKupon = SR.TilføjKamp(kupon, valgtKamp, false, false, true);
             Session["kupon"] = valgtKupon;
+
 
 
             return RedirectToAction("OpretKupon");
@@ -231,10 +201,10 @@ namespace MVCBetBud.Controllers
         public ActionResult FjernKamp()
         {
             int KampId = Convert.ToInt32(Request.Form["FjernKamp"]);
-            Kupon kupon = (Kupon) Session["kupon"];
+            Kupon kupon = (Kupon)Session["kupon"];
 
             Kamp valgtKamp = SR.FindKamp(KampId);
-            Kupon valgtKupon = SR.FjernKamp(valgtKamp, kupon);
+            Kupon valgtKupon = SR.FjernKamp(valgtKamp,kupon);
             Session["kupon"] = valgtKupon;
 
             return RedirectToAction("OpretKupon");
@@ -245,7 +215,7 @@ namespace MVCBetBud.Controllers
         // Man sendes til siden "opretKupon" 
         public ActionResult RydKupon()
         {
-            if (Session["kupon"] != null)
+            if (Session["kupon"] != null )
             {
                 Session["kupon"] = null;
             }
@@ -254,7 +224,7 @@ namespace MVCBetBud.Controllers
 
         public ActionResult ApiGetKampe()
         {
-            SR.GetKampFromApi();
+
             return View();
         }
     }

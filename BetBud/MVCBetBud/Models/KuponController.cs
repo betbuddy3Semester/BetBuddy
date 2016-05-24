@@ -1,11 +1,17 @@
-﻿using MVCBetBud.ServiceReference;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using MVCBetBud.Controllers;
+using MVCBetBud.ServiceReference;
 
 namespace MVCBetBud.Models
 {
     public class OpretKuponController
     {
         //Kupon
-        public Kupon kupon { get; set; }
+        public Kupon kupon{get; set;}
         public Kamp[] AlleKampe { get; set; }
     }
 
@@ -14,12 +20,5 @@ namespace MVCBetBud.Models
         //Kupon
         public Bruger[] brugere { get; set; }
         public Kamp[] AlleKampe { get; set; }
-    }
-
-    public class VundetKupon
-    {
-        public Kupon kupon { get; set; }
-        public bool vundet { get; set; }
-        public double muligGevinst { get; set; }
     }
 }

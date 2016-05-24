@@ -4,7 +4,6 @@
   "description": "BedbudyChat",
   "main": "app.js",
   "dependencies": {
-    "request": "^2.72.0",
     "websocket": "^1.0.22"
   }
 }

@@ -1,0 +1,52 @@
+﻿@using MVCBetBud.ServiceReference;
+@model IEnumerable<Kupon>
+
+@{
+    ViewBag.Title = "Kuponer";
+}
+
+<h2>Kuponer</h2>
+
+@foreach (var kupon in Model)
+{
+
+    <div class="col-md-4">
+        <h2>Din kupon</h2>
+        <table class="table">
+            <tr>
+                <th>Hold Vs Hold</th>
+                <th>Valgt</th>
+                <th>Odds</th>
+
+            </tr>
+            @foreach (var delKamp in kupon.delKampe)
+                {
+
+                    double odds = 0.0;
+                    string valgt = "taber";
+
+                    if (delKamp.Valgt1)
+                    {
+                        odds = delKamp.Kampe.Odds1;
+                        valgt = "1";
+                    }
+                    else if (delKamp.ValgtX)
+                    {
+                        odds = delKamp.Kampe.OddsX;
+                        valgt = "X";
+                    }
+                    else if (delKamp.Valgt2)
+                    {
+                        odds = delKamp.Kampe.Odds2;
+                        valgt = "2";
+                    }
+
+                    <tr><td>@delKamp.Kampe.HoldVsHold</td><td>@valgt</td><td>@odds</td></tr>
+            }
+            
+        </table>
+    </div>
+}
+<p>
+    @Html.ActionLink("Ny kupon", "OpretKupon")
+</p>

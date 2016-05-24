@@ -1,4 +1,11 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Data;
 
 namespace ModelLibrary.Kupon
 {
@@ -7,39 +14,35 @@ namespace ModelLibrary.Kupon
     {
         [DataMember]
         public int DelKampId { get; set; }
-
-        [DataMember]
-        public int KampId { get; set; }
-
         [DataMember]
         public bool Valgt1 { get; set; }
-
         [DataMember]
         public bool ValgtX { get; set; }
-
         [DataMember]
         public bool Valgt2 { get; set; }
-
         [DataMember]
         public Kamp Kampe { get; set; }
-
+        [DataMember]
+        public int KampId { get; set; }
+        
         public bool KampRigtig()
         {
             if (Kampe.Vundet1 == Valgt1)
             {
                 return true;
             }
-            if (Kampe.VundetX == ValgtX)
+            else if (Kampe.VundetX == ValgtX)
             {
                 return true;
             }
 
-            if (Kampe.Vundet2 == Valgt2)
+            else if (Kampe.Vundet2 == Valgt2)
             {
                 return true;
             }
 
             return false;
+            
         }
 
         public double GetOdds()
@@ -49,12 +52,17 @@ namespace ModelLibrary.Kupon
                 return Kampe.Odds1;
             }
 
-            if (ValgtX)
+            else if (ValgtX)
             {
                 return Kampe.OddsX;
             }
 
-            return Kampe.Odds2;
+            else
+            {
+                return Kampe.Odds2;
+            }
+            
+
         }
     }
 }

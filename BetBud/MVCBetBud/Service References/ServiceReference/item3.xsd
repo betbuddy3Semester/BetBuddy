@@ -5,7 +5,6 @@
     <xs:sequence>
       <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ModelLibrary.Bruger" minOccurs="0" name="Bruger" nillable="true" type="q1:Bruger" />
       <xs:element minOccurs="0" name="BrugerId" type="xs:int" />
-      <xs:element minOccurs="0" name="CreateDateTime" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Kontrolleret" type="xs:boolean" />
       <xs:element minOccurs="0" name="KuponId" type="xs:int" />
       <xs:element minOccurs="0" name="Point" type="xs:double" />

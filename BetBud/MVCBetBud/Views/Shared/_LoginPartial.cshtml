@@ -1,12 +1,11 @@
-﻿@if (Session["brugerSession"] != null)
+﻿
+@if (Session["brugerSession"] != null)
 {
     <script src="~/Scripts/chat.js"></script>
     <ul class="nav navbar-nav navbar-right">
+        <li><span onclick="startChat()">Open chat</span></li>
         <li>
-            <a href="#" onclick="startChat()">Open chat</a>
-        </li>
-        <li>
-            @Html.ActionLink("Profile", "Index", "Bruger")
+            @Html.ActionLink("Profile", "Details", "Bruger")
         </li>
         <li>
             @Html.ActionLink("Logout", "Logout", "Bruger")
@@ -20,3 +19,4 @@ else
         <li>@Html.ActionLink("Login", "Login", "Bruger")</li>
     </ul>
 }
+
