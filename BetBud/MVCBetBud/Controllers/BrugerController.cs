@@ -22,6 +22,10 @@ namespace MVCBetBud.Controllers
             return RedirectToAction("index", "Home");
         }
 
+        public ActionResult GetApi() {
+            return View();
+        }
+
         // GET: login side
         public ActionResult Login()
         {

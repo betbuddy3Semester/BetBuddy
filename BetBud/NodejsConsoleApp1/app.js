@@ -140,9 +140,9 @@ function apiKald() {
         },
         function(error, response, body) {
             if (!error && response.statusCode === 200) {
-                console.log("api done!");
+                console.log("api done!!");
             } else {
-                console.log("error!");
+                console.log("error!!");
 
             }
         });
