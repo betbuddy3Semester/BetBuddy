@@ -22,6 +22,10 @@ namespace MVCBetBud.Controllers
             return RedirectToAction("index", "Home");
         }
 
+        public ActionResult GetApi() {
+            return View();
+        }
+
         // GET: login side
         public ActionResult Login()
         {
@@ -112,22 +116,22 @@ namespace MVCBetBud.Controllers
                     return View();
                 }
             }
-            if (!matchEmail.Success)
-            {
-                Session["BrugerErrorEmail"] = "Der er fejl i din email.";
-            }
-            if (!matchName.Success)
-            {
-                Session["BrugerErrorNavn"] = "Dit navn kan ikke indeholde tal";
-            }
-            if (!matchBruger.Success)
-            {
-                Session["BrugerErrorBrugernavn"] = "Der er fejl i brugernavn";
-            }
-            if (bcheck != null)
-            {
-                Session["BrugerErrorBruger"] = "Brugeren eksistere allerede";
-            }
+                if (!matchEmail.Success)
+                {
+                    Session["BrugerErrorEmail"] = "Der er fejl i din email.";
+                }
+                if (!matchName.Success)
+                {
+                    Session["BrugerErrorNavn"] = "Dit navn kan ikke indeholde tal";
+                }
+                if (!matchBruger.Success)
+                {
+                    Session["BrugerErrorBrugernavn"] = "Der er fejl i brugernavn";
+                }
+                if (bcheck != null)
+                {
+                    Session["BrugerErrorBruger"] = "Brugeren eksistere allerede";
+                }
             return View();
         }
 

@@ -1,9 +1,7 @@
 ﻿/**
  * Server object that requires a websocket server and has to use the http protocol
  */
-var Server = require("websocket").server;
-var Http = require("http");
-var requestLib = require("request");
+var Server = require("websocket").server, Http = require("http");
 
 /**
  * List containing clients
@@ -68,7 +66,10 @@ Socket.on("request",
                         data: { "msg": name + " just joined!!", "user": "server" }
                     });
 
-                    sendMessage(json);
+                    //A foreach loop through the client list which sends the messages.
+                    for (var VAR in Clients) {
+                        VAR.connection.sendUTF(json);
+                    }
 
                     //If the name has not been set yet, you can't do anything.
                 } else if (name == "error") {
@@ -83,7 +84,10 @@ Socket.on("request",
                 } else {
                     //A message is converted to json and it is sent.
                     json = JSON.stringify({ type: "message", data: { "msg": message.utf8Data, "user": name } });
-                    sendMessage(json);
+                    //Loops through and sends the message
+                    for (var VAR in Clients) {
+                        VAR.connection.sendUTF(json);
+                }
                 }
             });
 
@@ -105,7 +109,10 @@ Socket.on("request",
                         data: { "msg": name + " just left!", "user": "server" }
                     });
 
-                    sendMessage(json);
+                    //Foreach loop that sends out the json object.
+                    for (var VAR in Clients) {
+                        VAR.connection.sendUTF(json);
+                    }
                     console.log("connection closed");
                 } else {
                     console.log("connection was not able closed");
@@ -113,26 +120,19 @@ Socket.on("request",
             });
 
         function getUserIndex(name) {
-            for (var i = 0; i < Clients.length; i++) {
-                if (Clients[i].name == name) {
-                    return i;
+            for (var VAR in Clients) {
+                if (VAR.name == name) {
+                    return VAR;
                 }
             }
             return -1;
-        }
-
-        function sendMessage(message) {
-            for (var i = 0; i < Clients.length; i++) {
-                Clients[i].connection.sendUTF(message);
-            }
         }
     });
 
 /*
  * Kupon api
  */
-var CHECK_INTERVAL = 5000;
-var theLoop = setInterval(apiKald, CHECK_INTERVAL);
+var theLoop = setInterval(apiKald, 120000);
 
 function apiKald() {
     console.log("start api kald!");
@@ -141,9 +141,9 @@ function apiKald() {
         },
         function(error, response, body) {
             if (!error && response.statusCode === 200) {
-                console.log("api done!");
+                console.log("api done!!");
             } else {
-                console.log("error!");
+                console.log("error!!");
 
             }
         });

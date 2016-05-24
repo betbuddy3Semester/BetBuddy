@@ -326,6 +326,7 @@
     <Content Include="Views\Chat\Index.cshtml" />
     <Content Include="Views\Kupon\ApiGetKampe.cshtml" />
     <Content Include="Views\Bruger\HighScore.cshtml" />
+    <Content Include="Views\Bruger\GetApi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

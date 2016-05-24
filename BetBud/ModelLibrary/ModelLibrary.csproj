@@ -48,11 +48,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bruger\Bruger.cs" />
+    <Compile Include="Bruger\ReservedNames.cs" />
     <Compile Include="Chat\Client.cs" />
     <Compile Include="Chat\AServer.cs" />
     <Compile Include="Chat\Interface Chat\IAServer.cs" />
     <Compile Include="Chat\Interface Chat\IClient.cs" />
     <Compile Include="Interface Bruger\IBruger.cs" />
+    <Compile Include="Interface Bruger\IReservedNames.cs" />
     <Compile Include="Interface Kupon\IDelKamp.cs" />
     <Compile Include="Interface Kupon\IKamp.cs" />
     <Compile Include="Interface Kupon\IKupon.cs" />
