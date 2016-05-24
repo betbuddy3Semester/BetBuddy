@@ -35,18 +35,7 @@ namespace ModelLibrary.Kupon
         [DataMember]
         public double Point { get; set; }
 
-        public int SæsonID
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
+        
 
 
         // Metode til at tilføje kampe til kuponen. 

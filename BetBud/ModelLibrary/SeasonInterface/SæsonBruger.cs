@@ -8,8 +8,10 @@ namespace ModelLibrary.SeasonInterface
     public class SæsonBruger : ISæsonBruger
     {
         [DataMember]
-        public int BrugerID { get; set; }
+        public int SæsonBrugerId { get; set; }
         [DataMember]
-        public List<int> BrugerPoints { get; set; }
+        public Bruger.Bruger Bruger { get; set; }
+        [DataMember]
+        public int BrugerPoints { get; set; }
     }
 }

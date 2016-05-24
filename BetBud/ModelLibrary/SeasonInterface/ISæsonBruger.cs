@@ -8,7 +8,7 @@ namespace ModelLibrary.SeasonInterface
 {
     interface ISæsonBruger
     {
-        int BrugerID { get; set; }
-        List<int> BrugerPoints { get; set; }
+        Bruger.Bruger Bruger { get; set; }
+        int BrugerPoints { get; set; }
     }
 }

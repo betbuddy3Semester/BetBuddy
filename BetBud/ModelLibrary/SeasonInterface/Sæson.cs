@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,9 @@ namespace ModelLibrary.SeasonInterface
     [DataContract]
     public class Sæson : ISæson
     {
+        
+        [DataMember, Key]
+        public int SæsonId { get; set; }
         [DataMember]
         public List<Kupon.Kupon> AlleKuponerFraSæson { get; set; }
         [DataMember]
