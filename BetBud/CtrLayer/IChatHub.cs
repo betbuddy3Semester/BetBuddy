@@ -14,7 +14,6 @@ namespace CtrLayer
 
         #endregion
 
-
         #region Methods
 
         void DeleteServer(int serverId);
@@ -25,6 +24,5 @@ namespace CtrLayer
         void UpdateServer(int id, string serverName, int serverPort, int bufferSize);
 
         #endregion
-
     }
 }

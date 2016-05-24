@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
 using DALBetBud.Context;
 using ModelLibrary.Chat;
 using ModelLibrary.Chat.Interface_Chat;
@@ -31,7 +30,7 @@ namespace CtrLayer
         public void OpretServer(string serverName, int serverPort, int bufferSize)
         {
             //Her kaldes databasens context
-            using (var db = new BetBudContext())
+            using (BetBudContext db = new BetBudContext())
             {
                 //Objektet objekt initialiseres og forskellige variabler assignes til Aserverens properties
                 ChatServer = new AServer
@@ -54,10 +53,10 @@ namespace CtrLayer
         public void DeleteServer(int serverId)
         {
             //Contexten kaldes i et using statement således den disposes senere
-            using (var db = new BetBudContext())
+            using (BetBudContext db = new BetBudContext())
             {
                 //Der oprettes en server instans og iden sættes fra parameter listen
-                var aServ = new AServer
+                AServer aServ = new AServer
                 {
                     AServerId = serverId
                 };
@@ -79,10 +78,10 @@ namespace CtrLayer
         public void UpdateServer(int serverId, string serverName, int serverPort, int bufferSize)
         {
             //Contexten åbnes i et using statement således at forbindelsen automatisk bliver deposed sernere
-            using (var db = new BetBudContext())
+            using (BetBudContext db = new BetBudContext())
             {
                 //Der kaldes en metode som finder en specifik server som skal opdateres, den assignes til lokal variablen server
-                var server = FindSpecificAServer(serverId);
+                AServer server = FindSpecificAServer(serverId);
 
                 //De forskellige opdateringer som der ønskes bliver assignet på objektet.
                 server.ServerName = serverName;

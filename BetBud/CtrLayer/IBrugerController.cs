@@ -1,33 +1,25 @@
-﻿using ModelLibrary;
+﻿using System.Collections.Generic;
 using ModelLibrary.Bruger;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-
 
 namespace CtrLayer
 {
-       
-        public interface IBrugerController
-        {
-            //Returner den enkelte bruger ud fra id
-            
-            Bruger getBruger(int id);
+    public interface IBrugerController
+    {
+        //Returner den enkelte bruger ud fra id
 
-            //Returner alle brugere
-            
-            IEnumerable<Bruger> getBrugere();
+        Bruger getBruger(int id);
 
-            
-            void opretBruger(Bruger bruger);
+        //Returner alle brugere
 
-            
-            void opdaterBruger(Bruger bruger);
-
-            
-            void sletBruger(int id);
+        IEnumerable<Bruger> getBrugere();
 
 
-        }
+        void opretBruger(Bruger bruger);
+
+
+        void opdaterBruger(Bruger bruger);
+
+
+        void sletBruger(int id);
     }
-
+}

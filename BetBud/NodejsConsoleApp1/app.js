@@ -1,7 +1,9 @@
 ﻿/**
  * Server object that requires a websocket server and has to use the http protocol
  */
-var Server = require("websocket").server, Http = require("http");
+var Server = require("websocket").server;
+var Http = require("http");
+var requestLib = require("request");
 
 /**
  * List containing clients
@@ -26,29 +28,29 @@ console.log("Starting the web socket");
 Socket.on("request",
     function(request) {
         /**
-         * The connection variable accepts all the callbacks that comes from the client.
-         */
+             * The connection variable accepts all the callbacks that comes from the client.
+             */
         var connection = request.accept(null, request.origin);
 
         /**
-         * The name of the client is assigned to be 'error'.
-         */
+             * The name of the client is assigned to be 'error'.
+             */
         var name = "error";
 
         /**
-         * Connection on takes in the event message http protocol, and we handle the event with a function.
-         */
+             * Connection on takes in the event message http protocol, and we handle the event with a function.
+             */
         connection.on("message",
             function(message) {
 
                 /**
-                 * First of all, the message is logged to the server socket so it is possible to see if it has arrived or not.
-                 */
+                         * First of all, the message is logged to the server socket so it is possible to see if it has arrived or not.
+                         */
                 console.log(message.utf8Data);
 
                 /**
-                 * Json variable that holds the received string and turns it into an 'object'.
-                 */
+                         * Json variable that holds the received string and turns it into an 'object'.
+                         */
                 var json;
 
                 //conditionals to setting the name
@@ -66,10 +68,7 @@ Socket.on("request",
                         data: { "msg": name + " just joined!!", "user": "server" }
                     });
 
-                    //A foreach loop through the client list which sends the messages.
-                    for (var VAR in Clients) {
-                        VAR.connection.sendUTF(json);
-                    }
+                    sendMessage(json);
 
                     //If the name has not been set yet, you can't do anything.
                 } else if (name == "error") {
@@ -84,10 +83,7 @@ Socket.on("request",
                 } else {
                     //A message is converted to json and it is sent.
                     json = JSON.stringify({ type: "message", data: { "msg": message.utf8Data, "user": name } });
-                    //Loops through and sends the message
-                    for (var VAR in Clients) {
-                        VAR.connection.sendUTF(json);
-                    }
+                    sendMessage(json);
                 }
             });
 
@@ -108,11 +104,8 @@ Socket.on("request",
                         type: "message",
                         data: { "msg": name + " just left!", "user": "server" }
                     });
-            
-                    //Foreach loop that sends out the json object.
-                    for (var VAR in Clients) {
-                        VAR.connection.sendUTF(json);
-                    }
+
+                    sendMessage(json);
                     console.log("connection closed");
                 } else {
                     console.log("connection was not able closed");
@@ -120,11 +113,42 @@ Socket.on("request",
             });
 
         function getUserIndex(name) {
-            for (var VAR in Clients) {
-                if (VAR.name == name) {
-                    return VAR;
+            for (var i = 0; i < Clients.length; i++) {
+                if (Clients[i].name == name) {
+                    return i;
                 }
             }
             return -1;
         }
+
+        function sendMessage(message) {
+            for (var i = 0; i < Clients.length; i++) {
+                Clients[i].connection.sendUTF(message);
+            }
+        }
     });
+
+/*
+ * Kupon api
+ */
+var CHECK_INTERVAL = 5000;
+var theLoop = setInterval(apiKald, CHECK_INTERVAL);
+
+function apiKald() {
+    console.log("start api kald!");
+    requestLib({
+            url: "http://localhost:50617/Kupon/ApiGetKampe"
+        },
+        function(error, response, body) {
+            if (!error && response.statusCode === 200) {
+                console.log("api done!");
+            } else {
+                console.log("error!");
+
+            }
+        });
+}
+
+function stopLoop() {
+    clearInterval(theLoop);
+}

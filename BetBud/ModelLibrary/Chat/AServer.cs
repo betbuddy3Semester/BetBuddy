@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Runtime.Serialization;
@@ -29,14 +28,12 @@ namespace ModelLibrary.Chat
         [DataMember]
         public string ServerName { get; set; }
 
-        [DataMember, NotMapped]
-        public List<string> MessageList = new List<string>();
+        [DataMember, NotMapped] public List<string> MessageList = new List<string>();
 
         [DataMember, NotMapped]
         public Socket ServerSocket { get; set; }
 
-        [DataMember, NotMapped]
-        public List<Socket> ClientSocket = new List<Socket>();
+        [DataMember, NotMapped] public List<Socket> ClientSocket = new List<Socket>();
 
         [DataMember, NotMapped]
         public StringBuilder Sb { get; set; }
@@ -84,9 +81,8 @@ namespace ModelLibrary.Chat
         {
             if (ClientSocket.Count > 0)
             {
-
                 //Her oprettes et foreach loop som iterer hen over socketens client liste
-                foreach (var variable in ClientSocket)
+                foreach (Socket variable in ClientSocket)
                 {
                     //Her bruges hver element i listen, det første kald stopper vi forbindelsen ud og indgående i socketen, men den eksisterer stadigvæk.
                     variable.Shutdown(SocketShutdown.Both);
@@ -145,7 +141,7 @@ namespace ModelLibrary.Chat
         public void ReceiveCallBack(IAsyncResult asyncCallback)
         {
             // Her oprettes en lokal socket til brug i metoden. Det er asynkrone sockets der bliver oprettet pr. client som connecter til den overordnede serverchat socket.
-            var current = (Socket)asyncCallback.AsyncState;
+            Socket current = (Socket) asyncCallback.AsyncState;
             int received;
 
             // I denne snippet forsøges det at tildele received et integer output fra current socketens endreceive metode.
@@ -165,14 +161,14 @@ namespace ModelLibrary.Chat
             }
 
             // Der oprettes en callbackbuffer med længden af receive integeren
-            var receiveCallbackBuffer = new byte[received];
+            byte[] receiveCallbackBuffer = new byte[received];
             // Nu kopieres serverens buffer ind i den nyoprettede buffer.
             Array.Copy(Buffer, receiveCallbackBuffer, received);
             // Her bliver bufferens array af bits konverteret til String format
-            var ReceiveCallBackString = Encoding.ASCII.GetString(receiveCallbackBuffer);
+            string ReceiveCallBackString = Encoding.ASCII.GetString(receiveCallbackBuffer);
 
             MessageList.Add(ReceiveCallBackString);
-            
+
             Console.WriteLine(ReceiveCallBackString);
             //Her tilføjes den konverterede string til den overordnede liste af beskeder
 
@@ -184,15 +180,13 @@ namespace ModelLibrary.Chat
             if (ReceiveCallBackString.ToLower() == "exit")
             {
                 // Til sidst laves en besked om, at socketen er blevet lukket - beskeden konverteres til et byteArray for at sende sende hurtigt imellem systemets forskellige lag og kodesprog.½
-                var byteMessageArrayToClient = Encoding.ASCII.GetBytes("Your connection has been closed");
+                byte[] byteMessageArrayToClient = Encoding.ASCII.GetBytes("Your connection has been closed");
                 current.Send(byteMessageArrayToClient);
 
                 // Hvis den ovenstående if returnere true, vælger vi den aktuelle client socket og starter med at lukke forbindelsen
                 current.Shutdown(SocketShutdown.Both);
                 // Derefter sletter vi client socketen
                 current.Close();
-
-                
             }
 
             #endregion

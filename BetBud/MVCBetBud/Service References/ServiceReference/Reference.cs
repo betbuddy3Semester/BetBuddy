@@ -29,6 +29,9 @@ namespace MVCBetBud.ServiceReference {
         private int BrugerIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime CreateDateTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool KontrolleretField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -72,6 +75,19 @@ namespace MVCBetBud.ServiceReference {
                 if ((this.BrugerIdField.Equals(value) != true)) {
                     this.BrugerIdField = value;
                     this.RaisePropertyChanged("BrugerId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime CreateDateTime {
+            get {
+                return this.CreateDateTimeField;
+            }
+            set {
+                if ((this.CreateDateTimeField.Equals(value) != true)) {
+                    this.CreateDateTimeField = value;
+                    this.RaisePropertyChanged("CreateDateTime");
                 }
             }
         }
@@ -616,10 +632,10 @@ namespace MVCBetBud.ServiceReference {
         System.Threading.Tasks.Task<double> OddsUdregningAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/MuligGevist", ReplyAction="http://tempuri.org/IServices/MuligGevistResponse")]
-        double MuligGevist();
+        double MuligGevist(MVCBetBud.ServiceReference.Kupon kupon);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/MuligGevist", ReplyAction="http://tempuri.org/IServices/MuligGevistResponse")]
-        System.Threading.Tasks.Task<double> MuligGevistAsync();
+        System.Threading.Tasks.Task<double> MuligGevistAsync(MVCBetBud.ServiceReference.Kupon kupon);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/BekræftKupon", ReplyAction="http://tempuri.org/IServices/BekræftKuponResponse")]
         bool BekræftKupon(MVCBetBud.ServiceReference.Kupon kupon);
@@ -650,6 +666,18 @@ namespace MVCBetBud.ServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/NyKupon", ReplyAction="http://tempuri.org/IServices/NyKuponResponse")]
         System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Kupon> NyKuponAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/GetKampFromApi", ReplyAction="http://tempuri.org/IServices/GetKampFromApiResponse")]
+        void GetKampFromApi();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/GetKampFromApi", ReplyAction="http://tempuri.org/IServices/GetKampFromApiResponse")]
+        System.Threading.Tasks.Task GetKampFromApiAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/getIkkeSpilletKampe", ReplyAction="http://tempuri.org/IServices/getIkkeSpilletKampeResponse")]
+        MVCBetBud.ServiceReference.Kamp[] getIkkeSpilletKampe();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/getIkkeSpilletKampe", ReplyAction="http://tempuri.org/IServices/getIkkeSpilletKampeResponse")]
+        System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Kamp[]> getIkkeSpilletKampeAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/getBruger", ReplyAction="http://tempuri.org/IServices/getBrugerResponse")]
         MVCBetBud.ServiceReference.Bruger getBruger(int id);
@@ -769,12 +797,12 @@ namespace MVCBetBud.ServiceReference {
             return base.Channel.OddsUdregningAsync();
         }
         
-        public double MuligGevist() {
-            return base.Channel.MuligGevist();
+        public double MuligGevist(MVCBetBud.ServiceReference.Kupon kupon) {
+            return base.Channel.MuligGevist(kupon);
         }
         
-        public System.Threading.Tasks.Task<double> MuligGevistAsync() {
-            return base.Channel.MuligGevistAsync();
+        public System.Threading.Tasks.Task<double> MuligGevistAsync(MVCBetBud.ServiceReference.Kupon kupon) {
+            return base.Channel.MuligGevistAsync(kupon);
         }
         
         public bool BekræftKupon(MVCBetBud.ServiceReference.Kupon kupon) {
@@ -815,6 +843,22 @@ namespace MVCBetBud.ServiceReference {
         
         public System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Kupon> NyKuponAsync() {
             return base.Channel.NyKuponAsync();
+        }
+        
+        public void GetKampFromApi() {
+            base.Channel.GetKampFromApi();
+        }
+        
+        public System.Threading.Tasks.Task GetKampFromApiAsync() {
+            return base.Channel.GetKampFromApiAsync();
+        }
+        
+        public MVCBetBud.ServiceReference.Kamp[] getIkkeSpilletKampe() {
+            return base.Channel.getIkkeSpilletKampe();
+        }
+        
+        public System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Kamp[]> getIkkeSpilletKampeAsync() {
+            return base.Channel.getIkkeSpilletKampeAsync();
         }
         
         public MVCBetBud.ServiceReference.Bruger getBruger(int id) {
