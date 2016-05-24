@@ -8,12 +8,7 @@ namespace CtrLayer
 {
     interface ISæsonController
     {
-        BrugerController NyBrugerController { get; set; }
-        KuponController NyKuponController { get; set; }
-
-        
-
         DateTime SæsonStart();
-        DateTime SæsonAfslutning();
+        void SæsonAfslutning();
     }
 }
