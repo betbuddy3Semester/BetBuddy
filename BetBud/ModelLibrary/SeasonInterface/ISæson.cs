@@ -14,7 +14,7 @@ namespace ModelLibrary.SeasonInterface
         String SæsonNavn { get; set; }
         double SæsonPris { get; set; }
 
-        bool SæsonAfslutning { get; set; }
+        
 
 
 

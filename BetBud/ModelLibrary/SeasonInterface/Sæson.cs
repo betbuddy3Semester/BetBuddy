@@ -23,7 +23,6 @@ namespace ModelLibrary.SeasonInterface
         public DateTime SæsonPeriode { get; set; }
         [DataMember]
         public double SæsonPris { get; set; }
-        [DataMember]
-        public bool SæsonAfslutning { get; set; }
+        
     }
 }
