@@ -8,6 +8,7 @@ namespace DALBetBud.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+
         }
 
         protected override void Seed(BetBudContext context)
