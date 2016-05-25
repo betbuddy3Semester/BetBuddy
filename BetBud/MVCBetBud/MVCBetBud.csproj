@@ -324,7 +324,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\Bruger\Index.cshtml" />
-    <Content Include="Views\Kupon\Kuponer.cshtml" />
+    <Content Include="Views\Kupon\Index.cshtml" />
     <Content Include="Views\Bruger\Details.cshtml" />
     <Content Include="Views\Chat\Index.cshtml" />
     <Content Include="Views\Bruger\HighScore.cshtml" />

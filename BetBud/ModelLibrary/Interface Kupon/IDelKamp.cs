@@ -1,5 +1,4 @@
-﻿using System.Reflection.Emit;
-using ModelLibrary.Kupon;
+﻿using ModelLibrary.Kupon;
 
 namespace ModelLibrary
 {
@@ -9,11 +8,9 @@ namespace ModelLibrary
         bool Valgt1 { get; set; }
         bool ValgtX { get; set; }
         bool Valgt2 { get; set; }
-        
+
         bool KampRigtig();
 
         double GetOdds();
-
     }
-
 }

@@ -25,8 +25,8 @@
         <ol>
             @if (Model.AlleKampe.Length > 2) {
                 foreach (Kamp kamp in Model.AlleKampe.ToList().GetRange(0, 3)) {
-                    <li>@kamp.HoldVsHold </li>
-                }
+                <li>@kamp.HoldVsHold </li>
+            }
             }
         </ol>
         <p>
@@ -39,9 +39,9 @@
             @if (Model.brugere.Length > 4) {
                 foreach (Bruger bruger in Model.brugere.ToList().GetRange(0, 5)) {
                     <li>@bruger.Navn -- @bruger.Point </li>
-                }
             }
-        </ol>
+            }
+        </ol>   
         <p>
             <a class="btn btn-default" href="/Bruger/Highscore">Se highscore &raquo;</a>
         </p>

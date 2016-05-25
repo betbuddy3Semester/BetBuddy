@@ -1,13 +1,17 @@
-﻿@using System.Web.Mvc.Html
-@using MVCBetBud.ServiceReference
+﻿@using MVCBetBud.ServiceReference
 @model MVCBetBud.Models.OpretKuponController
 
 @{
     ViewBag.Title = "OpretKupon";
 }
-<script>
+@if (Session["error"] != null)
+{
+    <h3> @Session["error"] </h3>
 
-</script>
+    {
+        Session["error"] = null;
+    }
+}
 <div class="col-md-8">
 
     <h2>Ugens kampe</h2>
@@ -46,15 +50,15 @@
                         @Html.DisplayFor(modelItem => item.HoldVsHold)
                     </td>
 
-                    <td style="text-align: center; height: 20px; width: 30px;"> 
-                        <input type="submit" name="Odds1" value="@Html.DisplayFor(modelItem => item.Odds1)" />
+                    <td style="height: 20px; text-align: center; width: 30px;">
+                        <input type="submit" name="Odds1" value="@Html.DisplayFor(modelItem => item.Odds1)"/>
 
                     </td>
                     <td style="text-align: center;">
-                        <input type="submit" name="OddsX" value="@Html.DisplayFor(modelItem => item.OddsX)" />
+                        <input type="submit" name="OddsX" value="@Html.DisplayFor(modelItem => item.OddsX)"/>
                     </td>
                     <td style="text-align: center;">
-                        <input type="submit" name="Odds2" value="@Html.DisplayFor(modelItem => item.Odds2)" />
+                        <input type="submit" name="Odds2" value="@Html.DisplayFor(modelItem => item.Odds2)"/>
                     </td>
 
                     <td>
@@ -78,11 +82,8 @@
         </tr>
         @if (Model.kupon.delKampe != null)
         {
-
-
-            foreach (var delKamp in Model.kupon.delKampe)
+            foreach (DelKamp delKamp in Model.kupon.delKampe)
             {
-
                 double odds = 0.0;
                 string valgt = "taber";
 
@@ -103,7 +104,6 @@
                 }
 
 
-
                 <tr>
                     <td>@delKamp.Kampe.HoldVsHold</td>
                     <td>@valgt</td>
@@ -112,30 +112,49 @@
                         @using (Html.BeginForm("FjernKamp", "Kupon"))
                         {
                             <input name="FjernKamp" value="@delKamp.Kampe.KampId" type="hidden">
-                            <input type="submit" value="X" />
+                            <input type="submit" value="X"/>
                         }
                     </td>
                 </tr>
-
             }
-            <tr class="OddsBoxStart"><td><b>Samlet odds</b></td><td colspan="2"></td><td><b id="oddsResult">0</b></td></tr>
+            <tr class="OddsBoxStart">
+                <td>
+                    <b>Samlet odds</b>
+                </td>
+                <td colspan="2"></td>
+                <td>
+                    <b id="oddsResult">0</b>
+                </td>
+            </tr>
         }
     </table>
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("OpretKupon", "Kupon", FormMethod.Post, new { onsubmit ="return confirm('Do you really want to submit the form?');" }))
     {
         <div class="form-group">
             <table class="table">
                 <tr>
                     <th colspan="2">Vælg indsats</th>
                 </tr>
-                <tr><td>Indsats</td><td><input type="text" class="form-control" name="bettingPoint" /></td></tr>
-                <tr><td>Mulig gevinst</td><td id="gevinst"><span class="OddsBoxStart">0</span> point</td></tr>
+                <tr>
+                    <td>til Rådighed</td>
+                    <td id="dinePoing">@Model.kupon.Bruger.Point</td>
+                </tr>
+                <tr>
+                    <td>Indsats</td>
+                    <td>
+                        <input type="text" class="form-control" name="bettingPoint" value="0.0" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Mulig gevinst</td>
+                    <td id="gevinst"><span class="OddsBoxStart">0</span> point</td>
+                </tr>
             </table>
             <div class="col-md-6">
                 <a href="/Kupon/RydKupon" class="form-control btn btn-danger">Ryd kupon</a>
             </div>
             <div class="col-md-6">
-                <input name="Bekraeft" type="submit" value="Bekræft" class="form-control btn btn-info" />
+                <input name="Bekraeft" type="submit" value="Bekræft" class="form-control btn btn-info"/>
             </div>
         </div>
     }

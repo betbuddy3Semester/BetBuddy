@@ -22,7 +22,7 @@ namespace MVCBetBud.Controllers {
             int reservId = 0;
             if (Session["ReservationId"] != null) {
                 reservId = (int)Session["ReservationId"];
-            }
+        }
             var reservedName = SR.FeedBackReservedNames(text, reservId);
             Session["ReservationId"] = reservedName["id"];
             return Json(reservedName["statussearch"]);
@@ -34,6 +34,12 @@ namespace MVCBetBud.Controllers {
                 return View("Index");
             }
             return View();
+        }
+
+        public ActionResult HighScore()
+        {
+            Bruger[] Bruger = SR.getHighscores();
+            return View(Bruger);
         }
 
         [HttpPost]
@@ -90,8 +96,11 @@ namespace MVCBetBud.Controllers {
             Bruger bcheck = SR.getBrugerEfterBrugernavn(b.BrugerNavn);
 
 
-            if (matchEmail.Success && matchName.Success && matchBruger.Success && bcheck == null) {
-                try {
+            if (matchEmail.Success && matchName.Success && matchBruger.Success && bcheck == null)
+            {
+
+                try
+                {
                     SR.opretBruger(b);
                     return RedirectToAction("Index");
                 }

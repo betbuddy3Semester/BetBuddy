@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Security.Cryptography.X509Certificates;
 
 namespace ModelLibrary
 {
@@ -9,7 +6,7 @@ namespace ModelLibrary
     {
         int KampId { get; set; }
         string HoldVsHold { get; set; }
-        double Odds1{ get; set; }
+        double Odds1 { get; set; }
         double OddsX { get; set; }
         double Odds2 { get; set; }
 
@@ -17,15 +14,10 @@ namespace ModelLibrary
         bool VundetX { get; set; }
         bool Vundet2 { get; set; }
 
-        
+
         bool Aflyst { get; set; }
         DateTime KampStart { get; set; }
-        
+
         //string KampResultat();
-        
-
-
-
-
     }
 }

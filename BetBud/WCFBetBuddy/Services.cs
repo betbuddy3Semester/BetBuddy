@@ -51,7 +51,7 @@ namespace WCFBetBuddy {
         }
 
         public IEnumerable<Bruger> getHighscores() {
-            return brugerCtrl.getHighscores();
+             return brugerCtrl.getHighscores();
         }
 
         #endregion
@@ -109,6 +109,18 @@ namespace WCFBetBuddy {
             return NyKuponController.OpretKupon();
         }
 
+        //Kalder metoden i controller laget og returnerer intet.
+        public void GetKampFromApi()
+        {
+            NyKuponController.ApiGetKampe();
+        }
+
+        //Kalder metoden i controller laget og returnerer en liste af kampe der ikke er spillet endnu.
+        public IEnumerable<Kamp> getIkkeSpilletKampe()
+        {
+            return NyKuponController.getIkkeSpilletKampe();
+        }
+
         #endregion
 
         #region ChatService
@@ -127,7 +139,7 @@ namespace WCFBetBuddy {
         public void OpretServer(string serverName, int serverPort, int bufferSize) {
             _chatHub.OpretServer(serverName, serverPort, bufferSize);
         }
-
+        
         /// <summary>
         ///     Denne metode sletter en server
         /// </summary>
@@ -135,7 +147,7 @@ namespace WCFBetBuddy {
         public void DeleteServer(int serverId) {
             _chatHub.DeleteServer(serverId);
         }
-
+        
         /// <summary>
         ///     Denne metode opdaterer en servers information
         /// </summary>

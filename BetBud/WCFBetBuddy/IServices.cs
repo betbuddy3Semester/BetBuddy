@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 using ModelLibrary.Bruger;
-using ModelLibrary.Chat;
 using ModelLibrary.Kupon;
 
 namespace WCFBetBuddy
 {
     [ServiceContract]
-    interface IServices
+    internal interface IServices
     {
         #region Ikupon
 
@@ -25,7 +20,7 @@ namespace WCFBetBuddy
         double OddsUdregning();
 
         [OperationContract]
-        double MuligGevist();
+        double MuligGevist(Kupon kupon);
 
         [OperationContract]
         bool BekræftKupon(Kupon kupon);
@@ -41,6 +36,12 @@ namespace WCFBetBuddy
 
         [OperationContract]
         Kupon NyKupon();
+
+        [OperationContract]
+        void GetKampFromApi();
+
+        [OperationContract]
+        IEnumerable<Kamp> getIkkeSpilletKampe();
 
         #endregion
 
@@ -86,6 +87,7 @@ namespace WCFBetBuddy
         
         [OperationContract]
         void UpdateServer(int serverId, string serverName, int serverPort, int bufferSize);
+
         /*
         [OperationContract]
         List<AServer> FindServers(string serverName);
@@ -96,6 +98,7 @@ namespace WCFBetBuddy
         [OperationContract]
         Client JoinServer(int port, Client client);
         */
+
         #endregion
     }
 }
