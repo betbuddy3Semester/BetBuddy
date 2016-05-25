@@ -79,7 +79,7 @@
   <xs:element name="FindKamp">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="KampId" type="xs:int" />
+        <xs:element minOccurs="0" name="kampId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -249,7 +249,7 @@
   <xs:element name="getHighscoresResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/ModelLibrary.Bruger" minOccurs="0" name="getHighscoresResult" nillable="true" type="q19:ArrayOfBruger" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/ModelLibrary.Bruger" minOccurs="0" name="getHighscoresResult" nillable="true" type="q21:ArrayOfBruger" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -264,7 +264,7 @@
   <xs:element name="FeedBackReservedNamesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q20="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="FeedBackReservedNamesResult" nillable="true" type="q20:ArrayOfKeyValueOfstringstring" />
+        <xs:element xmlns:q22="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="FeedBackReservedNamesResult" nillable="true" type="q22:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

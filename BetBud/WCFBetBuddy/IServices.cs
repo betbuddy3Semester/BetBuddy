@@ -26,7 +26,7 @@ namespace WCFBetBuddy
         bool BekræftKupon(Kupon kupon);
 
         [OperationContract]
-        Kamp FindKamp(int KampId);
+        Kamp FindKamp(int kampId);
 
         [OperationContract]
         IEnumerable<Kamp> GetAlleKampe();
@@ -73,8 +73,8 @@ namespace WCFBetBuddy
         [OperationContract]
         IEnumerable<Bruger> getHighscores();
 
-        //[OperationContract]
-        //Dictionary<string, string> FeedBackReservedNames(string text, int id);
+        [OperationContract]
+        IEnumerable<string> FeedBackReservedNames(string text, int id);
         #endregion
 
         #region IChatHub

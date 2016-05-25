@@ -46,10 +46,10 @@ namespace Admin.ServiceReference1 {
         System.Threading.Tasks.Task<bool> BekræftKuponAsync(ModelLibrary.Kupon.Kupon kupon);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/FindKamp", ReplyAction="http://tempuri.org/IServices/FindKampResponse")]
-        ModelLibrary.Kupon.Kamp FindKamp(int KampId);
+        ModelLibrary.Kupon.Kamp FindKamp(int kampId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/FindKamp", ReplyAction="http://tempuri.org/IServices/FindKampResponse")]
-        System.Threading.Tasks.Task<ModelLibrary.Kupon.Kamp> FindKampAsync(int KampId);
+        System.Threading.Tasks.Task<ModelLibrary.Kupon.Kamp> FindKampAsync(int kampId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/GetAlleKampe", ReplyAction="http://tempuri.org/IServices/GetAlleKampeResponse")]
         ModelLibrary.Kupon.Kamp[] GetAlleKampe();
@@ -215,12 +215,12 @@ namespace Admin.ServiceReference1 {
             return base.Channel.BekræftKuponAsync(kupon);
         }
         
-        public ModelLibrary.Kupon.Kamp FindKamp(int KampId) {
-            return base.Channel.FindKamp(KampId);
+        public ModelLibrary.Kupon.Kamp FindKamp(int kampId) {
+            return base.Channel.FindKamp(kampId);
         }
         
-        public System.Threading.Tasks.Task<ModelLibrary.Kupon.Kamp> FindKampAsync(int KampId) {
-            return base.Channel.FindKampAsync(KampId);
+        public System.Threading.Tasks.Task<ModelLibrary.Kupon.Kamp> FindKampAsync(int kampId) {
+            return base.Channel.FindKampAsync(kampId);
         }
         
         public ModelLibrary.Kupon.Kamp[] GetAlleKampe() {

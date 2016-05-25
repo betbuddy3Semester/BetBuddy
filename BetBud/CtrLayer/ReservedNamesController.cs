@@ -59,8 +59,8 @@ namespace CtrLayer {
             }
         }
 
-        public Dictionary<string, string> FeedBackReservedNames(string text, int id) {
-            Dictionary<string, string> returnList = new Dictionary<string, string>();
+        public IEnumerable<string> FeedBackReservedNames(string text, int id) {
+            List<string> returnList = new List<string>();
             bool feedbackVar = CheckIfNameExistsInBrugerDb(text);
             if (!feedbackVar) {
                 ReservedNames name = new ReservedNames {
@@ -70,21 +70,21 @@ namespace CtrLayer {
                 if (id > 0) {
                     name.ReservedNameId = id;
                     UpdateReservedName(name);
-                    returnList["id"] = name.ReservedNameId + "";
+                    returnList[0] = name.ReservedNameId + "";
 
-                    returnList["statussearch"] = "bruger navn er ledig og reseveret på ny";
+                    returnList[1] = "bruger navn er ledig og reseveret på ny";
                 }
                 else {
                     CreateReservedName(name);
-                    returnList["id"] = name.ReservedNameId + "";
+                    returnList[0] = name.ReservedNameId + "";
 
-                    returnList["statussearch"] = "bruger navn er ledig og reseveret";
+                    returnList[1] = "bruger navn er ledig og reseveret";
                 }
             }
             else {
-                returnList["id"] = id + "";
+                returnList[0] = id + "";
 
-                returnList["statussearch"] = "bruger navn er optaget";
+                returnList[1] = "bruger navn er optaget";
             }
             return returnList;
         }

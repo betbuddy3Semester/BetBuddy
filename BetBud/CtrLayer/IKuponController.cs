@@ -14,7 +14,7 @@ namespace CtrLayer
         double MuligGevinst(Kupon kupon);
         bool BekræftKupon(Kupon kupon);
         IEnumerable<Kamp> GetAlleKampe();
-        Kamp FindKamp(int KampId);
+        Kamp FindKamp(int kampId);
         IEnumerable<Kupon> GetAlleKuponer(Bruger bruger);
     }
 }

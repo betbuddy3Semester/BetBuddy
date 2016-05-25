@@ -644,10 +644,10 @@ namespace MVCBetBud.ServiceReference {
         System.Threading.Tasks.Task<bool> BekræftKuponAsync(MVCBetBud.ServiceReference.Kupon kupon);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/FindKamp", ReplyAction="http://tempuri.org/IServices/FindKampResponse")]
-        MVCBetBud.ServiceReference.Kamp FindKamp(int KampId);
+        MVCBetBud.ServiceReference.Kamp FindKamp(int kampId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/FindKamp", ReplyAction="http://tempuri.org/IServices/FindKampResponse")]
-        System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Kamp> FindKampAsync(int KampId);
+        System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Kamp> FindKampAsync(int kampId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/GetAlleKampe", ReplyAction="http://tempuri.org/IServices/GetAlleKampeResponse")]
         MVCBetBud.ServiceReference.Kamp[] GetAlleKampe();
@@ -728,10 +728,10 @@ namespace MVCBetBud.ServiceReference {
         System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Bruger[]> getHighscoresAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/FeedBackReservedNames", ReplyAction="http://tempuri.org/IServices/FeedBackReservedNamesResponse")]
-        System.Collections.Generic.Dictionary<string, string> FeedBackReservedNames(string text, int id);
+        string[] FeedBackReservedNames(string text, int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/FeedBackReservedNames", ReplyAction="http://tempuri.org/IServices/FeedBackReservedNamesResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, string>> FeedBackReservedNamesAsync(string text, int id);
+        System.Threading.Tasks.Task<string[]> FeedBackReservedNamesAsync(string text, int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/OpretServer", ReplyAction="http://tempuri.org/IServices/OpretServerResponse")]
         void OpretServer(string serverName, int serverPort, int bufferSize);
@@ -819,12 +819,12 @@ namespace MVCBetBud.ServiceReference {
             return base.Channel.BekræftKuponAsync(kupon);
         }
         
-        public MVCBetBud.ServiceReference.Kamp FindKamp(int KampId) {
-            return base.Channel.FindKamp(KampId);
+        public MVCBetBud.ServiceReference.Kamp FindKamp(int kampId) {
+            return base.Channel.FindKamp(kampId);
         }
         
-        public System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Kamp> FindKampAsync(int KampId) {
-            return base.Channel.FindKampAsync(KampId);
+        public System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Kamp> FindKampAsync(int kampId) {
+            return base.Channel.FindKampAsync(kampId);
         }
         
         public MVCBetBud.ServiceReference.Kamp[] GetAlleKampe() {
@@ -931,11 +931,11 @@ namespace MVCBetBud.ServiceReference {
             return base.Channel.getHighscoresAsync();
         }
         
-        public System.Collections.Generic.Dictionary<string, string> FeedBackReservedNames(string text, int id) {
+        public string[] FeedBackReservedNames(string text, int id) {
             return base.Channel.FeedBackReservedNames(text, id);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, string>> FeedBackReservedNamesAsync(string text, int id) {
+        public System.Threading.Tasks.Task<string[]> FeedBackReservedNamesAsync(string text, int id) {
             return base.Channel.FeedBackReservedNamesAsync(text, id);
         }
         
