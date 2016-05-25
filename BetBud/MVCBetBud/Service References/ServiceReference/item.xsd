@@ -3,6 +3,16 @@
   <xs:import schemaLocation="http://localhost:8733/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon" />
   <xs:import schemaLocation="http://localhost:8733/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Bruger" />
   <xs:import schemaLocation="http://localhost:8733/?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:element name="AfslutSæson">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AfslutSæsonResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="TilføjKamp">
     <xs:complexType>
       <xs:sequence>
