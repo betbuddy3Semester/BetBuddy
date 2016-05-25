@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bruger\Bruger.cs" />
+    <Compile Include="Bruger\IReservedNames.cs" />
     <Compile Include="Bruger\ReservedNames.cs" />
     <Compile Include="Chat\Client.cs" />
     <Compile Include="Chat\AServer.cs" />

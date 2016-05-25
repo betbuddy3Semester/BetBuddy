@@ -259,6 +259,9 @@
     <Content Include="Service References\ServiceReference\MVCBetBud.ServiceReference.Kupon.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <None Include="Service References\ServiceReference\item4.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -324,9 +327,8 @@
     <Content Include="Views\Kupon\Kuponer.cshtml" />
     <Content Include="Views\Bruger\Details.cshtml" />
     <Content Include="Views\Chat\Index.cshtml" />
-    <Content Include="Views\Kupon\ApiGetKampe.cshtml" />
     <Content Include="Views\Bruger\HighScore.cshtml" />
-    <Content Include="Views\Bruger\GetApi.cshtml" />
+    <Content Include="Views\Kupon\ApiGetKampe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

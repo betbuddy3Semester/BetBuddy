@@ -699,6 +699,12 @@ namespace MVCBetBud.ServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/getHighscores", ReplyAction="http://tempuri.org/IServices/getHighscoresResponse")]
         System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Bruger[]> getHighscoresAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/FeedBackReservedNames", ReplyAction="http://tempuri.org/IServices/FeedBackReservedNamesResponse")]
+        System.Collections.Generic.Dictionary<string, string> FeedBackReservedNames(string text, int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/FeedBackReservedNames", ReplyAction="http://tempuri.org/IServices/FeedBackReservedNamesResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, string>> FeedBackReservedNamesAsync(string text, int id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/OpretServer", ReplyAction="http://tempuri.org/IServices/OpretServerResponse")]
         void OpretServer(string serverName, int serverPort, int bufferSize);
         
@@ -879,6 +885,14 @@ namespace MVCBetBud.ServiceReference {
         
         public System.Threading.Tasks.Task<MVCBetBud.ServiceReference.Bruger[]> getHighscoresAsync() {
             return base.Channel.getHighscoresAsync();
+        }
+        
+        public System.Collections.Generic.Dictionary<string, string> FeedBackReservedNames(string text, int id) {
+            return base.Channel.FeedBackReservedNames(text, id);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, string>> FeedBackReservedNamesAsync(string text, int id) {
+            return base.Channel.FeedBackReservedNamesAsync(text, id);
         }
         
         public void OpretServer(string serverName, int serverPort, int bufferSize) {

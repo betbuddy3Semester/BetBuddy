@@ -71,6 +71,9 @@ namespace WCFBetBuddy
 
         [OperationContract]
         IEnumerable<Bruger> getHighscores();
+
+        //[OperationContract]
+        //Dictionary<string, string> FeedBackReservedNames(string text, int id);
         #endregion
 
         #region IChatHub
