@@ -8,6 +8,15 @@ namespace WCFBetBuddy {
         private DelKamp tempDelKamp = new DelKamp();
         private Kupon tempKupon = new Kupon();
 
+        #region Season
+        private readonly SæsonController SæsonCtr = new SæsonController();
+
+        public void AfslutSæson()
+
+        {
+            SæsonCtr.SæsonAfslutning();
+        }
+        #endregion
         #region BrugerService
 
         private readonly BrugerController brugerCtrl = new BrugerController();
