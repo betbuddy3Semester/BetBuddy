@@ -9,7 +9,7 @@ namespace ModelLibrary
         double Point { get; set; }
         List<DelKamp> delKampe { get; set; }
         Bruger.Bruger Bruger { get; set; }
-        int SæsonID { get; set; }
+        int SæsonId { get; set; }
 
         /**
         * Oprettelse af kupon

@@ -85,7 +85,7 @@ namespace CtrLayer {
                     }
                     db.Entry(kupon.Bruger).State = EntityState.Modified;
                     Setting setting = db.Settings.FirstOrDefault(x => x.name == "Sæson");
-                    kupon.SæsonID = int.Parse(setting.value);
+                    kupon.SæsonId = int.Parse(setting.value);
                     db.Kuponer.Add(kupon);
                     db.SaveChanges();
                     return true;

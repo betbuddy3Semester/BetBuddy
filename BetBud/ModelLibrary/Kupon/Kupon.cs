@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 
@@ -35,6 +36,9 @@ namespace ModelLibrary.Kupon
 
         [DataMember]
         public double Point { get; set; }
+        
+        [DataMember]
+        public int SæsonId { get; set; }
 
         
 
@@ -110,8 +114,6 @@ namespace ModelLibrary.Kupon
         {
             throw new NotImplementedException();
         }
-
-        public int SæsonID{ get; set; }
         
     }
 }
