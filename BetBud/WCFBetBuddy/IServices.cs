@@ -8,6 +8,12 @@ namespace WCFBetBuddy
     [ServiceContract]
     internal interface IServices
     {
+        [OperationContract]
+        #region Sæson
+        [OperationContract]
+        void AfslutSæson();
+        #endregion
+
         #region Ikupon
 
         [OperationContract]

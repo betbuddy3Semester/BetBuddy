@@ -9,6 +9,7 @@
       <xs:element minOccurs="0" name="Kontrolleret" type="xs:boolean" />
       <xs:element minOccurs="0" name="KuponId" type="xs:int" />
       <xs:element minOccurs="0" name="Point" type="xs:double" />
+      <xs:element minOccurs="0" name="SæsonId" type="xs:int" />
       <xs:element minOccurs="0" name="delKampe" nillable="true" type="tns:ArrayOfDelKamp" />
     </xs:sequence>
   </xs:complexType>

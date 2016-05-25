@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CtrLayer
 {
-    class SæsonController : ISæsonController
+    public class SæsonController : ISæsonController
     {
         BrugerController BC = new BrugerController();
         KuponController KC = new KuponController();
