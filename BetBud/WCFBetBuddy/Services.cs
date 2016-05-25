@@ -80,8 +80,8 @@ namespace WCFBetBuddy {
         }
 
         // Kalder metoden i controller laget og retunere denne
-        public double MuligGevist() {
-            return NyKuponController.MuligGevist();
+        public double MuligGevist(Kupon kupon) {
+            return NyKuponController.MuligGevinst(kupon);
         }
 
         // Kalder metoden i controller laget og retunere denne
@@ -90,8 +90,8 @@ namespace WCFBetBuddy {
         }
 
         // Kalder metoden FindKamp i controller laget og retunere denne
-        public Kamp FindKamp(int KampId) {
-            return NyKuponController.FindKamp(KampId);
+        public Kamp FindKamp(int kampId) {
+            return NyKuponController.FindKamp(kampId);
         }
 
         // Kalder metoden GetAlleKampe i controller laget og retunere denne
@@ -197,7 +197,7 @@ namespace WCFBetBuddy {
 
         private readonly ReservedNamesController ctr = new ReservedNamesController();
 
-        public Dictionary<string, string> FeedBackReservedNames(string text, int id)
+        public IEnumerable<string> FeedBackReservedNames(string text, int id)
         {
             return ctr.FeedBackReservedNames(text, id);
         }

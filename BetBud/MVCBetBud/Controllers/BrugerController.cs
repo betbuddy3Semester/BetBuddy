@@ -18,14 +18,17 @@ namespace MVCBetBud.Controllers {
             return RedirectToAction("index", "Home");
         }
 
-        public ActionResult GetApi(string text) {
+        public ActionResult GetApi(string text)
+        {
             int reservId = 0;
-            if (Session["ReservationId"] != null) {
+            if (Session["ReservationId"] != null)
+            {
                 reservId = (int)Session["ReservationId"];
-        }
+            }
             var reservedName = SR.FeedBackReservedNames(text, reservId);
-            Session["ReservationId"] = reservedName["id"];
-            return Json(reservedName["statussearch"]);
+
+            Session["ReservationId"] = reservedName[0];
+            return Json(reservedName[1]);
         }
 
         // GET: login side

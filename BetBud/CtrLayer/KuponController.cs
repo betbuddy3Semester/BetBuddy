@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Xml.Linq;
 using DALBetBud.Context;
 using ModelLibrary.Bruger;
 using ModelLibrary.Kupon;
@@ -63,9 +65,9 @@ namespace CtrLayer {
         // som udregner gevisten. Kontrollere om kuponen er oprettet, og returnere denne med den mulige gevinst. Hvis ikke kuponen er oprettet
         // returneres 0,0.
 
-        public double MuligGevist() {
-            if (NyKupon != null) {
-                return NyKupon.MuligGevist();
+        public double MuligGevinst(Kupon kupon) {
+            if (kupon != null) {
+                return kupon.MuligGevist();
             }
             return 0.0;
         }
@@ -74,23 +76,19 @@ namespace CtrLayer {
         // For hver kamp der er i listen delKampe, sendes ind i variablen kamp. 
         // Unchanged betyder at objektet kamp ikke bliver ændret i Databasen, 
         // Samme sker med kupon.bruger. Kuponen bliver tilføjet og gemt. 
-        public bool BekræftKupon(Kupon kupon)
-        {
+        public bool BekræftKupon(Kupon kupon) {
             kupon.CreateDateTime = DateTime.Now;
-            if (kupon.delKampe.Count > 0)
-            {
-                using (BetBudContext db = new BetBudContext())
-                {
-                    foreach (DelKamp kamp in kupon.delKampe)
-                    {
-                    db.Entry(kamp.Kampe).State = EntityState.Unchanged;
-                }
+            if (kupon.delKampe.Count > 0) {
+                using (BetBudContext db = new BetBudContext()) {
+                    foreach (DelKamp kamp in kupon.delKampe) {
+                        db.Entry(kamp.Kampe).State = EntityState.Unchanged;
+                    }
                     db.Entry(kupon.Bruger).State = EntityState.Modified;
-                    Setting setting = db.Settings.Where(x => x.name == "Sæson").FirstOrDefault();
+                    Setting setting = db.Settings.FirstOrDefault(x => x.name == "Sæson");
                     kupon.SæsonID = int.Parse(setting.value);
-                db.Kuponer.Add(kupon);
-                db.SaveChanges();
-                return true;
+                    db.Kuponer.Add(kupon);
+                    db.SaveChanges();
+                    return true;
                 }
             }
             return false;
@@ -105,19 +103,17 @@ namespace CtrLayer {
 
         // Metode der bruges til at finde en kamp udfra kampId i databasen. Der opretter en ny forbindelse til databasen via BetBudContext,  
         // den kamp der stemmer overens med kampId ´et sendes bliver gemt i lokal variablen kamp som efterfølgende bliver returneret.
-        public Kamp FindKamp(int KampId) {
+        public Kamp FindKamp(int kampId) {
             using (BetBudContext db = new BetBudContext()) {
-                Kamp kamp = db.Kampe.Find(KampId);
+                Kamp kamp = db.Kampe.Find(kampId);
                 return kamp;
             }
         }
 
         // Metode til at hente alle brugerens allerede eksisterende kuponer. Der oprettes en ny forbindelse til databasen via BetBudContext.
         // Databasen returnere alle brugerens kuponer hvis brugerId stemmer overens med brugerId og tilføjer disse til en liste.
-        public IEnumerable<Kupon> GetAlleKuponer(Bruger bruger)
-        {
-            using (BetBudContext db = new BetBudContext())
-            {
+        public IEnumerable<Kupon> GetAlleKuponer(Bruger bruger) {
+            using (BetBudContext db = new BetBudContext()) {
                 return
                     db.Kuponer.Include(x => x.delKampe.Select(y => y.Kampe))
                         .Include(x => x.Bruger)
@@ -127,31 +123,26 @@ namespace CtrLayer {
         }
 
         //Metode til at hente kuponen
-        public Kupon GetKupon()
-        {
+        public Kupon GetKupon() {
             return NyKupon;
         }
 
         // Metode til at Set kuponen, this.NyKupon da det er den pågældende kupon i metoden der er tale om.
-        public void SetKupon(Kupon kupon)
-        {
+        public void SetKupon(Kupon kupon) {
             NyKupon = kupon;
         }
 
         // Metode til at fjerne kuponen. 
 
-        public void FjernKupon()
-        {
+        public void FjernKupon() {
             NyKupon = null;
         }
 
-        public void ApiGetKampe()
-        {
+        public void ApiGetKampe() {
             Setting apiSetting = getLastApiCall();
             string lastApiDate = "http://odds.mukuduk.dk/?timeStamp=" + apiSetting.value;
             XElement oddsUrl = XElement.Load(lastApiDate);
-            Kamp[] kampe = oddsUrl.Elements("kamp").Select(p => new Kamp
-            {
+            Kamp[] kampe = oddsUrl.Elements("kamp").Select(p => new Kamp {
                 HoldVsHold = p.Element("text").Value,
                 Odds1 = double.Parse(p.Element("odds1").Value, CultureInfo.InvariantCulture),
                 OddsX = double.Parse(p.Element("oddsx").Value, CultureInfo.InvariantCulture),
@@ -173,11 +164,9 @@ namespace CtrLayer {
             ModtagBelønning();
         }
 
-        private void ModtagBelønning()
-        {
+        private void ModtagBelønning() {
             List<Kupon> readyKupons = new List<Kupon>();
-            using (BetBudContext db = new BetBudContext())
-            {
+            using (BetBudContext db = new BetBudContext()) {
                 readyKupons =
                     db.Kuponer.Include(x => x.delKampe.Select(y => y.Kampe))
                         .Where(x => x.Kontrolleret.Equals(false))
@@ -185,36 +174,30 @@ namespace CtrLayer {
                         .ToList();
             }
 
-            foreach (Kupon kupon in readyKupons)
-            {
+            foreach (Kupon kupon in readyKupons) {
                 Debug.WriteLine("kuponer");
 
                 bool kuponklar = true;
-                foreach (DelKamp delkamp in kupon.delKampe)
-                {
-                    if (!delkamp.Kampe.VundetX && !delkamp.Kampe.Vundet1 && !delkamp.Kampe.Vundet2)
-                    {
+                foreach (DelKamp delkamp in kupon.delKampe) {
+                    if (!delkamp.Kampe.VundetX && !delkamp.Kampe.Vundet1 && !delkamp.Kampe.Vundet2) {
                         kuponklar = false;
                         break;
                     }
                     Debug.WriteLine("kampe");
                 }
 
-                if (kuponklar)
-                {
+                if (kuponklar) {
                     Debug.WriteLine("kupon klar");
                     GivPoint(kupon);
                 }
             }
         }
 
-        private void GivPoint(Kupon kupon)
-        {
+        private void GivPoint(Kupon kupon) {
             kupon.Bruger.Point += kupon.MuligGevist();
             kupon.Kontrolleret = true;
 
-            using (BetBudContext db = new BetBudContext())
-            {
+            using (BetBudContext db = new BetBudContext()) {
                 Debug.WriteLine("gem");
                 db.Entry(kupon).State = EntityState.Modified;
                 db.Entry(kupon.Bruger).State = EntityState.Modified;
@@ -222,57 +205,41 @@ namespace CtrLayer {
             }
         }
 
-        private Setting getLastApiCall()
-        {
-            using (BetBudContext db = new BetBudContext())
-            {
+        private Setting getLastApiCall() {
+            using (BetBudContext db = new BetBudContext()) {
                 return db.Settings.First(x => x.name == "lastApiCall");
             }
         }
 
-        private void updateSetting(Setting setting)
-        {
-            using (BetBudContext db = new BetBudContext())
-            {
+        private void updateSetting(Setting setting) {
+            using (BetBudContext db = new BetBudContext()) {
                 db.Entry(setting).State = EntityState.Modified;
                 db.SaveChanges();
             }
         }
 
-        private void storeNewKampe(Kamp[] kamp)
-        {
-            using (BetBudContext db = new BetBudContext())
-            {
+        private void storeNewKampe(Kamp[] kamp) {
+            using (BetBudContext db = new BetBudContext()) {
                 db.Kampe.AddRange(kamp);
                 db.SaveChanges();
             }
-
-        // Metode til at fjerne kuponen. 
-
-        public void FjernKupon() {
-            NyKupon = null;
         }
 
-        private void UpdateKamp()
-        {
+        private void UpdateKamp() {
             IEnumerable<Kamp> kampList = new List<Kamp>();
 
 
-            using (BetBudContext db = new BetBudContext())
-        {
+            using (BetBudContext db = new BetBudContext()) {
                 kampList =
                     db.Kampe.Where(x => x.KampStart < DateTime.Now && !x.Vundet1 && !x.Vundet2 && !x.VundetX).ToList();
             }
 
-            if (kampList.Any())
-            {
-                foreach (Kamp kamp in kampList)
-                {
+            if (kampList.Any()) {
+                foreach (Kamp kamp in kampList) {
                     Debug.WriteLine("do game update");
                     string lastApiDate = "http://odds.mukuduk.dk/?kampId=" + kamp.KampId;
                     XElement oddsUrl = XElement.Load(lastApiDate);
-                    Kamp kampe = oddsUrl.Elements("kamp").Select(p => new Kamp
-                    {
+                    Kamp kampe = oddsUrl.Elements("kamp").Select(p => new Kamp {
                         HoldVsHold = p.Element("text").Value,
                         Odds1 = double.Parse(p.Element("odds1").Value),
                         OddsX = double.Parse(p.Element("oddsx").Value),
@@ -287,8 +254,7 @@ namespace CtrLayer {
                     kamp.Vundet1 = kampe.Vundet1;
                     kamp.VundetX = kampe.VundetX;
                     kamp.Vundet2 = kampe.Vundet2;
-                    using (BetBudContext db = new BetBudContext())
-                    {
+                    using (BetBudContext db = new BetBudContext()) {
                         Debug.WriteLine("save Game");
                         db.Entry(kamp).State = EntityState.Modified;
                         db.SaveChanges();
@@ -296,11 +262,9 @@ namespace CtrLayer {
                 }
             }
         }
-    
-        public IEnumerable<Kamp> getIkkeSpilletKampe()
-        {
-            using (BetBudContext db = new BetBudContext())
-            {
+
+        public IEnumerable<Kamp> getIkkeSpilletKampe() {
+            using (BetBudContext db = new BetBudContext()) {
                 return db.Kampe.Where(x => x.KampStart > DateTime.Now).ToList();
             }
         }

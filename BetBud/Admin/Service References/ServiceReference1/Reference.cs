@@ -34,10 +34,10 @@ namespace Admin.ServiceReference1 {
         System.Threading.Tasks.Task<double> OddsUdregningAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/MuligGevist", ReplyAction="http://tempuri.org/IServices/MuligGevistResponse")]
-        double MuligGevist();
+        double MuligGevist(ModelLibrary.Kupon.Kupon kupon);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/MuligGevist", ReplyAction="http://tempuri.org/IServices/MuligGevistResponse")]
-        System.Threading.Tasks.Task<double> MuligGevistAsync();
+        System.Threading.Tasks.Task<double> MuligGevistAsync(ModelLibrary.Kupon.Kupon kupon);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/BekræftKupon", ReplyAction="http://tempuri.org/IServices/BekræftKuponResponse")]
         bool BekræftKupon(ModelLibrary.Kupon.Kupon kupon);
@@ -46,10 +46,10 @@ namespace Admin.ServiceReference1 {
         System.Threading.Tasks.Task<bool> BekræftKuponAsync(ModelLibrary.Kupon.Kupon kupon);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/FindKamp", ReplyAction="http://tempuri.org/IServices/FindKampResponse")]
-        ModelLibrary.Kupon.Kamp FindKamp(int KampId);
+        ModelLibrary.Kupon.Kamp FindKamp(int kampId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/FindKamp", ReplyAction="http://tempuri.org/IServices/FindKampResponse")]
-        System.Threading.Tasks.Task<ModelLibrary.Kupon.Kamp> FindKampAsync(int KampId);
+        System.Threading.Tasks.Task<ModelLibrary.Kupon.Kamp> FindKampAsync(int kampId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/GetAlleKampe", ReplyAction="http://tempuri.org/IServices/GetAlleKampeResponse")]
         ModelLibrary.Kupon.Kamp[] GetAlleKampe();
@@ -68,6 +68,18 @@ namespace Admin.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/NyKupon", ReplyAction="http://tempuri.org/IServices/NyKuponResponse")]
         System.Threading.Tasks.Task<ModelLibrary.Kupon.Kupon> NyKuponAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/GetKampFromApi", ReplyAction="http://tempuri.org/IServices/GetKampFromApiResponse")]
+        void GetKampFromApi();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/GetKampFromApi", ReplyAction="http://tempuri.org/IServices/GetKampFromApiResponse")]
+        System.Threading.Tasks.Task GetKampFromApiAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/getIkkeSpilletKampe", ReplyAction="http://tempuri.org/IServices/getIkkeSpilletKampeResponse")]
+        ModelLibrary.Kupon.Kamp[] getIkkeSpilletKampe();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/getIkkeSpilletKampe", ReplyAction="http://tempuri.org/IServices/getIkkeSpilletKampeResponse")]
+        System.Threading.Tasks.Task<ModelLibrary.Kupon.Kamp[]> getIkkeSpilletKampeAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/getBruger", ReplyAction="http://tempuri.org/IServices/getBrugerResponse")]
         ModelLibrary.Bruger.Bruger getBruger(int id);
@@ -187,12 +199,12 @@ namespace Admin.ServiceReference1 {
             return base.Channel.OddsUdregningAsync();
         }
         
-        public double MuligGevist() {
-            return base.Channel.MuligGevist();
+        public double MuligGevist(ModelLibrary.Kupon.Kupon kupon) {
+            return base.Channel.MuligGevist(kupon);
         }
         
-        public System.Threading.Tasks.Task<double> MuligGevistAsync() {
-            return base.Channel.MuligGevistAsync();
+        public System.Threading.Tasks.Task<double> MuligGevistAsync(ModelLibrary.Kupon.Kupon kupon) {
+            return base.Channel.MuligGevistAsync(kupon);
         }
         
         public bool BekræftKupon(ModelLibrary.Kupon.Kupon kupon) {
@@ -203,12 +215,12 @@ namespace Admin.ServiceReference1 {
             return base.Channel.BekræftKuponAsync(kupon);
         }
         
-        public ModelLibrary.Kupon.Kamp FindKamp(int KampId) {
-            return base.Channel.FindKamp(KampId);
+        public ModelLibrary.Kupon.Kamp FindKamp(int kampId) {
+            return base.Channel.FindKamp(kampId);
         }
         
-        public System.Threading.Tasks.Task<ModelLibrary.Kupon.Kamp> FindKampAsync(int KampId) {
-            return base.Channel.FindKampAsync(KampId);
+        public System.Threading.Tasks.Task<ModelLibrary.Kupon.Kamp> FindKampAsync(int kampId) {
+            return base.Channel.FindKampAsync(kampId);
         }
         
         public ModelLibrary.Kupon.Kamp[] GetAlleKampe() {
@@ -233,6 +245,22 @@ namespace Admin.ServiceReference1 {
         
         public System.Threading.Tasks.Task<ModelLibrary.Kupon.Kupon> NyKuponAsync() {
             return base.Channel.NyKuponAsync();
+        }
+        
+        public void GetKampFromApi() {
+            base.Channel.GetKampFromApi();
+        }
+        
+        public System.Threading.Tasks.Task GetKampFromApiAsync() {
+            return base.Channel.GetKampFromApiAsync();
+        }
+        
+        public ModelLibrary.Kupon.Kamp[] getIkkeSpilletKampe() {
+            return base.Channel.getIkkeSpilletKampe();
+        }
+        
+        public System.Threading.Tasks.Task<ModelLibrary.Kupon.Kamp[]> getIkkeSpilletKampeAsync() {
+            return base.Channel.getIkkeSpilletKampeAsync();
         }
         
         public ModelLibrary.Bruger.Bruger getBruger(int id) {
