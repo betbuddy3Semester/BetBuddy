@@ -16,8 +16,6 @@ namespace ModelLibrary.SeasonInterface
         [DataMember, Key]
         public int SæsonId { get; set; }
         [DataMember]
-        public List<Kupon.Kupon> AlleKuponerFraSæson { get; set; }
-        [DataMember]
         public IEnumerable<SæsonBruger> SæsonBrugere { get; set; }
         [DataMember]
         public string SæsonNavn { get; set; }
