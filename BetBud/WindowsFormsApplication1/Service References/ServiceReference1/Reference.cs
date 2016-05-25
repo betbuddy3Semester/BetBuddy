@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Admin.ServiceReference1 {
+namespace WindowsFormsApplication1.ServiceReference1 {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -149,12 +149,12 @@ namespace Admin.ServiceReference1 {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IServicesChannel : Admin.ServiceReference1.IServices, System.ServiceModel.IClientChannel {
+    public interface IServicesChannel : WindowsFormsApplication1.ServiceReference1.IServices, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ServicesClient : System.ServiceModel.ClientBase<Admin.ServiceReference1.IServices>, Admin.ServiceReference1.IServices {
+    public partial class ServicesClient : System.ServiceModel.ClientBase<WindowsFormsApplication1.ServiceReference1.IServices>, WindowsFormsApplication1.ServiceReference1.IServices {
         
         public ServicesClient() {
         }
