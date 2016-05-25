@@ -16,6 +16,7 @@ namespace ModelLibrary.Kupon
         [DataMember]
         public int BrugerId { get; set; }
 
+
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [DataMember]
         public int KuponId { get; set; }
@@ -109,5 +110,8 @@ namespace ModelLibrary.Kupon
         {
             throw new NotImplementedException();
         }
+
+        public int SæsonID{ get; set; }
+        
     }
 }

@@ -35,24 +35,20 @@ namespace CtrLayer
             foreach (var bruger in BC.getBrugere())
             {
 
-                bruger.Point =1000;
+                bruger.Point = 10000;
                 
             }
             using (BetBudContext db = new BetBudContext())
             {
-                Setting sg = db.Settings.Where(x => x.name == "Sæson").FirstOrDefault();
-                int sæsonId = int.Parse(sg.value);
-                sg.value = (sæsonId++) + "";
-                db.Entry(sg).State = System.Data.Entity.EntityState.Modified;
+                Setting setting = db.Settings.Where(x => x.name == "Sæson").FirstOrDefault();
+                int sæsonId = int.Parse(setting.value);
+                setting.value = (sæsonId++) + "";
+                db.Entry(setting).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
             }
             
               
         }
 
-        public DateTime SæsonStart()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

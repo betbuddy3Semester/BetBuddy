@@ -8,7 +8,6 @@ namespace CtrLayer
 {
     interface ISæsonController
     {
-        DateTime SæsonStart();
         void SæsonAfslutning();
     }
 }

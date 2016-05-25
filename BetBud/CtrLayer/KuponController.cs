@@ -103,6 +103,8 @@ namespace CtrLayer
                         db.Entry(kamp.Kampe).State = EntityState.Unchanged;
                     }
                     db.Entry(kupon.Bruger).State = EntityState.Modified;
+                    Setting setting = db.Settings.Where(x => x.name == "Sæson").FirstOrDefault();
+                    kupon.SæsonID = int.Parse(setting.value);
                     db.Kuponer.Add(kupon);
                     db.SaveChanges();
                     return true;
