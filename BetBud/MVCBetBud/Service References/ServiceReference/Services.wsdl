@@ -9,6 +9,12 @@
       <xsd:import schemaLocation="http://localhost:8733/?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IServices_AfslutSæson_InputMessage">
+    <wsdl:part name="parameters" element="tns:AfslutSæson" />
+  </wsdl:message>
+  <wsdl:message name="IServices_AfslutSæson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AfslutSæsonResponse" />
+  </wsdl:message>
   <wsdl:message name="IServices_TilføjKamp_InputMessage">
     <wsdl:part name="parameters" element="tns:TilføjKamp" />
   </wsdl:message>
@@ -148,6 +154,10 @@
     <wsdl:part name="parameters" element="tns:UpdateServerResponse" />
   </wsdl:message>
   <wsdl:portType name="IServices">
+    <wsdl:operation name="AfslutSæson">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServices/AfslutSæson" message="tns:IServices_AfslutSæson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServices/AfslutSæsonResponse" message="tns:IServices_AfslutSæson_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="TilføjKamp">
       <wsdl:input wsaw:Action="http://tempuri.org/IServices/TilføjKamp" message="tns:IServices_TilføjKamp_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServices/TilføjKampResponse" message="tns:IServices_TilføjKamp_OutputMessage" />
@@ -243,6 +253,15 @@
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServices" type="tns:IServices">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AfslutSæson">
+      <soap:operation soapAction="http://tempuri.org/IServices/AfslutSæson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="TilføjKamp">
       <soap:operation soapAction="http://tempuri.org/IServices/TilføjKamp" style="document" />
       <wsdl:input>

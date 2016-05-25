@@ -41,6 +41,9 @@ namespace MVCBetBud.ServiceReference {
         private double PointField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SæsonIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private MVCBetBud.ServiceReference.DelKamp[] delKampeField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -127,6 +130,19 @@ namespace MVCBetBud.ServiceReference {
                 if ((this.PointField.Equals(value) != true)) {
                     this.PointField = value;
                     this.RaisePropertyChanged("Point");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SæsonId {
+            get {
+                return this.SæsonIdField;
+            }
+            set {
+                if ((this.SæsonIdField.Equals(value) != true)) {
+                    this.SæsonIdField = value;
+                    this.RaisePropertyChanged("SæsonId");
                 }
             }
         }
@@ -613,6 +629,12 @@ namespace MVCBetBud.ServiceReference {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference.IServices")]
     public interface IServices {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/AfslutSæson", ReplyAction="http://tempuri.org/IServices/AfslutSæsonResponse")]
+        void AfslutSæson();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/AfslutSæson", ReplyAction="http://tempuri.org/IServices/AfslutSæsonResponse")]
+        System.Threading.Tasks.Task AfslutSæsonAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/TilføjKamp", ReplyAction="http://tempuri.org/IServices/TilføjKampResponse")]
         MVCBetBud.ServiceReference.Kupon TilføjKamp(MVCBetBud.ServiceReference.Kupon kupon, MVCBetBud.ServiceReference.Kamp kamp, bool valgt1, bool valgtX, bool valgt2);
         
@@ -777,6 +799,14 @@ namespace MVCBetBud.ServiceReference {
         
         public ServicesClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public void AfslutSæson() {
+            base.Channel.AfslutSæson();
+        }
+        
+        public System.Threading.Tasks.Task AfslutSæsonAsync() {
+            return base.Channel.AfslutSæsonAsync();
         }
         
         public MVCBetBud.ServiceReference.Kupon TilføjKamp(MVCBetBud.ServiceReference.Kupon kupon, MVCBetBud.ServiceReference.Kamp kamp, bool valgt1, bool valgtX, bool valgt2) {
