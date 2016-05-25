@@ -73,16 +73,18 @@ namespace WCFBetBuddy
         [OperationContract]
         IEnumerable<Bruger> getHighscores();
 
+        //[OperationContract]
+        //Dictionary<string, string> FeedBackReservedNames(string text, int id);
         #endregion
 
         #region IChatHub
 
         [OperationContract]
         void OpretServer(string serverName, int serverPort, int bufferSize);
-
+        
         [OperationContract]
         void DeleteServer(int serverId);
-
+        
         [OperationContract]
         void UpdateServer(int serverId, string serverName, int serverPort, int bufferSize);
 

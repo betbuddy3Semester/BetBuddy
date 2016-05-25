@@ -9,6 +9,6 @@ namespace ModelLibrary.SeasonInterface
     interface ISæsonBruger
     {
         Bruger.Bruger Bruger { get; set; }
-        int BrugerPoints { get; set; }
+        double BrugerPoints { get; set; }
     }
 }

@@ -12,6 +12,6 @@ namespace ModelLibrary.SeasonInterface
         [DataMember]
         public Bruger.Bruger Bruger { get; set; }
         [DataMember]
-        public int BrugerPoints { get; set; }
+        public double BrugerPoints { get; set; }
     }
 }

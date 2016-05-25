@@ -58,9 +58,11 @@
     <Compile Include="IChatHub.cs" />
     <Compile Include="IKuponController.cs" />
     <Compile Include="IReservedNamesController.cs" />
+    <Compile Include="ISæsonController.cs" />
     <Compile Include="KuponController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReservedNamesController.cs" />
+    <Compile Include="SæsonController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DALBetBud\DALBetBud.csproj">
