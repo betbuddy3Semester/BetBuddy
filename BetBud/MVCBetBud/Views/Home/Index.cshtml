@@ -23,13 +23,10 @@
     <div class="col-md-4">
         <h2>Dagens kampe</h2>
         <ol>
-
-            @if (Model.AlleKampe.ToList().Count > 2)
-            {
-                foreach (Kamp kamp in Model.AlleKampe.ToList().GetRange(0, 3))
-                {
-                    <li>@kamp.HoldVsHold </li>
-                }
+            @if (Model.AlleKampe.Length > 2) {
+                foreach (Kamp kamp in Model.AlleKampe.ToList().GetRange(0, 3)) {
+                <li>@kamp.HoldVsHold </li>
+            }
             }
         </ol>
         <p>
@@ -39,14 +36,12 @@
     <div class="col-md-4">
         <h2>Highscore</h2>
         <ol>
-            @if (Model.brugere.ToList().Count > 4)
-            {
-                foreach (Bruger bruger in Model.brugere.ToList().GetRange(0, 5))
-                {
-                    <li>@bruger.Navn | @bruger.Point></li>
-                }
+            @if (Model.brugere.Length > 4) {
+                foreach (Bruger bruger in Model.brugere.ToList().GetRange(0, 5)) {
+                    <li>@bruger.Navn -- @bruger.Point </li>
             }
-        </ol>
+            }
+        </ol>   
         <p>
             <a class="btn btn-default" href="/Bruger/Highscore">Se highscore &raquo;</a>
         </p>

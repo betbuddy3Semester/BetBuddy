@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
-using System.Xml.Linq;
 using DALBetBud.Context;
 using ModelLibrary.Bruger;
 using ModelLibrary.Kupon;
 
-namespace CtrLayer
-{
-    public class KuponController : IKuponController
-    {
+namespace CtrLayer {
+    public class KuponController : IKuponController {
         // instance variable af kupon 
         public Kupon NyKupon;
 
@@ -21,8 +17,7 @@ namespace CtrLayer
 
         // Metode til at oprette kuponen og returnere en ny kupon til KuponControlleren 
 
-        public Kupon OpretKupon()
-        {
+        public Kupon OpretKupon() {
             NyKupon = new Kupon();
             return NyKupon;
         }
@@ -32,18 +27,14 @@ namespace CtrLayer
         // variablen fundet. Hvis den valgte kamp ikke er  i listen delKampe, returneres kupon uden kampen.
         // Det vil sige at hvis kampen allerede er på kuponen, så skal den ikke tilføjes.
 
-        public Kupon TilføjKamp(Kamp kamp, bool valgt1, bool valgtX, bool valgt2, Kupon kupon)
-        {
+        public Kupon TilføjKamp(Kamp kamp, bool valgt1, bool valgtX, bool valgt2, Kupon kupon) {
             bool fundet = false;
-            foreach (DelKamp delKamp in kupon.delKampe)
-            {
-                if (delKamp.Kampe.KampId == kamp.KampId)
-                {
+            foreach (DelKamp delKamp in kupon.delKampe) {
+                if (delKamp.Kampe.KampId == kamp.KampId) {
                     fundet = true;
                 }
             }
-            if (kupon != null && fundet == false)
-            {
+            if (kupon != null && fundet == false) {
                 kupon.TilføjKamp(kamp, valgt1, valgtX, valgt2);
             }
             return kupon;
@@ -52,11 +43,8 @@ namespace CtrLayer
 
         // Metode til at fjerne en kamp fra sin kupon. Først kontrollere metoden om der er en kupon, og fjerner derefter 
         // den valgte kamp.
-
-        public Kupon FjernKamp(Kamp kamp, Kupon kupon)
-        {
-            if (kupon != null)
-            {
+        public Kupon FjernKamp(Kamp kamp, Kupon kupon) {
+            if (kupon != null) {
                 kupon.FjernKamp(kamp);
             }
             return kupon;
@@ -64,11 +52,8 @@ namespace CtrLayer
 
         // Metode til at lave oddsudregningen fra modellaget. Kontrollere om kuponen findes og laver derefter
         // udregningen på de valgte kampe og returnere det samlede odds. Hvis ikke kuponen er oprettet returnes 0,0. 
-
-        public double OddsUdregning()
-        {
-            if (NyKupon != null)
-            {
+        public double OddsUdregning() {
+            if (NyKupon != null) {
                 return NyKupon.OddsUdregning();
             }
             return 0.0;
@@ -78,11 +63,9 @@ namespace CtrLayer
         // som udregner gevisten. Kontrollere om kuponen er oprettet, og returnere denne med den mulige gevinst. Hvis ikke kuponen er oprettet
         // returneres 0,0.
 
-        public double MuligGevinst(Kupon kupon)
-        {
-            if (kupon != null)
-            {
-                return kupon.MuligGevist();
+        public double MuligGevist() {
+            if (NyKupon != null) {
+                return NyKupon.MuligGevist();
             }
             return 0.0;
         }
@@ -100,35 +83,30 @@ namespace CtrLayer
                 {
                     foreach (DelKamp kamp in kupon.delKampe)
                     {
-                        db.Entry(kamp.Kampe).State = EntityState.Unchanged;
-                    }
+                    db.Entry(kamp.Kampe).State = EntityState.Unchanged;
+                }
                     db.Entry(kupon.Bruger).State = EntityState.Modified;
                     Setting setting = db.Settings.Where(x => x.name == "Sæson").FirstOrDefault();
                     kupon.SæsonID = int.Parse(setting.value);
-                    db.Kuponer.Add(kupon);
-                    db.SaveChanges();
-                    return true;
+                db.Kuponer.Add(kupon);
+                db.SaveChanges();
+                return true;
                 }
             }
             return false;
         }
 
         // Metode der henter alle kampe i Databasen. Der oprettes en ny forbindelse til databasen som returnere Kampe på en liste. 
-        public IEnumerable<Kamp> GetAlleKampe()
-        {
-            using (BetBudContext db = new BetBudContext())
-            {
+        public IEnumerable<Kamp> GetAlleKampe() {
+            using (BetBudContext db = new BetBudContext()) {
                 return db.Kampe.ToList();
             }
         }
 
         // Metode der bruges til at finde en kamp udfra kampId i databasen. Der opretter en ny forbindelse til databasen via BetBudContext,  
         // den kamp der stemmer overens med kampId ´et sendes bliver gemt i lokal variablen kamp som efterfølgende bliver returneret.
-
-        public Kamp FindKamp(int KampId)
-        {
-            using (BetBudContext db = new BetBudContext())
-            {
+        public Kamp FindKamp(int KampId) {
+            using (BetBudContext db = new BetBudContext()) {
                 Kamp kamp = db.Kampe.Find(KampId);
                 return kamp;
             }
@@ -268,6 +246,11 @@ namespace CtrLayer
                 db.Kampe.AddRange(kamp);
                 db.SaveChanges();
             }
+
+        // Metode til at fjerne kuponen. 
+
+        public void FjernKupon() {
+            NyKupon = null;
         }
 
         private void UpdateKamp()
@@ -276,7 +259,7 @@ namespace CtrLayer
 
 
             using (BetBudContext db = new BetBudContext())
-            {
+        {
                 kampList =
                     db.Kampe.Where(x => x.KampStart < DateTime.Now && !x.Vundet1 && !x.Vundet2 && !x.VundetX).ToList();
             }
@@ -313,7 +296,7 @@ namespace CtrLayer
                 }
             }
         }
-
+    
         public IEnumerable<Kamp> getIkkeSpilletKampe()
         {
             using (BetBudContext db = new BetBudContext())
