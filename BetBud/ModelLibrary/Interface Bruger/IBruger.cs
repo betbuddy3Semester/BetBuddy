@@ -1,7 +1,5 @@
-﻿namespace ModelLibrary.Interface_Bruger
-{
-    public interface IBruger
-    {
+﻿namespace ModelLibrary.Interface_Bruger {
+    public interface IBruger {
         string Navn { get; set; }
         string Email { get; set; }
         string BrugerNavn { get; set; }

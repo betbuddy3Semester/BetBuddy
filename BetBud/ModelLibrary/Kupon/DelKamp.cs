@@ -1,10 +1,8 @@
 ﻿using System.Runtime.Serialization;
 
-namespace ModelLibrary.Kupon
-{
+namespace ModelLibrary.Kupon {
     [DataContract]
-    public class DelKamp : IDelKamp
-    {
+    public class DelKamp : IDelKamp {
         [DataMember]
         public int DelKampId { get; set; }
 
@@ -23,34 +21,27 @@ namespace ModelLibrary.Kupon
         [DataMember]
         public Kamp Kampe { get; set; }
 
-        public bool KampRigtig()
-        {
-            if (Kampe.Vundet1 == Valgt1)
-            {
+        public bool KampRigtig() {
+            if (Kampe.Vundet1 == Valgt1) {
                 return true;
             }
-            if (Kampe.VundetX == ValgtX)
-            {
+            if (Kampe.VundetX == ValgtX) {
                 return true;
             }
 
-            if (Kampe.Vundet2 == Valgt2)
-            {
+            if (Kampe.Vundet2 == Valgt2) {
                 return true;
             }
 
             return false;
         }
 
-        public double GetOdds()
-        {
-            if (Valgt1)
-            {
+        public double GetOdds() {
+            if (Valgt1) {
                 return Kampe.Odds1;
             }
 
-            if (ValgtX)
-            {
+            if (ValgtX) {
                 return Kampe.OddsX;
             }
 

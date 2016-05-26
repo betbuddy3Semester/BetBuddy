@@ -2,10 +2,8 @@
 using System.Net.Sockets;
 using System.Text;
 
-namespace ModelLibrary.Chat.Interface_Chat
-{
-    public interface IAServer
-    {
+namespace ModelLibrary.Chat.Interface_Chat {
+    public interface IAServer {
         #region Properties
 
         int AServerId { get; set; }

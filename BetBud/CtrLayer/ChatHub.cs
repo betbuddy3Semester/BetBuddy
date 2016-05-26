@@ -29,11 +29,7 @@ namespace CtrLayer {
             //Her kaldes databasens context
             using (BetBudContext db = new BetBudContext()) {
                 //Objektet objekt initialiseres og forskellige variabler assignes til Aserverens properties
-                ChatServer = new AServer {
-                    ServerName = serverName,
-                    ServerPort = serverPort,
-                    BufferSize = bufferSize
-                };
+                ChatServer = new AServer {ServerName = serverName, ServerPort = serverPort, BufferSize = bufferSize};
                 //I dette kald åbnes contexten og chatserver objektet indsættes og dens state sættes til at være indsat, dette medfører at entity indsætter objektet til at være tilføjet i den cachede version af databasen
                 db.Entry(ChatServer).State = EntityState.Added;
                 //Her gemmes den cachede version af databasen ned til den rigtige version.
@@ -49,9 +45,7 @@ namespace CtrLayer {
             //Contexten kaldes i et using statement således den disposes senere
             using (BetBudContext db = new BetBudContext()) {
                 //Der oprettes en server instans og iden sættes fra parameter listen
-                AServer aServ = new AServer {
-                    AServerId = serverId
-                };
+                AServer aServ = new AServer {AServerId = serverId};
 
                 //Der laves en statement hvor objektet bliver sat til at blive slettet
                 db.Entry(aServ).State = EntityState.Deleted;
@@ -128,7 +122,6 @@ namespace CtrLayer {
         public Client JoinServer(int port, Client client) {
             // Angiver hvilken port clienten skal connecte til hos chat serveren 
             client.ClientPort = port;
-
 
             client.ConnectToServer();
             return client;

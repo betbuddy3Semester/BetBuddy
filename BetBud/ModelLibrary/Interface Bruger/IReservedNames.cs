@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace ModelLibrary.Interface_Bruger {
     public interface IReservedNames {

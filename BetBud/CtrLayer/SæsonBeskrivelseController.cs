@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ModelLibrary.SeasonInterface;
+﻿using System.Linq;
 using DALBetBud.Context;
-using System.Data.Entity;
+using ModelLibrary.SeasonInterface;
 
 namespace CtrLayer {
-    class SæsonBeskrivelseController : ISæsonBeskrivelseController {
+    internal class SæsonBeskrivelseController : ISæsonBeskrivelseController {
         public SæsonBeskrivelse HentNuværendeSæson() {
             SæsonBeskrivelse sb;
             using (BetBudContext db = new BetBudContext()) {

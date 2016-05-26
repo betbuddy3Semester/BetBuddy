@@ -8,20 +8,9 @@ namespace ModelLibrary.Interface_Kupon {
         List<DelKamp> delKampe { get; set; }
         Bruger.Bruger Bruger { get; set; }
         int SæsonId { get; set; }
-
-        /**
-        * Oprettelse af kupon
-        */
         bool TilføjKamp(Kamp kamp, bool valgt1, bool valgtX, bool valgt2);
         bool FjernKamp(Kamp kamp);
         double OddsUdregning();
         double MuligGevist();
-        bool BekræftKupon();
-
-
-        /**
-        * Kontrol/indløsning af kupon
-        */
-        bool KontrolAfKupon();
     }
 }

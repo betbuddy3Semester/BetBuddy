@@ -1,8 +1,6 @@
 ﻿namespace CtrLayer {
     public interface IStatistics {
-
         //Winratio
-
 
         //Win amount
 
@@ -15,6 +13,5 @@
         //Points earned
 
         //Boolean up or down
-
     }
 }

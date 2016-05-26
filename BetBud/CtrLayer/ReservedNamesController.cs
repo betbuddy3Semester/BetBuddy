@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Core.Objects;
 using System.Linq;
 using DALBetBud.Context;
 using ModelLibrary.Bruger;
@@ -40,19 +39,17 @@ namespace CtrLayer {
                 db.SaveChanges();
             }
         }
-        public void UpdateOrInsetReservedName(ReservedNames reserved)
-        {
-            using (BetBudContext db = new BetBudContext())
-            {
-                db.Entry(reserved).State = reserved.ReservedNameId > 0? EntityState.Modified : EntityState.Added;
-                db.SaveChanges();
-            }
-        }
-
 
         public void DeleteReservedName(ReservedNames reserved) {
             using (BetBudContext db = new BetBudContext()) {
                 db.Entry(reserved).State = EntityState.Deleted;
+                db.SaveChanges();
+            }
+        }
+
+        public void UpdateOrInsetReservedName(ReservedNames reserved) {
+            using (BetBudContext db = new BetBudContext()) {
+                db.Entry(reserved).State = reserved.ReservedNameId > 0 ? EntityState.Modified : EntityState.Added;
                 db.SaveChanges();
             }
         }
@@ -84,10 +81,7 @@ namespace CtrLayer {
             List<string> returnList = new List<string>();
             bool feedbackVar = CheckIfNameExistsInBrugerDb(text);
             if (!feedbackVar) {
-                ReservedNames name = new ReservedNames {
-                    Time = DateTime.Now,
-                    UserName = text
-                };
+                ReservedNames name = new ReservedNames {Time = DateTime.Now, UserName = text};
                 if (id > 0) {
                     name.ReservedNameId = id;
                     UpdateReservedName(name);
@@ -105,9 +99,7 @@ namespace CtrLayer {
             }
             else {
                 if (id > 0) {
-                    ReservedNames name = new ReservedNames {
-                        ReservedNameId = id
-                    };
+                    ReservedNames name = new ReservedNames {ReservedNameId = id};
                     DeleteReservedName(name);
                 }
                 returnList.Add("0");

@@ -11,12 +11,9 @@ namespace CtrLayer {
 
         IEnumerable<Bruger> getBrugere();
 
-
         void opretBruger(Bruger bruger);
 
-
         void opdaterBruger(Bruger bruger);
-
 
         void sletBruger(int id);
     }

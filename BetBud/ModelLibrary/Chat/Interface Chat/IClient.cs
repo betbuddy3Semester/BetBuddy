@@ -1,7 +1,5 @@
-﻿namespace ModelLibrary.Chat.Interface_Chat
-{
-    public interface IClient
-    {
+﻿namespace ModelLibrary.Chat.Interface_Chat {
+    public interface IClient {
         #region Properties
 
         string ClientName { get; set; }

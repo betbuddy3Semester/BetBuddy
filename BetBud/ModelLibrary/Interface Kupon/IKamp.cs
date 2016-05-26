@@ -1,9 +1,7 @@
 ﻿using System;
 
-namespace ModelLibrary
-{
-    public interface IKamp
-    {
+namespace ModelLibrary {
+    public interface IKamp {
         int KampId { get; set; }
         string HoldVsHold { get; set; }
         double Odds1 { get; set; }
@@ -13,9 +11,8 @@ namespace ModelLibrary
         bool Vundet1 { get; set; }
         bool VundetX { get; set; }
         bool Vundet2 { get; set; }
-
-
         bool Aflyst { get; set; }
+
         DateTime KampStart { get; set; }
 
         //string KampResultat();

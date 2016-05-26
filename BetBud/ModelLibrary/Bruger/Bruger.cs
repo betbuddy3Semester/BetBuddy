@@ -1,12 +1,9 @@
 ﻿using System.Runtime.Serialization;
 using ModelLibrary.Interface_Bruger;
 
-namespace ModelLibrary.Bruger
-{
+namespace ModelLibrary.Bruger {
     [DataContract]
-    public class Bruger : IBruger
-
-    {
+    public class Bruger : IBruger {
         [DataMember]
         public int BrugerId { get; set; }
 

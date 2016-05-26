@@ -32,10 +32,7 @@ namespace CtrLayer {
 
             sæson.SæsonBrugere = new List<SæsonBruger>();
             foreach (Bruger bruger in brugerController.getBrugere()) {
-                sæson.SæsonBrugere.Add(new SæsonBruger {
-                    Bruger = bruger,
-                    BrugerPoints = bruger.Point
-                });
+                sæson.SæsonBrugere.Add(new SæsonBruger {Bruger = bruger, BrugerPoints = bruger.Point});
             }
 
             sæsonId++;

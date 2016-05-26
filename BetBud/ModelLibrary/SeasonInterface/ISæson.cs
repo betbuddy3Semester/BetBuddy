@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-
-namespace ModelLibrary.SeasonInterface
-{
-    interface ISæson
-    {
+namespace ModelLibrary.SeasonInterface {
+    internal interface ISæson {
         List<SæsonBruger> SæsonBrugere { get; set; }
         DateTime SæsonPeriode { get; set; }
-        String SæsonNavn { get; set; }
+        string SæsonNavn { get; set; }
         double SæsonPris { get; set; }
         SæsonBeskrivelse SæsonInfo { get; set; }
     }

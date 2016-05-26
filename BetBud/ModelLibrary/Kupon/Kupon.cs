@@ -14,9 +14,7 @@ namespace ModelLibrary.Kupon {
         [DataMember]
         public int BrugerId { get; set; }
 
-
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [DataMember]
+        [DataMember, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int KuponId { get; set; }
 
         [DataMember]
@@ -37,7 +35,6 @@ namespace ModelLibrary.Kupon {
         [DataMember]
         public int SæsonId { get; set; }
 
-
         // Metode til at tilføje kampe til kuponen. 
         // Tilføj kamp hvis kampen og valgt er lig med 1 - hvis valgt = 2 så bliver kampen ikke tilføjet da det vil sige at brugeren
         // har forsøgt at tilføje den samme kamp to gange. 
@@ -51,7 +48,6 @@ namespace ModelLibrary.Kupon {
                 nyDelKamp.ValgtX = valgtX;
                 nyDelKamp.Valgt2 = valgt2;
                 delKampe.Add(nyDelKamp);
-
 
                 return true;
             }
@@ -69,7 +65,6 @@ namespace ModelLibrary.Kupon {
                     }
                 }
             }
-
             return false;
         }
 
@@ -80,7 +75,6 @@ namespace ModelLibrary.Kupon {
             foreach (DelKamp HverDelKamp in delKampe) {
                 oddsResultat *= HverDelKamp.GetOdds();
             }
-
             oddsResultat = Math.Round(oddsResultat, 2);
             return oddsResultat;
         }
@@ -89,14 +83,6 @@ namespace ModelLibrary.Kupon {
         //bruge på kuponen. Math.Round runder gevisten op således der kun er 2(Derfor: point,2) decimaler i den mulige gevinst.
         public double MuligGevist() {
             return Math.Round(OddsUdregning()*Point, 2);
-        }
-
-        public bool BekræftKupon() {
-            throw new NotImplementedException();
-        }
-
-        public bool KontrolAfKupon() {
-            throw new NotImplementedException();
         }
     }
 }

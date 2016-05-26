@@ -3,11 +3,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 
-namespace ModelLibrary.Kupon
-{
+namespace ModelLibrary.Kupon {
     [DataContract]
-    public class Kamp : IKamp
-    {
+    public class Kamp : IKamp {
         [DataMember, Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int KampId { get; set; }
 
@@ -38,18 +36,15 @@ namespace ModelLibrary.Kupon
         [DataMember]
         public bool Aflyst { get; set; }
 
-        public void KampNr()
-        {
+        public void KampNr() {
             throw new NotImplementedException();
         }
 
-        public string KampResultat()
-        {
+        public string KampResultat() {
             throw new NotImplementedException();
         }
 
-        public bool ErValgt()
-        {
+        public bool ErValgt() {
             throw new NotImplementedException();
         }
     }

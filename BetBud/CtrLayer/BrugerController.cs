@@ -46,7 +46,6 @@ namespace CtrLayer {
             //var matchBrugernavn = new Regex(@"(\.|\-|\._|\-_)$").Match(bruger.BrugerNavn);
             Bruger b = GetBrugerEfterBrugerNavn(bruger.BrugerNavn);
 
-
             if (matchEmail.Success && matchName.Success && matchBruger.Success && b == null) {
                 using (BetBudContext db = new BetBudContext()) {
                     db.Brugere.Add(bruger);
@@ -91,7 +90,6 @@ namespace CtrLayer {
             return Encode(Convert.ToBase64String(endPass));
         }
 
-
         //Opret en password hash
         private string Encode(string value) {
             SHA1 hash = SHA1.Create();
@@ -130,7 +128,6 @@ namespace CtrLayer {
                 //return result;
             }
         }
-
 
         /*public List<Bruger> getHighscores()
         {

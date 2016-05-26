@@ -14,7 +14,6 @@ namespace CtrLayer {
         // instance variable af kupon 
         public Kupon NyKupon;
 
-
         // Metode til at oprette kuponen og returnere en ny kupon til KuponControlleren 
         public Kupon OpretKupon() {
             NyKupon = new Kupon();
@@ -37,7 +36,6 @@ namespace CtrLayer {
             }
             return kupon;
         }
-
 
         // Metode til at fjerne en kamp fra sin kupon. Først kontrollere metoden om der er en kupon, og fjerner derefter 
         // den valgte kamp.
@@ -138,18 +136,23 @@ namespace CtrLayer {
             Setting apiSetting = getLastApiCall();
             string lastApiDate = "http://odds.mukuduk.dk/?timeStamp=" + apiSetting.value;
             XElement oddsUrl = XElement.Load(lastApiDate);
-            Kamp[] kampe = oddsUrl.Elements("kamp").Select(p => new Kamp {
-                HoldVsHold = p.Element("text").Value,
-                Odds1 = double.Parse(p.Element("odds1").Value, CultureInfo.InvariantCulture),
-                OddsX = double.Parse(p.Element("oddsx").Value, CultureInfo.InvariantCulture),
-                Odds2 = double.Parse(p.Element("odds2").Value, CultureInfo.InvariantCulture),
-                KampStart = DateTime.Parse(p.Element("kampStart").Value),
-                Aflyst = bool.Parse(p.Element("aflyst").Value),
-                Vundet1 = bool.Parse(p.Element("vundet1").Value),
-                VundetX = bool.Parse(p.Element("vundetx").Value),
-                Vundet2 = bool.Parse(p.Element("vundet2").Value),
-                KampId = int.Parse(p.Element("KampId").Value)
-            }).ToArray();
+            Kamp[] kampe =
+                oddsUrl.Elements("kamp")
+                    .Select(
+                        p =>
+                            new Kamp {
+                                HoldVsHold = p.Element("text").Value,
+                                Odds1 = double.Parse(p.Element("odds1").Value, CultureInfo.InvariantCulture),
+                                OddsX = double.Parse(p.Element("oddsx").Value, CultureInfo.InvariantCulture),
+                                Odds2 = double.Parse(p.Element("odds2").Value, CultureInfo.InvariantCulture),
+                                KampStart = DateTime.Parse(p.Element("kampStart").Value),
+                                Aflyst = bool.Parse(p.Element("aflyst").Value),
+                                Vundet1 = bool.Parse(p.Element("vundet1").Value),
+                                VundetX = bool.Parse(p.Element("vundetx").Value),
+                                Vundet2 = bool.Parse(p.Element("vundet2").Value),
+                                KampId = int.Parse(p.Element("KampId").Value)
+                            })
+                    .ToArray();
             if (kampe.Any())
                 storeNewKampe(kampe);
 
@@ -234,7 +237,6 @@ namespace CtrLayer {
         private void UpdateKamp() {
             IEnumerable<Kamp> kampList = new List<Kamp>();
 
-
             using (BetBudContext db = new BetBudContext()) {
                 kampList =
                     db.Kampe.Where(x => x.KampStart < DateTime.Now && !x.Vundet1 && !x.Vundet2 && !x.VundetX).ToList();
@@ -245,18 +247,23 @@ namespace CtrLayer {
                     Debug.WriteLine("do game update");
                     string lastApiDate = "http://odds.mukuduk.dk/?kampId=" + kamp.KampId;
                     XElement oddsUrl = XElement.Load(lastApiDate);
-                    Kamp kampe = oddsUrl.Elements("kamp").Select(p => new Kamp {
-                        HoldVsHold = p.Element("text").Value,
-                        Odds1 = double.Parse(p.Element("odds1").Value),
-                        OddsX = double.Parse(p.Element("oddsx").Value),
-                        Odds2 = double.Parse(p.Element("odds2").Value),
-                        KampStart = DateTime.Parse(p.Element("kampStart").Value),
-                        Aflyst = bool.Parse(p.Element("aflyst").Value),
-                        Vundet1 = bool.Parse(p.Element("vundet1").Value),
-                        VundetX = bool.Parse(p.Element("vundetx").Value),
-                        Vundet2 = bool.Parse(p.Element("vundet2").Value),
-                        KampId = int.Parse(p.Element("KampId").Value)
-                    }).First();
+                    Kamp kampe =
+                        oddsUrl.Elements("kamp")
+                            .Select(
+                                p =>
+                                    new Kamp {
+                                        HoldVsHold = p.Element("text").Value,
+                                        Odds1 = double.Parse(p.Element("odds1").Value),
+                                        OddsX = double.Parse(p.Element("oddsx").Value),
+                                        Odds2 = double.Parse(p.Element("odds2").Value),
+                                        KampStart = DateTime.Parse(p.Element("kampStart").Value),
+                                        Aflyst = bool.Parse(p.Element("aflyst").Value),
+                                        Vundet1 = bool.Parse(p.Element("vundet1").Value),
+                                        VundetX = bool.Parse(p.Element("vundetx").Value),
+                                        Vundet2 = bool.Parse(p.Element("vundet2").Value),
+                                        KampId = int.Parse(p.Element("KampId").Value)
+                                    })
+                            .First();
                     kamp.Vundet1 = kampe.Vundet1;
                     kamp.VundetX = kampe.VundetX;
                     kamp.Vundet2 = kampe.Vundet2;
