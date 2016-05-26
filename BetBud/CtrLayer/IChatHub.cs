@@ -2,10 +2,8 @@
 using ModelLibrary.Chat;
 using ModelLibrary.Chat.Interface_Chat;
 
-namespace CtrLayer
-{
-    public interface IChatHub
-    {
+namespace CtrLayer {
+    public interface IChatHub {
         #region Properties
 
         int ChatHubId { get; set; }

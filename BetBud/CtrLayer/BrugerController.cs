@@ -8,37 +8,28 @@ using System.Text.RegularExpressions;
 using DALBetBud.Context;
 using ModelLibrary.Bruger;
 
-namespace CtrLayer
-{
-    public class BrugerController : IBrugerController
-    {
-        public Bruger getBruger(int id)
-        {
-            using (BetBudContext db = new BetBudContext())
-            {
+namespace CtrLayer {
+    public class BrugerController : IBrugerController {
+        public Bruger getBruger(int id) {
+            using (BetBudContext db = new BetBudContext()) {
                 return db.Brugere.Find(id);
             }
         }
 
-        public IEnumerable<Bruger> getBrugere()
-        {
-            using (BetBudContext db = new BetBudContext())
-            {
+        public IEnumerable<Bruger> getBrugere() {
+            using (BetBudContext db = new BetBudContext()) {
                 return db.Brugere.DefaultIfEmpty().ToList();
             }
         }
 
-        public void opdaterBruger(Bruger bruger)
-        {
-            using (BetBudContext db = new BetBudContext())
-            {
+        public void opdaterBruger(Bruger bruger) {
+            using (BetBudContext db = new BetBudContext()) {
                 db.Entry(bruger).State = EntityState.Modified;
                 db.SaveChanges();
             }
         }
 
-        public void opretBruger(Bruger bruger)
-        {
+        public void opretBruger(Bruger bruger) {
             //Email constraints 
             Match matchEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").Match(bruger.Email);
 
@@ -56,21 +47,16 @@ namespace CtrLayer
             Bruger b = GetBrugerEfterBrugerNavn(bruger.BrugerNavn);
 
 
-            if (matchEmail.Success && matchName.Success && matchBruger.Success && b == null)
-            {
-                using (BetBudContext db = new BetBudContext())
-                {
-                    
+            if (matchEmail.Success && matchName.Success && matchBruger.Success && b == null) {
+                using (BetBudContext db = new BetBudContext()) {
                     db.Brugere.Add(bruger);
                     db.SaveChanges();
                 }
             }
         }
 
-        public void sletBruger(int id)
-        {
-            using (BetBudContext db = new BetBudContext())
-            {
+        public void sletBruger(int id) {
+            using (BetBudContext db = new BetBudContext()) {
                 Bruger bruger = new Bruger();
                 bruger.BrugerId = id;
                 db.Entry(bruger).State = EntityState.Deleted;
@@ -78,18 +64,14 @@ namespace CtrLayer
             }
         }
 
-        public Bruger GetBrugerEfterBrugerNavn(string bnavn)
-        {
-            using (BetBudContext db = new BetBudContext())
-            {
+        public Bruger GetBrugerEfterBrugerNavn(string bnavn) {
+            using (BetBudContext db = new BetBudContext()) {
                 return db.Brugere.FirstOrDefault(b => b.BrugerNavn == bnavn);
             }
         }
 
-        public Bruger logIndBruger(string bNavn, string pWord)
-        {
-            using (BetBudContext db = new BetBudContext())
-            {
+        public Bruger logIndBruger(string bNavn, string pWord) {
+            using (BetBudContext db = new BetBudContext()) {
                 string passHash = GenerateSaltedHash(pWord);
                 Bruger bruger =
                     db.Brugere.Where(x => x.BrugerNavn.Equals(bNavn) && x.Password.Equals(passHash)).FirstOrDefault();
@@ -99,12 +81,10 @@ namespace CtrLayer
         }
 
         //hash password - salt password og hash igen
-        private string GenerateSaltedHash(string password)
-        {
+        private string GenerateSaltedHash(string password) {
             byte[] hashPass = Encoding.UTF8.GetBytes(Encode(password));
             byte[] endPass = new byte[hashPass.Length*2];
-            for (int i = 0; i < hashPass.Length; i++)
-            {
+            for (int i = 0; i < hashPass.Length; i++) {
                 endPass[i*2] = hashPass[i];
                 endPass[i*2 + 1] = hashPass[hashPass.Length - 1 - i];
             }
@@ -113,18 +93,15 @@ namespace CtrLayer
 
 
         //Opret en password hash
-        private string Encode(string value)
-        {
+        private string Encode(string value) {
             SHA1 hash = SHA1.Create();
             ASCIIEncoding encoder = new ASCIIEncoding();
             byte[] combined = encoder.GetBytes(value ?? "");
             return BitConverter.ToString(hash.ComputeHash(combined)).ToLower().Replace("-", "");
         }
 
-        public void AddPoints(double amount, string navn, Bruger b)
-        {
-            using (BetBudContext db = new BetBudContext())
-            {
+        public void AddPoints(double amount, string navn, Bruger b) {
+            using (BetBudContext db = new BetBudContext()) {
                 b = GetBrugerEfterBrugerNavn(navn);
 
                 b.Point += amount;
@@ -134,10 +111,8 @@ namespace CtrLayer
             }
         }
 
-        public void SubtractPoints(double amount, string navn, Bruger b)
-        {
-            using (BetBudContext db = new BetBudContext())
-            {
+        public void SubtractPoints(double amount, string navn, Bruger b) {
+            using (BetBudContext db = new BetBudContext()) {
                 b = GetBrugerEfterBrugerNavn(navn);
 
                 b.Point -= amount;
@@ -147,11 +122,8 @@ namespace CtrLayer
             }
         }
 
-        public IEnumerable<Bruger> getHighscores()
-
-        {
-            using (BetBudContext db = new BetBudContext())
-            {
+        public IEnumerable<Bruger> getHighscores() {
+            using (BetBudContext db = new BetBudContext()) {
                 //var result = db.Brugere.GroupBy(x => x.Navn).Select(g => g.OrderByDescending(x => x.Point));
                 IOrderedQueryable<Bruger> result = db.Brugere.OrderByDescending(x => x.Point);
                 return result.ToList();

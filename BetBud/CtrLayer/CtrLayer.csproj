@@ -58,6 +58,7 @@
     <Compile Include="IChatHub.cs" />
     <Compile Include="IKuponController.cs" />
     <Compile Include="IReservedNamesController.cs" />
+    <Compile Include="IStatistics.cs" />
     <Compile Include="ISæsonBeskrivelseController.cs" />
     <Compile Include="ISæsonController.cs" />
     <Compile Include="KuponController.cs" />

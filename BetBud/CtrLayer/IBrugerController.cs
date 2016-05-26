@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using ModelLibrary.Bruger;
 
-namespace CtrLayer
-{
-    public interface IBrugerController
-    {
+namespace CtrLayer {
+    public interface IBrugerController {
         //Returner den enkelte bruger ud fra id
 
         Bruger getBruger(int id);

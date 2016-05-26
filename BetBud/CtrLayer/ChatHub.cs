@@ -5,10 +5,8 @@ using DALBetBud.Context;
 using ModelLibrary.Chat;
 using ModelLibrary.Chat.Interface_Chat;
 
-namespace CtrLayer
-{
-    public class ChatHub : IChatHub
-    {
+namespace CtrLayer {
+    public class ChatHub : IChatHub {
         #region Properties
 
         public AServer ChatServer { get; set; }
@@ -27,14 +25,11 @@ namespace CtrLayer
         /// <param name="serverName">Serverens navn</param>
         /// <param name="serverPort">Serverens port</param>
         /// <param name="bufferSize">Serverens buffer størrelse</param>
-        public void OpretServer(string serverName, int serverPort, int bufferSize)
-        {
+        public void OpretServer(string serverName, int serverPort, int bufferSize) {
             //Her kaldes databasens context
-            using (BetBudContext db = new BetBudContext())
-            {
+            using (BetBudContext db = new BetBudContext()) {
                 //Objektet objekt initialiseres og forskellige variabler assignes til Aserverens properties
-                ChatServer = new AServer
-                {
+                ChatServer = new AServer {
                     ServerName = serverName,
                     ServerPort = serverPort,
                     BufferSize = bufferSize
@@ -50,14 +45,11 @@ namespace CtrLayer
         ///     Denne metode står for at slette serveren
         /// </summary>
         /// <param name="serverId">Serverens id</param>
-        public void DeleteServer(int serverId)
-        {
+        public void DeleteServer(int serverId) {
             //Contexten kaldes i et using statement således den disposes senere
-            using (BetBudContext db = new BetBudContext())
-            {
+            using (BetBudContext db = new BetBudContext()) {
                 //Der oprettes en server instans og iden sættes fra parameter listen
-                AServer aServ = new AServer
-                {
+                AServer aServ = new AServer {
                     AServerId = serverId
                 };
 
@@ -75,11 +67,9 @@ namespace CtrLayer
         /// <param name="serverName">Serverens navn</param>
         /// <param name="serverPort">Serverens port</param>
         /// <param name="bufferSize">Serverens buffer størrelse</param>
-        public void UpdateServer(int serverId, string serverName, int serverPort, int bufferSize)
-        {
+        public void UpdateServer(int serverId, string serverName, int serverPort, int bufferSize) {
             //Contexten åbnes i et using statement således at forbindelsen automatisk bliver deposed sernere
-            using (BetBudContext db = new BetBudContext())
-            {
+            using (BetBudContext db = new BetBudContext()) {
                 //Der kaldes en metode som finder en specifik server som skal opdateres, den assignes til lokal variablen server
                 AServer server = FindSpecificAServer(serverId);
 
@@ -100,8 +90,7 @@ namespace CtrLayer
         /// </summary>
         /// <param name="serverName"></param>
         /// <returns>En liste af servere</returns>
-        public List<AServer> FindServers(string serverName)
-        {
+        public List<AServer> FindServers(string serverName) {
             /*using (var db = new BetBudContext())
             {
                 // Denne metode returnere en liste over alle servere hvis navn matcher inputtet
@@ -115,8 +104,7 @@ namespace CtrLayer
         /// </summary>
         /// <param name="serverId"></param>
         /// <returns></returns>
-        public AServer FindSpecificAServer(int serverId)
-        {
+        public AServer FindSpecificAServer(int serverId) {
             //using (var db = new BetBudContext())
             //{
             //    // Denne metode returnere en specifik server, ud fra et givent server id
@@ -125,8 +113,7 @@ namespace CtrLayer
             return null;
         }
 
-        public Client JoinServer(int port)
-        {
+        public Client JoinServer(int port) {
             throw new NotImplementedException();
         }
 
@@ -138,8 +125,7 @@ namespace CtrLayer
         /// <param name="port">Den port som clienten skal forbinde sig til</param>
         /// <param name="client">Den client som ønsker at joiner chatten</param>
         //  
-        public Client JoinServer(int port, Client client)
-        {
+        public Client JoinServer(int port, Client client) {
             // Angiver hvilken port clienten skal connecte til hos chat serveren 
             client.ClientPort = port;
 

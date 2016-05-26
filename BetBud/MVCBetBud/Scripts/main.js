@@ -1,7 +1,7 @@
 ﻿
 
 $("#AlleKampeID form")
-    .submit(function() {
+    .submit(function () {
 
         var buttomClass = $("form input[type=submit][clicked=true]");
         console.log(buttomClass);
@@ -19,7 +19,7 @@ $("#AlleKampeID form")
 
 var samletOdds = 1;
 $(".OddsBox")
-    .each(function() {
+    .each(function () {
         var fixtTal = $(this).text().replace(",", ".");
         samletOdds *= fixtTal;
     });
@@ -31,7 +31,7 @@ if (samletOdds != 1) {
 }
 var dinePoing = parseInt($("#dinePoing").text());
 var bettingPoint = $("input[name=bettingPoint]");
-bettingPoint.keyup(function() {
+bettingPoint.keyup(function () {
 
 
     var point = bettingPoint.val() * samletOdds;
@@ -40,22 +40,41 @@ bettingPoint.keyup(function() {
     $("#gevinst").text(point);
 });
 
-var kupon = function() {
+var kupon = function () {
     this.kamp = [];
-    this.addKamp = function(kamp) {
+    this.addKamp = function (kamp) {
         this.kamp.push(kamp);
     };
 };
-$("#ajaxUsername").keyup(function() {
-    var text = $(this).val();
-    $.getJSON("http://localhost:50617/bruger/GetApi", { text: text }, function(json) {
-        $("#AjaxReturnValue").text(json.text);
-        if (json.status == "1") {
-            $("#ajaxUsername").attr("style", "border:1px solid red");
-        } else if(json.stuts == "2") {
-            $("#ajaxUsername").attr("style", "border:1px solid yellow");
-        } else {
-            $("#ajaxUsername").attr("style", "border:1px solid green");
-        }
-    });
+var delay = (function () {
+    var timer = 0;
+    return function (callback, ms) {
+        clearTimeout(timer);
+        timer = setTimeout(callback, ms);
+    };
+})();
+$("#ajaxUsername").keyup(function () {
+    var that = this;
+    delay(function () {
+
+        var text = $(that).val();
+
+        $.getJSON("http://localhost:50617/bruger/GetApi", { text: text }, function (json) {
+            $("#AjaxReturnValue").text(json.text);
+            if (json.status == "1") {
+                $("#ajaxUsername").attr("style", "border:1px solid red");
+            } else if (json.stuts == "2") {
+                $("#ajaxUsername").attr("style", "border:1px solid yellow");
+            } else {
+                $("#ajaxUsername").attr("style", "border:1px solid green");
+            }
+        });
+    }, 1000);
 });
+var delay = (function () {
+    var timer = 0;
+    return function (callback, ms) {
+        clearTimeout(timer);
+        timer = setTimeout(callback, ms);
+    };
+})();

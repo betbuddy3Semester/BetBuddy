@@ -13,11 +13,6 @@ namespace ModelLibrary.SeasonInterface
         DateTime SæsonPeriode { get; set; }
         String SæsonNavn { get; set; }
         double SæsonPris { get; set; }
-
-        
-
-
-
-
+        SæsonBeskrivelse SæsonInfo { get; set; }
     }
 }

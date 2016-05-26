@@ -14,9 +14,8 @@ namespace CtrLayer {
         // instance variable af kupon 
         public Kupon NyKupon;
 
-       
-        // Metode til at oprette kuponen og returnere en ny kupon til KuponControlleren 
 
+        // Metode til at oprette kuponen og returnere en ny kupon til KuponControlleren 
         public Kupon OpretKupon() {
             NyKupon = new Kupon();
             return NyKupon;
@@ -26,7 +25,6 @@ namespace CtrLayer {
         // oprettet. Search igennem delKampe og tilføjer den valgte kamp der er i delKamp, hvis kampId passer overens med hinanden. Returnere 
         // variablen fundet. Hvis den valgte kamp ikke er  i listen delKampe, returneres kupon uden kampen.
         // Det vil sige at hvis kampen allerede er på kuponen, så skal den ikke tilføjes.
-
         public Kupon TilføjKamp(Kamp kamp, bool valgt1, bool valgtX, bool valgt2, Kupon kupon) {
             bool fundet = false;
             foreach (DelKamp delKamp in kupon.delKampe) {
@@ -77,10 +75,8 @@ namespace CtrLayer {
         public bool BekræftKupon(Kupon kupon) {
             kupon.CreateDateTime = DateTime.Now;
             if (kupon.delKampe.Count > 0) {
-                using (BetBudContext db = new BetBudContext())
-                {
-                    foreach (DelKamp kamp in kupon.delKampe)
-                    {
+                using (BetBudContext db = new BetBudContext()) {
+                    foreach (DelKamp kamp in kupon.delKampe) {
                         db.Entry(kamp.Kampe).State = EntityState.Unchanged;
                     }
                     db.Entry(kupon.Bruger).State = EntityState.Modified;
@@ -162,6 +158,7 @@ namespace CtrLayer {
 
             UpdateKamp();
             ModtagBelønning();
+            new ReservedNamesController().CheckAndRemoveExistName();
         }
 
         private void ModtagBelønning() {

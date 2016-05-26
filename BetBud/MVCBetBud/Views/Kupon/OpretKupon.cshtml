@@ -4,8 +4,7 @@
 @{
     ViewBag.Title = "OpretKupon";
 }
-@if (Session["error"] != null)
-{
+@if (Session["error"] != null) {
     <h3> @Session["error"] </h3>
 
     {
@@ -39,11 +38,9 @@
             <th></th>
         </tr>
 
-        @foreach (Kamp item in Model.AlleKampe)
-        {
+        @foreach (Kamp item in Model.AlleKampe) {
             <tr>
-                @using (Html.BeginForm())
-                {
+                @using (Html.BeginForm()) {
                     <td>
                         @Html.HiddenFor(modelItem => item.KampId)
 
@@ -80,25 +77,20 @@
             <th>Fjern Kamp</th>
 
         </tr>
-        @if (Model.kupon.delKampe != null)
-        {
-            foreach (DelKamp delKamp in Model.kupon.delKampe)
-            {
+        @if (Model.kupon.delKampe != null) {
+            foreach (DelKamp delKamp in Model.kupon.delKampe) {
                 double odds = 0.0;
                 string valgt = "taber";
 
-                if (delKamp.Valgt1)
-                {
+                if (delKamp.Valgt1) {
                     odds = delKamp.Kampe.Odds1;
                     valgt = "1";
                 }
-                else if (delKamp.ValgtX)
-                {
+                else if (delKamp.ValgtX) {
                     odds = delKamp.Kampe.OddsX;
                     valgt = "X";
                 }
-                else if (delKamp.Valgt2)
-                {
+                else if (delKamp.Valgt2) {
                     odds = delKamp.Kampe.Odds2;
                     valgt = "2";
                 }
@@ -109,8 +101,7 @@
                     <td>@valgt</td>
                     <td class="OddsBox">@odds</td>
                     <td>
-                        @using (Html.BeginForm("FjernKamp", "Kupon"))
-                        {
+                        @using (Html.BeginForm("FjernKamp", "Kupon")) {
                             <input name="FjernKamp" value="@delKamp.Kampe.KampId" type="hidden">
                             <input type="submit" value="X"/>
                         }
@@ -128,8 +119,7 @@
             </tr>
         }
     </table>
-    @using (Html.BeginForm("OpretKupon", "Kupon", FormMethod.Post, new { onsubmit ="return confirm('Do you really want to submit the form?');" }))
-    {
+    @using (Html.BeginForm("OpretKupon", "Kupon", FormMethod.Post, new {onsubmit = "return confirm('Do you really want to submit the form?');"})) {
         <div class="form-group">
             <table class="table">
                 <tr>
@@ -142,7 +132,7 @@
                 <tr>
                     <td>Indsats</td>
                     <td>
-                        <input type="text" class="form-control" name="bettingPoint" value="0.0" />
+                        <input type="text" class="form-control" name="bettingPoint" value="0.0"/>
                     </td>
                 </tr>
                 <tr>

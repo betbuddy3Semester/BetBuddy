@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 using ModelLibrary.SeasonInterface;
 
 
-namespace CtrLayer
-{
-    interface ISæsonBeskrivelseController
-    {
-    
-
+namespace CtrLayer {
+    interface ISæsonBeskrivelseController {
         SæsonBeskrivelse HentNuværendeSæson();
 
         SæsonBeskrivelse OpdaterSæsonBeskrivelse(string beskrivelse, string start, string slut);

@@ -2,11 +2,9 @@
 using ModelLibrary.Bruger;
 using ModelLibrary.Kupon;
 
-namespace CtrLayer
-{
+namespace CtrLayer {
     // KuponController interface med dennes metoder
-    public interface IKuponController
-    {
+    public interface IKuponController {
         Kupon OpretKupon();
         Kupon TilføjKamp(Kamp kamp, bool valgt1, bool valgtX, bool valgt2, Kupon kupon);
         Kupon FjernKamp(Kamp kamp, Kupon kupon);

@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Linq;
 using DALBetBud.Context;
@@ -17,8 +14,10 @@ namespace CtrLayer {
 
         public void SæsonAfslutning() {
             Setting setting = null;
+            SæsonBeskrivelse sb = null;
             using (BetBudContext db = new BetBudContext()) {
                 setting = db.Settings.FirstOrDefault(x => x.name == "Sæson");
+                sb = db.AktuelSæsonInfo.OrderByDescending(x => x.SæsonBeskrivelseId).FirstOrDefault();
             }
 
             int sæsonId = int.Parse(setting.value);
@@ -28,7 +27,7 @@ namespace CtrLayer {
                 SæsonNavn = "test",
                 SæsonPris = 0.0,
                 SæsonPeriode = DateTime.Now,
-                SæsonInfo = new SæsonBeskrivelseController().HentNuværendeSæson()
+                SæsonInfo = sb
             };
 
             sæson.SæsonBrugere = new List<SæsonBruger>();
@@ -49,26 +48,23 @@ namespace CtrLayer {
 
         private void GemSæson(Sæson sæson, Setting setting) {
             using (BetBudContext db = new BetBudContext()) {
-                try {
-                    foreach (SæsonBruger sæsonBruger in sæson.SæsonBrugere) {
-                        db.Entry(sæsonBruger.Bruger).State = EntityState.Modified;
-                    }
-                    db.Entry(setting).State = EntityState.Modified;
-                    db.Sæsoner.Add(sæson);
+                using (DbContextTransaction tranction = db.Database.BeginTransaction()) {
+                    try {
+                        foreach (SæsonBruger sæsonBruger in sæson.SæsonBrugere) {
+                            db.Entry(sæsonBruger.Bruger).State = EntityState.Modified;
+                        }
+                        db.Entry(setting).State = EntityState.Modified;
+                        db.Entry(sæson.SæsonInfo).State = EntityState.Unchanged;
+                        db.Sæsoner.Add(sæson);
+                        db.AktuelSæsonInfo.Add(new SæsonBeskrivelse {Beskrivelse = "sæson!"});
 
-                    db.SaveChanges();
-                }
-                catch (DbException e) {
-                    Debug.WriteLine(e);
-                }
-                catch (DbUpdateException e) {
-                    Debug.WriteLine(e);
-                }
-                catch (DbUnexpectedValidationException e) {
-                    Debug.WriteLine(e);
-                }
-                catch (Exception e) {
-                    Debug.WriteLine(e);
+                        db.SaveChanges();
+                        tranction.Commit();
+                    }
+                    catch (Exception e) {
+                        tranction.Rollback();
+                        Debug.WriteLine(e);
+                    }
                 }
             }
         }
