@@ -8,7 +8,7 @@ namespace ModelLibrary.SeasonInterface
 {
     interface ISæsonBeskrivelse
     {
-        int BeskrivelseId { get; set; }
+        int SæsonBeskrivelseId { get; set; }
         string StartDato{ get; set; }
         string SlutDato { get; set; }
         string Beskrivelse { get; set; }

@@ -27,7 +27,8 @@ namespace CtrLayer {
                 SæsonId = sæsonId,
                 SæsonNavn = "test",
                 SæsonPris = 0.0,
-                SæsonPeriode = DateTime.Now
+                SæsonPeriode = DateTime.Now,
+                SæsonInfo = new SæsonBeskrivelseController().HentNuværendeSæson()
             };
 
             sæson.SæsonBrugere = new List<SæsonBruger>();

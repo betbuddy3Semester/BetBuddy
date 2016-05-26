@@ -21,5 +21,8 @@ namespace ModelLibrary.SeasonInterface {
 
         [DataMember]
         public double SæsonPris { get; set; }
+
+        [DataMember]
+        public SæsonBeskrivelse SæsonInfo { get; set; }
     }
 }

@@ -21,62 +21,19 @@ namespace CtrLayer
             }
             return sb;
         }
-
-        public string RedigerBeskrivelse(string nyBeskrivelse)
-        {
-            using (BetBudContext db = new BetBudContext())
-            {
-
-                SæsonBeskrivelse sb = db.AktuelSæsonInfo.Last();
-                sb.Beskrivelse = nyBeskrivelse;
-                db.SaveChanges();
-
-            }
-            return nyBeskrivelse;
-        }
-
-        public string RedigerSlutDato(string nySlutDato)
-        {
-            
-            using (BetBudContext db = new BetBudContext())
-            {
-
-                SæsonBeskrivelse sb = db.AktuelSæsonInfo.Last();
-                sb.SlutDato = nySlutDato;
-                db.SaveChanges();
-
-            }
-            return nySlutDato;
-        }
-
-        public string RedigerStartDato(string nyStartDato)
-        {
-
-            using (BetBudContext db = new BetBudContext())
-            {
-
-                SæsonBeskrivelse sb = db.AktuelSæsonInfo.Last();
-                sb.SlutDato = nyStartDato;
-                db.SaveChanges();
-
-            }
-            return nyStartDato;
-        }
-
+        
         public SæsonBeskrivelse OpdaterSæsonBeskrivelse(string beskrivelse, string start, string slut)
         {
             using (BetBudContext db = new BetBudContext())
             {
-                SæsonBeskrivelseController sc = new SæsonBeskrivelseController();
-                sc.RedigerBeskrivelse(beskrivelse);
-                sc.RedigerSlutDato(slut);
-                sc.RedigerStartDato(start);
+                SæsonBeskrivelse sb = HentNuværendeSæson();
+                sb.Beskrivelse = beskrivelse;
+                sb.SlutDato = slut;
+                sb.StartDato = start;
                 db.SaveChanges();
             }
             return HentNuværendeSæson();
         }
-
-
     }
-    }
+}
 

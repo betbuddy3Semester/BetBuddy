@@ -15,7 +15,7 @@ namespace ModelLibrary.SeasonInterface
         public string Beskrivelse
         {get; set;}
         [DataMember]
-        public int BeskrivelseId
+        public int SæsonBeskrivelseId
         { get; set; }
         [DataMember]
         public string SlutDato

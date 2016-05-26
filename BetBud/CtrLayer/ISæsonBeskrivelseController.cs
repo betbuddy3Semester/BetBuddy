@@ -10,9 +10,7 @@ namespace CtrLayer
 {
     interface ISæsonBeskrivelseController
     {
-        string RedigerStartDato(string nyStartDato);
-        string RedigerSlutDato(string nySlutDato);
-        string RedigerBeskrivelse(string nyBeskrivelse);
+    
 
         SæsonBeskrivelse HentNuværendeSæson();
 
