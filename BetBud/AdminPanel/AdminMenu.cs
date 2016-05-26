@@ -20,6 +20,7 @@ namespace AdminPanel
         private void button1_Click(object sender, EventArgs e)
         {
 
+            var form = new SæsonMenu {Visible = true};
         }
     }
 }
