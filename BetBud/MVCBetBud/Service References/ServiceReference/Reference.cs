@@ -754,24 +754,6 @@ namespace MVCBetBud.ServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/FeedBackReservedNames", ReplyAction="http://tempuri.org/IServices/FeedBackReservedNamesResponse")]
         System.Threading.Tasks.Task<string[]> FeedBackReservedNamesAsync(string text, int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/OpretServer", ReplyAction="http://tempuri.org/IServices/OpretServerResponse")]
-        void OpretServer(string serverName, int serverPort, int bufferSize);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/OpretServer", ReplyAction="http://tempuri.org/IServices/OpretServerResponse")]
-        System.Threading.Tasks.Task OpretServerAsync(string serverName, int serverPort, int bufferSize);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/DeleteServer", ReplyAction="http://tempuri.org/IServices/DeleteServerResponse")]
-        void DeleteServer(int serverId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/DeleteServer", ReplyAction="http://tempuri.org/IServices/DeleteServerResponse")]
-        System.Threading.Tasks.Task DeleteServerAsync(int serverId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/UpdateServer", ReplyAction="http://tempuri.org/IServices/UpdateServerResponse")]
-        void UpdateServer(int serverId, string serverName, int serverPort, int bufferSize);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/UpdateServer", ReplyAction="http://tempuri.org/IServices/UpdateServerResponse")]
-        System.Threading.Tasks.Task UpdateServerAsync(int serverId, string serverName, int serverPort, int bufferSize);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -967,30 +949,6 @@ namespace MVCBetBud.ServiceReference {
         
         public System.Threading.Tasks.Task<string[]> FeedBackReservedNamesAsync(string text, int id) {
             return base.Channel.FeedBackReservedNamesAsync(text, id);
-        }
-        
-        public void OpretServer(string serverName, int serverPort, int bufferSize) {
-            base.Channel.OpretServer(serverName, serverPort, bufferSize);
-        }
-        
-        public System.Threading.Tasks.Task OpretServerAsync(string serverName, int serverPort, int bufferSize) {
-            return base.Channel.OpretServerAsync(serverName, serverPort, bufferSize);
-        }
-        
-        public void DeleteServer(int serverId) {
-            base.Channel.DeleteServer(serverId);
-        }
-        
-        public System.Threading.Tasks.Task DeleteServerAsync(int serverId) {
-            return base.Channel.DeleteServerAsync(serverId);
-        }
-        
-        public void UpdateServer(int serverId, string serverName, int serverPort, int bufferSize) {
-            base.Channel.UpdateServer(serverId, serverName, serverPort, bufferSize);
-        }
-        
-        public System.Threading.Tasks.Task UpdateServerAsync(int serverId, string serverName, int serverPort, int bufferSize) {
-            return base.Channel.UpdateServerAsync(serverId, serverName, serverPort, bufferSize);
         }
     }
 }

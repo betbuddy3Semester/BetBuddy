@@ -9,7 +9,7 @@ namespace ModelLibrary.SeasonInterface
 {
     interface ISæson
     {
-        IEnumerable<SæsonBruger> SæsonBrugere { get; set; }
+        List<SæsonBruger> SæsonBrugere { get; set; }
         DateTime SæsonPeriode { get; set; }
         String SæsonNavn { get; set; }
         double SæsonPris { get; set; }

@@ -259,9 +259,6 @@
     <Content Include="Service References\ServiceReference\MVCBetBud.ServiceReference.Kupon.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Service References\ServiceReference\item4.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\ServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -304,19 +301,6 @@
     <Content Include="Views\Bruger\Delete.cshtml" />
     <Content Include="Views\Bruger\Edit.cshtml" />
     <Content Include="Views\Kupon\OpretKupon.cshtml" />
-    <None Include="Service References\ServiceReference\item.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceReference\item1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceReference\item2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceReference\item3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceReference\Services.wsdl" />
     <Content Include="Views\Bruger\Delete.cshtml" />
     <Content Include="Views\Bruger\Edit.cshtml" />
     <Content Include="Views\Kupon\OpretKupon.cshtml" />
@@ -329,6 +313,22 @@
     <Content Include="Views\Chat\Index.cshtml" />
     <Content Include="Views\Bruger\HighScore.cshtml" />
     <Content Include="Views\Kupon\ApiGetKampe.cshtml" />
+    <None Include="Service References\ServiceReference\item.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\item4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\Services.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

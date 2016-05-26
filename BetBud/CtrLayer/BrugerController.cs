@@ -24,7 +24,7 @@ namespace CtrLayer
         {
             using (BetBudContext db = new BetBudContext())
             {
-                return db.Brugere.ToList();
+                return db.Brugere.DefaultIfEmpty().ToList();
             }
         }
 

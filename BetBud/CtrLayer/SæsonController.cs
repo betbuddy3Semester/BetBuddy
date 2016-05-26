@@ -1,54 +1,75 @@
-﻿using DALBetBud.Context;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Common;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
+using System.Linq;
+using DALBetBud.Context;
 using ModelLibrary.Bruger;
 using ModelLibrary.Kupon;
 using ModelLibrary.SeasonInterface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace CtrLayer
-{
-    public class SæsonController : ISæsonController
-    {
-        BrugerController BC = new BrugerController();
-        KuponController KC = new KuponController();
+namespace CtrLayer {
+    public class SæsonController : ISæsonController {
+        private readonly BrugerController brugerController = new BrugerController();
 
-        public void SæsonAfslutning()
-        {
-            Sæson s = new Sæson();
-            List<SæsonBruger> sbs = new List<SæsonBruger>();
-            foreach(var bruger  in BC.getBrugere())
-            {
-                var sb = new SæsonBruger();
-                sb.Bruger = bruger;
-                sb.BrugerPoints = bruger.Point;
-                sbs.Add(sb);
+        public void SæsonAfslutning() {
+            Setting setting = null;
+            using (BetBudContext db = new BetBudContext()) {
+                setting = db.Settings.FirstOrDefault(x => x.name == "Sæson");
             }
-            s.SæsonBrugere = sbs;
-            using (BetBudContext db = new BetBudContext())
-            {
-                db.Sæsoner.Add(s);
-                db.SaveChanges();
-            }
-            foreach (var bruger in BC.getBrugere())
-            {
 
-                bruger.Point = 10000;
-                
+            int sæsonId = int.Parse(setting.value);
+
+            Sæson sæson = new Sæson {
+                SæsonId = sæsonId,
+                SæsonNavn = "test",
+                SæsonPris = 0.0,
+                SæsonPeriode = DateTime.Now
+            };
+
+            sæson.SæsonBrugere = new List<SæsonBruger>();
+            foreach (Bruger bruger in brugerController.getBrugere()) {
+                sæson.SæsonBrugere.Add(new SæsonBruger {
+                    Bruger = bruger,
+                    BrugerPoints = bruger.Point
+                });
             }
-            using (BetBudContext db = new BetBudContext())
-            {
-                Setting setting = db.Settings.Where(x => x.name == "Sæson").FirstOrDefault();
-                int sæsonId = int.Parse(setting.value);
-                setting.value = (sæsonId++) + "";
-                db.Entry(setting).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
+
+            sæsonId++;
+            setting.value = sæsonId + "";
+            foreach (SæsonBruger sæsonBruger in sæson.SæsonBrugere) {
+                sæsonBruger.Bruger.Point = 10000;
             }
-            
-              
+            GemSæson(sæson, setting);
         }
 
+        private void GemSæson(Sæson sæson, Setting setting) {
+            using (BetBudContext db = new BetBudContext()) {
+                try {
+                    foreach (SæsonBruger sæsonBruger in sæson.SæsonBrugere) {
+                        db.Entry(sæsonBruger.Bruger).State = EntityState.Modified;
+                    }
+                    db.Entry(setting).State = EntityState.Modified;
+                    db.Sæsoner.Add(sæson);
+
+                    db.SaveChanges();
+                }
+                catch (DbException e) {
+                    Debug.WriteLine(e);
+                }
+                catch (DbUpdateException e) {
+                    Debug.WriteLine(e);
+                }
+                catch (DbUnexpectedValidationException e) {
+                    Debug.WriteLine(e);
+                }
+                catch (Exception e) {
+                    Debug.WriteLine(e);
+                }
+            }
+        }
     }
 }

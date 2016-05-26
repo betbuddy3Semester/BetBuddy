@@ -1,28 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ModelLibrary.Kupon;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 
-namespace ModelLibrary.SeasonInterface
-{
+namespace ModelLibrary.SeasonInterface {
     [DataContract]
-    public class Sæson : ISæson
-    {
-        
-        [DataMember, Key]
+    public class Sæson : ISæson {
+        [DataMember, Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int SæsonId { get; set; }
+
         [DataMember]
-        public IEnumerable<SæsonBruger> SæsonBrugere { get; set; }
+        public List<SæsonBruger> SæsonBrugere { get; set; }
+
         [DataMember]
         public string SæsonNavn { get; set; }
+
         [DataMember]
         public DateTime SæsonPeriode { get; set; }
+
         [DataMember]
         public double SæsonPris { get; set; }
-        
     }
 }

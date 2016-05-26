@@ -3,15 +3,14 @@ using System.ServiceModel;
 using ModelLibrary.Bruger;
 using ModelLibrary.Kupon;
 
-namespace WCFBetBuddy
-{
+namespace WCFBetBuddy {
     [ServiceContract]
-    internal interface IServices
-    {
-        [OperationContract]
+    internal interface IServices {
         #region Sæson
+
         [OperationContract]
         void AfslutSæson();
+
         #endregion
 
         #region Ikupon
@@ -81,29 +80,6 @@ namespace WCFBetBuddy
 
         [OperationContract]
         IEnumerable<string> FeedBackReservedNames(string text, int id);
-        #endregion
-
-        #region IChatHub
-
-        [OperationContract]
-        void OpretServer(string serverName, int serverPort, int bufferSize);
-        
-        [OperationContract]
-        void DeleteServer(int serverId);
-        
-        [OperationContract]
-        void UpdateServer(int serverId, string serverName, int serverPort, int bufferSize);
-
-        /*
-        [OperationContract]
-        List<AServer> FindServers(string serverName);
-        
-        [OperationContract]
-        AServer FindSpecificAServer(int serverId);
-        
-        [OperationContract]
-        Client JoinServer(int port, Client client);
-        */
 
         #endregion
     }

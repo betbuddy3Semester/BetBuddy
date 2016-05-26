@@ -1,22 +1,25 @@
 ﻿using System.Collections.Generic;
+using System.ServiceModel;
 using CtrLayer;
 using ModelLibrary.Bruger;
 using ModelLibrary.Kupon;
 
 namespace WCFBetBuddy {
+    [ServiceBehavior(IncludeExceptionDetailInFaults = true)]
     public class Services : IServices {
         private DelKamp tempDelKamp = new DelKamp();
         private Kupon tempKupon = new Kupon();
 
         #region Season
-        private readonly SæsonController SæsonCtr = new SæsonController();
 
-        public void AfslutSæson()
+        private readonly SæsonController sæsonController = new SæsonController();
 
-        {
-            SæsonCtr.SæsonAfslutning();
+        public void AfslutSæson() {
+            sæsonController.SæsonAfslutning();
         }
+
         #endregion
+
         #region BrugerService
 
         private readonly BrugerController brugerCtrl = new BrugerController();
@@ -60,7 +63,7 @@ namespace WCFBetBuddy {
         }
 
         public IEnumerable<Bruger> getHighscores() {
-             return brugerCtrl.getHighscores();
+            return brugerCtrl.getHighscores();
         }
 
         #endregion
@@ -119,95 +122,23 @@ namespace WCFBetBuddy {
         }
 
         //Kalder metoden i controller laget og returnerer intet.
-        public void GetKampFromApi()
-        {
+        public void GetKampFromApi() {
             NyKuponController.ApiGetKampe();
         }
 
         //Kalder metoden i controller laget og returnerer en liste af kampe der ikke er spillet endnu.
-        public IEnumerable<Kamp> getIkkeSpilletKampe()
-        {
+        public IEnumerable<Kamp> getIkkeSpilletKampe() {
             return NyKuponController.getIkkeSpilletKampe();
         }
 
         #endregion
 
-        #region ChatService
-
-        //Detaljeret forklaring i control laget og model laget
-
-        // Todo - Få forklaring af hvorfor dette skal være en datamember
-        private readonly ChatHub _chatHub = new ChatHub();
-
-        /// <summary>
-        ///     Denne metode opretter en server
-        /// </summary>
-        /// <param name="serverName">Serverens navn</param>
-        /// <param name="serverPort">Serverens port</param>
-        /// <param name="bufferSize">Bufferens størrelse</param>
-        public void OpretServer(string serverName, int serverPort, int bufferSize) {
-            _chatHub.OpretServer(serverName, serverPort, bufferSize);
-        }
-        
-        /// <summary>
-        ///     Denne metode sletter en server
-        /// </summary>
-        /// <param name="serverId">Serverens id</param>
-        public void DeleteServer(int serverId) {
-            _chatHub.DeleteServer(serverId);
-        }
-        
-        /// <summary>
-        ///     Denne metode opdaterer en servers information
-        /// </summary>
-        /// <param name="serverId">Serverens id, bruges i dette tilfælde til at finde serveren</param>
-        /// <param name="serverName">Serverens navn</param>
-        /// <param name="serverPort">Serverens port</param>
-        /// <param name="bufferSize">Serverens buffer størrelse</param>
-        public void UpdateServer(int serverId, string serverName, int serverPort, int bufferSize) {
-            _chatHub.UpdateServer(serverId, serverName, serverPort, bufferSize);
-        }
-
-        /*
-        /// <summary>
-        /// Denne metode returnerer en liste af servere
-        /// </summary>
-        /// <param name="serverName">Serverens navn</param>
-        /// <returns></returns>
-        public List<AServer> FindServers(string serverName)
-        {
-            return _chatHub.FindServers(serverName);
-        }
-        
-        /// <summary>
-        /// Denne metode returnerer en specifik server
-        /// </summary>
-        /// <param name="serverId">Serverens id</param>
-        /// <returns></returns>
-        public AServer FindSpecificAServer(int serverId)
-        {
-            return _chatHub.FindSpecificAServer(serverId);
-        }
-        
-        /// <summary>
-        /// Denne metode joiner en server på en specifik port
-        /// </summary>
-        /// <param name="port">Porten som client socketen skal tilslutte</param>
-        /// <returns></returns>
-        public Client JoinServer(int port, Client client)
-        {
-            return _chatHub.JoinServer(port, client);
-        }
-        */
-
-        #endregion
 
         #region ReservedNamesService
 
         private readonly ReservedNamesController ctr = new ReservedNamesController();
 
-        public IEnumerable<string> FeedBackReservedNames(string text, int id)
-        {
+        public IEnumerable<string> FeedBackReservedNames(string text, int id) {
             return ctr.FeedBackReservedNames(text, id);
         }
 
