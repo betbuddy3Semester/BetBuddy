@@ -14,9 +14,7 @@ namespace CtrLayer {
         // instance variable af kupon 
         public Kupon NyKupon;
 
-        // Konstruktør for KuponController
-
-
+       
         // Metode til at oprette kuponen og returnere en ny kupon til KuponControlleren 
 
         public Kupon OpretKupon() {
@@ -79,8 +77,10 @@ namespace CtrLayer {
         public bool BekræftKupon(Kupon kupon) {
             kupon.CreateDateTime = DateTime.Now;
             if (kupon.delKampe.Count > 0) {
-                using (BetBudContext db = new BetBudContext()) {
-                    foreach (DelKamp kamp in kupon.delKampe) {
+                using (BetBudContext db = new BetBudContext())
+                {
+                    foreach (DelKamp kamp in kupon.delKampe)
+                    {
                         db.Entry(kamp.Kampe).State = EntityState.Unchanged;
                     }
                     db.Entry(kupon.Bruger).State = EntityState.Modified;

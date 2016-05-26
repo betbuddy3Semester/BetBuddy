@@ -20,5 +20,6 @@ namespace DALBetBud.Context
         public DbSet<ReservedNames> ReservedNames { get; set; }
         public DbSet<SæsonBruger> SæsonBrugere { get; set; }
         public DbSet<Sæson> Sæsoner { get; set; }
+        public DbSet<SæsonBeskrivelse> AktuelSæsonInfo { get; set; }
     }
 }

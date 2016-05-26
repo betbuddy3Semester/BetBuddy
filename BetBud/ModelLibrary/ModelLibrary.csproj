@@ -65,6 +65,8 @@
     <Compile Include="Kupon\Setting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeasonInterface\ISæson.cs" />
+    <Compile Include="SeasonInterface\ISæsonBeskrivelse.cs" />
+    <Compile Include="SeasonInterface\SæsonBeskrivelse.cs" />
     <Compile Include="SeasonInterface\Sæson.cs" />
     <Compile Include="SeasonInterface\SæsonBruger.cs" />
     <Compile Include="SeasonInterface\ISæsonBruger.cs" />
