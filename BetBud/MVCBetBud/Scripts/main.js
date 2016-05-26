@@ -46,3 +46,16 @@ var kupon = function() {
         this.kamp.push(kamp);
     };
 };
+$("#ajaxUsername").keyup(function() {
+    var text = $(this).val();
+    $.getJSON("http://localhost:50617/bruger/GetApi", { text: text }, function(json) {
+        $("#AjaxReturnValue").text(json.text);
+        if (json.status == "1") {
+            $("#ajaxUsername").attr("style", "border:1px solid red");
+        } else if(json.stuts == "2") {
+            $("#ajaxUsername").attr("style", "border:1px solid yellow");
+        } else {
+            $("#ajaxUsername").attr("style", "border:1px solid green");
+        }
+    });
+});

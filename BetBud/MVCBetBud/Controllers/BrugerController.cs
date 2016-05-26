@@ -23,14 +23,17 @@ namespace MVCBetBud.Controllers {
             int reservId = 0;
             if (Session["ReservationId"] != null)
             {
-                reservId = (int)Session["ReservationId"];
+                reservId = int.Parse((string) Session["ReservationId"]);
             }
             var reservedName = SR.FeedBackReservedNames(text, reservId);
 
             Session["ReservationId"] = reservedName[0];
-            return Json(reservedName[1]);
+            return Json(new {text = reservedName[1], status = reservedName[2] }, JsonRequestBehavior.AllowGet);
         }
-
+        public ActionResult GetClearSession() {
+            Session["ReservationId"] = null;
+            return Json(null, JsonRequestBehavior.AllowGet);
+        }
         // GET: login side
         public ActionResult Login() {
             if (Session["brugerSession"] != null) {

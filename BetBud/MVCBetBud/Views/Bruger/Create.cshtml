@@ -45,8 +45,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.BrugerNavn, new {@class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.EditorFor(model => model.BrugerNavn, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.EditorFor(model => model.BrugerNavn, new {htmlAttributes = new {@class = "form-control", id = "ajaxUsername"}})
                 @Html.ValidationMessageFor(model => model.BrugerNavn, "", new {@class = "text-danger"})
+                <span id="AjaxReturnValue"></span>
             </div>
         </div>
 

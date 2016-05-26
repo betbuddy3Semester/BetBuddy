@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
 namespace ModelLibrary.SeasonInterface
@@ -7,7 +8,7 @@ namespace ModelLibrary.SeasonInterface
     [DataContract]
     public class SæsonBruger : ISæsonBruger
     {
-        [DataMember]
+        [DataMember, Key]
         public int SæsonBrugerId { get; set; }
         [DataMember]
         public Bruger.Bruger Bruger { get; set; }

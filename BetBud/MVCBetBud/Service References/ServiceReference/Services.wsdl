@@ -135,24 +135,6 @@
   <wsdl:message name="IServices_FeedBackReservedNames_OutputMessage">
     <wsdl:part name="parameters" element="tns:FeedBackReservedNamesResponse" />
   </wsdl:message>
-  <wsdl:message name="IServices_OpretServer_InputMessage">
-    <wsdl:part name="parameters" element="tns:OpretServer" />
-  </wsdl:message>
-  <wsdl:message name="IServices_OpretServer_OutputMessage">
-    <wsdl:part name="parameters" element="tns:OpretServerResponse" />
-  </wsdl:message>
-  <wsdl:message name="IServices_DeleteServer_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteServer" />
-  </wsdl:message>
-  <wsdl:message name="IServices_DeleteServer_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteServerResponse" />
-  </wsdl:message>
-  <wsdl:message name="IServices_UpdateServer_InputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateServer" />
-  </wsdl:message>
-  <wsdl:message name="IServices_UpdateServer_OutputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateServerResponse" />
-  </wsdl:message>
   <wsdl:portType name="IServices">
     <wsdl:operation name="AfslutSæson">
       <wsdl:input wsaw:Action="http://tempuri.org/IServices/AfslutSæson" message="tns:IServices_AfslutSæson_InputMessage" />
@@ -237,18 +219,6 @@
     <wsdl:operation name="FeedBackReservedNames">
       <wsdl:input wsaw:Action="http://tempuri.org/IServices/FeedBackReservedNames" message="tns:IServices_FeedBackReservedNames_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServices/FeedBackReservedNamesResponse" message="tns:IServices_FeedBackReservedNames_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="OpretServer">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServices/OpretServer" message="tns:IServices_OpretServer_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServices/OpretServerResponse" message="tns:IServices_OpretServer_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="DeleteServer">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServices/DeleteServer" message="tns:IServices_DeleteServer_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServices/DeleteServerResponse" message="tns:IServices_DeleteServer_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="UpdateServer">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServices/UpdateServer" message="tns:IServices_UpdateServer_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServices/UpdateServerResponse" message="tns:IServices_UpdateServer_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServices" type="tns:IServices">
@@ -435,33 +405,6 @@
     </wsdl:operation>
     <wsdl:operation name="FeedBackReservedNames">
       <soap:operation soapAction="http://tempuri.org/IServices/FeedBackReservedNames" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="OpretServer">
-      <soap:operation soapAction="http://tempuri.org/IServices/OpretServer" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DeleteServer">
-      <soap:operation soapAction="http://tempuri.org/IServices/DeleteServer" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UpdateServer">
-      <soap:operation soapAction="http://tempuri.org/IServices/UpdateServer" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -198,10 +198,19 @@ namespace CtrLayer {
             kupon.Kontrolleret = true;
 
             using (BetBudContext db = new BetBudContext()) {
-                Debug.WriteLine("gem");
-                db.Entry(kupon).State = EntityState.Modified;
-                db.Entry(kupon.Bruger).State = EntityState.Modified;
-                db.SaveChanges();
+                using (DbContextTransaction transaction = db.Database.BeginTransaction()) {
+                    try {
+                        Debug.WriteLine("gem");
+                        db.Entry(kupon).State = EntityState.Modified;
+                        db.Entry(kupon.Bruger).State = EntityState.Modified;
+                        db.SaveChanges();
+                        transaction.Commit();
+                    }
+                    catch (Exception e) {
+                        Debug.WriteLine(e.Message);
+                        transaction.Rollback();
+                    }
+                }
             }
         }
 
