@@ -132,14 +132,14 @@
         }
 
     </table>
-    @using (Html.BeginForm("OpretKupon", "Kupon", FormMethod.Post, new {onsubmit = "return confirm('Do you really want to submit the form?');"})) {
+    @using (Html.BeginForm("OpretKupon", "Kupon", FormMethod.Post, new {onsubmit = "return confirm('Bekræft dit køb?');"})) {
         <div class = "form-group">
             <table class = "table">
                 <tr>
                     <th colspan = "2">Vælg indsats</th>
                 </tr>
                 <tr>
-                    <td>til Rådighed</td>
+                    <td>Point til Rådighed</td>
                     <td id = "dinePoing">@Model.kupon.Bruger.Point</td>
                 </tr>
                 <tr>
@@ -153,7 +153,7 @@
                 </tr>
                 <tr>
                     <td>Mulig gevinst</td>
-                    <td id = "gevinst"><span class="OddsBoxStart">0</span> point</td>
+                    <td id = "gevinst"><span class="OddsBoxStart">0</span> </td>
                 </tr>
             </table>
             <div class = "col-md-6">
@@ -166,7 +166,7 @@
                 <input class = "btn btn-info form-control"
                        name = "Bekraeft"
                        type = "submit"
-                       value = "Bekræft"/>
+                       value = "Bekræft kupon"/>
             </div>
         </div>
     }
