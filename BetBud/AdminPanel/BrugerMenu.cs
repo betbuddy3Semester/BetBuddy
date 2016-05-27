@@ -7,25 +7,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ModelLibrary.Bruger;
+using WCFBetBuddy;
+using AdminPanel.ServiceReference1;
 
 namespace AdminPanel
 {
-    public partial class AdminMenu : Form
+    public partial class BrugerMenu : Form
     {
-        public AdminMenu()
+        ser
+        public BrugerMenu()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void txtSoeg_TextChanged(object sender, EventArgs e)
         {
 
-            var form = new SæsonMenu {Visible = true};
         }
 
-        private void Bruger_Click(object sender, EventArgs e)
+        private void btnSoeg_Click(object sender, EventArgs e)
         {
-            var form = new BrugerMenu { Visible = true };
+            
         }
     }
 }

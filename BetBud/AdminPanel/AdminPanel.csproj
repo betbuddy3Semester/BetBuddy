@@ -52,6 +52,12 @@
     <Compile Include="AdminMenu.Designer.cs">
       <DependentUpon>AdminMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="BrugerMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BrugerMenu.Designer.cs">
+      <DependentUpon>BrugerMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="SæsonMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -62,6 +68,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AdminMenu.resx">
       <DependentUpon>AdminMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BrugerMenu.resx">
+      <DependentUpon>BrugerMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SæsonMenu.resx">
       <DependentUpon>SæsonMenu.cs</DependentUpon>
