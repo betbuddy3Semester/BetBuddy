@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace AdminPanel
 {
-    public partial class AdminMenu : Form
+    public partial class BrugerMenu : Form
     {
-        public AdminMenu()
+        public BrugerMenu()
         {
             InitializeComponent();
         }
@@ -21,11 +21,6 @@ namespace AdminPanel
         {
 
             var form = new SæsonMenu {Visible = true};
-        }
-
-        private void Bruger_Click(object sender, EventArgs e)
-        {
-            var form = new BrugerMenu { Visible = true };
         }
     }
 }

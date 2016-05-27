@@ -1,6 +1,6 @@
 ﻿namespace AdminPanel
 {
-    partial class AdminMenu
+    partial class BrugerMenu
     {
         /// <summary>
         /// Required designer variable.
@@ -35,10 +35,9 @@
             // 
             // Sæson
             // 
-            this.Sæson.Location = new System.Drawing.Point(157, 80);
-            this.Sæson.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Sæson.Location = new System.Drawing.Point(209, 98);
             this.Sæson.Name = "Sæson";
-            this.Sæson.Size = new System.Drawing.Size(174, 33);
+            this.Sæson.Size = new System.Drawing.Size(232, 41);
             this.Sæson.TabIndex = 0;
             this.Sæson.Text = "Sæson";
             this.Sæson.UseVisualStyleBackColor = true;
@@ -46,34 +45,30 @@
             // 
             // Bruger
             // 
-            this.Bruger.Location = new System.Drawing.Point(368, 80);
-            this.Bruger.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Bruger.Location = new System.Drawing.Point(490, 99);
             this.Bruger.Name = "Bruger";
-            this.Bruger.Size = new System.Drawing.Size(169, 32);
+            this.Bruger.Size = new System.Drawing.Size(225, 40);
             this.Bruger.TabIndex = 1;
             this.Bruger.Text = "Bruger";
             this.Bruger.UseVisualStyleBackColor = true;
-            this.Bruger.Click += new System.EventHandler(this.Bruger_Click);
             // 
             // KampeMenu
             // 
-            this.KampeMenu.Location = new System.Drawing.Point(573, 81);
-            this.KampeMenu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.KampeMenu.Location = new System.Drawing.Point(764, 100);
             this.KampeMenu.Name = "KampeMenu";
-            this.KampeMenu.Size = new System.Drawing.Size(169, 31);
+            this.KampeMenu.Size = new System.Drawing.Size(225, 38);
             this.KampeMenu.TabIndex = 2;
             this.KampeMenu.Text = "Kampe";
             this.KampeMenu.UseVisualStyleBackColor = true;
             // 
             // BrugerMenu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(887, 431);
+            this.ClientSize = new System.Drawing.Size(1183, 530);
             this.Controls.Add(this.KampeMenu);
             this.Controls.Add(this.Bruger);
             this.Controls.Add(this.Sæson);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "BrugerMenu";
             this.Text = "Admin Panel";
             this.ResumeLayout(false);
