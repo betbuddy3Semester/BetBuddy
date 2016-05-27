@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8733/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Bruger" />
+  <xs:complexType name="Kupon">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ModelLibrary.Bruger" minOccurs="0" name="Bruger" nillable="true" type="q1:Bruger" />
+      <xs:element minOccurs="0" name="BrugerId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreateDateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Kontrolleret" type="xs:boolean" />
+      <xs:element minOccurs="0" name="KuponId" type="xs:int" />
+      <xs:element minOccurs="0" name="Point" type="xs:double" />
+      <xs:element minOccurs="0" name="SæsonId" type="xs:int" />
+      <xs:element minOccurs="0" name="delKampe" nillable="true" type="tns:ArrayOfDelKamp" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Kupon" nillable="true" type="tns:Kupon" />
+  <xs:complexType name="ArrayOfDelKamp">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DelKamp" nillable="true" type="tns:DelKamp" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDelKamp" nillable="true" type="tns:ArrayOfDelKamp" />
+  <xs:complexType name="DelKamp">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DelKampId" type="xs:int" />
+      <xs:element minOccurs="0" name="KampId" type="xs:int" />
+      <xs:element minOccurs="0" name="Kampe" nillable="true" type="tns:Kamp" />
+      <xs:element minOccurs="0" name="Valgt1" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Valgt2" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ValgtX" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DelKamp" nillable="true" type="tns:DelKamp" />
+  <xs:complexType name="Kamp">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Aflyst" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HoldVsHold" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="KampId" type="xs:int" />
+      <xs:element minOccurs="0" name="KampStart" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Odds1" type="xs:double" />
+      <xs:element minOccurs="0" name="Odds2" type="xs:double" />
+      <xs:element minOccurs="0" name="OddsX" type="xs:double" />
+      <xs:element minOccurs="0" name="Vundet1" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Vundet2" type="xs:boolean" />
+      <xs:element minOccurs="0" name="VundetX" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Kamp" nillable="true" type="tns:Kamp" />
+  <xs:complexType name="ArrayOfKamp">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Kamp" nillable="true" type="tns:Kamp" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKamp" nillable="true" type="tns:ArrayOfKamp" />
+  <xs:complexType name="ArrayOfKupon">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Kupon" nillable="true" type="tns:Kupon" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKupon" nillable="true" type="tns:ArrayOfKupon" />
+</xs:schema>
