@@ -7,77 +7,71 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm())
-{
+@using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
+    <div class = "form-horizontal">
         <h4>Bruger</h4>
-        @if (Session["BrugerErrorEmail"] != null)
-        {
+        @if (Session["BrugerErrorEmail"] != null) {
             <p>Fejlmeddelelse: @Session["BrugerErrorEmail"];</p>
         }
-        @if (Session["BrugerErrorNavn"] != null)
-        {
+        @if (Session["BrugerErrorNavn"] != null) {
             <p>Fejlmeddelelse: @Session["BrugerErrorNavn"];</p>
         }
-        @if (Session["BrugerErrorBrugernavn"] != null)
-
-        {
+        @if (Session["BrugerErrorBrugernavn"] != null) {
             <p>Fejlmeddelelse: @Session["BrugerErrorBrugernavn"];</p>
         }
-        @if (Session["BrugerErrorBruger"] != null)
-        {
+        @if (Session["BrugerErrorBruger"] != null) {
             <p>Fejlmeddelelse: @Session["BrugerErrorBruger"];</p>
         }
 
         <hr/>
         @Html.ValidationSummary(true, "", new {@class = "text-danger"})
-        <div class="form-group">
+        <div class = "form-group">
             @Html.LabelFor(model => model.Navn, new {@class = "control-label col-md-2"})
-            <div class="col-md-10">
+            <div class = "col-md-10">
                 @Html.EditorFor(model => model.Navn, new {htmlAttributes = new {@class = "form-control"}})
                 @Html.ValidationMessageFor(model => model.Navn, "", new {@class = "text-danger"})
             </div>
         </div>
 
-
-        <div class="form-group">
+        <div class = "form-group">
             @Html.LabelFor(model => model.BrugerNavn, new {@class = "control-label col-md-2"})
-            <div class="col-md-10">
+            <div class = "col-md-10">
                 @Html.EditorFor(model => model.BrugerNavn, new {htmlAttributes = new {@class = "form-control", id = "ajaxUsername"}})
                 @Html.ValidationMessageFor(model => model.BrugerNavn, "", new {@class = "text-danger"})
                 <span id="AjaxReturnValue"></span>
             </div>
         </div>
 
-        <div class="form-group">
+        <div class = "form-group">
             @Html.LabelFor(model => model.Email, new {@class = "control-label col-md-2"})
-            <div class="col-md-10">
+            <div class = "col-md-10">
                 @Html.EditorFor(model => model.Email, new {htmlAttributes = new {@class = "form-control"}})
                 @Html.ValidationMessageFor(model => model.Email, "", new {@class = "text-danger"})
             </div>
         </div>
 
-
-        <div class="form-group">
+        <div class = "form-group">
             @Html.LabelFor(model => model.Password, new {@class = "control-label col-md-2"})
-            <div class="col-md-10">
+            <div class = "col-md-10">
                 @Html.EditorFor(model => model.Password, new {htmlAttributes = new {@class = "form-control"}})
                 @Html.ValidationMessageFor(model => model.Password, "", new {@class = "text-danger"})
             </div>
         </div>
-        <div class="form-group">
+        <div class = "form-group">
             @Html.LabelFor(model => model.Alias, new {@class = "control-label col-md-2"})
-            <div class="col-md-10">
+            <div class = "col-md-10">
                 @Html.EditorFor(model => model.Alias, new {htmlAttributes = new {@class = "form-control"}})
                 @Html.ValidationMessageFor(model => model.Alias, "", new {@class = "text-danger"})
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default"/>
+        <div class = "form-group">
+            <div class = "col-md-10 col-md-offset-2">
+                <input class = "btn btn-default"
+                       type = "submit"
+                       value = "Create"/>
             </div>
         </div>
     </div>

@@ -1,12 +1,9 @@
 ﻿using System;
-using ModelLibrary.Kupon;
+using ModelLibrary.Models.Kupon;
 
-namespace BetBudTest.TestKupon
-{
-    public class KampTest
-    {
-        public Kamp kamp1 = new Kamp
-        {
+namespace BetBudTest.TestKupon {
+    public class KampTest {
+        public Kamp kamp1 = new Kamp {
             HoldVsHold = "Liverpool - Man UTD",
             Odds1 = 1.33,
             OddsX = 3.2,
@@ -18,8 +15,7 @@ namespace BetBudTest.TestKupon
             Aflyst = false
         };
 
-        public Kamp kamp2 = new Kamp
-        {
+        public Kamp kamp2 = new Kamp {
             HoldVsHold = "Chelsea - Norwich",
             Odds1 = 1.8,
             OddsX = 2.8,
@@ -31,8 +27,7 @@ namespace BetBudTest.TestKupon
             Aflyst = false
         };
 
-        public KampTest()
-        {
+        public KampTest() {
             kamp2.KampStart = kamp2.KampStart.AddDays(2);
         }
     }

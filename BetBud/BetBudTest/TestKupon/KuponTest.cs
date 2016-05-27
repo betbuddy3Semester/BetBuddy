@@ -1,17 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using ModelLibrary.Kupon;
+using ModelLibrary.Models.Kupon;
 using NUnit.Framework;
 
-namespace BetBudTest.TestKupon
-{
+namespace BetBudTest.TestKupon {
     [TestFixture]
-    public class KuponTest
-    {
+    public class KuponTest {
         private readonly List<Kamp> kampe = new List<Kamp>();
 
-        public KuponTest()
-        {
+        public KuponTest() {
             KampTest testObject = new KampTest();
             kampe.Add(testObject.kamp1);
             kampe.Add(testObject.kamp2);
@@ -19,8 +16,7 @@ namespace BetBudTest.TestKupon
 
         // AFVENT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         [Test]
-        public void BekræftKupon()
-        {
+        public void BekræftKupon() {
             //Arrange
             Kupon kupon = new Kupon();
 
@@ -34,8 +30,7 @@ namespace BetBudTest.TestKupon
         }
 
         [Test]
-        public void FjernKamp()
-        {
+        public void FjernKamp() {
             //Arrange
             Kupon kupon = new Kupon();
 
@@ -48,24 +43,21 @@ namespace BetBudTest.TestKupon
         }
 
         [Test]
-        public void KontrolAfKupon()
-        {
+        public void KontrolAfKupon() {
             //Arrange
             //Act
             //Assert
         }
 
         [Test]
-        public void Kontrolleret()
-        {
+        public void Kontrolleret() {
             //Arrange
             //Act
             //Assert
         }
 
         [Test]
-        public void MuligGevist()
-        {
+        public void MuligGevist() {
             //Arrange
             Kupon kupon = new Kupon();
 
@@ -79,8 +71,7 @@ namespace BetBudTest.TestKupon
         }
 
         [Test]
-        public void OddsUdregning()
-        {
+        public void OddsUdregning() {
             //Arrange
             Kupon kupon = new Kupon();
 
@@ -93,8 +84,7 @@ namespace BetBudTest.TestKupon
         }
 
         [Test]
-        public void TilføjKampTest()
-        {
+        public void TilføjKampTest() {
             //Arrange
             Kupon kupon = new Kupon();
 

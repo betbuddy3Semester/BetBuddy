@@ -47,29 +47,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bruger\Bruger.cs" />
-    <Compile Include="Bruger\IReservedNames.cs" />
-    <Compile Include="Bruger\ReservedNames.cs" />
-    <Compile Include="Chat\Client.cs" />
-    <Compile Include="Chat\AServer.cs" />
-    <Compile Include="Chat\Interface Chat\IAServer.cs" />
-    <Compile Include="Chat\Interface Chat\IClient.cs" />
-    <Compile Include="Interface Bruger\IBruger.cs" />
-    <Compile Include="Interface Bruger\IReservedNames.cs" />
-    <Compile Include="Interface Kupon\IDelKamp.cs" />
-    <Compile Include="Interface Kupon\IKamp.cs" />
-    <Compile Include="Interface Kupon\IKupon.cs" />
-    <Compile Include="Kupon\DelKamp.cs" />
-    <Compile Include="Kupon\Kamp.cs" />
-    <Compile Include="Kupon\Kupon.cs" />
-    <Compile Include="Kupon\Setting.cs" />
+    <Compile Include="Interfaces\Interface Bruger\IBruger.cs" />
+    <Compile Include="Interfaces\Interface Chat\IAServer.cs" />
+    <Compile Include="Interfaces\Interface Chat\IClient.cs" />
+    <Compile Include="Interfaces\Interface Kupon\IDelKamp.cs" />
+    <Compile Include="Interfaces\Interface Kupon\IKamp.cs" />
+    <Compile Include="Interfaces\Interface Kupon\IKupon.cs" />
+    <Compile Include="Interfaces\Interface ReservedNames\IReservedNames.cs" />
+    <Compile Include="Interfaces\SeasonInterface\ISæson.cs" />
+    <Compile Include="Interfaces\SeasonInterface\ISæsonBeskrivelse.cs" />
+    <Compile Include="Interfaces\SeasonInterface\ISæsonBruger.cs" />
+    <Compile Include="Models\Bruger\Bruger.cs" />
+    <Compile Include="Models\Chat\AServer.cs" />
+    <Compile Include="Models\Chat\Client.cs" />
+    <Compile Include="Models\Kupon\DelKamp.cs" />
+    <Compile Include="Models\Kupon\Kamp.cs" />
+    <Compile Include="Models\Kupon\Kupon.cs" />
+    <Compile Include="Models\Kupon\Setting.cs" />
+    <Compile Include="Models\ReservedNames\ReservedNames.cs" />
+    <Compile Include="Models\Sæson\Sæson.cs" />
+    <Compile Include="Models\Sæson\SæsonBeskrivelse.cs" />
+    <Compile Include="Models\Sæson\SæsonBruger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SeasonInterface\ISæson.cs" />
-    <Compile Include="SeasonInterface\ISæsonBeskrivelse.cs" />
-    <Compile Include="SeasonInterface\SæsonBeskrivelse.cs" />
-    <Compile Include="SeasonInterface\Sæson.cs" />
-    <Compile Include="SeasonInterface\SæsonBruger.cs" />
-    <Compile Include="SeasonInterface\ISæsonBruger.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

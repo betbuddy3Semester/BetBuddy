@@ -8,8 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WCFBetBuddy;
-using ModelLibrary.Bruger;
 using WindowsFormsApplication1.ServiceReference1;
+using ModelLibrary.Models.Bruger;
 
 namespace WindowsFormsApplication1
 {

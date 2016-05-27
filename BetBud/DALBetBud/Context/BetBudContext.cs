@@ -1,7 +1,11 @@
 using System.Data.Entity;
-using ModelLibrary.Bruger;
-using ModelLibrary.Kupon;
-using ModelLibrary.SeasonInterface;
+using ModelLibrary.Interfaces;
+using ModelLibrary.Interfaces.SeasonInterface;
+using ModelLibrary.Models;
+using ModelLibrary.Models.Bruger;
+using ModelLibrary.Models.Kupon;
+using ModelLibrary.Models.ReservedNames;
+using ModelLibrary.Models.Sæson;
 
 namespace DALBetBud.Context
 {

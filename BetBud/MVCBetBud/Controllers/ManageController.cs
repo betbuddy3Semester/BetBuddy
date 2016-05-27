@@ -8,58 +8,47 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using MVCBetBud.Models;
 
-namespace MVCBetBud.Controllers
-{
+namespace MVCBetBud.Controllers {
     [Authorize]
-    public class ManageController : Controller
-    {
+    public class ManageController : Controller {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public ManageController()
-        {
+        public ManageController() {
         }
 
-        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
-        {
+        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager) {
             UserManager = userManager;
             SignInManager = signInManager;
         }
 
-        public ApplicationSignInManager SignInManager
-        {
+        public ApplicationSignInManager SignInManager {
             get { return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>(); }
             private set { _signInManager = value; }
         }
 
-        public ApplicationUserManager UserManager
-        {
+        public ApplicationUserManager UserManager {
             get { return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
             private set { _userManager = value; }
         }
 
         //
         // GET: /Manage/Index
-        public async Task<ActionResult> Index(ManageMessageId? message)
-        {
-            ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess
-                    ? "Your password has been changed."
-                    : message == ManageMessageId.SetPasswordSuccess
-                        ? "Your password has been set."
-                        : message == ManageMessageId.SetTwoFactorSuccess
-                            ? "Your two-factor authentication provider has been set."
-                            : message == ManageMessageId.Error
-                                ? "An error has occurred."
-                                : message == ManageMessageId.AddPhoneSuccess
-                                    ? "Your phone number was added."
-                                    : message == ManageMessageId.RemovePhoneSuccess
-                                        ? "Your phone number was removed."
-                                        : "";
+        public async Task<ActionResult> Index(ManageMessageId? message) {
+            ViewBag.StatusMessage = message == ManageMessageId.ChangePasswordSuccess
+                ? "Your password has been changed."
+                : message == ManageMessageId.SetPasswordSuccess
+                    ? "Your password has been set."
+                    : message == ManageMessageId.SetTwoFactorSuccess
+                        ? "Your two-factor authentication provider has been set."
+                        : message == ManageMessageId.Error
+                            ? "An error has occurred."
+                            : message == ManageMessageId.AddPhoneSuccess
+                                ? "Your phone number was added."
+                                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed." : "";
 
             string userId = User.Identity.GetUserId();
-            IndexViewModel model = new IndexViewModel
-            {
+            IndexViewModel model = new IndexViewModel {
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
@@ -73,24 +62,20 @@ namespace MVCBetBud.Controllers
         // POST: /Manage/RemoveLogin
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> RemoveLogin(string loginProvider, string providerKey)
-        {
+        public async Task<ActionResult> RemoveLogin(string loginProvider, string providerKey) {
             ManageMessageId? message;
             IdentityResult result =
                 await
                     UserManager.RemoveLoginAsync(User.Identity.GetUserId(),
                         new UserLoginInfo(loginProvider, providerKey));
-            if (result.Succeeded)
-            {
+            if (result.Succeeded) {
                 ApplicationUser user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                if (user != null)
-                {
+                if (user != null) {
                     await SignInManager.SignInAsync(user, false, false);
                 }
                 message = ManageMessageId.RemoveLoginSuccess;
             }
-            else
-            {
+            else {
                 message = ManageMessageId.Error;
             }
             return RedirectToAction("ManageLogins", new {Message = message});
@@ -98,8 +83,7 @@ namespace MVCBetBud.Controllers
 
         //
         // GET: /Manage/AddPhoneNumber
-        public ActionResult AddPhoneNumber()
-        {
+        public ActionResult AddPhoneNumber() {
             return View();
         }
 
@@ -107,18 +91,14 @@ namespace MVCBetBud.Controllers
         // POST: /Manage/AddPhoneNumber
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
+        public async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model) {
+            if (!ModelState.IsValid) {
                 return View(model);
             }
             // Generate the token and send it
             string code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), model.Number);
-            if (UserManager.SmsService != null)
-            {
-                IdentityMessage message = new IdentityMessage
-                {
+            if (UserManager.SmsService != null) {
+                IdentityMessage message = new IdentityMessage {
                     Destination = model.Number,
                     Body = "Your security code is: " + code
                 };
@@ -131,12 +111,10 @@ namespace MVCBetBud.Controllers
         // POST: /Manage/EnableTwoFactorAuthentication
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EnableTwoFactorAuthentication()
-        {
+        public async Task<ActionResult> EnableTwoFactorAuthentication() {
             await UserManager.SetTwoFactorEnabledAsync(User.Identity.GetUserId(), true);
             ApplicationUser user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-            if (user != null)
-            {
+            if (user != null) {
                 await SignInManager.SignInAsync(user, false, false);
             }
             return RedirectToAction("Index", "Manage");
@@ -146,12 +124,10 @@ namespace MVCBetBud.Controllers
         // POST: /Manage/DisableTwoFactorAuthentication
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DisableTwoFactorAuthentication()
-        {
+        public async Task<ActionResult> DisableTwoFactorAuthentication() {
             await UserManager.SetTwoFactorEnabledAsync(User.Identity.GetUserId(), false);
             ApplicationUser user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-            if (user != null)
-            {
+            if (user != null) {
                 await SignInManager.SignInAsync(user, false, false);
             }
             return RedirectToAction("Index", "Manage");
@@ -159,8 +135,7 @@ namespace MVCBetBud.Controllers
 
         //
         // GET: /Manage/VerifyPhoneNumber
-        public async Task<ActionResult> VerifyPhoneNumber(string phoneNumber)
-        {
+        public async Task<ActionResult> VerifyPhoneNumber(string phoneNumber) {
             string code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), phoneNumber);
             // Send an SMS through the SMS provider to verify the phone number
             return phoneNumber == null
@@ -172,19 +147,15 @@ namespace MVCBetBud.Controllers
         // POST: /Manage/VerifyPhoneNumber
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> VerifyPhoneNumber(VerifyPhoneNumberViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
+        public async Task<ActionResult> VerifyPhoneNumber(VerifyPhoneNumberViewModel model) {
+            if (!ModelState.IsValid) {
                 return View(model);
             }
             IdentityResult result =
                 await UserManager.ChangePhoneNumberAsync(User.Identity.GetUserId(), model.PhoneNumber, model.Code);
-            if (result.Succeeded)
-            {
+            if (result.Succeeded) {
                 ApplicationUser user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                if (user != null)
-                {
+                if (user != null) {
                     await SignInManager.SignInAsync(user, false, false);
                 }
                 return RedirectToAction("Index", new {Message = ManageMessageId.AddPhoneSuccess});
@@ -196,16 +167,13 @@ namespace MVCBetBud.Controllers
 
         //
         // GET: /Manage/RemovePhoneNumber
-        public async Task<ActionResult> RemovePhoneNumber()
-        {
+        public async Task<ActionResult> RemovePhoneNumber() {
             IdentityResult result = await UserManager.SetPhoneNumberAsync(User.Identity.GetUserId(), null);
-            if (!result.Succeeded)
-            {
+            if (!result.Succeeded) {
                 return RedirectToAction("Index", new {Message = ManageMessageId.Error});
             }
             ApplicationUser user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-            if (user != null)
-            {
+            if (user != null) {
                 await SignInManager.SignInAsync(user, false, false);
             }
             return RedirectToAction("Index", new {Message = ManageMessageId.RemovePhoneSuccess});
@@ -213,8 +181,7 @@ namespace MVCBetBud.Controllers
 
         //
         // GET: /Manage/ChangePassword
-        public ActionResult ChangePassword()
-        {
+        public ActionResult ChangePassword() {
             return View();
         }
 
@@ -222,19 +189,15 @@ namespace MVCBetBud.Controllers
         // POST: /Manage/ChangePassword
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
+        public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model) {
+            if (!ModelState.IsValid) {
                 return View(model);
             }
             IdentityResult result =
                 await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
-            if (result.Succeeded)
-            {
+            if (result.Succeeded) {
                 ApplicationUser user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                if (user != null)
-                {
+                if (user != null) {
                     await SignInManager.SignInAsync(user, false, false);
                 }
                 return RedirectToAction("Index", new {Message = ManageMessageId.ChangePasswordSuccess});
@@ -245,8 +208,7 @@ namespace MVCBetBud.Controllers
 
         //
         // GET: /Manage/SetPassword
-        public ActionResult SetPassword()
-        {
+        public ActionResult SetPassword() {
             return View();
         }
 
@@ -254,16 +216,12 @@ namespace MVCBetBud.Controllers
         // POST: /Manage/SetPassword
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> SetPassword(SetPasswordViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
+        public async Task<ActionResult> SetPassword(SetPasswordViewModel model) {
+            if (ModelState.IsValid) {
                 IdentityResult result = await UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
-                if (result.Succeeded)
-                {
+                if (result.Succeeded) {
                     ApplicationUser user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                    if (user != null)
-                    {
+                    if (user != null) {
                         await SignInManager.SignInAsync(user, false, false);
                     }
                     return RedirectToAction("Index", new {Message = ManageMessageId.SetPasswordSuccess});
@@ -277,17 +235,12 @@ namespace MVCBetBud.Controllers
 
         //
         // GET: /Manage/ManageLogins
-        public async Task<ActionResult> ManageLogins(ManageMessageId? message)
-        {
-            ViewBag.StatusMessage =
-                message == ManageMessageId.RemoveLoginSuccess
-                    ? "The external login was removed."
-                    : message == ManageMessageId.Error
-                        ? "An error has occurred."
-                        : "";
+        public async Task<ActionResult> ManageLogins(ManageMessageId? message) {
+            ViewBag.StatusMessage = message == ManageMessageId.RemoveLoginSuccess
+                ? "The external login was removed."
+                : message == ManageMessageId.Error ? "An error has occurred." : "";
             ApplicationUser user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-            if (user == null)
-            {
+            if (user == null) {
                 return View("Error");
             }
             IList<UserLoginInfo> userLogins = await UserManager.GetLoginsAsync(User.Identity.GetUserId());
@@ -296,19 +249,14 @@ namespace MVCBetBud.Controllers
                     .Where(auth => userLogins.All(ul => auth.AuthenticationType != ul.LoginProvider))
                     .ToList();
             ViewBag.ShowRemoveButton = user.PasswordHash != null || userLogins.Count > 1;
-            return View(new ManageLoginsViewModel
-            {
-                CurrentLogins = userLogins,
-                OtherLogins = otherLogins
-            });
+            return View(new ManageLoginsViewModel {CurrentLogins = userLogins, OtherLogins = otherLogins});
         }
 
         //
         // POST: /Manage/LinkLogin
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult LinkLogin(string provider)
-        {
+        public ActionResult LinkLogin(string provider) {
             // Request a redirect to the external login provider to link a login for the current user
             return new AccountController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"),
                 User.Identity.GetUserId());
@@ -316,11 +264,10 @@ namespace MVCBetBud.Controllers
 
         //
         // GET: /Manage/LinkLoginCallback
-        public async Task<ActionResult> LinkLoginCallback()
-        {
-            ExternalLoginInfo loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
-            if (loginInfo == null)
-            {
+        public async Task<ActionResult> LinkLoginCallback() {
+            ExternalLoginInfo loginInfo =
+                await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
+            if (loginInfo == null) {
                 return RedirectToAction("ManageLogins", new {Message = ManageMessageId.Error});
             }
             IdentityResult result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
@@ -329,10 +276,8 @@ namespace MVCBetBud.Controllers
                 : RedirectToAction("ManageLogins", new {Message = ManageMessageId.Error});
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && _userManager != null)
-            {
+        protected override void Dispose(bool disposing) {
+            if (disposing && _userManager != null) {
                 _userManager.Dispose();
                 _userManager = null;
             }
@@ -345,41 +290,33 @@ namespace MVCBetBud.Controllers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
-        private IAuthenticationManager AuthenticationManager
-        {
+        private IAuthenticationManager AuthenticationManager {
             get { return HttpContext.GetOwinContext().Authentication; }
         }
 
-        private void AddErrors(IdentityResult result)
-        {
-            foreach (string error in result.Errors)
-            {
+        private void AddErrors(IdentityResult result) {
+            foreach (string error in result.Errors) {
                 ModelState.AddModelError("", error);
             }
         }
 
-        private bool HasPassword()
-        {
+        private bool HasPassword() {
             ApplicationUser user = UserManager.FindById(User.Identity.GetUserId());
-            if (user != null)
-            {
+            if (user != null) {
                 return user.PasswordHash != null;
             }
             return false;
         }
 
-        private bool HasPhoneNumber()
-        {
+        private bool HasPhoneNumber() {
             ApplicationUser user = UserManager.FindById(User.Identity.GetUserId());
-            if (user != null)
-            {
+            if (user != null) {
                 return user.PhoneNumber != null;
             }
             return false;
         }
 
-        public enum ManageMessageId
-        {
+        public enum ManageMessageId {
             AddPhoneSuccess,
             ChangePasswordSuccess,
             SetTwoFactorSuccess,

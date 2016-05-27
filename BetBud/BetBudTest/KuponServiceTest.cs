@@ -1,21 +1,18 @@
 ﻿using BetBudTest.ServiceReference1;
-using ModelLibrary.Kupon;
+using ModelLibrary.Models.Kupon;
 using NUnit.Core;
 using NUnit.Framework;
 
-namespace BetBudTest
-{
+namespace BetBudTest {
     /// <summary>
     ///     Summary description for UnitTest1
     /// </summary>
     [TestFixture]
-    public class KuponServiceTest
-    {
+    public class KuponServiceTest {
         private readonly ServicesClient BSR = new ServicesClient();
 
         [Test]
-        public void testFjernKamp()
-        {
+        public void testFjernKamp() {
             //Arrange
             double OddsAssertion = 1;
             int id = 1;
@@ -29,15 +26,12 @@ namespace BetBudTest
             kupon = BSR.TilføjKamp(kupon, testKamp, et, x, to);
             kupon.FjernKamp(testKamp);
 
-
             //Assert
             NUnitFramework.Assert.AreEqual(OddsAssertion, kupon.OddsUdregning());
         }
 
         [Test]
-        public void testOddsGevinst()
-
-        {
+        public void testOddsGevinst() {
             //Arrange
 
             double gevinst = 2700;
@@ -60,14 +54,12 @@ namespace BetBudTest
             kupon = BSR.TilføjKamp(kupon, testKamp1, et, x, to);
             kupon = BSR.TilføjKamp(kupon, testKamp2, eet, xx, too);
 
-
             //Assert
             NUnitFramework.Assert.AreEqual(gevinst, kupon.MuligGevist());
         }
 
         [Test]
-        public void testTilføjKamp()
-        {
+        public void testTilføjKamp() {
             //Arrange
             double OddsAssertion = 2;
             int id = 1;
@@ -81,7 +73,6 @@ namespace BetBudTest
             kupon = BSR.TilføjKamp(kupon, testKamp, et, x, to);
             // Sikrer imod duplicates.
             kupon = BSR.TilføjKamp(kupon, testKamp, et, x, to);
-
 
             //Assert
             NUnitFramework.Assert.AreEqual(OddsAssertion, kupon.OddsUdregning());

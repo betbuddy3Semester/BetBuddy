@@ -6,7 +6,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src = "http://code.jquery.com/jquery.js"></script>
     <style>
         * {
             box-sizing: border-box;
@@ -54,17 +54,16 @@
 </head>
 <body>
 <h2>Chat</h2>
-<ul id="messages"></ul>
-<form action="">
-    <input id="m" autocomplete="off"/><button>Send</button>
+<ul id = "messages"></ul>
+<form action = "">
+    <input autocomplete = "off"
+           id = "m"/><button>Send</button>
 </form>
 
-<script type="text/javascript">
+<script type = "text/javascript">
 
     var socket = new WebSocket('ws://localhost:1337');
-    socket.onopen = function() {
-        socket.send('/setUserName @Model.BrugerNavn');
-    };
+    socket.onopen = function() { socket.send('/setUserName @Model.BrugerNavn'); };
 
     socket.onmessage = function(message) {
         console.log("message:");
@@ -75,9 +74,7 @@
         $('#messages').append($('<li>').text(msg.data.user + ": " + msg.data.msg));
     };
 
-    socket.onerror = function(error) {
-        console.log('WebSocket error: ' + error);
-    };
+    socket.onerror = function(error) { console.log('WebSocket error: ' + error); };
 
     $('form')
         .submit(function() {

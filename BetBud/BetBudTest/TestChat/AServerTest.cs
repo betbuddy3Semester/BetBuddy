@@ -1,50 +1,32 @@
 ﻿using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ModelLibrary.Chat;
+using ModelLibrary.Models.Chat;
 using NUnit.Framework;
 using Assert = NUnit.Framework.Assert;
 
-namespace BetBudTest.TestChat
-{
+namespace BetBudTest.TestChat {
     [TestFixture]
-    public class AServerTest
-    {
+    public class AServerTest {
         private AServer _aserv;
         private Client _clientOne;
         private Client _clientTwo;
         private Client _clientThree;
 
         [TestInitialize]
-        public void TestInitialize()
-        {
+        public void TestInitialize() {
             #region Arrange
 
             //Server
-            _aserv = new AServer
-            {
-                AServerId = 1,
-                ServerName = "Fodbold",
-                BufferSize = 2048,
-                ServerPort = 100
-            };
+            _aserv = new AServer {AServerId = 1, ServerName = "Fodbold", BufferSize = 2048, ServerPort = 100};
 
             //Alex
-            _clientOne = new Client
-            {
-                ClientPort = 100
-            };
+            _clientOne = new Client {ClientPort = 100};
 
             //Morten
-            _clientTwo = new Client
-            {
-                ClientPort = 100
-            };
+            _clientTwo = new Client {ClientPort = 100};
 
             //Lasse
-            _clientThree = new Client
-            {
-                ClientPort = 100
-            };
+            _clientThree = new Client {ClientPort = 100};
 
             #endregion
         }
@@ -53,8 +35,7 @@ namespace BetBudTest.TestChat
         ///     A test to see if the server starts correctly
         /// </summary>
         [Test]
-        public void StartServerTest()
-        {
+        public void StartServerTest() {
             TestInitialize();
 
             #region Act
@@ -90,8 +71,7 @@ namespace BetBudTest.TestChat
         }
 
         [Test]
-        public void StopServerTest()
-        {
+        public void StopServerTest() {
             //Arrrange 
             AServer aserv = new AServer();
 

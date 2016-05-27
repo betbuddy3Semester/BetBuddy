@@ -4,46 +4,55 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
+<div class = "jumbotron">
     <h1>BetBuddy</h1>
-    <p class="lead">BetBuddy er et social betting site.</p>
+    <p class = "lead">BetBuddy er et social betting site.</p>
 
 </div>
 
-<div class="row">
-    <div class="col-md-4">
+<div class = "row">
+    <div class = "col-md-4">
         <h2>Kom godt i gang</h2>
         <p>
             Start filmen herunder for at blive guidet igennem vores hjemmeside
         </p>
         <p>
-            <a class="btn btn-default" href="http://hvadsigerjakob.dk/">Tryk her &raquo;</a>
+            <a class = "btn btn-default"
+               href = "http://hvadsigerjakob.dk/">
+                Tryk her &raquo;
+            </a>
         </p>
     </div>
-    <div class="col-md-4">
+    <div class = "col-md-4">
         <h2>Dagens kampe</h2>
         <ol>
             @if (Model.AlleKampe.Length > 2) {
                 foreach (Kamp kamp in Model.AlleKampe.ToList().GetRange(0, 3)) {
-                <li>@kamp.HoldVsHold </li>
-            }
+                    <li>@kamp.HoldVsHold </li>
+                }
             }
         </ol>
         <p>
-            <a class="btn btn-default" href="/Kupon/OpretKupon"> Spil her &raquo;</a>
+            <a class = "btn btn-default"
+               href = "/Kupon/OpretKupon">
+                Spil her &raquo;
+            </a>
         </p>
     </div>
-    <div class="col-md-4">
+    <div class = "col-md-4">
         <h2>Highscore</h2>
         <ol>
             @if (Model.brugere.Length > 4) {
                 foreach (Bruger bruger in Model.brugere.ToList().GetRange(0, 5)) {
                     <li>@bruger.Navn -- @bruger.Point </li>
+                }
             }
-            }
-        </ol>   
+        </ol>
         <p>
-            <a class="btn btn-default" href="/Bruger/Highscore">Se highscore &raquo;</a>
+            <a class = "btn btn-default"
+               href = "/Bruger/Highscore">
+                Se highscore &raquo;
+            </a>
         </p>
     </div>
 </div>

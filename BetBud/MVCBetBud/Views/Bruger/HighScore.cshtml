@@ -7,7 +7,7 @@
 
 <h2>HighScore</h2>
 
-<table class="table">
+<table class = "table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.BrugerNavn)
@@ -18,8 +18,7 @@
         <th></th>
     </tr>
 
-    @foreach (Bruger item in Model)
-    {
+    @foreach (Bruger item in Model) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.BrugerNavn)

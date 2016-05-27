@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ServiceModel;
-using ModelLibrary.Bruger;
-using ModelLibrary.Kupon;
+using ModelLibrary.Models.Bruger;
+using ModelLibrary.Models.Kupon;
 
 namespace WCFBetBuddy {
     [ServiceContract]

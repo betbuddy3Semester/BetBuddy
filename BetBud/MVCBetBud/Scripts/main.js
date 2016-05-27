@@ -20,6 +20,7 @@ $(".OddsBox")
         var fixtTal = $(this).text().replace(",", ".");
         samletOdds *= fixtTal;
     });
+
 samletOdds = Math.round(samletOdds * 100) / 100;
 if (samletOdds != 1) {
     $("#oddsResult").text(samletOdds);

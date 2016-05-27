@@ -1,21 +1,16 @@
 ﻿using BetBudTest.ServiceReference1;
-using ModelLibrary.Bruger;
+using ModelLibrary.Models.Bruger;
 using NUnit.Framework;
 
-namespace BetBudTest
-{
+namespace BetBudTest {
     [TestFixture]
-    internal class BrugerServiceTest
-
-    {
+    internal class BrugerServiceTest {
         private readonly ServicesClient BSR = new ServicesClient();
 
         [Test]
-        public void opdaterBrugerTest()
-        {
+        public void opdaterBrugerTest() {
             //Arrange
             Bruger bruger = new Bruger();
-
 
             //Act 
             bruger.BrugerNavn = "LuderLaila";
@@ -40,11 +35,9 @@ namespace BetBudTest
         ///     Testen er afhængig af, at servicen manuelt bliver startet, den kan ikke åbne servicen selv
         /// </summary>
         [Test]
-        public void opretBrugerTest()
-        {
+        public void opretBrugerTest() {
             //Arrange
             Bruger bruger = new Bruger();
-
 
             //Act 
             bruger.BrugerNavn = "Laila";
@@ -58,11 +51,9 @@ namespace BetBudTest
         }
 
         [Test]
-        public void sletBrugerTest()
-        {
+        public void sletBrugerTest() {
             //Arrange
             Bruger bruger = new Bruger();
-
 
             //Act 
             bruger.BrugerNavn = "Hans Testies";

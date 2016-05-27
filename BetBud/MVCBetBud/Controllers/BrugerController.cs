@@ -18,22 +18,22 @@ namespace MVCBetBud.Controllers {
             return RedirectToAction("index", "Home");
         }
 
-        public ActionResult GetApi(string text)
-        {
+        public ActionResult GetApi(string text) {
             int reservId = 0;
-            if (Session["ReservationId"] != null)
-            {
+            if (Session["ReservationId"] != null) {
                 reservId = int.Parse((string) Session["ReservationId"]);
             }
-            var reservedName = SR.FeedBackReservedNames(text, reservId);
+            string[] reservedName = SR.FeedBackReservedNames(text, reservId);
 
             Session["ReservationId"] = reservedName[0];
-            return Json(new {text = reservedName[1], status = reservedName[2] }, JsonRequestBehavior.AllowGet);
+            return Json(new {text = reservedName[1], status = reservedName[2]}, JsonRequestBehavior.AllowGet);
         }
+
         public ActionResult GetClearSession() {
             Session["ReservationId"] = null;
             return Json(null, JsonRequestBehavior.AllowGet);
         }
+
         // GET: login side
         public ActionResult Login() {
             if (Session["brugerSession"] != null) {
@@ -42,8 +42,7 @@ namespace MVCBetBud.Controllers {
             return View();
         }
 
-        public ActionResult HighScore()
-        {
+        public ActionResult HighScore() {
             Bruger[] Bruger = SR.getHighscores();
             return View(Bruger);
         }
@@ -92,7 +91,6 @@ namespace MVCBetBud.Controllers {
             //Number constraints
             Match matchName = new Regex(@"^[a-åA-Å' '-'\s]{1,40}$").Match(b.Navn);
 
-
             //Brugernavn constraints 1-24 karaktere
             //Skal starte med a-z
             // må indeholde .,-_
@@ -101,12 +99,8 @@ namespace MVCBetBud.Controllers {
 
             Bruger bcheck = SR.getBrugerEfterBrugernavn(b.BrugerNavn);
 
-
-            if (matchEmail.Success && matchName.Success && matchBruger.Success && bcheck == null)
-            {
-
-                try
-                {
+            if (matchEmail.Success && matchName.Success && matchBruger.Success && bcheck == null) {
+                try {
                     SR.opretBruger(b);
                     return RedirectToAction("Index");
                 }

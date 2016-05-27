@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ServiceModel;
 using CtrLayer;
-using ModelLibrary.Bruger;
-using ModelLibrary.Kupon;
+using CtrLayer.Models;
+using ModelLibrary.Models.Bruger;
+using ModelLibrary.Models.Kupon;
 
 namespace WCFBetBuddy {
     [ServiceBehavior(IncludeExceptionDetailInFaults = true)]

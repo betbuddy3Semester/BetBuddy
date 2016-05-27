@@ -5,11 +5,13 @@
 
 <h2>Login</h2>
 
-@using (Html.BeginForm())
-{
+@using (Html.BeginForm()) {
     <p>Brugernavn:</p>
-    <input type="text" name="brugerNavn"/>
+    <input name = "brugerNavn"
+           type = "text"/>
     <p>Password</p>
-    <input type="password" name="kodeord"/>
-    <input type="submit" value="login"/>
+    <input name = "kodeord"
+           type = "password"/>
+    <input type = "submit"
+           value = "login"/>
 }

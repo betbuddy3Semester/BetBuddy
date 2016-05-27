@@ -15,7 +15,7 @@ namespace MVCBetBud.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Kupon", Namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Kupon", Namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Models.Kupon")]
     [System.SerializableAttribute()]
     public partial class Kupon : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -172,7 +172,7 @@ namespace MVCBetBud.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Bruger", Namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Bruger")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Bruger", Namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Models.Bruger")]
     [System.SerializableAttribute()]
     public partial class Bruger : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -313,7 +313,7 @@ namespace MVCBetBud.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DelKamp", Namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DelKamp", Namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Models.Kupon")]
     [System.SerializableAttribute()]
     public partial class DelKamp : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -438,7 +438,7 @@ namespace MVCBetBud.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Kamp", Namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Kamp", Namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Models.Kupon")]
     [System.SerializableAttribute()]
     public partial class Kamp : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         

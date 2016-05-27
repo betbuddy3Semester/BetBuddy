@@ -1,5 +1,4 @@
-﻿using ModelLibrary.Bruger;
-using WCFBetBuddy;
+﻿using WCFBetBuddy;
 using WindowsFormsApplication1.ServiceReference1;
 using System;
 using System.Collections.Generic;
@@ -10,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ModelLibrary.Models.Bruger;
 
 namespace WindowsFormsApplication1
 {

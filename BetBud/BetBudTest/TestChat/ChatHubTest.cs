@@ -1,6 +1,4 @@
-﻿namespace BetBudTest.TestChat
-{
-    public class ChatHubTest
-    {
+﻿namespace BetBudTest.TestChat {
+    public class ChatHubTest {
     }
 }

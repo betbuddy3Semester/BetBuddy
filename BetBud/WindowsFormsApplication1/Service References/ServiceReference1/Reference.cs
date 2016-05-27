@@ -8,6 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using ModelLibrary.Models.Bruger;
+using ModelLibrary.Models.Kupon;
+
 namespace WindowsFormsApplication1.ServiceReference1 {
     
     
@@ -16,16 +19,16 @@ namespace WindowsFormsApplication1.ServiceReference1 {
     public interface IServices {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/TilføjKamp", ReplyAction="http://tempuri.org/IServices/TilføjKampResponse")]
-        ModelLibrary.Kupon.Kupon TilføjKamp(ModelLibrary.Kupon.Kupon kupon, ModelLibrary.Kupon.Kamp kamp, bool valgt1, bool valgtX, bool valgt2);
+        Kupon TilføjKamp(Kupon kupon, Kamp kamp, bool valgt1, bool valgtX, bool valgt2);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/TilføjKamp", ReplyAction="http://tempuri.org/IServices/TilføjKampResponse")]
-        System.Threading.Tasks.Task<ModelLibrary.Kupon.Kupon> TilføjKampAsync(ModelLibrary.Kupon.Kupon kupon, ModelLibrary.Kupon.Kamp kamp, bool valgt1, bool valgtX, bool valgt2);
+        System.Threading.Tasks.Task<Kupon> TilføjKampAsync(Kupon kupon, Kamp kamp, bool valgt1, bool valgtX, bool valgt2);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/FjernKamp", ReplyAction="http://tempuri.org/IServices/FjernKampResponse")]
-        ModelLibrary.Kupon.Kupon FjernKamp(ModelLibrary.Kupon.Kamp kamp, ModelLibrary.Kupon.Kupon kupon);
+        Kupon FjernKamp(Kamp kamp, Kupon kupon);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/FjernKamp", ReplyAction="http://tempuri.org/IServices/FjernKampResponse")]
-        System.Threading.Tasks.Task<ModelLibrary.Kupon.Kupon> FjernKampAsync(ModelLibrary.Kupon.Kamp kamp, ModelLibrary.Kupon.Kupon kupon);
+        System.Threading.Tasks.Task<Kupon> FjernKampAsync(Kamp kamp, Kupon kupon);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/OddsUdregning", ReplyAction="http://tempuri.org/IServices/OddsUdregningResponse")]
         double OddsUdregning();
@@ -34,40 +37,40 @@ namespace WindowsFormsApplication1.ServiceReference1 {
         System.Threading.Tasks.Task<double> OddsUdregningAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/MuligGevist", ReplyAction="http://tempuri.org/IServices/MuligGevistResponse")]
-        double MuligGevist(ModelLibrary.Kupon.Kupon kupon);
+        double MuligGevist(Kupon kupon);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/MuligGevist", ReplyAction="http://tempuri.org/IServices/MuligGevistResponse")]
-        System.Threading.Tasks.Task<double> MuligGevistAsync(ModelLibrary.Kupon.Kupon kupon);
+        System.Threading.Tasks.Task<double> MuligGevistAsync(Kupon kupon);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/BekræftKupon", ReplyAction="http://tempuri.org/IServices/BekræftKuponResponse")]
-        bool BekræftKupon(ModelLibrary.Kupon.Kupon kupon);
+        bool BekræftKupon(Kupon kupon);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/BekræftKupon", ReplyAction="http://tempuri.org/IServices/BekræftKuponResponse")]
-        System.Threading.Tasks.Task<bool> BekræftKuponAsync(ModelLibrary.Kupon.Kupon kupon);
+        System.Threading.Tasks.Task<bool> BekræftKuponAsync(Kupon kupon);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/FindKamp", ReplyAction="http://tempuri.org/IServices/FindKampResponse")]
-        ModelLibrary.Kupon.Kamp FindKamp(int KampId);
+        Kamp FindKamp(int KampId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/FindKamp", ReplyAction="http://tempuri.org/IServices/FindKampResponse")]
-        System.Threading.Tasks.Task<ModelLibrary.Kupon.Kamp> FindKampAsync(int KampId);
+        System.Threading.Tasks.Task<Kamp> FindKampAsync(int KampId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/GetAlleKampe", ReplyAction="http://tempuri.org/IServices/GetAlleKampeResponse")]
-        ModelLibrary.Kupon.Kamp[] GetAlleKampe();
+        Kamp[] GetAlleKampe();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/GetAlleKampe", ReplyAction="http://tempuri.org/IServices/GetAlleKampeResponse")]
-        System.Threading.Tasks.Task<ModelLibrary.Kupon.Kamp[]> GetAlleKampeAsync();
+        System.Threading.Tasks.Task<Kamp[]> GetAlleKampeAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/GetAlleKuponer", ReplyAction="http://tempuri.org/IServices/GetAlleKuponerResponse")]
-        ModelLibrary.Kupon.Kupon[] GetAlleKuponer(ModelLibrary.Bruger.Bruger bruger);
+        Kupon[] GetAlleKuponer(Bruger bruger);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/GetAlleKuponer", ReplyAction="http://tempuri.org/IServices/GetAlleKuponerResponse")]
-        System.Threading.Tasks.Task<ModelLibrary.Kupon.Kupon[]> GetAlleKuponerAsync(ModelLibrary.Bruger.Bruger bruger);
+        System.Threading.Tasks.Task<Kupon[]> GetAlleKuponerAsync(Bruger bruger);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/NyKupon", ReplyAction="http://tempuri.org/IServices/NyKuponResponse")]
-        ModelLibrary.Kupon.Kupon NyKupon();
+        Kupon NyKupon();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/NyKupon", ReplyAction="http://tempuri.org/IServices/NyKuponResponse")]
-        System.Threading.Tasks.Task<ModelLibrary.Kupon.Kupon> NyKuponAsync();
+        System.Threading.Tasks.Task<Kupon> NyKuponAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/GetKampFromApi", ReplyAction="http://tempuri.org/IServices/GetKampFromApiResponse")]
         void GetKampFromApi();
@@ -76,40 +79,40 @@ namespace WindowsFormsApplication1.ServiceReference1 {
         System.Threading.Tasks.Task GetKampFromApiAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/getIkkeSpilletKampe", ReplyAction="http://tempuri.org/IServices/getIkkeSpilletKampeResponse")]
-        ModelLibrary.Kupon.Kamp[] getIkkeSpilletKampe();
+        Kamp[] getIkkeSpilletKampe();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/getIkkeSpilletKampe", ReplyAction="http://tempuri.org/IServices/getIkkeSpilletKampeResponse")]
-        System.Threading.Tasks.Task<ModelLibrary.Kupon.Kamp[]> getIkkeSpilletKampeAsync();
+        System.Threading.Tasks.Task<Kamp[]> getIkkeSpilletKampeAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/getBruger", ReplyAction="http://tempuri.org/IServices/getBrugerResponse")]
-        ModelLibrary.Bruger.Bruger getBruger(int id);
+        Bruger getBruger(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/getBruger", ReplyAction="http://tempuri.org/IServices/getBrugerResponse")]
-        System.Threading.Tasks.Task<ModelLibrary.Bruger.Bruger> getBrugerAsync(int id);
+        System.Threading.Tasks.Task<Bruger> getBrugerAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/getBrugerEfterBrugernavn", ReplyAction="http://tempuri.org/IServices/getBrugerEfterBrugernavnResponse")]
-        ModelLibrary.Bruger.Bruger getBrugerEfterBrugernavn(string bnavn);
+        Bruger getBrugerEfterBrugernavn(string bnavn);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/getBrugerEfterBrugernavn", ReplyAction="http://tempuri.org/IServices/getBrugerEfterBrugernavnResponse")]
-        System.Threading.Tasks.Task<ModelLibrary.Bruger.Bruger> getBrugerEfterBrugernavnAsync(string bnavn);
+        System.Threading.Tasks.Task<Bruger> getBrugerEfterBrugernavnAsync(string bnavn);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/getBrugere", ReplyAction="http://tempuri.org/IServices/getBrugereResponse")]
-        ModelLibrary.Bruger.Bruger[] getBrugere();
+        Bruger[] getBrugere();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/getBrugere", ReplyAction="http://tempuri.org/IServices/getBrugereResponse")]
-        System.Threading.Tasks.Task<ModelLibrary.Bruger.Bruger[]> getBrugereAsync();
+        System.Threading.Tasks.Task<Bruger[]> getBrugereAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/opretBruger", ReplyAction="http://tempuri.org/IServices/opretBrugerResponse")]
-        void opretBruger(ModelLibrary.Bruger.Bruger bruger);
+        void opretBruger(Bruger bruger);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/opretBruger", ReplyAction="http://tempuri.org/IServices/opretBrugerResponse")]
-        System.Threading.Tasks.Task opretBrugerAsync(ModelLibrary.Bruger.Bruger bruger);
+        System.Threading.Tasks.Task opretBrugerAsync(Bruger bruger);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/opdaterBruger", ReplyAction="http://tempuri.org/IServices/opdaterBrugerResponse")]
-        void opdaterBruger(ModelLibrary.Bruger.Bruger bruger);
+        void opdaterBruger(Bruger bruger);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/opdaterBruger", ReplyAction="http://tempuri.org/IServices/opdaterBrugerResponse")]
-        System.Threading.Tasks.Task opdaterBrugerAsync(ModelLibrary.Bruger.Bruger bruger);
+        System.Threading.Tasks.Task opdaterBrugerAsync(Bruger bruger);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/sletBruger", ReplyAction="http://tempuri.org/IServices/sletBrugerResponse")]
         void sletBruger(int id);
@@ -118,16 +121,16 @@ namespace WindowsFormsApplication1.ServiceReference1 {
         System.Threading.Tasks.Task sletBrugerAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/logInd", ReplyAction="http://tempuri.org/IServices/logIndResponse")]
-        ModelLibrary.Bruger.Bruger logInd(string bNavn, string pWord);
+        Bruger logInd(string bNavn, string pWord);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/logInd", ReplyAction="http://tempuri.org/IServices/logIndResponse")]
-        System.Threading.Tasks.Task<ModelLibrary.Bruger.Bruger> logIndAsync(string bNavn, string pWord);
+        System.Threading.Tasks.Task<Bruger> logIndAsync(string bNavn, string pWord);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/getHighscores", ReplyAction="http://tempuri.org/IServices/getHighscoresResponse")]
-        ModelLibrary.Bruger.Bruger[] getHighscores();
+        Bruger[] getHighscores();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/getHighscores", ReplyAction="http://tempuri.org/IServices/getHighscoresResponse")]
-        System.Threading.Tasks.Task<ModelLibrary.Bruger.Bruger[]> getHighscoresAsync();
+        System.Threading.Tasks.Task<Bruger[]> getHighscoresAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/OpretServer", ReplyAction="http://tempuri.org/IServices/OpretServerResponse")]
         void OpretServer(string serverName, int serverPort, int bufferSize);
@@ -175,19 +178,19 @@ namespace WindowsFormsApplication1.ServiceReference1 {
                 base(binding, remoteAddress) {
         }
         
-        public ModelLibrary.Kupon.Kupon TilføjKamp(ModelLibrary.Kupon.Kupon kupon, ModelLibrary.Kupon.Kamp kamp, bool valgt1, bool valgtX, bool valgt2) {
+        public Kupon TilføjKamp(Kupon kupon, Kamp kamp, bool valgt1, bool valgtX, bool valgt2) {
             return base.Channel.TilføjKamp(kupon, kamp, valgt1, valgtX, valgt2);
         }
         
-        public System.Threading.Tasks.Task<ModelLibrary.Kupon.Kupon> TilføjKampAsync(ModelLibrary.Kupon.Kupon kupon, ModelLibrary.Kupon.Kamp kamp, bool valgt1, bool valgtX, bool valgt2) {
+        public System.Threading.Tasks.Task<Kupon> TilføjKampAsync(Kupon kupon, Kamp kamp, bool valgt1, bool valgtX, bool valgt2) {
             return base.Channel.TilføjKampAsync(kupon, kamp, valgt1, valgtX, valgt2);
         }
         
-        public ModelLibrary.Kupon.Kupon FjernKamp(ModelLibrary.Kupon.Kamp kamp, ModelLibrary.Kupon.Kupon kupon) {
+        public Kupon FjernKamp(Kamp kamp, Kupon kupon) {
             return base.Channel.FjernKamp(kamp, kupon);
         }
         
-        public System.Threading.Tasks.Task<ModelLibrary.Kupon.Kupon> FjernKampAsync(ModelLibrary.Kupon.Kamp kamp, ModelLibrary.Kupon.Kupon kupon) {
+        public System.Threading.Tasks.Task<Kupon> FjernKampAsync(Kamp kamp, Kupon kupon) {
             return base.Channel.FjernKampAsync(kamp, kupon);
         }
         
@@ -199,51 +202,51 @@ namespace WindowsFormsApplication1.ServiceReference1 {
             return base.Channel.OddsUdregningAsync();
         }
         
-        public double MuligGevist(ModelLibrary.Kupon.Kupon kupon) {
+        public double MuligGevist(Kupon kupon) {
             return base.Channel.MuligGevist(kupon);
         }
         
-        public System.Threading.Tasks.Task<double> MuligGevistAsync(ModelLibrary.Kupon.Kupon kupon) {
+        public System.Threading.Tasks.Task<double> MuligGevistAsync(Kupon kupon) {
             return base.Channel.MuligGevistAsync(kupon);
         }
         
-        public bool BekræftKupon(ModelLibrary.Kupon.Kupon kupon) {
+        public bool BekræftKupon(Kupon kupon) {
             return base.Channel.BekræftKupon(kupon);
         }
         
-        public System.Threading.Tasks.Task<bool> BekræftKuponAsync(ModelLibrary.Kupon.Kupon kupon) {
+        public System.Threading.Tasks.Task<bool> BekræftKuponAsync(Kupon kupon) {
             return base.Channel.BekræftKuponAsync(kupon);
         }
         
-        public ModelLibrary.Kupon.Kamp FindKamp(int KampId) {
+        public Kamp FindKamp(int KampId) {
             return base.Channel.FindKamp(KampId);
         }
         
-        public System.Threading.Tasks.Task<ModelLibrary.Kupon.Kamp> FindKampAsync(int KampId) {
+        public System.Threading.Tasks.Task<Kamp> FindKampAsync(int KampId) {
             return base.Channel.FindKampAsync(KampId);
         }
         
-        public ModelLibrary.Kupon.Kamp[] GetAlleKampe() {
+        public Kamp[] GetAlleKampe() {
             return base.Channel.GetAlleKampe();
         }
         
-        public System.Threading.Tasks.Task<ModelLibrary.Kupon.Kamp[]> GetAlleKampeAsync() {
+        public System.Threading.Tasks.Task<Kamp[]> GetAlleKampeAsync() {
             return base.Channel.GetAlleKampeAsync();
         }
         
-        public ModelLibrary.Kupon.Kupon[] GetAlleKuponer(ModelLibrary.Bruger.Bruger bruger) {
+        public Kupon[] GetAlleKuponer(Bruger bruger) {
             return base.Channel.GetAlleKuponer(bruger);
         }
         
-        public System.Threading.Tasks.Task<ModelLibrary.Kupon.Kupon[]> GetAlleKuponerAsync(ModelLibrary.Bruger.Bruger bruger) {
+        public System.Threading.Tasks.Task<Kupon[]> GetAlleKuponerAsync(Bruger bruger) {
             return base.Channel.GetAlleKuponerAsync(bruger);
         }
         
-        public ModelLibrary.Kupon.Kupon NyKupon() {
+        public Kupon NyKupon() {
             return base.Channel.NyKupon();
         }
         
-        public System.Threading.Tasks.Task<ModelLibrary.Kupon.Kupon> NyKuponAsync() {
+        public System.Threading.Tasks.Task<Kupon> NyKuponAsync() {
             return base.Channel.NyKuponAsync();
         }
         
@@ -255,51 +258,51 @@ namespace WindowsFormsApplication1.ServiceReference1 {
             return base.Channel.GetKampFromApiAsync();
         }
         
-        public ModelLibrary.Kupon.Kamp[] getIkkeSpilletKampe() {
+        public Kamp[] getIkkeSpilletKampe() {
             return base.Channel.getIkkeSpilletKampe();
         }
         
-        public System.Threading.Tasks.Task<ModelLibrary.Kupon.Kamp[]> getIkkeSpilletKampeAsync() {
+        public System.Threading.Tasks.Task<Kamp[]> getIkkeSpilletKampeAsync() {
             return base.Channel.getIkkeSpilletKampeAsync();
         }
         
-        public ModelLibrary.Bruger.Bruger getBruger(int id) {
+        public Bruger getBruger(int id) {
             return base.Channel.getBruger(id);
         }
         
-        public System.Threading.Tasks.Task<ModelLibrary.Bruger.Bruger> getBrugerAsync(int id) {
+        public System.Threading.Tasks.Task<Bruger> getBrugerAsync(int id) {
             return base.Channel.getBrugerAsync(id);
         }
         
-        public ModelLibrary.Bruger.Bruger getBrugerEfterBrugernavn(string bnavn) {
+        public Bruger getBrugerEfterBrugernavn(string bnavn) {
             return base.Channel.getBrugerEfterBrugernavn(bnavn);
         }
         
-        public System.Threading.Tasks.Task<ModelLibrary.Bruger.Bruger> getBrugerEfterBrugernavnAsync(string bnavn) {
+        public System.Threading.Tasks.Task<Bruger> getBrugerEfterBrugernavnAsync(string bnavn) {
             return base.Channel.getBrugerEfterBrugernavnAsync(bnavn);
         }
         
-        public ModelLibrary.Bruger.Bruger[] getBrugere() {
+        public Bruger[] getBrugere() {
             return base.Channel.getBrugere();
         }
         
-        public System.Threading.Tasks.Task<ModelLibrary.Bruger.Bruger[]> getBrugereAsync() {
+        public System.Threading.Tasks.Task<Bruger[]> getBrugereAsync() {
             return base.Channel.getBrugereAsync();
         }
         
-        public void opretBruger(ModelLibrary.Bruger.Bruger bruger) {
+        public void opretBruger(Bruger bruger) {
             base.Channel.opretBruger(bruger);
         }
         
-        public System.Threading.Tasks.Task opretBrugerAsync(ModelLibrary.Bruger.Bruger bruger) {
+        public System.Threading.Tasks.Task opretBrugerAsync(Bruger bruger) {
             return base.Channel.opretBrugerAsync(bruger);
         }
         
-        public void opdaterBruger(ModelLibrary.Bruger.Bruger bruger) {
+        public void opdaterBruger(Bruger bruger) {
             base.Channel.opdaterBruger(bruger);
         }
         
-        public System.Threading.Tasks.Task opdaterBrugerAsync(ModelLibrary.Bruger.Bruger bruger) {
+        public System.Threading.Tasks.Task opdaterBrugerAsync(Bruger bruger) {
             return base.Channel.opdaterBrugerAsync(bruger);
         }
         
@@ -311,19 +314,19 @@ namespace WindowsFormsApplication1.ServiceReference1 {
             return base.Channel.sletBrugerAsync(id);
         }
         
-        public ModelLibrary.Bruger.Bruger logInd(string bNavn, string pWord) {
+        public Bruger logInd(string bNavn, string pWord) {
             return base.Channel.logInd(bNavn, pWord);
         }
         
-        public System.Threading.Tasks.Task<ModelLibrary.Bruger.Bruger> logIndAsync(string bNavn, string pWord) {
+        public System.Threading.Tasks.Task<Bruger> logIndAsync(string bNavn, string pWord) {
             return base.Channel.logIndAsync(bNavn, pWord);
         }
         
-        public ModelLibrary.Bruger.Bruger[] getHighscores() {
+        public Bruger[] getHighscores() {
             return base.Channel.getHighscores();
         }
         
-        public System.Threading.Tasks.Task<ModelLibrary.Bruger.Bruger[]> getHighscoresAsync() {
+        public System.Threading.Tasks.Task<Bruger[]> getHighscoresAsync() {
             return base.Channel.getHighscoresAsync();
         }
         

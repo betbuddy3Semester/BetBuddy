@@ -4,10 +4,8 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace MVCBetBud.Models
-{
-    public class IndexViewModel
-    {
+namespace MVCBetBud.Models {
+    public class IndexViewModel {
         public bool HasPassword { get; set; }
         public IList<UserLoginInfo> Logins { get; set; }
         public string PhoneNumber { get; set; }
@@ -15,19 +13,16 @@ namespace MVCBetBud.Models
         public bool BrowserRemembered { get; set; }
     }
 
-    public class ManageLoginsViewModel
-    {
+    public class ManageLoginsViewModel {
         public IList<UserLoginInfo> CurrentLogins { get; set; }
         public IList<AuthenticationDescription> OtherLogins { get; set; }
     }
 
-    public class FactorViewModel
-    {
+    public class FactorViewModel {
         public string Purpose { get; set; }
     }
 
-    public class SetPasswordViewModel
-    {
+    public class SetPasswordViewModel {
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
@@ -41,8 +36,7 @@ namespace MVCBetBud.Models
         public string ConfirmPassword { get; set; }
     }
 
-    public class ChangePasswordViewModel
-    {
+    public class ChangePasswordViewModel {
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Current password")]
@@ -61,16 +55,14 @@ namespace MVCBetBud.Models
         public string ConfirmPassword { get; set; }
     }
 
-    public class AddPhoneNumberViewModel
-    {
+    public class AddPhoneNumberViewModel {
         [Required]
         [Phone]
         [Display(Name = "Phone Number")]
         public string Number { get; set; }
     }
 
-    public class VerifyPhoneNumberViewModel
-    {
+    public class VerifyPhoneNumberViewModel {
         [Required]
         [Display(Name = "Code")]
         public string Code { get; set; }
@@ -81,8 +73,7 @@ namespace MVCBetBud.Models
         public string PhoneNumber { get; set; }
     }
 
-    public class ConfigureTwoFactorViewModel
-    {
+    public class ConfigureTwoFactorViewModel {
         public string SelectedProvider { get; set; }
         public ICollection<SelectListItem> Providers { get; set; }
     }
