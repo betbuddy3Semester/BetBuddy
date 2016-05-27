@@ -5,7 +5,7 @@ using DALBetBud.Context;
 using ModelLibrary.Models.Sæson;
 
 namespace CtrLayer.Models {
-    internal class SæsonBeskrivelseController : ISæsonBeskrivelseController {
+    public class SæsonBeskrivelseController : ISæsonBeskrivelseController {
         #region Methods
 
         public SæsonBeskrivelse HentNuværendeSæson() {
