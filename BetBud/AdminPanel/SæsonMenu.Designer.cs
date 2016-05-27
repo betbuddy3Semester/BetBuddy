@@ -106,6 +106,7 @@
             this.SæsonIdLblShow.Size = new System.Drawing.Size(20, 17);
             this.SæsonIdLblShow.TabIndex = 8;
             this.SæsonIdLblShow.Text = "...";
+            this.SæsonIdLblShow.Click += new System.EventHandler(this.SæsonIdLblShow_Click);
             // 
             // textBoxBeskrivelse
             // 
@@ -113,6 +114,7 @@
             this.textBoxBeskrivelse.Name = "textBoxBeskrivelse";
             this.textBoxBeskrivelse.Size = new System.Drawing.Size(274, 22);
             this.textBoxBeskrivelse.TabIndex = 9;
+            this.textBoxBeskrivelse.TextChanged += new System.EventHandler(this.textBoxBeskrivelse_TextChanged);
             // 
             // StartDatoTextBox
             // 
@@ -120,6 +122,7 @@
             this.StartDatoTextBox.Name = "StartDatoTextBox";
             this.StartDatoTextBox.Size = new System.Drawing.Size(274, 22);
             this.StartDatoTextBox.TabIndex = 10;
+            this.StartDatoTextBox.TextChanged += new System.EventHandler(this.StartDatoTextBox_TextChanged);
             // 
             // SlutDatoTextBox
             // 

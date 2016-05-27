@@ -22,5 +22,10 @@ namespace AdminPanel
 
             var form = new SæsonMenu {Visible = true};
         }
+
+        private void Bruger_Click(object sender, EventArgs e)
+        {
+            var form = new BrugerMenu {Visible = true};
+        }
     }
 }

@@ -1,15 +1,33 @@
 ﻿using System.Collections.Generic;
 using System.ServiceModel;
 using CtrLayer;
-using CtrLayer.Models;
-using ModelLibrary.Models.Bruger;
-using ModelLibrary.Models.Kupon;
+using ModelLibrary.Bruger;
+using ModelLibrary.Kupon;
+using ModelLibrary.SeasonInterface;
 
 namespace WCFBetBuddy {
     [ServiceBehavior(IncludeExceptionDetailInFaults = true)]
     public class Services : IServices {
         private DelKamp tempDelKamp = new DelKamp();
         private Kupon tempKupon = new Kupon();
+
+
+        #region SæsonBeskrivelse
+
+        private readonly SæsonBeskrivelseController _sbc = new SæsonBeskrivelseController();
+
+        public SæsonBeskrivelse RedigerBeskrivelse (string beskrivelse, string start, string slut)
+        {
+            _sbc.OpdaterSæsonBeskrivelse(beskrivelse, start, slut);
+            return _sbc.HentNuværendeSæson();
+        }
+
+        public SæsonBeskrivelse HentBeskrivelse()
+        {
+                return _sbc.HentNuværendeSæson();
+        }
+
+        #endregion
 
         #region Season
 

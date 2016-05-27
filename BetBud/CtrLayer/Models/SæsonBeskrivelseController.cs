@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Data.Entity;
+using System.Linq;
 using CtrLayer.Interfaces;
 using DALBetBud.Context;
 using ModelLibrary.Models.Sæson;
@@ -10,8 +11,9 @@ namespace CtrLayer.Models {
         public SæsonBeskrivelse HentNuværendeSæson() {
             SæsonBeskrivelse sb;
             using (BetBudContext db = new BetBudContext()) {
-                sb = db.AktuelSæsonInfo.LastOrDefault();
+                sb = db.AktuelSæsonInfo.OrderByDescending(x => x.SæsonBeskrivelseId).FirstOrDefault();
             }
+            
             return sb;
         }
 
@@ -21,6 +23,7 @@ namespace CtrLayer.Models {
                 sb.Beskrivelse = beskrivelse;
                 sb.SlutDato = slut;
                 sb.StartDato = start;
+                db.Entry(sb).State = EntityState.Modified;
                 db.SaveChanges();
             }
             return HentNuværendeSæson();

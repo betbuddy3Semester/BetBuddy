@@ -1,11 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.ServiceModel;
-using ModelLibrary.Models.Bruger;
-using ModelLibrary.Models.Kupon;
+using ModelLibrary.Bruger;
+using ModelLibrary.Kupon;
+using ModelLibrary.SeasonInterface;
 
 namespace WCFBetBuddy {
     [ServiceContract]
     internal interface IServices {
+        #region SæsonBeskrivelse
+
+        [OperationContract]
+        SæsonBeskrivelse RedigerBeskrivelse(string beskrivelse, string start, string slut);
+        [OperationContract]
+        SæsonBeskrivelse HentBeskrivelse();
+        #endregion
+
         #region Sæson
 
         [OperationContract]
