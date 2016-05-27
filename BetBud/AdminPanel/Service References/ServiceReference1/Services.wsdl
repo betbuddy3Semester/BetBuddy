@@ -4,9 +4,9 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:8733/?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:8733/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:8733/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.SeasonInterface" />
-      <xsd:import schemaLocation="http://localhost:8733/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon" />
-      <xsd:import schemaLocation="http://localhost:8733/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Bruger" />
+      <xsd:import schemaLocation="http://localhost:8733/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Models.S%C3%A6son" />
+      <xsd:import schemaLocation="http://localhost:8733/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Models.Kupon" />
+      <xsd:import schemaLocation="http://localhost:8733/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Models.Bruger" />
       <xsd:import schemaLocation="http://localhost:8733/?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
@@ -27,6 +27,12 @@
   </wsdl:message>
   <wsdl:message name="IServices_AfslutSæson_OutputMessage">
     <wsdl:part name="parameters" element="tns:AfslutSæsonResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServices_GetSeasonId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSeasonId" />
+  </wsdl:message>
+  <wsdl:message name="IServices_GetSeasonId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSeasonIdResponse" />
   </wsdl:message>
   <wsdl:message name="IServices_TilføjKamp_InputMessage">
     <wsdl:part name="parameters" element="tns:TilføjKamp" />
@@ -161,6 +167,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IServices/AfslutSæson" message="tns:IServices_AfslutSæson_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServices/AfslutSæsonResponse" message="tns:IServices_AfslutSæson_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetSeasonId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServices/GetSeasonId" message="tns:IServices_GetSeasonId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServices/GetSeasonIdResponse" message="tns:IServices_GetSeasonId_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="TilføjKamp">
       <wsdl:input wsaw:Action="http://tempuri.org/IServices/TilføjKamp" message="tns:IServices_TilføjKamp_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServices/TilføjKampResponse" message="tns:IServices_TilføjKamp_OutputMessage" />
@@ -264,6 +274,15 @@
     </wsdl:operation>
     <wsdl:operation name="AfslutSæson">
       <soap:operation soapAction="http://tempuri.org/IServices/AfslutSæson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSeasonId">
+      <soap:operation soapAction="http://tempuri.org/IServices/GetSeasonId" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

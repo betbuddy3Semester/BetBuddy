@@ -97,6 +97,7 @@
             this.TilmeldteBrugereLblShow.Size = new System.Drawing.Size(20, 17);
             this.TilmeldteBrugereLblShow.TabIndex = 7;
             this.TilmeldteBrugereLblShow.Text = "...";
+            this.TilmeldteBrugereLblShow.Click += new System.EventHandler(this.TilmeldteBrugereLblShow_Click);
             // 
             // SæsonIdLblShow
             // 

@@ -157,5 +157,16 @@ namespace WCFBetBuddy {
         }
 
         #endregion
+
+        #region Setting
+        private readonly SettingsCtr SettingsControl = new SettingsCtr();
+
+        public int GetSeasonId()
+        {
+            return SettingsControl.GetSeasonNr();
+        }
+
+
+        #endregion
     }
 }

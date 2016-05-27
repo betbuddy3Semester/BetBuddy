@@ -15,7 +15,7 @@ namespace AdminPanel.ServiceReference1 {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="SæsonBeskrivelse", Namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.SeasonInterface")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SæsonBeskrivelse", Namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Models.S%C3%A6son")]
     [System.SerializableAttribute()]
     public partial class SæsonBeskrivelse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -108,7 +108,7 @@ namespace AdminPanel.ServiceReference1 {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Kupon", Namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Kupon", Namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Models.Kupon")]
     [System.SerializableAttribute()]
     public partial class Kupon : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -265,7 +265,7 @@ namespace AdminPanel.ServiceReference1 {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Bruger", Namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Bruger")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Bruger", Namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Models.Bruger")]
     [System.SerializableAttribute()]
     public partial class Bruger : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -406,7 +406,7 @@ namespace AdminPanel.ServiceReference1 {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DelKamp", Namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DelKamp", Namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Models.Kupon")]
     [System.SerializableAttribute()]
     public partial class DelKamp : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -531,7 +531,7 @@ namespace AdminPanel.ServiceReference1 {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Kamp", Namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Kupon")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Kamp", Namespace="http://schemas.datacontract.org/2004/07/ModelLibrary.Models.Kupon")]
     [System.SerializableAttribute()]
     public partial class Kamp : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -740,6 +740,12 @@ namespace AdminPanel.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/AfslutSæson", ReplyAction="http://tempuri.org/IServices/AfslutSæsonResponse")]
         System.Threading.Tasks.Task AfslutSæsonAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/GetSeasonId", ReplyAction="http://tempuri.org/IServices/GetSeasonIdResponse")]
+        int GetSeasonId();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/GetSeasonId", ReplyAction="http://tempuri.org/IServices/GetSeasonIdResponse")]
+        System.Threading.Tasks.Task<int> GetSeasonIdAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServices/TilføjKamp", ReplyAction="http://tempuri.org/IServices/TilføjKampResponse")]
         AdminPanel.ServiceReference1.Kupon TilføjKamp(AdminPanel.ServiceReference1.Kupon kupon, AdminPanel.ServiceReference1.Kamp kamp, bool valgt1, bool valgtX, bool valgt2);
         
@@ -910,6 +916,14 @@ namespace AdminPanel.ServiceReference1 {
         
         public System.Threading.Tasks.Task AfslutSæsonAsync() {
             return base.Channel.AfslutSæsonAsync();
+        }
+        
+        public int GetSeasonId() {
+            return base.Channel.GetSeasonId();
+        }
+        
+        public System.Threading.Tasks.Task<int> GetSeasonIdAsync() {
+            return base.Channel.GetSeasonIdAsync();
         }
         
         public AdminPanel.ServiceReference1.Kupon TilføjKamp(AdminPanel.ServiceReference1.Kupon kupon, AdminPanel.ServiceReference1.Kamp kamp, bool valgt1, bool valgtX, bool valgt2) {

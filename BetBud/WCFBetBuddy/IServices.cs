@@ -21,6 +21,8 @@ namespace WCFBetBuddy {
         [OperationContract]
         void AfslutSæson();
 
+        [OperationContract]
+        int GetSeasonId();
         #endregion
 
         #region Ikupon

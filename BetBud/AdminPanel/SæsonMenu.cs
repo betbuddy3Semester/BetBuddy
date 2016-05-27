@@ -23,6 +23,8 @@ namespace AdminPanel
             StartDatoTextBox.Text = _srv.HentBeskrivelse().StartDato;
             SlutDatoTextBox.Text = _srv.HentBeskrivelse().SlutDato;
             textBoxBeskrivelse.Text = _srv.HentBeskrivelse().Beskrivelse;
+            SæsonIdLblShow.Text = _srv.GetSeasonId().ToString();
+            TilmeldteBrugereLblShow.Text = _srv.getBrugere().Length.ToString();
 
         }
 
@@ -52,6 +54,11 @@ namespace AdminPanel
         private void StartDatoTextBox_TextChanged(object sender, EventArgs e)
         {
             
+        }
+
+        private void TilmeldteBrugereLblShow_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -56,12 +56,14 @@
     <Compile Include="Interfaces\IChatHub.cs" />
     <Compile Include="Interfaces\IKuponController.cs" />
     <Compile Include="Interfaces\IReservedNamesController.cs" />
+    <Compile Include="Interfaces\ISetting.cs" />
     <Compile Include="Interfaces\ISæsonBeskrivelseController.cs" />
     <Compile Include="Interfaces\ISæsonController.cs" />
     <Compile Include="Models\BrugerController.cs" />
     <Compile Include="Models\ChatHub.cs" />
     <Compile Include="Models\KuponController.cs" />
     <Compile Include="Models\ReservedNamesController.cs" />
+    <Compile Include="Models\SettingsCtr.cs" />
     <Compile Include="Models\SæsonBeskrivelseController.cs" />
     <Compile Include="Models\SæsonController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
