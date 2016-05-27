@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ServiceModel;
-using ModelLibrary.Bruger;
-using ModelLibrary.Kupon;
-using ModelLibrary.SeasonInterface;
+using ModelLibrary.Interfaces.SeasonInterface;
+using ModelLibrary.Models.Kupon;
+using ModelLibrary.Models.Bruger;
+using ModelLibrary.Models.Sæson;
 
 namespace WCFBetBuddy {
     [ServiceContract]
