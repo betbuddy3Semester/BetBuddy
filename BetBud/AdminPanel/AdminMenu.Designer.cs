@@ -30,43 +30,33 @@
         {
             this.Sæson = new System.Windows.Forms.Button();
             this.Bruger = new System.Windows.Forms.Button();
-            this.KampeMenu = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Sæson
             // 
-            this.Sæson.Location = new System.Drawing.Point(209, 98);
+            this.Sæson.Location = new System.Drawing.Point(69, 98);
             this.Sæson.Name = "Sæson";
-            this.Sæson.Size = new System.Drawing.Size(232, 41);
+            this.Sæson.Size = new System.Drawing.Size(181, 49);
             this.Sæson.TabIndex = 0;
-            this.Sæson.Text = "Sæson";
+            this.Sæson.Text = "Sæson menu";
             this.Sæson.UseVisualStyleBackColor = true;
             this.Sæson.Click += new System.EventHandler(this.button1_Click);
             // 
             // Bruger
             // 
-            this.Bruger.Location = new System.Drawing.Point(490, 99);
+            this.Bruger.Location = new System.Drawing.Point(69, 153);
             this.Bruger.Name = "Bruger";
-            this.Bruger.Size = new System.Drawing.Size(225, 40);
+            this.Bruger.Size = new System.Drawing.Size(181, 44);
             this.Bruger.TabIndex = 1;
-            this.Bruger.Text = "Bruger";
+            this.Bruger.Text = "Bruger menu";
             this.Bruger.UseVisualStyleBackColor = true;
-            // 
-            // KampeMenu
-            // 
-            this.KampeMenu.Location = new System.Drawing.Point(764, 100);
-            this.KampeMenu.Name = "KampeMenu";
-            this.KampeMenu.Size = new System.Drawing.Size(225, 38);
-            this.KampeMenu.TabIndex = 2;
-            this.KampeMenu.Text = "Kampe";
-            this.KampeMenu.UseVisualStyleBackColor = true;
+            this.Bruger.Click += new System.EventHandler(this.Bruger_Click);
             // 
             // BrugerMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1183, 530);
-            this.Controls.Add(this.KampeMenu);
             this.Controls.Add(this.Bruger);
             this.Controls.Add(this.Sæson);
             this.Name = "BrugerMenu";
@@ -79,7 +69,6 @@
 
         private System.Windows.Forms.Button Sæson;
         private System.Windows.Forms.Button Bruger;
-        private System.Windows.Forms.Button KampeMenu;
     }
 }
 
