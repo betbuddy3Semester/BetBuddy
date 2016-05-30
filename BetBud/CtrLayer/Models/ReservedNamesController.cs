@@ -5,7 +5,7 @@ using System.Linq;
 using CtrLayer.Interfaces;
 using DALBetBud.Context;
 using ModelLibrary.Models.ReservedNames;
-
+using System.Transactions;
 namespace CtrLayer.Models {
     public class ReservedNamesController : IReservedNamesController {
         #region Methods
@@ -79,36 +79,45 @@ namespace CtrLayer.Models {
                 return true;
             }
         }
-
+        // tilføj transaction scope
         public IEnumerable<string> FeedBackReservedNames(string text, int id) {
             List<string> returnList = new List<string>();
-            bool feedbackVar = CheckIfNameExistsInBrugerDb(text);
-            if (!feedbackVar) {
-                ReservedNames name = new ReservedNames {Time = DateTime.Now, UserName = text};
-                if (id > 0) {
-                    name.ReservedNameId = id;
-                    UpdateReservedName(name);
-                    returnList.Add(name.ReservedNameId + "");
+            using (TransactionScope scope = new TransactionScope())
+            {
+                bool feedbackVar = CheckIfNameExistsInBrugerDb(text);
+                if (!feedbackVar)
+                {
+                    ReservedNames name = new ReservedNames {Time = DateTime.Now, UserName = text};
+                    if (id > 0)
+                    {
+                        name.ReservedNameId = id;
+                        UpdateReservedName(name);
+                        returnList.Add(name.ReservedNameId + "");
 
-                    returnList.Add("bruger navn er ledig og reseveret på ny");
-                    returnList.Add("2");
+                        returnList.Add("Brugernavn er ledigt og reseveret på ny");
+                        returnList.Add("2");
+                    }
+                    else
+                    {
+                        CreateReservedName(name);
+                        returnList.Add(name.ReservedNameId + "");
+                        returnList.Add("Brugernavn er ledigt og reseveret");
+                        returnList.Add("3");
+                    }
                 }
-                else {
-                    CreateReservedName(name);
-                    returnList.Add(name.ReservedNameId + "");
-                    returnList.Add("bruger navn er ledig og reseveret");
-                    returnList.Add("3");
-                }
-            }
-            else {
-                if (id > 0) {
-                    ReservedNames name = new ReservedNames {ReservedNameId = id};
-                    DeleteReservedName(name);
-                }
-                returnList.Add("0");
+                else
+                {
+                    if (id > 0)
+                    {
+                        ReservedNames name = new ReservedNames {ReservedNameId = id};
+                        DeleteReservedName(name);
+                    }
+                    returnList.Add("0");
 
-                returnList.Add("bruger navn er optaget");
-                returnList.Add("1");
+                    returnList.Add("Brugernavn er optaget");
+                    returnList.Add("1");
+                }
+                scope.Complete();
             }
             return returnList;
         }
