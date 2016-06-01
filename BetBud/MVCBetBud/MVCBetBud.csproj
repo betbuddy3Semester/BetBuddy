@@ -212,6 +212,11 @@
     <Compile Include="Models\KuponController.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\ServiceConcurrency\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\ServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -247,9 +252,26 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <None Include="Service References\ServiceConcurrency\Concurrency.wsdl" />
+    <None Include="Service References\ServiceConcurrency\item.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceConcurrency\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceConcurrency\item2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ServiceReference\item.disco" />
     <None Include="Service References\ServiceReference\configuration91.svcinfo" />
     <None Include="Service References\ServiceReference\configuration.svcinfo" />
+    <None Include="Service References\ServiceConcurrency\item.disco" />
+    <None Include="Service References\ServiceConcurrency\configuration91.svcinfo" />
+    <None Include="Service References\ServiceConcurrency\configuration.svcinfo" />
+    <None Include="Service References\ServiceConcurrency\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Service References\ServiceReference\MVCBetBud.ServiceReference.Bruger.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -333,6 +355,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ServiceConcurrency\" />
     <WCFMetadataStorage Include="Service References\ServiceReference\" />
   </ItemGroup>
   <PropertyGroup>

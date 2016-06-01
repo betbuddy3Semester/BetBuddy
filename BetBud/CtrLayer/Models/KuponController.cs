@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Diagnostics;
 using System.Globalization;
@@ -75,15 +76,25 @@ namespace CtrLayer.Models {
             kupon.CreateDateTime = DateTime.Now;
             if (kupon.delKampe.Count > 0) {
                 using (BetBudContext db = new BetBudContext()) {
-                    foreach (DelKamp kamp in kupon.delKampe) {
-                        db.Entry(kamp.Kampe).State = EntityState.Unchanged;
+                    using (DbContextTransaction transaction = db.Database.BeginTransaction(IsolationLevel.ReadCommitted)
+                        ) {
+                        try {
+                            foreach (DelKamp kamp in kupon.delKampe) {
+                                db.Entry(kamp.Kampe).State = EntityState.Unchanged;
+                            }
+                            db.Entry(kupon.Bruger).State = EntityState.Modified;
+                            Setting setting = db.Settings.FirstOrDefault(x => x.name == "Sæson");
+                            kupon.SæsonId = int.Parse(setting.value);
+                            db.Kuponer.Add(kupon);
+                            db.SaveChanges();
+
+                            transaction.Commit();
+                            return true;
+                        }
+                        catch (Exception) {
+                            transaction.Rollback();
+                        }
                     }
-                    db.Entry(kupon.Bruger).State = EntityState.Modified;
-                    Setting setting = db.Settings.FirstOrDefault(x => x.name == "Sæson");
-                    kupon.SæsonId = int.Parse(setting.value);
-                    db.Kuponer.Add(kupon);
-                    db.SaveChanges();
-                    return true;
                 }
             }
             return false;
@@ -199,7 +210,7 @@ namespace CtrLayer.Models {
             kupon.Kontrolleret = true;
 
             using (BetBudContext db = new BetBudContext()) {
-                using (DbContextTransaction transaction = db.Database.BeginTransaction()) {
+                using (DbContextTransaction transaction = db.Database.BeginTransaction(IsolationLevel.ReadCommitted)) {
                     try {
                         Debug.WriteLine("gem");
                         db.Entry(kupon).State = EntityState.Modified;

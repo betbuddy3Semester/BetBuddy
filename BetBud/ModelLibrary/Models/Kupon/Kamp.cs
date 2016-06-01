@@ -39,6 +39,8 @@ namespace ModelLibrary.Models.Kupon {
         [DataMember]
         public bool Aflyst { get; set; }
 
+        
+
         #endregion
 
     }

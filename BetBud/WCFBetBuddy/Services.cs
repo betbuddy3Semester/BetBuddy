@@ -148,16 +148,6 @@ namespace WCFBetBuddy {
 
         #endregion
 
-        #region ReservedNamesService
-
-        private readonly ReservedNamesController ctr = new ReservedNamesController();
-
-        public IEnumerable<string> FeedBackReservedNames(string text, int id) {
-            return ctr.FeedBackReservedNames(text, id);
-        }
-
-        #endregion
-
         #region Setting
         private readonly SettingsCtr SettingsControl = new SettingsCtr();
 

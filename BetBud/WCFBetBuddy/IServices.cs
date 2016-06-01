@@ -90,9 +90,6 @@ namespace WCFBetBuddy {
         [OperationContract]
         IEnumerable<Bruger> getHighscores();
 
-        [OperationContract]
-        IEnumerable<string> FeedBackReservedNames(string text, int id);
-
         #endregion
     }
 }

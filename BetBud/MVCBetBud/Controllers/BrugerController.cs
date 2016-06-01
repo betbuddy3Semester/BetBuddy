@@ -1,12 +1,14 @@
 ﻿using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using MVCBetBud.ServiceReference;
+using MVCBetBud.ServiceConcurrency;
 
 namespace MVCBetBud.Controllers {
     public class BrugerController : Controller {
         private readonly ServicesClient SR = new ServicesClient();
         // GET: Bruger
         public ActionResult Index() {
+            
             //var session = HttpContext.Current.Session;
             //if (Request.IsAuthenticated)
             if (Session["brugerSession"] != null) {
@@ -19,11 +21,15 @@ namespace MVCBetBud.Controllers {
         }
 
         public ActionResult GetApi(string text) {
+            ConcurrencyClient CC = new ConcurrencyClient();
             int reservId = 0;
             if (Session["ReservationId"] != null) {
                 reservId = int.Parse((string) Session["ReservationId"]);
             }
-            string[] reservedName = SR.FeedBackReservedNames(text, reservId);
+
+
+        //private readonly ServicesClient SR = new ServicesClient();
+        string[] reservedName = CC.FeedBackReservedNames(text, reservId);
 
             Session["ReservationId"] = reservedName[0];
             return Json(new {text = reservedName[1], status = reservedName[2]}, JsonRequestBehavior.AllowGet);

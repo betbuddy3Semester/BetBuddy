@@ -1,5 +1,5 @@
 ﻿@if (Session["brugerSession"] != null) {
-    <script src = "~/Scripts/chat.js"></script>
+    @Scripts.Render("~/scripts/chat.js")
     <ul class = "nav navbar-nav navbar-right">
         <li>
             <a href = "#"
