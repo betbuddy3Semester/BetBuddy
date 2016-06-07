@@ -241,6 +241,16 @@ namespace CtrLayer.Models {
 
         private void storeNewKampe(Kamp[] kamp) {
             using (BetBudContext db = new BetBudContext()) {
+                List<Kamp> list = kamp.ToList();
+                List<Kamp> onlyNew = new List<Kamp>();
+                foreach (Kamp k in list)
+                {
+                    if(db.Kampe.Find(k.KampId) == null)
+                    {
+                        onlyNew.Add(k);
+                    }
+                }
+                kamp = onlyNew.ToArray();
                 db.Kampe.AddRange(kamp);
                 db.SaveChanges();
             }
